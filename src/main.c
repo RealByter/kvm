@@ -130,6 +130,10 @@ int main(int argc, char *argv[])
     uint32_t start_addr_aligned = page_align_down(start_addr);
     uint32_t space_size = end_addr_aligned - start_addr_aligned;
     uint8_t* space = malloc(space_size);
+    if(space == NULL)
+    {
+        err(1, "Failed to allocate memory for the guest space");
+    }
 
     printf("start_addr = 0x%x, end_addr = 0x%x, space_size = 0x%x\n", start_addr_aligned, end_addr_aligned, space_size);
 
