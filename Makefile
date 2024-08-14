@@ -15,12 +15,10 @@ build/%.o: src/%.c
 	@mkdir -p build
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(TARGET)
-
-$(DISK_IMAGE):
-	(cd kernel && make all)
+all: $(TARGET)	
 
 run: $(DISK_IMAGE) $(TARGET)
+	(cd kernel && make all)
 	./$(TARGET) $(DISK_IMAGE)
 
 clean:

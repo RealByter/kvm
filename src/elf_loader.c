@@ -62,6 +62,7 @@ uint32_t elf_load(int vm, uint8_t *code, size_t size)
                 memset(space + vaddr - start_addr_aligned + file_size, 0, mem_size - file_size);
             }
         }
+        printf("type: %x, mem_size: %x, file_size: %x, vaddr: %x\n", phdr[i].p_type, phdr[i].p_memsz, phdr[i].p_filesz, phdr[i].p_vaddr);
     }
 
     // Allocate and map the segment in guest memory

@@ -179,6 +179,7 @@ int main(int argc, char *argv[])
             errx(1, "KVM_EXIT_FAIL_ENTRY: hardware_entry_failure_reason = 0x%llx",
                  (unsigned long long)run->fail_entry.hardware_entry_failure_reason);
         case KVM_EXIT_INTERNAL_ERROR:
+            print_regs(vcpu);
             errx(1, "KVM_EXIT_INTERNAL_ERROR: suberror = 0x%x", run->internal.suberror);
         default:
             errx(1, "exit_reason = 0x%x", run->exit_reason);

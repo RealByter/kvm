@@ -9,34 +9,28 @@ CFLAGS = -m32 -c -ffreestanding -fno-pie -fno-stack-protector -nostdlib
 LDFLAGS = -m elf_i386 -T linker.ld -nostdlib
 
 # Source files
-ASM_SRC = bootloader.asm
-C_SRC = main.c
+ASM_SRC = $(wildcard *.asm)
+C_SRC = $(wildcard *.c)
+S_SRC = $(wildcard *.s)
 
 # Object files
 ASM_OBJ = $(ASM_SRC:.asm=.o)
 C_OBJ = $(C_SRC:.c=.o)
+S_OBJ = $(S_SRC:.s=.o)
 
 # Output files
+KERNEL = kernel.elf
 BOOTLOADER = bootloader.bin
-DISK_IMAGE = kernel.elf
-
-# Phony targets
-.PHONY: all clean
 
 # Default target
-all: $(DISK_IMAGE)
-	cp $(DISK_IMAGE) ../$(DISK_IMAGE)
+all: $(KERNEL)
+	cp $(KERNEL) ../$(KERNEL)
 
-# Build the bootable disk image
-$(DISK_IMAGE): $(BOOTLOADER)
-	dd if=/dev/zero of=$(DISK_IMAGE) bs=512 count=2880
-	dd if=$(BOOTLOADER) of=$(DISK_IMAGE) conv=notrunc
-
-# Link the bootloader and C code
-$(BOOTLOADER): $(ASM_OBJ) $(C_OBJ)
+# Build the kernel
+$(KERNEL): $(ASM_OBJ) $(C_OBJ) $(S_OBJ)
 	$(LD) $(LDFLAGS) $^ -o $@
 
-# Compile assembly code
+# Compile assembly code (.asm files)
 %.o: %.asm
 	$(ASM) $(ASMFLAGS) $< -o $@
 
@@ -44,10 +38,14 @@ $(BOOTLOADER): $(ASM_OBJ) $(C_OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
 
+# Compile assembly code (.s files)
+%.o: %.s
+	$(ASM) $(ASMFLAGS) $< -o $@
+
 # Clean up build artifacts
 clean:
-	rm -f $(ASM_OBJ) $(C_OBJ) $(BOOTLOADER) $(DISK_IMAGE)
+	rm -f $(ASM_OBJ) $(C_OBJ) $(S_OBJ) $(KERNEL)
 
-# Run the bootloader in QEMU
-run: $(DISK_IMAGE)
-	qemu-system-i386 -fda $(DISK_IMAGE)
+# Run the kernel in QEMU
+run: $(KERNEL)
+	qemu-system-i386 -kernel $(KERNEL)
