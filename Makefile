@@ -5,6 +5,7 @@ LDFLAGS =
 SRCS = $(wildcard src/*.c)
 OBJS = $(SRCS:src/%.c=build/%.o)
 
+DISK_IMAGE = kernel.elf
 TARGET = vmm
 
 $(TARGET): $(OBJS)
@@ -16,8 +17,11 @@ build/%.o: src/%.c
 
 all: $(TARGET)
 
-run: $(TARGET)
-	./$(TARGET) ../karmiel-506-operatingsystem/os.iso
+$(DISK_IMAGE):
+	(cd kernel && make all)
+
+run: $(DISK_IMAGE) $(TARGET)
+	./$(TARGET) $(DISK_IMAGE)
 
 clean:
 	rm -rf build $(TARGET)
