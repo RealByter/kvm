@@ -1,7 +1,8 @@
-# Compiler and linker settings
+# Compiler and tool settings
 ASM = nasm
 CC = gcc
 LD = ld
+GRUB_MKRESCUE = grub-mkrescue
 
 # Flags
 ASMFLAGS = -f elf32
@@ -11,6 +12,7 @@ LDFLAGS = -m elf_i386 -T linker.ld -nostdlib
 # Source files
 ASM_SRC = bootloader.asm
 C_SRC = main.c
+KVM_SRC = kvm_iso_runner.c
 
 # Object files
 ASM_OBJ = $(ASM_SRC:.asm=.o)
@@ -18,21 +20,29 @@ C_OBJ = $(C_SRC:.c=.o)
 
 # Output files
 BOOTLOADER = bootloader.bin
-DISK_IMAGE = bootdisk.img
+KERNEL = main.bin
+ISO = myos.iso
+KVM_RUNNER = kvm_iso_runner
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean run
 
 # Default target
-all: $(DISK_IMAGE)
+all: $(ISO) $(KVM_RUNNER)
 
-# Build the bootable disk image
-$(DISK_IMAGE): $(BOOTLOADER)
-	dd if=/dev/zero of=$(DISK_IMAGE) bs=512 count=2880
-	dd if=$(BOOTLOADER) of=$(DISK_IMAGE) conv=notrunc
+# Build the bootable ISO
+$(ISO): $(BOOTLOADER) $(KERNEL)
+	mkdir -p iso/boot/grub
+	cp $(BOOTLOADER) iso/boot/
+	cp $(KERNEL) iso/boot/
+	$(GRUB_MKRESCUE) -o $(ISO) iso
 
-# Link the bootloader and C code
-$(BOOTLOADER): $(ASM_OBJ) $(C_OBJ)
+# Compile and link the bootloader
+$(BOOTLOADER): $(ASM_OBJ)
+	$(LD) $(LDFLAGS) $^ -o $@
+
+# Compile and link the kernel
+$(KERNEL): $(C_OBJ)
 	$(LD) $(LDFLAGS) $^ -o $@
 
 # Compile assembly code
@@ -43,10 +53,15 @@ $(BOOTLOADER): $(ASM_OBJ) $(C_OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
 
+# Compile the KVM runner
+$(KVM_RUNNER): $(KVM_SRC)
+	$(CC) -o $@ $^
+
 # Clean up build artifacts
 clean:
-	rm -f $(ASM_OBJ) $(C_OBJ) $(BOOTLOADER) $(DISK_IMAGE)
+	rm -f $(ASM_OBJ) $(C_OBJ) $(BOOTLOADER) $(KERNEL) $(ISO) $(KVM_RUNNER)
+	rm -rf iso
 
-# Run the bootloader in QEMU
-run: $(DISK_IMAGE)
-	qemu-system-i386 -fda $(DISK_IMAGE)
+# Run the OS in KVM
+run: $(ISO) $(KVM_RUNNER)
+	./$(KVM_RUNNER) $(ISO)

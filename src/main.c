@@ -79,14 +79,29 @@ int main(int argc, char *argv[])
     
     vm = kvm_create_vm(kvm);
 
+    uint8_t* code;
+    size_t size;
+    read_file(argv[1], &code, &size);
+    size_t size_aligned = (size + 4096 - 1) & ~(4096 - 1);
+    
+    void* mem = mmap(0, size_aligned, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if (mem == MAP_FAILED)
+    {
+        err(1, "Failed to map memory");
+    }
+    struct kvm_userspace_memory_region region = {
+        .slot = 0,
+        .flags = 0,
+        .guest_phys_addr = 0,
+        .memory_size = size_aligned,
+        .userspace_addr = mem,
+    };
+    kvm_set_userspace_memory_region(vm, &region);
 
 
     vcpu = kvm_create_vcpu(vm);
     run = kvm_map_run(kvm, vcpu);
 
-    size_t size;
-    uint8_t *buf;
-    read_file(argv[1], &buf, &size);
 
     
 
@@ -121,75 +136,17 @@ int main(int argc, char *argv[])
     sregs.ss.selector = 0;
     sregs.cr0 &= ~(1 << 0);
     kvm_set_sregs(vcpu, &sregs);
-    
 
-    Elf32_Ehdr *ehdr = (Elf32_Ehdr *)buf;
-
-    // Check for the ELF magic number
-    if (memcmp(ehdr->e_ident, ELFMAG, SELFMAG) != 0)
-    {
-        errx(1, "Not a valid ELF file");
-    }
-
-    // Check for 64-bit ELF
-    if (ehdr->e_ident[EI_CLASS] != ELFCLASS32)
-    {
-        errx(1, "Only 32-bit ELF is supported");
-    }
-
-    // Program header table
-    Elf32_Phdr *phdr = (Elf32_Phdr *)(buf + ehdr->e_phoff);
-    uint8_t *space = malloc(0x1000);
-
-    // Load all loadable segments
-    for (int i = 0; i < ehdr->e_phnum; i++)
-    {
-        if (phdr[i].p_type == PT_LOAD)
-        {
-            uint32_t mem_size = phdr[i].p_memsz;
-            uint32_t file_size = phdr[i].p_filesz;
-            uint32_t vaddr = phdr[i].p_vaddr;
-
-            // uint32_t aligned_vaddr = vaddr & ~(0xFFF);
-            // uint32_t offset = vaddr - aligned_vaddr;
-            // mem_size = (mem_size + offset + 0xFFF) & ~(0xFFF);
-
-            // printf("Segment %d: %d bytes at 0x%x\n", i, mem_size, aligned_vaddr);
-
-            memcpy(space + vaddr - 0x7000, buf + phdr[i].p_offset, file_size);
-            // Set the memory region for the VM
-            // if (ioctl(vm, KVM_SET_USER_MEMORY_REGION, &mem_region) < 0)
-            // {
-            //     err(1, "Failed to set guest memory region: %d", i);
-            // }
-        }
-    }
-
-    // Allocate and map the segment in guest memory
-    void *guest_mem = mmap(0x7000, 0x1000, PROT_READ | PROT_WRITE,
-                           MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if (guest_mem == MAP_FAILED)
-    {
-        err(1, "Failed to mmap guest memory for ELF segment");
-    }
-    memcpy(guest_mem, space, 0x1000);
-
-    struct kvm_userspace_memory_region mem_region = {
-        .slot = 0,
-        .guest_phys_addr = 0x7000,
-        .memory_size = 0x1000,
-        .userspace_addr = (uint32_t)guest_mem,
-        .flags = 0,
-    };
-
-    kvm_set_userspace_memory_region(vm, &mem_region);
-
-    // Set the entry point for the guest
     struct kvm_regs regs;
     kvm_get_regs(vcpu, &regs);
-    regs.rip = ehdr->e_entry;
-    regs.rflags = 0x2;
+    regs.rip = 0x7c00;
+    // regs.rsp = 0x7c00;
+    regs.rflags = 2;
     kvm_set_regs(vcpu, &regs);
+    
+
+    
+
 
     while (1)
     {
@@ -199,7 +156,8 @@ int main(int argc, char *argv[])
         {
         case KVM_EXIT_HLT:
             puts("KVM_EXIT_HLT");
-            return 0;
+            // return 0;
+            break;
         case KVM_EXIT_IO:
             if (run->io.direction == KVM_EXIT_IO_OUT && run->io.size == 1 && run->io.port == 0x3f8 && run->io.count == 1)
             {

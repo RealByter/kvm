@@ -17,7 +17,7 @@ build/%.o: src/%.c
 all: $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET) ./kernel/bootdisk.img
+	./$(TARGET) ../karmiel-506-operatingsystem/os.iso
 
 clean:
 	rm -rf build $(TARGET)

@@ -84,6 +84,14 @@ struct kvm_run *kvm_map_run(int kvm, int vcpu)
     return run;
 }
 
+void kvm_get_regs(int vcpu, struct kvm_regs *regs)
+{
+    if(ioctl(vcpu, KVM_GET_REGS, regs) < 0)
+    {
+        err(1, "KVM_GET_REGS");
+    }
+}
+
 void kvm_set_regs(int vcpu, struct kvm_regs *regs)
 {
     if (ioctl(vcpu, KVM_GET_REGS, regs) < 0)
