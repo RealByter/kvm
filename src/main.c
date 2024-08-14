@@ -4,11 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <fcntl.h>
-#include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <err.h>
 #include <elf.h>
+#include "kvm.h"
 
 void read_file(char *filename, uint8_t **buf, size_t *size)
 {
@@ -75,49 +74,21 @@ int main(int argc, char *argv[])
     int kvm, ret, vm, vcpu;
     struct kvm_run *run;
 
-    kvm = open("/dev/kvm", O_RDWR | __O_CLOEXEC);
-    if (kvm < 0)
-    {
-        err(1, "Failed to open the KVM handle");
-        exit(1);
-    }
+    kvm = kvm_open();
+    kvm_verify_version(kvm);
+    
+    vm = kvm_create_vm(kvm);
 
-    ret = ioctl(kvm, KVM_GET_API_VERSION, 0);
-    if (ret < 12)
-    {
-        err(1, "Invalid KVM API version");
-        exit(1);
-    }
 
-    printf("KVM API version: %d\n", ret);
 
-    vm = ioctl(kvm, KVM_CREATE_VM, 0);
-    if (ret < 0)
-    {
-        err(1, "Failed to create the VM");
-    }
+    vcpu = kvm_create_vcpu(vm);
+    run = kvm_map_run(kvm, vcpu);
 
     size_t size;
     uint8_t *buf;
     read_file(argv[1], &buf, &size);
 
-    ret = ioctl(kvm, KVM_GET_VCPU_MMAP_SIZE, 0);
-    if (ret < 0)
-    {
-        err(1, "Failed to get the VCPU mmap size");
-    }
-
-    vcpu = ioctl(vm, KVM_CREATE_VCPU, 0);
-    if (vcpu < 0)
-    {
-        err(1, "Failed to create the VCPU");
-    }
-
-    run = mmap(NULL, ret, PROT_READ | PROT_WRITE, MAP_SHARED, vcpu, 0);
-    if (run == MAP_FAILED)
-    {
-        err(1, "Failed to map run");
-    }
+    
 
     // struct kvm_regs regs;
     // ret = ioctl(vcpu, KVM_GET_REGS, &regs);
@@ -135,11 +106,7 @@ int main(int argc, char *argv[])
     // }
 
     struct kvm_sregs sregs;
-    ret = ioctl(vcpu, KVM_GET_SREGS, &sregs);
-    if (ret == -1)
-    {
-        err(1, "Failed to get sregs");
-    }
+    kvm_get_sregs(vcpu, &sregs);
     sregs.cs.base = 0;
     sregs.cs.selector = 0;
     sregs.ds.base = 0;
@@ -153,11 +120,8 @@ int main(int argc, char *argv[])
     sregs.ss.base = 0;
     sregs.ss.selector = 0;
     sregs.cr0 &= ~(1 << 0);
-    ret = ioctl(vcpu, KVM_SET_SREGS, &sregs);
-    if (ret < 0)
-    {
-        err(1, "Failed to set sregs");
-    }
+    kvm_set_sregs(vcpu, &sregs);
+    
 
     Elf32_Ehdr *ehdr = (Elf32_Ehdr *)buf;
 
@@ -218,31 +182,18 @@ int main(int argc, char *argv[])
         .flags = 0,
     };
 
-    if (ioctl(vm, KVM_SET_USER_MEMORY_REGION, &mem_region) < 0)
-    {
-        err(1, "Failed to set guest memory region");
-    }
+    kvm_set_userspace_memory_region(vm, &mem_region);
 
     // Set the entry point for the guest
     struct kvm_regs regs;
-    if (ioctl(vcpu, KVM_GET_REGS, &regs) < 0)
-    {
-        err(1, "Failed to get guest registers");
-    }
+    kvm_get_regs(vcpu, &regs);
     regs.rip = ehdr->e_entry;
     regs.rflags = 0x2;
-    if (ioctl(vcpu, KVM_SET_REGS, &regs) < 0)
-    {
-        err(1, "Failed to set guest registers");
-    }
+    kvm_set_regs(vcpu, &regs);
 
     while (1)
     {
-        ret = ioctl(vcpu, KVM_RUN, 0);
-        if (ret < 0)
-        {
-            err(1, "Failed to run");
-        }
+        kvm_run(vcpu);
 
         switch (run->exit_reason)
         {
