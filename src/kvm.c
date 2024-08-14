@@ -60,7 +60,7 @@ void kvm_set_userspace_memory_region(int vm, struct kvm_userspace_memory_region 
 {
     if (ioctl(vm, KVM_SET_USER_MEMORY_REGION, memory_region) < 0)
     {
-        err(1, "Failed to set guest memory region");
+        err(1, "KVM_SET_USER_MEMORY_REGION");
     }
 }
 
