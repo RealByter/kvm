@@ -22,7 +22,7 @@ void main() {
         outb(serial_port, message[i]);
     }
 
-    isr_install();
+    // isr_install();
 
     while(1);
 }

@@ -138,7 +138,27 @@ int main(int argc, char *argv[])
     regs.rip = entry;
     regs.rflags = 2;
     kvm_set_regs(vcpu, &regs);
-    
+
+    ret = ioctl(vm, KVM_CHECK_EXTENSION, KVM_CAP_EXIT_HYPERCALL);
+    if(ret < 0)
+    {
+        err(1, "KVM_CHECK_EXTENSION");
+    }
+    printf("ret: %x\n", ret);
+
+    struct kvm_enable_cap cap = {
+        .cap = KVM_CAP_EXIT_HYPERCALL,
+        .flags = 0,
+        .args[0] = ret,
+        // .args[1] = 0xFFFFFFFFFFFFFFFF,
+        // .args[2] = 0xFFFFFFFFFFFFFFFF,
+        // .args[3] = 0xFFFFFFFFFFFFFFFF
+    };
+    ret = ioctl(vm, KVM_ENABLE_CAP, &cap);
+    if(ret < 0)
+    {
+        err(1, "KVM_ENABLE_CAP");
+    }
 
     while (1)
     {
