@@ -1,6 +1,16 @@
 {
     "files.associations": {
         "ioctl.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "iso_fs.h": "c",
+        "stdlib.h": "c",
+        "magic.h": "c",
+        "types.h": "c",
+        "stdint.h": "c",
+        "cdrom.h": "c",
+        "iso_loader.h": "c",
+        "mman.h": "c",
+        "kvm.h": "c",
+        "elf_loader.h": "c"
     }
 }

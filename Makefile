@@ -5,7 +5,7 @@ LDFLAGS =
 SRCS = $(wildcard src/*.c)
 OBJS = $(SRCS:src/%.c=build/%.o)
 
-DISK_IMAGE = kernel.elf
+DISK_IMAGE = os.iso
 TARGET = vmm
 
 $(TARGET): $(OBJS)
