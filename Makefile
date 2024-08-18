@@ -19,7 +19,7 @@ all: $(TARGET)
 
 run: $(DISK_IMAGE) $(TARGET)
 	(cd kernel && make all)
-	./$(TARGET) kernel.elf
+	./$(TARGET) ./seabios/out/bios.bin
 
 clean:
 	rm -rf build $(TARGET)
