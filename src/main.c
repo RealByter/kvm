@@ -11,6 +11,7 @@
 #include "kvm.h"
 #include "elf_loader.h"
 #include "iso_loader.h"
+#include "common.h"
 
 void read_file(char *filename, uint8_t **buf, size_t *size)
 {
@@ -67,18 +68,34 @@ void print_regs(int vcpu)
            regs.r14, regs.r15);
 }
 
+void print_sregs(int vcpu)
+{
+    struct kvm_sregs sregs;
+    int ret = ioctl(vcpu, KVM_GET_SREGS, &sregs);
+    if (ret == -1)
+        err(1, "KVM_GET_SREGS");
+    printf("sregs:\n");
+    printf("  cs: 0x%x\n", sregs.cs.base);
+    printf("  ds: 0x%x\n", sregs.ds.base);
+    printf("  es: 0x%x\n", sregs.es.base);
+    printf("  fs: 0x%x\n", sregs.fs.base);
+    printf("  gs: 0x%x\n", sregs.gs.base);
+    printf("  ss: 0x%x\n", sregs.ss.base);
+    printf("  tr: 0x%x\n", sregs.tr.base);
+}
+
 #define NUM_HANDLERS 256
 #define HANDLE_SIZE 4
 #define IVT_SIZE (NUM_HANDLERS * HANDLE_SIZE)
 #define HANDLER_START 0xf000
 
-void setup_ivt(uint8_t* guest_memory)
+void setup_ivt(uint8_t *guest_memory)
 {
     uint8_t int13[] = {0xe6, 0x01, 0xcf, 0x00};
 
     // uint8_t *guest_ivt = mmap(0, 0x1000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     // if (guest_ivt == MAP_FAILED)
-        // err(1, "Failed to map IVT");
+    // err(1, "Failed to map IVT");
     // memset(guest_ivt, 0, 0x1000);
     for (int i = 0; i < NUM_HANDLERS * HANDLE_SIZE; i += HANDLE_SIZE)
     {
@@ -100,7 +117,7 @@ void setup_ivt(uint8_t* guest_memory)
 
     // uint8_t *guest_handlers = mmap(0xf000, 0x1000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     // if (guest_handlers == MAP_FAILED)
-        // err(1, "Failed to map handlers");
+    // err(1, "Failed to map handlers");
     // memset(guest_handlers, 0, 0x1000);
     for (int i = 0; i < NUM_HANDLERS * HANDLE_SIZE; i += HANDLE_SIZE)
     {
@@ -130,21 +147,36 @@ int main(int argc, char *argv[])
     kvm_verify_version(kvm);
 
     vm = kvm_create_vm(kvm);
-    uint8_t* guest_memory = mmap(0, 0x10000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    // uint8_t* guest_memory = mmap(0, 0x10000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
 
     uint8_t *buf;
     size_t size;
     read_file(argv[1], &buf, &size);
+    uint32_t entry_point = elf_load(vm, buf, size);
+    // uint8_t *guest_memory = mmap(0, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    // memcpy(guest_memory + 0xf0000, buf, page_align_up(size));
+    // printf("size: %d\n", page_align_up(size));
 
-    uint32_t entry = iso_load(guest_memory, buf, size);
+    // struct kvm_userspace_memory_region memory_region = {
+    //     .slot = 0,
+    //     .flags = 0,
+    //     .guest_phys_addr = 0,
+    //     .memory_size = 0x100000,
+    //     .userspace_addr = guest_memory,
+    // };
+    // kvm_set_userspace_memory_region(vm, &memory_region);
 
-    setup_ivt(guest_memory);
+    // uint32_t entry = iso_load(guest_memory, buf, size);
+
+    // setup_ivt(guest_memory);
 
     vcpu = kvm_create_vcpu(vm);
     run = kvm_map_run(kvm, vcpu);
 
     struct kvm_sregs sregs;
     kvm_get_sregs(vcpu, &sregs);
+    // sregs.cs.base = 0xFFFF0000;
+    // sregs.cs.selector = 0xF000;
     sregs.cs.base = 0;
     sregs.cs.selector = 0;
     sregs.ds.base = 0;
@@ -164,9 +196,9 @@ int main(int argc, char *argv[])
 
     struct kvm_regs regs;
     kvm_get_regs(vcpu, &regs);
-    regs.rip = entry;
-    regs.rflags = 0x202;
-    regs.rsp = 0x2000;
+    // regs.rip = 0xFFF0;
+    regs.rip = entry_point;
+    regs.rflags = 0x2;
     kvm_set_regs(vcpu, &regs);
 
     // void *guest_stack = mmap(0x1000, 0x1000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
@@ -183,47 +215,48 @@ int main(int argc, char *argv[])
     // };
     // kvm_set_userspace_memory_region(vm, &stack_region);
 
-    struct kvm_userspace_memory_region guest_space = {
-        .slot = 0,
-        .guest_phys_addr = 0,
-        .memory_size = 0x10000,
-        .userspace_addr = guest_memory,
-        .flags = 0
-    };
-    kvm_set_userspace_memory_region(vm, &guest_space);
+    // struct kvm_userspace_memory_region guest_space = {
+    //     .slot = 0,
+    //     .guest_phys_addr = 0,
+    //     .memory_size = 0x10000,
+    //     .userspace_addr = guest_memory,
+    //     .flags = 0
+    // };
+    // kvm_set_userspace_memory_region(vm, &guest_space);
 
-    struct kvm_interrupt int10 = {
-        .irq = 0x13
-    };
-    ret = ioctl(vcpu, KVM_INTERRUPT, &int10);
-    if (ret == -1)
-    {
-        err(1, "Failed to interrupt");
-    }
+    // struct kvm_interrupt int10 = {
+    //     .irq = 0x13
+    // };
+    // ret = ioctl(vcpu, KVM_INTERRUPT, &int10);
+    // if (ret == -1)
+    // {
+    //     err(1, "Failed to interrupt");
+    // }
 
-    ret = ioctl(vm, KVM_CHECK_EXTENSION, KVM_CAP_INTERNAL_ERROR_DATA);
-    if (ret == -1)
-    {
-        err(1, "Failed to check KVM_CAP_INTERNAL_ERROR_DATA");
-    }
+    // ret = ioctl(vm, KVM_CHECK_EXTENSION, KVM_CAP_INTERNAL_ERROR_DATA);
+    // if (ret == -1)
+    // {
+    //     err(1, "Failed to check KVM_CAP_INTERNAL_ERROR_DATA");
+    // }
     // struct kvm_enable_cap cap = {
-        // .cap = KVM_CAP_INTERNAL_ERROR_DATA,
-        // .flags = 0,
+    // .cap = KVM_CAP_INTERNAL_ERROR_DATA,
+    // .flags = 0,
     // };
     // ret = ioctl(vm, KVM_ENABLE_CAP, &cap);
     // if (ret == -1)
     // {
-        // err(1, "Failed to enable KVM_CAP_INTERNAL_ERROR_DATA");
+    // err(1, "Failed to enable KVM_CAP_INTERNAL_ERROR_DATA");
     // }
 
     while (1)
     {
         kvm_run(vcpu);
         print_regs(vcpu);
+        print_sregs(vcpu);
         kvm_get_regs(vcpu, &regs);
         // for (int i = regs.rsp - 0x1000; i < 0x1000; i++)
         // {
-            // printf("0x%x: 0x%x\n", i, *(uint8_t *)(guest_memory + 0x1000 + i));
+        // printf("0x%x: 0x%x\n", i, *(uint8_t *)(guest_memory + 0x1000 + i));
         // }
         switch (run->exit_reason)
         {

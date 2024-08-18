@@ -119,6 +119,11 @@ void isr_handler(registers_t *r)
   }
   else
   {
+    const char* message = "INTERRUPT";
+    uint16_t serial_port = 0x3f8; // COM1
+    for (int i = 0; message[i] != '\0'; i++) {
+        outb(serial_port, message[i]);
+    }
     // printf("in %d, received interrupt: %d, %s\n", get_core_id(), r->int_no, exception_messages[r->int_no]);
     // printf("err: %x\n", r->err_code);
     while (1)

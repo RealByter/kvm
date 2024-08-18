@@ -60,7 +60,7 @@ uint32_t elf_load(int vm, uint8_t *code, size_t size)
     }
 
     // Allocate and map the segment in guest memory
-    void *guest_mem = mmap(start_addr_aligned, space_size, PROT_READ | PROT_WRITE,
+    void *guest_mem = mmap(start_addr_aligned, space_size + 0x1000, PROT_READ | PROT_WRITE,
                            MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if (guest_mem == MAP_FAILED)
         err(1, "Failed to mmap guest memory for ELF segment");
@@ -68,8 +68,9 @@ uint32_t elf_load(int vm, uint8_t *code, size_t size)
 
     struct kvm_userspace_memory_region mem_region = {
         .slot = 0,
+        // .guest_phys_addr = start_addr_aligned,
         .guest_phys_addr = start_addr_aligned,
-        .memory_size = space_size,
+        .memory_size = space_size + 0x1000,
         .userspace_addr = (uint32_t)guest_mem,
         .flags = 0,
     };

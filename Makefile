@@ -19,7 +19,7 @@ all: $(TARGET)
 
 run: $(DISK_IMAGE) $(TARGET)
 	(cd kernel && make all)
-	./$(TARGET) $(DISK_IMAGE)
+	./$(TARGET) kernel.elf
 
 clean:
 	rm -rf build $(TARGET)

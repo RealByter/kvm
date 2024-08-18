@@ -22,7 +22,9 @@ void main() {
         outb(serial_port, message[i]);
     }
 
-    // isr_install();
+    isr_install();
+
+    asm volatile ("int $10");
 
     while(1);
 }
