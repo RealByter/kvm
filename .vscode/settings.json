@@ -11,6 +11,8 @@
         "iso_loader.h": "c",
         "mman.h": "c",
         "kvm.h": "c",
-        "elf_loader.h": "c"
+        "elf_loader.h": "c",
+        "elf.h": "c",
+        "stdbool.h": "c"
     }
 }

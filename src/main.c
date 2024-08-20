@@ -8,10 +8,12 @@
 #include <err.h>
 #include <elf.h>
 #include <fcntl.h>
-#include "kvm.h"
-#include "elf_loader.h"
-#include "iso_loader.h"
-#include "common.h"
+#include "kvm/kvm.h"
+#include "elf_loader/elf_loader.h"
+#include "iso_loader/iso_loader.h"
+#include "common/common.h"
+#include "emulators/cmos/cmos.h"
+#include "emulators/a20/a20.h"
 
 void read_file(char *filename, uint8_t **buf, size_t *size)
 {
@@ -95,17 +97,28 @@ uint8_t *init_kvm(int *kvm, int *vm, int *vcpu, struct kvm_run **run, char *file
     size_t size;
     read_file(file_name, &buf, &size);
     printf("size: %d\n", size);
-    uint8_t *isa = mmap(0xf0000, 0x10000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if (isa == MAP_FAILED)
-        err(1, "Failed to map ISA");
-    memcpy(isa, buf + size - 0x10000, 0x10000);
+    // uint8_t *isa = mmap(0xf0000, 0x10000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    // if (isa == MAP_FAILED)
+        // err(1, "Failed to map ISA");
+    // memcpy(isa, buf + size - 0x10000, 0x10000);
+    uint8_t* guest_memory = mmap(0, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if (guest_memory == MAP_FAILED)
+        err(1, "Failed to map guest memory");
+    memcpy(guest_memory + 0xf0000, buf + size - 0x10000, 0x10000);
 
+    // struct kvm_userspace_memory_region memory_region = {
+        // .slot = 0,
+        // .guest_phys_addr = 0xf0000,
+        // .memory_size = 0x10000,
+        // .userspace_addr = (uint64_t)isa,
+        // .flags = 0};
     struct kvm_userspace_memory_region memory_region = {
         .slot = 0,
-        .guest_phys_addr = 0xf0000,
-        .memory_size = 0x10000,
-        .userspace_addr = (uint64_t)isa,
-        .flags = 0};
+        .guest_phys_addr = 0,
+        .memory_size = 0x100000,
+        .userspace_addr = (uint64_t)guest_memory,
+        .flags = 0
+    };
     kvm_set_userspace_memory_region(*vm, &memory_region);
 
     *vcpu = kvm_create_vcpu(*vm);
@@ -159,20 +172,31 @@ void run_kvm(int vcpu, struct kvm_run *run)
             // return 0;
             break;
         case KVM_EXIT_IO:
-            printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, run->io.data_offset);
-            if (run->io.direction == KVM_EXIT_IO_OUT && run->io.size == 1 && run->io.port == 0x3f8 && run->io.count == 1)
+                printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, run->io.data_offset);
+            if (run->io.port >= 0x70 && run->io.port <= 0x71)
             {
-                printf("%c", (*(((char *)run) + run->io.data_offset)));
-                fflush(stdout);
+                cmos_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
+            }
+            else if(run->io.port == 0x92)
+            {
+                a20_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
             }
             else
             {
-                printf("got: 0x%x\n", (uint8_t)(*(((char *)run) + run->io.data_offset)));
-                // errx(1, "unhandled KVM_EXIT_IO: "
-                // "direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x\n",
-                //  run->io.direction, run->io.size, run->io.port, run->io.count);
-                // print_regs(vcpu);
-                return 0;
+                if (run->io.direction == KVM_EXIT_IO_OUT && run->io.size == 1 && run->io.port == 0x3f8 && run->io.count == 1)
+                {
+                    printf("%c", (*(((char *)run) + run->io.data_offset)));
+                    fflush(stdout);
+                }
+                else
+                {
+                    printf("got: 0x%x\n", (uint8_t)(*(((char *)run) + run->io.data_offset)));
+                    // errx(1, "unhandled KVM_EXIT_IO: "
+                    // "direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x\n",
+                    //  run->io.direction, run->io.size, run->io.port, run->io.count);
+                    // print_regs(vcpu);
+                    return 0;
+                }
             }
             break;
         case KVM_EXIT_MMIO:
