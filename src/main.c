@@ -15,6 +15,7 @@
 #include "emulators/cmos.h"
 #include "emulators/a20.h"
 #include "emulators/pci.h"
+#include "gui.h"
 
 void read_file(char *filename, uint8_t **buf, size_t *size)
 {
@@ -244,6 +245,8 @@ void run_kvm(int vcpu, struct kvm_run *run)
 
 int main(int argc, char *argv[])
 {
+    gui_init();
+
     if (argc != 2)
     {
         errx(1, "Usage: %s <filename>", argv[0]);

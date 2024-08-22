@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -g -Iinclude
-LDFLAGS =
+CFLAGS = -Wall -g -Iinclude -I/usr/include/SDL2 
+LDFLAGS = -lSDL2 -lSDL2_ttf
 
 # Find all .c files recursively under src/ directory
 SRCS = $(shell find src -name '*.c')
