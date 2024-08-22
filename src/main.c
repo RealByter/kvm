@@ -14,6 +14,7 @@
 #include "common/common.h"
 #include "emulators/cmos/cmos.h"
 #include "emulators/a20/a20.h"
+#include "emulators/pci/pci.h"
 
 void read_file(char *filename, uint8_t **buf, size_t *size)
 {
@@ -154,6 +155,10 @@ uint8_t *init_kvm(int *kvm, int *vm, int *vcpu, struct kvm_run **run, char *file
 void run_kvm(int vcpu, struct kvm_run *run)
 {
     struct kvm_regs regs;
+    FILE *log = fopen("log.txt", "w");
+    if (log == NULL)
+        err(1, "Failed to open log file");
+
     while (1)
     {
         kvm_run(vcpu);
@@ -180,9 +185,15 @@ void run_kvm(int vcpu, struct kvm_run *run)
             {
                 a20_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
             }
-            else if(run->io.port == 0x402 && run->io.direction == KVM_EXIT_IO_OUT)
+            else if (run->io.port == 0x402 && run->io.direction == KVM_EXIT_IO_OUT)
             {
-                printf("%c\n", (uint8_t)(*(((char *)run) + run->io.data_offset)));
+                int wrote = fwrite((uint8_t *)(run) + run->io.data_offset, 1, run->io.count, log);
+                if (wrote != run->io.count)
+                    err(1, "Failed to write to log file");
+            }
+            else if(run->io.port == 0xcf8 || run->io.port == 0xcfc)
+            {
+                pci_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
             }
             else
             {

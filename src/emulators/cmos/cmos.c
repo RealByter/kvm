@@ -6,12 +6,16 @@ bool nmi_disabled = false;
 
 // REMEMBER THAT 0xf register is whether or not RTC is powered on. right now it's off but maybe i'll want it on
 #define NUM_REGISTERS 50
-uint8_t registers[NUM_REGISTERS] = {1};
+uint8_t registers[NUM_REGISTERS] = {0};
 
 uint8_t cur_register;
 
 void cmos_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, uint8_t *base, uint64_t data_offset)
 {
+    uint16_t conventional_memory_kb = 640;
+    registers[0x15] = conventional_memory_kb & 0xFF;
+    registers[0x16] = (conventional_memory_kb >> 8) & 0xFF;
+    printf("data: %x\n", base[data_offset]);
     switch (port)
     {
     case 0x70:
@@ -44,5 +48,6 @@ void cmos_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count,
     default:
         unhandled:
         printf("unhandled KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%lx\n", direction, size, port, count, data_offset);
+        exit(1);
     }
 }
