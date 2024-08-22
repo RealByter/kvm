@@ -1,12 +1,12 @@
-#include "iso_fs.h"
+#include "loaders/iso_fs.h"
 #include <stdio.h>
-#include "iso_loader.h"
+#include "loaders/iso_loader.h"
 #include <string.h>
 #include <err.h>
 #include <stdlib.h>
-#include "../common/common.h"
+#include "common.h"
 #include <sys/mman.h>
-#include "../kvm/kvm.h"
+#include "kvm.h"
 #include <string.h>
 
 #define VM_MEMORY_SIZE (16 * 1024 * 1024) // 16 MB

@@ -8,13 +8,13 @@
 #include <err.h>
 #include <elf.h>
 #include <fcntl.h>
-#include "kvm/kvm.h"
-#include "elf_loader/elf_loader.h"
-#include "iso_loader/iso_loader.h"
-#include "common/common.h"
-#include "emulators/cmos/cmos.h"
-#include "emulators/a20/a20.h"
-#include "emulators/pci/pci.h"
+#include "kvm.h"
+#include "loaders/elf_loader.h"
+#include "loaders/iso_loader.h"
+#include "common.h"
+#include "emulators/cmos.h"
+#include "emulators/a20.h"
+#include "emulators/pci.h"
 
 void read_file(char *filename, uint8_t **buf, size_t *size)
 {

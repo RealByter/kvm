@@ -1,5 +1,5 @@
-#include "pci.h"
-#include "err.h"
+#include "emulators/pci.h"
+#include <err.h>
 
 #define CONFIG_ADDRESS 0xcf8
 #define CONFIG_DATA 0xcfc

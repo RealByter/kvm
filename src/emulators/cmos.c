@@ -1,6 +1,7 @@
-#include "cmos.h"
+#include "emulators/cmos.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 bool nmi_disabled = false;
 

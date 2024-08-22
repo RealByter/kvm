@@ -1,5 +1,5 @@
-#include "elf_loader.h"
-#include "../kvm/kvm.h"
+#include "loaders/elf_loader.h"
+#include "kvm.h"
 #include <elf.h>
 #include <sys/mman.h>
 
