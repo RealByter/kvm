@@ -13,6 +13,8 @@
         "kvm.h": "c",
         "elf_loader.h": "c",
         "elf.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "gui.h": "c",
+        "sdl.h": "c"
     }
 }

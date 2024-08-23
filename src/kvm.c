@@ -7,20 +7,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include "emulators/cmos.h"
+#include "emulators/a20.h"
+#include "emulators/pci.h"
+#include "gui.h"
+
+int kvm, vm, vcpu;
+struct kvm_run *run;
 
 #pragma region KVM
 
-int kvm_open()
+void kvm_open()
 {
-    int kvm = open("/dev/kvm", O_RDWR | __O_CLOEXEC);
+    kvm = open("/dev/kvm", O_RDWR | __O_CLOEXEC);
     if (kvm < 0)
     {
         err(1, "Failed to open the KVM handle");
     }
-    return kvm;
 }
 
-void kvm_verify_version(int kvm)
+void kvm_verify_version()
 {
     int ret = ioctl(kvm, KVM_GET_API_VERSION, 0);
     if (ret < 12)
@@ -32,31 +38,29 @@ void kvm_verify_version(int kvm)
     printf("KVM API version: %d\n", ret);
 }
 
-int kvm_create_vm(int kvm)
+void kvm_create_vm()
 {
-    int vm = ioctl(kvm, KVM_CREATE_VM, 0);
+    vm = ioctl(kvm, KVM_CREATE_VM, 0);
     if (vm < 0)
     {
         err(1, "KVM_CREATE_VM");
     }
-    return vm;
 }
 
 #pragma endregion
 
 #pragma region VM
 
-int kvm_create_vcpu(int vm)
+void kvm_create_vcpu()
 {
-    int vcpu = ioctl(vm, KVM_CREATE_VCPU, 0);
+    vcpu = ioctl(vm, KVM_CREATE_VCPU, 0);
     if (vcpu < 0)
     {
         err(1, "KVM_CREATE_VCPU");
     }
-    return vcpu;
 }
 
-void kvm_set_userspace_memory_region(int vm, struct kvm_userspace_memory_region *memory_region)
+void kvm_set_userspace_memory_region(struct kvm_userspace_memory_region *memory_region)
 {
     if (ioctl(vm, KVM_SET_USER_MEMORY_REGION, memory_region) < 0)
     {
@@ -68,7 +72,7 @@ void kvm_set_userspace_memory_region(int vm, struct kvm_userspace_memory_region 
 
 #pragma region VCPU
 
-struct kvm_run *kvm_map_run(int kvm, int vcpu)
+struct kvm_run *kvm_map_run()
 {
     int ret = ioctl(kvm, KVM_GET_VCPU_MMAP_SIZE, 0);
     if (ret < 0)
@@ -84,15 +88,15 @@ struct kvm_run *kvm_map_run(int kvm, int vcpu)
     return run;
 }
 
-void kvm_get_regs(int vcpu, struct kvm_regs *regs)
+void kvm_get_regs(struct kvm_regs *regs)
 {
-    if(ioctl(vcpu, KVM_GET_REGS, regs) < 0)
+    if (ioctl(vcpu, KVM_GET_REGS, regs) < 0)
     {
         err(1, "KVM_GET_REGS");
     }
 }
 
-void kvm_set_regs(int vcpu, struct kvm_regs *regs)
+void kvm_set_regs(struct kvm_regs *regs)
 {
     if (ioctl(vcpu, KVM_SET_REGS, regs) < 0)
     {
@@ -100,7 +104,7 @@ void kvm_set_regs(int vcpu, struct kvm_regs *regs)
     }
 }
 
-void kvm_get_sregs(int vcpu, struct kvm_sregs *sregs)
+void kvm_get_sregs(struct kvm_sregs *sregs)
 {
     if (ioctl(vcpu, KVM_GET_SREGS, sregs) == -1)
     {
@@ -108,7 +112,7 @@ void kvm_get_sregs(int vcpu, struct kvm_sregs *sregs)
     }
 }
 
-void kvm_set_sregs(int vcpu, struct kvm_sregs *sregs)
+void kvm_set_sregs(struct kvm_sregs *sregs)
 {
     if (ioctl(vcpu, KVM_SET_SREGS, sregs) < 0)
     {
@@ -116,12 +120,201 @@ void kvm_set_sregs(int vcpu, struct kvm_sregs *sregs)
     }
 }
 
-void kvm_run(int vcpu)
+void print_regs()
 {
-    if (ioctl(vcpu, KVM_RUN, 0) < 0)
+    struct kvm_regs regs;
+    kvm_get_regs(&regs);
+    printf("rip = 0x%llx, rsp = 0x%llx, rflags = 0x%llx\n"
+           "rax = 0x%llx, rbx = 0x%llx, rcx = 0x%llx, rdx = 0x%llx\n"
+           "rsi = 0x%llx, rdi = 0x%llx, r8 = 0x%llx, r9 = 0x%llx\n"
+           "r10 = 0x%llx, r11 = 0x%llx, r12 = 0x%llx, r13 = 0x%llx\n"
+           "r14 = 0x%llx, r15 = 0x%llx\n",
+           regs.rip, regs.rsp, regs.rflags,
+           regs.rax, regs.rbx, regs.rcx, regs.rdx,
+           regs.rsi, regs.rdi, regs.r8, regs.r9,
+           regs.r10, regs.r11, regs.r12, regs.r13,
+           regs.r14, regs.r15);
+}
+
+void print_sregs()
+{
+    struct kvm_sregs sregs;
+    kvm_get_sregs(&sregs);
+    printf("sregs:\n");
+    printf("  cs: 0x%x\n", sregs.cs.base);
+    printf("  ds: 0x%x\n", sregs.ds.base);
+    printf("  es: 0x%x\n", sregs.es.base);
+    printf("  fs: 0x%x\n", sregs.fs.base);
+    printf("  gs: 0x%x\n", sregs.gs.base);
+    printf("  ss: 0x%x\n", sregs.ss.base);
+    printf("  tr: 0x%x\n", sregs.tr.base);
+}
+
+void kvm_run()
+{
+    struct kvm_regs regs;
+    FILE *log = fopen("log.txt", "w");
+    if (log == NULL)
+        err(1, "Failed to open log file");
+
+    while (1)
     {
-        err(1, "Failed to run");
+        if (ioctl(vcpu, KVM_RUN, 0) < 0)
+        {
+            err(1, "Failed to run");
+        }
+        sleep(3);
+
+        print_regs();
+        print_sregs();
+        switch (run->exit_reason)
+        {
+        case KVM_EXIT_HLT:
+            puts("KVM_EXIT_HLT");
+            // return 0;
+            break;
+        case KVM_EXIT_IO:
+            printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, run->io.data_offset);
+            if (run->io.port >= 0x70 && run->io.port <= 0x71)
+            {
+                cmos_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
+            }
+            else if (run->io.port == 0x92)
+            {
+                a20_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
+            }
+            else if (run->io.port == 0x402 && run->io.direction == KVM_EXIT_IO_OUT)
+            {
+                int wrote = fwrite((uint8_t *)(run) + run->io.data_offset, 1, run->io.count, log);
+                if (wrote != run->io.count)
+                    err(1, "Failed to write to log file");
+            }
+            else if (run->io.port == 0xcf8 || run->io.port == 0xcfc)
+            {
+                pci_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
+            }
+            else
+            {
+                if (run->io.direction == KVM_EXIT_IO_OUT && run->io.size == 1 && run->io.port == 0x3f8 && run->io.count == 1)
+                {
+                    printf("%c", (*(((char *)run) + run->io.data_offset)));
+                    fflush(stdout);
+                }
+                else
+                {
+                    printf("got: 0x%x\n", (uint8_t)(*(((char *)run) + run->io.data_offset)));
+                    // errx(1, "unhandled KVM_EXIT_IO: "
+                    // "direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x\n",
+                    //  run->io.direction, run->io.size, run->io.port, run->io.count);
+                    // print_regs(vcpu);
+                    return 0;
+                }
+            }
+            break;
+        case KVM_EXIT_MMIO:
+            printf("KVM_EXIT_MMIO: is_write=%d len=%d phys_addr=0x%llx data=",
+                   run->mmio.is_write, run->mmio.len, run->mmio.phys_addr);
+            for (int i = 0; i < sizeof(run->mmio.data); i++)
+            {
+                printf("%02x", run->mmio.data[i]);
+            }
+            printf("\n");
+            print_regs(vcpu);
+            return;
+            break;
+        case KVM_EXIT_FAIL_ENTRY:
+            errx(1, "KVM_EXIT_FAIL_ENTRY: hardware_entry_failure_reason = 0x%llx",
+                 (unsigned long long)run->fail_entry.hardware_entry_failure_reason);
+        case KVM_EXIT_INTERNAL_ERROR:
+            // print_regs(vcpu);
+            // errx(1, "KVM_EXIT_INTERNAL_ERROR: suberror = 0x%x", run->internal.suberror);
+            printf("KVM_EXIT_INTERNAL_ERROR: suberror = 0x%x, ndata = 0x%x\n", run->internal.suberror, run->internal.ndata);
+            for (int i = 0; i < run->internal.ndata; i++)
+            {
+                printf("data[%d] = 0x%llx\n", i, run->internal.data[i]);
+            }
+            return 1;
+        default:
+            errx(1, "exit_reason = 0x%x", run->exit_reason);
+        }
     }
 }
 
 #pragma endregion
+
+void kvm_init(char *file_name)
+{
+    kvm_open();
+    kvm_verify_version();
+
+    kvm_create_vm();
+
+    uint8_t *buf;
+    size_t size;
+    read_file(file_name, &buf, &size);
+
+    uint8_t *guest_memory = mmap(0, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if (guest_memory == MAP_FAILED)
+        err(1, "Failed to map guest memory");
+    memcpy(guest_memory + 0x100000 - size, buf, size);
+
+    struct kvm_userspace_memory_region memory_region = {
+        .slot = 0,
+        .guest_phys_addr = 0,
+        .memory_size = 0x100000,
+        .userspace_addr = (uint64_t)guest_memory,
+        .flags = 0};
+    kvm_set_userspace_memory_region(&memory_region);
+    free(buf);
+
+    kvm_create_vcpu();
+    run = kvm_map_run();
+
+    struct kvm_sregs sregs;
+    kvm_get_sregs(&sregs);
+    sregs.cs.base = 0xF0000;
+    sregs.cs.selector = 0xF000;
+    sregs.ds.base = 0;
+    sregs.ds.selector = 0;
+    sregs.es.base = 0;
+    sregs.es.selector = 0;
+    sregs.fs.base = 0;
+    sregs.fs.selector = 0;
+    sregs.gs.base = 0;
+    sregs.gs.selector = 0;
+    sregs.ss.base = 0;
+    sregs.ss.selector = 0;
+    sregs.cr0 &= ~(1 << 0);
+    sregs.idt.base = 0;
+    sregs.idt.limit = 0x3ff;
+    kvm_set_sregs(&sregs);
+
+    struct kvm_regs regs;
+    kvm_get_regs(&regs);
+    regs.rip = 0xFFF0;
+    regs.rflags = 0x2;
+    kvm_set_regs(&regs);
+}
+
+void kvm_deinit()
+{
+    munmap(run, sizeof(struct kvm_run));
+    close(vcpu);
+    close(vm);
+    close(kvm);
+}
+
+void kvm_pause_vcpu()
+{
+    struct kvm_debugregs debugregs;
+    if(ioctl(vcpu, KVM_GET_DEBUGREGS, &debugregs) < 0)
+    {
+        err(1, "KVM_GET_DEBUGREGS");
+    }
+    debugregs.db[0] = 0x0;
+    debugregs.dr7 |= 0x1;
+    if(ioctl(vcpu, KVM_SET_DEBUGREGS, &debugregs) < 0)
+    {
+        err(1, "KVM_SET_DEBUGREGS");
+    }
+}

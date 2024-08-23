@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 #include <linux/kvm.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #define PAGE_SIZE 0x1000
 
@@ -19,5 +21,7 @@
 
 int page_align_up(int address);
 int page_align_down(int address);
+
+void read_file(char *filename, uint8_t **buf, size_t *size);
 
 #endif
