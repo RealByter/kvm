@@ -156,7 +156,7 @@ void kvm_run()
     FILE *log = fopen("log.txt", "w");
     if (log == NULL)
         err(1, "Failed to open log file");
-
+    
     while (1)
     {
         if (ioctl(vcpu, KVM_RUN, 0) < 0)
@@ -237,6 +237,8 @@ void kvm_run()
         default:
             errx(1, "exit_reason = 0x%x", run->exit_reason);
         }
+
+        gui_render();
     }
 }
 
