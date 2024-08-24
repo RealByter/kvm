@@ -8,6 +8,7 @@ uint32_t config_address = 0;
 
 void pci_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, uint8_t* base, uint64_t data_offset)
 {
+    getchar();
     switch (port)
     {
         case CONFIG_ADDRESS:
@@ -15,7 +16,7 @@ void pci_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, 
             if(direction == KVM_EXIT_IO_OUT)
             {
                 config_address = BUILD_UINT32(base + data_offset);
-                printf("config_address: %b\n", config_address);
+                printf("config_address: %b;%x\n", config_address, config_address);
             }  
             else
             {

@@ -163,7 +163,7 @@ void kvm_run()
         {
             err(1, "Failed to run");
         }
-        sleep(3);
+        // sleep(3);
 
         print_regs();
         print_sregs();
