@@ -2,6 +2,7 @@
 #include <signal.h>
 #include "kvm.h"
 #include "gui.h"
+#include "log.h"
 
 void handle_sigint(int sig)
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
     signal(SIGINT, handle_sigint);
 
     gui_init();
+    log_init();
 
     if (argc != 2)
     {

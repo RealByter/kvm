@@ -1,3 +1,4 @@
-SeaBIOS (version rel-1.16.3-22-gec0bc256)
-BUILD: gcc: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0 binutils: (GNU Binutils for Ubuntu) 2.38
-No Xen hypervisor found.
+[0xd266 - cmos] data: 8f
+[0xd268 - cmos] data: 0
+[0xd26a - a20] Call to a20
+[0xd26e - a20] Call to a20

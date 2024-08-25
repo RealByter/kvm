@@ -153,7 +153,7 @@ void print_sregs()
 void kvm_run()
 {
     struct kvm_regs regs;
-    FILE *log = fopen("log.txt", "w");
+    FILE *log = fopen("bios_log.txt", "w");
     if (log == NULL)
         err(1, "Failed to open log file");
     

@@ -15,6 +15,8 @@
         "elf.h": "c",
         "stdbool.h": "c",
         "gui.h": "c",
-        "sdl.h": "c"
+        "sdl.h": "c",
+        "typeinfo": "cpp",
+        "a20.h": "c"
     }
 }

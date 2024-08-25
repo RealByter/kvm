@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include "log.h"
+
+LOG_DEFINE("cmos");
 
 bool nmi_disabled = false;
 
@@ -16,7 +19,8 @@ void cmos_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count,
     uint16_t conventional_memory_kb = 640;
     registers[0x15] = conventional_memory_kb & 0xFF;
     registers[0x16] = (conventional_memory_kb >> 8) & 0xFF;
-    printf("data: %x\n", base[data_offset]);
+    // printf("data: %x\n", base[data_offset]);
+    LOG_MSG("data: %x", base[data_offset]);
     switch (port)
     {
     case 0x70:

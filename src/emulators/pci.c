@@ -20,7 +20,7 @@ typedef struct
 
 pci_device_t devices[MAX_DEVICES] = {(pci_device_t){{0}}}; // set all values in the config_space to 0
 
-void add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vendor_id, uint16_t device_id)
+void pci_add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vendor_id, uint16_t device_id)
 {
     uint8_t device_index = bus * 32 + device * 8 + function;
     pci_device_t *pci_device = &devices[device_index];

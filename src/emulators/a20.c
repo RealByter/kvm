@@ -1,9 +1,13 @@
 #include "emulators/a20.h"
+#include "log.h"
+
+LOG_DEFINE("a20");
 
 uint8_t bus = 0;
 
 void a20_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, uint8_t *base, uint64_t data_offset)
 {
+    LOG_MSG("Call to a20");
     switch (port)
     {
     case 0x92:

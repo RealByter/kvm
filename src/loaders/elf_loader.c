@@ -75,7 +75,7 @@ uint32_t elf_load(int vm, uint8_t *code, size_t size)
         .flags = 0,
     };
 
-    kvm_set_userspace_memory_region(vm, &mem_region);
+    kvm_set_userspace_memory_region(&mem_region);
 
     return ehdr->e_entry;
 }
