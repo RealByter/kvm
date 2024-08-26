@@ -4,24 +4,31 @@ OUTPUT_FORMAT("elf32-i386")
 OUTPUT_ARCH("i386")
 SECTIONS
 {
-DebugOutputPort = 0x804a ;
-MaxPCIBus = 0x75ac ;
-entry_pcibios32 = 0xd4f7 ;
-PirAddr = 0x75a8 ;
-entry_apm16 = 0xd484 ;
-entry_apm32 = 0xd4c5 ;
-acpi_pm1a_cnt = 0x75a4 ;
-.text.set_code_success 0x8221 : { *(.text.set_code_success) }
-.text.get_global_offset 0x822b : { *(.text.get_global_offset) }
-.text.qemu_debug_putc 0x8237 : { *(.text.qemu_debug_putc) }
-.text.putsinglehex.constprop.0 0x824f : { *(.text.putsinglehex.constprop.0) }
-.text.puthex.constprop.0 0x8269 : { *(.text.puthex.constprop.0) }
-.text.pci_next 0x8308 : { *(.text.pci_next) }
-.text.putuint.constprop.0 0x837c : { *(.text.putuint.constprop.0) }
-.text.__dprintf 0x83bb : { *(.text.__dprintf) }
-.text.handle_pcibios 0x864f : { *(.text.handle_pcibios) }
-.rodata 0x8b16 : { *(.rodata) }
-.text.handle_apm 0x8985 : { *(.text.handle_apm) }
+DebugOutputPort = 0x74aa ;
+MaxPCIBus = 0x6a0c ;
+entry_pcibios32 = 0xd054 ;
+PirAddr = 0x6a08 ;
+entry_apm16 = 0xcfe1 ;
+entry_apm32 = 0xd022 ;
+acpi_pm1a_cnt = 0x6a04 ;
+.text.set_code_success 0x768c : { *(.text.set_code_success) }
+.text.get_global_offset 0x7696 : { *(.text.get_global_offset) }
+.text.qemu_debug_putc 0x76a2 : { *(.text.qemu_debug_putc) }
+.text.putsinglehex.constprop.0 0x76ba : { *(.text.putsinglehex.constprop.0) }
+.text.puthex.constprop.0 0x76d4 : { *(.text.puthex.constprop.0) }
+.text.pci_next 0x7773 : { *(.text.pci_next) }
+.text.putuint.constprop.0 0x77e7 : { *(.text.putuint.constprop.0) }
+.text.__dprintf 0x7826 : { *(.text.__dprintf) }
+.rodata 0x8060 : { *(.rodata) }
+.text.dump_regs 0x7aba : { *(.text.dump_regs) }
+.text.__set_code_invalid 0x7b22 : { *(.text.__set_code_invalid) }
+.text.handle_pcibios 0x7b50 : { *(.text.handle_pcibios) }
+.text.handle_apm 0x7ed4 : { *(.text.handle_apm) }
+.rodata.__func__.0 0x8130 : { *(.rodata.__func__.0) }
+.rodata.__func__.1 0x8140 : { *(.rodata.__func__.1) }
+.rodata.__func__.2 0x8150 : { *(.rodata.__func__.2) }
+.rodata.__func__.3 0x8160 : { *(.rodata.__func__.3) }
+.rodata.__func__.4 0x8170 : { *(.rodata.__func__.4) }
 
 
         /* Discard regular data sections to force a link error if

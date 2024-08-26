@@ -2,7 +2,7 @@
 	.code16gcc
 	.text
 .Ltext0:
-	.file 0 "/home/byter/documents/kvm-new/seabios" "src/asm-offsets.c"
+	.file 0 "/home/byter/documents/repositories/kvm-new/seabios" "src/asm-offsets.c"
 	.section	.text.foo,"ax",@progbits
 	.globl	foo
 	.type	foo, @function
@@ -1080,7 +1080,7 @@ foo:
 	.string	"ax_hi"
 	.section	.debug_line_str,"MS",@progbits,1
 .LASF1:
-	.string	"/home/byter/documents/kvm-new/seabios"
+	.string	"/home/byter/documents/repositories/kvm-new/seabios"
 .LASF0:
 	.string	"src/asm-offsets.c"
 	.ident	"GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0"

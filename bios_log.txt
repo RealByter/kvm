@@ -1,3 +1,14 @@
-SeaBIOS (version rel-1.16.3-22-gec0bc256)
+SeaBIOS (version ?-20240827_001116-DESKTOP-8NA919H)
 BUILD: gcc: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0 binutils: (GNU Binutils for Ubuntu) 2.38
-No Xen hypervisor found.
+enabling shadow ram
+RamSize: 0x00100000 [cmos]
+malloc preinit
+Relocating init from 0x000db5e0 to 0x0007ec40 (size 70528)
+malloc init
+init ivt
+init bda
+init bios32
+init PMM
+init PNPBIOS table
+init keyboard
+init mouse

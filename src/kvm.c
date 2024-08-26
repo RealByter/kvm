@@ -156,7 +156,8 @@ void kvm_run()
     FILE *log = fopen("bios_log.txt", "w");
     if (log == NULL)
         err(1, "Failed to open log file");
-
+    int i = 0;
+    char *sig = "QEMO";
     while (1)
     {
         if (ioctl(vcpu, KVM_RUN, 0) < 0)
@@ -183,11 +184,41 @@ void kvm_run()
             {
                 a20_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
             }
-            else if (run->io.port == 0x402 && run->io.direction == KVM_EXIT_IO_OUT)
+            else if (run->io.port == 0x402)
             {
-                int wrote = fwrite((uint8_t *)(run) + run->io.data_offset, 1, run->io.count, log);
-                if (wrote != run->io.count)
-                    err(1, "Failed to write to log file");
+                if (run->io.direction == KVM_EXIT_IO_OUT)
+                {
+                    int wrote = fwrite((uint8_t *)(run) + run->io.data_offset, 1, run->io.count, log);
+                    if (wrote != run->io.count)
+                        err(1, "Failed to write to log file");
+                }
+                else
+                {
+                    ((uint8_t *)(run))[run->io.data_offset] = 0xe9; // 0xe9
+                }
+            }
+            else if (run->io.port == 0x510)
+            {
+                printf("set to value: %x\n", ((uint8_t *)(run))[run->io.data_offset]);
+            }
+            else if (run->io.port == 0x511)
+            {
+                if (run->io.direction == KVM_EXIT_IO_IN)
+                {
+                    for(int j = 0; j < run->io.count; j++)
+                    {
+                        ((uint8_t*)(run))[run->io.data_offset + j] = sig[i + j];
+                        if(sig[i + j] == '\n')
+                        {
+                            i = 0;
+                        } 
+                        else
+                        {
+                            i++;
+                        } 
+                    }
+                    getchar();
+                }
             }
             else if (run->io.port == 0xcf8 || (run->io.port >= 0xcfc && run->io.port <= 0xcff))
             {

@@ -4,242 +4,318 @@ OUTPUT_FORMAT("elf32-i386")
 OUTPUT_ARCH("i386")
 SECTIONS
 {
-Call16Data = 0xfd64 ;
-sercon_split = 0xf51e ;
-rx_bytes = 0xf505 ;
-rx_buf = 0xf508 ;
-DebugOutputPort = 0x804a ;
-ExtraStack = 0xf560 ;
-cdemu_drive_gf = 0x80a8 ;
-CDEmu = 0xf538 ;
-FloppyCount = 0x8180 ;
-diskette_param_table2 = 0x803c ;
-FloppyDOR = 0xf4fc ;
-TimerPort = 0x804c ;
-TimerLast = 0xf500 ;
-TimerKHz = 0x8050 ;
-sercon_row_last = 0xf51a ;
-DefaultDPTE = 0xf54c ;
-StackPos = 0xf55c ;
-_cfunc16__farcall16 = 0x9a9f ;
-CDRom_locks = 0xf524 ;
-_cfunc16_check_irqs = 0xa14e ;
-sercon_port = 0xf520 ;
-sercon_attr_last = 0xf51c ;
-sercon_char = 0xf519 ;
-sercon_attr = 0xf518 ;
-sercon_col_last = 0xf51b ;
-Ps2ctr = 0xf4fd ;
-FloppyInfo = 0x7fe0 ;
-_cfunc32flat_process_op_32 = 0xf1564 ;
-emulated_drive_gf = 0xf534 ;
-bounce_buf_fl = 0x80ac ;
-IDMap = 0x80c0 ;
-_cfunc16_wait_irq = 0xc011 ;
-acpi_pm1a_cnt = 0x75a4 ;
-_cfunc16_invoke_mouse_handler = 0xc29b ;
-HaveRunPost = 0x81e8 ;
-pmode_IDT_info = 0x81d8 ;
-rmode_IDT_info = 0x81e0 ;
-VGAHookHandlerType = 0x807c ;
-ViaFBsize = 0x8078 ;
-ViaRamSpeed = 0x8074 ;
-IntelDisplayType = 0x8072 ;
-IntelDisplayId = 0x8071 ;
-SmiBootDisplay = 0x8070 ;
-LegacyRamSize = 0x75c0 ;
+Call16Data = 0xf944 ;
+sercon_split = 0xf0fe ;
+rx_bytes = 0xf0e5 ;
+rx_buf = 0xf0e8 ;
+DebugOutputPort = 0x74aa ;
+ExtraStack = 0xf140 ;
+cdemu_drive_gf = 0x7508 ;
+CDEmu = 0xf118 ;
+FloppyDOR = 0xf0dc ;
+FloppyCount = 0x75e0 ;
+diskette_param_table2 = 0x749c ;
+TimerPort = 0x74ac ;
+TimerLast = 0xf0e0 ;
+TimerKHz = 0x74b0 ;
+sercon_row_last = 0xf0fa ;
+DefaultDPTE = 0xf12c ;
+StackPos = 0xf13c ;
+_cfunc16__farcall16 = 0x924d ;
+CDRom_locks = 0xf104 ;
+_cfunc16_check_irqs = 0x9910 ;
+sercon_port = 0xf100 ;
+sercon_attr_last = 0xf0fc ;
+sercon_char = 0xf0f9 ;
+sercon_attr = 0xf0f8 ;
+sercon_col_last = 0xf0fb ;
+Ps2ctr = 0xf0dd ;
+FloppyInfo = 0x7440 ;
+_cfunc32flat_process_op_32 = 0xf022a ;
+emulated_drive_gf = 0xf114 ;
+bounce_buf_fl = 0x750c ;
+IDMap = 0x7520 ;
+_cfunc16_wait_irq = 0xb6bd ;
+acpi_pm1a_cnt = 0x6a04 ;
+_cfunc16_invoke_mouse_handler = 0xb93c ;
+HaveRunPost = 0x7648 ;
+pmode_IDT_info = 0x7638 ;
+rmode_IDT_info = 0x7640 ;
+VGAHookHandlerType = 0x74dc ;
+ViaFBsize = 0x74d8 ;
+ViaRamSpeed = 0x74d4 ;
+IntelDisplayType = 0x74d2 ;
+IntelDisplayId = 0x74d1 ;
+SmiBootDisplay = 0x74d0 ;
+LegacyRamSize = 0x6a20 ;
 BIOS_CONFIG_TABLE = 0xe6f5 ;
-e820_count = 0x75c4 ;
-e820_list = 0x75e0 ;
-sercon_enable = 0xf51d ;
-_cfunc32flat_tpm_interrupt_handler32 = 0xf2459 ;
-Century = 0xf504 ;
-_cfunc32flat_handle_resume32 = 0xf1fb8 ;
-MaxPCIBus = 0x75ac ;
-PirAddr = 0x75a8 ;
-rombios32_gdt_48 = 0x8194 ;
-SMPLock = 0xf6ac4 ;
-SMPStack = 0xf6ac0 ;
-_cfunc32flat_handle_smp = 0xf276f ;
-_cfunc32flat_handle_pmm = 0xece4d ;
-_cfunc32seg_handle_apm = 0x8985 ;
-_cfunc32seg_handle_pcibios = 0x864f ;
-sercon_real_vga_handler = 0x80a4 ;
-_cfunc32flat_handle_19 = 0xf242c ;
-_cfunc32flat_handle_18 = 0xf2400 ;
-_cfunc32flat_handle_post = 0xf231b ;
+e820_count = 0x6a24 ;
+e820_list = 0x6a40 ;
+sercon_enable = 0xf0fd ;
+_cfunc32flat_tpm_interrupt_handler32 = 0xf1005 ;
+Century = 0xf0e4 ;
+_cfunc32flat_handle_resume32 = 0xf0c7e ;
+MaxPCIBus = 0x6a0c ;
+PirAddr = 0x6a08 ;
+rombios32_gdt_48 = 0x75f4 ;
+SMPLock = 0xf5f58 ;
+SMPStack = 0xf5f54 ;
+_cfunc32flat_handle_smp = 0xf131b ;
+_cfunc32flat_handle_pmm = 0xeb9c0 ;
+_cfunc32seg_handle_apm = 0x7ed4 ;
+_cfunc32seg_handle_pcibios = 0x7b50 ;
+sercon_real_vga_handler = 0x7504 ;
+_cfunc32flat_handle_19 = 0xf0fd8 ;
+_cfunc32flat_handle_18 = 0xf0fac ;
+_cfunc32flat_handle_post = 0xf0f84 ;
 
-    zonelow_base = 0xde000 ;
-    _zonelow_seg = 0xde00 ;
+    zonelow_base = 0xdd000 ;
+    _zonelow_seg = 0xdd00 ;
 
-.text.set_a20 0x8b40 : { *(.text.set_a20) }
+.text.set_a20 0x8180 : { *(.text.set_a20) }
 .text.set_code_success 0xe3f2 : { *(.text.set_code_success) }
-.text.call32_prep 0x8b60 : { *(.text.call32_prep) }
-.text.enqueue_key 0x8bed : { *(.text.enqueue_key) }
-.text.kbd_set_flag 0x8c47 : { *(.text.kbd_set_flag) }
-.text.cursor_pos_row 0x8ca4 : { *(.text.cursor_pos_row) }
+.text.call32_prep 0x81a0 : { *(.text.call32_prep) }
+.text.enqueue_key 0x822d : { *(.text.enqueue_key) }
+.text.kbd_set_flag 0x8287 : { *(.text.kbd_set_flag) }
+.text.cursor_pos_row 0x82e4 : { *(.text.cursor_pos_row) }
 .text.sercon_cursor_pos_set 0xe6ff : { *(.text.sercon_cursor_pos_set) }
-.text.shiftbuf 0x8cb6 : { *(.text.shiftbuf) }
-.text.handle_1586 0x8cfc : { *(.text.handle_1586) }
-.text.qemu_debug_putc 0xe6e6 : { *(.text.qemu_debug_putc) }
-.text.lba2chs 0xfeae : { *(.text.lba2chs) }
-.text.need_hop_back 0x8d08 : { *(.text.need_hop_back) }
-.text.getLCHS 0x8d2c : { *(.text.getLCHS) }
-.text.getComAddr 0x8dd6 : { *(.text.getComAddr) }
-.text.__disk_ret.constprop.0 0xf812 : { *(.text.__disk_ret.constprop.0) }
-.text.disk_1308 0x8e08 : { *(.text.disk_1308) }
-.text.disk_1315 0xef60 : { *(.text.disk_1315) }
-.text.putsinglehex.constprop.0 0x8f34 : { *(.text.putsinglehex.constprop.0) }
-.text.puthex.constprop.0 0x8f55 : { *(.text.puthex.constprop.0) }
-.text.call32_post 0x9028 : { *(.text.call32_post) }
+.text.shiftbuf 0x82f6 : { *(.text.shiftbuf) }
+.text.qemu_debug_putc 0x833c : { *(.text.qemu_debug_putc) }
+.text.lba2chs 0x8348 : { *(.text.lba2chs) }
+.text.need_hop_back 0x838c : { *(.text.need_hop_back) }
+.text.getLCHS 0x83b0 : { *(.text.getLCHS) }
+.text.putsinglehex.constprop.0 0x845a : { *(.text.putsinglehex.constprop.0) }
+.text.puthex.constprop.0 0x847b : { *(.text.puthex.constprop.0) }
+.text.call32_post 0x854e : { *(.text.call32_post) }
 .text.memset.constprop.0.isra.0 0xe81e : { *(.text.memset.constprop.0.isra.0) }
-.text.default_process_op.isra.0 0x90c0 : { *(.text.default_process_op.isra.0) }
-.text.floppy_dor_mask 0x90e0 : { *(.text.floppy_dor_mask) }
-.text.floppy_disable_controller 0x9103 : { *(.text.floppy_disable_controller) }
+.text.default_process_op.isra.0 0x85e6 : { *(.text.default_process_op.isra.0) }
+.text.floppy_dor_mask 0x8606 : { *(.text.floppy_dor_mask) }
 .text.pci_next 0xff5d : { *(.text.pci_next) }
-.text.disk_13XX.constprop.0 0x910f : { *(.text.disk_13XX.constprop.0) }
-.text.putuint.constprop.0 0x913c : { *(.text.putuint.constprop.0) }
+.text.putuint.constprop.0 0x8629 : { *(.text.putuint.constprop.0) }
 .text.bvprintf.constprop.0 0xec62 : { *(.text.bvprintf.constprop.0) }
-.text.panic.constprop.0 0x9193 : { *(.text.panic.constprop.0) }
-.text.__dprintf 0x91a9 : { *(.text.__dprintf) }
-.text.dump_regs 0x91bd : { *(.text.dump_regs) }
-.text.__warn_timeout 0x9254 : { *(.text.__warn_timeout) }
-.text.timer_read 0x926a : { *(.text.timer_read) }
-.text.timer_calc 0x92e8 : { *(.text.timer_calc) }
-.text.timer_check 0x9304 : { *(.text.timer_check) }
-.text.udelay 0x9320 : { *(.text.udelay) }
+.text.panic.constprop.0 0x8680 : { *(.text.panic.constprop.0) }
+.text.__dprintf 0x8696 : { *(.text.__dprintf) }
+.text.dump_regs 0x86aa : { *(.text.dump_regs) }
+.text.__debug_enter 0x8741 : { *(.text.__debug_enter) }
+.text.__warn_invalid 0x8763 : { *(.text.__warn_invalid) }
+.text.__set_invalid 0xe6de : { *(.text.__set_invalid) }
+.text.getComAddr 0x8789 : { *(.text.getComAddr) }
+.text.__set_code_invalid 0x87d9 : { *(.text.__set_code_invalid) }
+.text.__disk_ret 0x87ff : { *(.text.__disk_ret) }
+.text.disk_1308 0x882c : { *(.text.disk_1308) }
+.text.disk_1315 0xef60 : { *(.text.disk_1315) }
+.text.__warn_unimplemented 0xfe7e : { *(.text.__warn_unimplemented) }
+.text.__set_code_unimplemented 0x8964 : { *(.text.__set_code_unimplemented) }
+.text.__disk_ret_unimplemented 0x898a : { *(.text.__disk_ret_unimplemented) }
+.text.__disk_stub 0x89b2 : { *(.text.__disk_stub) }
+.text.__warn_timeout 0x89e7 : { *(.text.__warn_timeout) }
+.text.floppy_disable_controller 0x89fd : { *(.text.floppy_disable_controller) }
+.text.timer_read 0x8a17 : { *(.text.timer_read) }
+.text.timer_calc 0x8a95 : { *(.text.timer_calc) }
+.text.timer_check 0x8ab1 : { *(.text.timer_check) }
+.text.udelay 0x8acd : { *(.text.udelay) }
 .text.i8042_wait_write 0xf066 : { *(.text.i8042_wait_write) }
-.text.__i8042_command 0x9366 : { *(.text.__i8042_command) }
+.text.i8042_command 0x8b13 : { *(.text.i8042_command) }
 .text.sercon_lazy_lf 0xff00 : { *(.text.sercon_lazy_lf) }
-.text.fill_generic_edd 0x93be : { *(.text.fill_generic_edd) }
-.text.fill_edd 0x9717 : { *(.text.fill_edd) }
-.text.__stack_hop_back.isra.0 0x994d : { *(.text.__stack_hop_back.isra.0) }
-.text.handle_12 0x99a9 : { *(.text.handle_12) }
-.text.handle_11 0x99bc : { *(.text.handle_11) }
-.text.handle_05 0xfe7e : { *(.text.handle_05) }
-.text.handle_02 0x99cf : { *(.text.handle_02) }
-.text.call16_helper 0x99f4 : { *(.text.call16_helper) }
-.text.__call32 0x9a34 : { *(.text.__call32) }
-.text._farcall16 0x9a9f : { *(.text._farcall16) }
-.text.__call16_int 0x9aea : { *(.text.__call16_int) }
-.text.handle_75 0x9afd : { *(.text.handle_75) }
-.text.process_key 0x9b66 : { *(.text.process_key) }
-.text.ramdisk_copy 0x9f42 : { *(.text.ramdisk_copy) }
-.text.disk_1346.constprop.0 0xa0ab : { *(.text.disk_1346.constprop.0) }
-.text.check_irqs 0xa14e : { *(.text.check_irqs) }
-.text.sercon_putchar 0xa170 : { *(.text.sercon_putchar) }
-.text.sercon_term_clear_screen 0xa1fb : { *(.text.sercon_term_clear_screen) }
+.text.fill_generic_edd 0x8b88 : { *(.text.fill_generic_edd) }
+.text.fill_edd 0x8ee1 : { *(.text.fill_edd) }
+.text.__stack_hop_back.isra.0 0x9117 : { *(.text.__stack_hop_back.isra.0) }
+.text.handle_12 0x9173 : { *(.text.handle_12) }
+.text.handle_11 0x9198 : { *(.text.handle_11) }
+.text.handle_05 0xe2b8 : { *(.text.handle_05) }
+.text.handle_02 0x91bd : { *(.text.handle_02) }
+.text.call16_helper 0xec19 : { *(.text.call16_helper) }
+.text.__call32 0x91e2 : { *(.text.__call32) }
+.text._farcall16 0x924d : { *(.text._farcall16) }
+.text.__call16_int 0x9298 : { *(.text.__call16_int) }
+.text.handle_75 0x92ab : { *(.text.handle_75) }
+.text.process_key 0x9314 : { *(.text.process_key) }
+.text.ramdisk_copy 0x96f0 : { *(.text.ramdisk_copy) }
+.text.disk_1346.constprop.0 0x9859 : { *(.text.disk_1346.constprop.0) }
+.text.check_irqs 0x9910 : { *(.text.check_irqs) }
+.text.sercon_putchar 0x9932 : { *(.text.sercon_putchar) }
+.text.sercon_term_clear_screen 0x99bd : { *(.text.sercon_term_clear_screen) }
 .text.sercon_print_utf8 0xefdb : { *(.text.sercon_print_utf8) }
-.text.sercon_term_cursor_goto 0xa228 : { *(.text.sercon_term_cursor_goto) }
-.text.sercon_set_attr 0xa2c7 : { *(.text.sercon_set_attr) }
+.text.sercon_term_cursor_goto 0x99ea : { *(.text.sercon_term_cursor_goto) }
+.text.sercon_set_attr 0x9a89 : { *(.text.sercon_set_attr) }
 .text.sercon_lazy_flush 0xe2e8 : { *(.text.sercon_lazy_flush) }
-.text.sercon_lazy_putchar 0xa3bc : { *(.text.sercon_lazy_putchar) }
-.text.rtc_updating 0xa470 : { *(.text.rtc_updating) }
-.text.ps2_recvbyte 0xa4bd : { *(.text.ps2_recvbyte) }
-.text.ps2_sendbyte 0xa571 : { *(.text.ps2_sendbyte) }
-.text.__ps2_command 0xa5e6 : { *(.text.__ps2_command) }
-.text.set_leds 0xa840 : { *(.text.set_leds) }
-.text.ps2_mouse_command 0xa89f : { *(.text.ps2_mouse_command) }
-.text.mouse_15c201 0xa8ee : { *(.text.mouse_15c201) }
-.text.handle_160a 0xa92f : { *(.text.handle_160a) }
-.text.floppy_wait_irq 0xa965 : { *(.text.floppy_wait_irq) }
+.text.sercon_lazy_putchar 0x9b7e : { *(.text.sercon_lazy_putchar) }
+.text.rtc_updating 0x9c32 : { *(.text.rtc_updating) }
+.text.ps2_recvbyte 0x9c7f : { *(.text.ps2_recvbyte) }
+.text.ps2_sendbyte 0x9d33 : { *(.text.ps2_sendbyte) }
+.text.ps2_command 0xe990 : { *(.text.ps2_command) }
+.text.set_leds 0x9da8 : { *(.text.set_leds) }
+.text.ps2_mouse_command 0x9e07 : { *(.text.ps2_mouse_command) }
+.text.mouse_15c201 0x9e56 : { *(.text.mouse_15c201) }
+.text.handle_160a 0x9ea2 : { *(.text.handle_160a) }
+.text.floppy_wait_irq 0x9ed8 : { *(.text.floppy_wait_irq) }
 .text.floppy_pio 0xe837 : { *(.text.floppy_pio) }
-.text.floppy_enable_controller 0xa9e2 : { *(.text.floppy_enable_controller) }
-.text.floppy_drive_pio 0xaa75 : { *(.text.floppy_drive_pio) }
-.text.floppy_dma_cmd 0xab20 : { *(.text.floppy_dma_cmd) }
-.text.floppy_drive_readid.constprop.0 0xac5a : { *(.text.floppy_drive_readid.constprop.0) }
-.text.floppy_prep 0xe411 : { *(.text.floppy_prep) }
-.text.floppy_read 0xaca0 : { *(.text.floppy_read) }
-.text.floppy_write 0xad59 : { *(.text.floppy_write) }
-.text.floppy_format 0xae12 : { *(.text.floppy_format) }
-.text.await_ide.constprop.0 0xae9a : { *(.text.await_ide.constprop.0) }
-.text.await_not_bsy 0xaf0b : { *(.text.await_not_bsy) }
-.text.ndelay_await_not_bsy 0xec08 : { *(.text.ndelay_await_not_bsy) }
-.text.ata_wait_data 0xaf1b : { *(.text.ata_wait_data) }
-.text.send_cmd 0xaf47 : { *(.text.send_cmd) }
-.text.ata_pio_transfer 0xb073 : { *(.text.ata_pio_transfer) }
+.text.floppy_enable_controller 0x9f55 : { *(.text.floppy_enable_controller) }
+.text.floppy_drive_pio 0x9ff6 : { *(.text.floppy_drive_pio) }
+.text.floppy_dma_cmd 0xa0a1 : { *(.text.floppy_dma_cmd) }
+.text.floppy_drive_readid.constprop.0 0xa1db : { *(.text.floppy_drive_readid.constprop.0) }
+.text.floppy_prep 0xf527 : { *(.text.floppy_prep) }
+.text.floppy_read 0xa221 : { *(.text.floppy_read) }
+.text.floppy_write 0xa2da : { *(.text.floppy_write) }
+.text.floppy_format 0xa393 : { *(.text.floppy_format) }
+.text.await_ide.constprop.0 0xa41b : { *(.text.await_ide.constprop.0) }
+.text.await_not_bsy 0xf830 : { *(.text.await_not_bsy) }
+.text.ndelay_await_not_bsy 0xa48c : { *(.text.ndelay_await_not_bsy) }
+.text.ata_wait_data 0xa4dc : { *(.text.ata_wait_data) }
+.text.send_cmd 0xa508 : { *(.text.send_cmd) }
+.text.ata_pio_transfer 0xa634 : { *(.text.ata_pio_transfer) }
 .text.ata_atapi_process_op 0xf869 : { *(.text.ata_atapi_process_op) }
-.text.ata_readwrite 0xb1aa : { *(.text.ata_readwrite) }
-.text.process_op 0xb546 : { *(.text.process_op) }
+.text.ata_readwrite 0xa76b : { *(.text.ata_readwrite) }
+.text.process_op 0xab07 : { *(.text.process_op) }
 .text.cdemu_read 0xe079 : { *(.text.cdemu_read) }
-.text.disk_1300 0xb8b8 : { *(.text.disk_1300) }
-.text.basic_access 0xb8f4 : { *(.text.basic_access) }
-.text.disk_1305 0xba2b : { *(.text.disk_1305) }
-.text.disk_1310 0xbb4d : { *(.text.disk_1310) }
-.text.extended_access 0xbb8c : { *(.text.extended_access) }
-.text.disk_13 0xbc5b : { *(.text.disk_13) }
-.text.handle_legacy_disk 0xbf84 : { *(.text.handle_legacy_disk) }
-.text.wait_irq 0xc011 : { *(.text.wait_irq) }
+.text.disk_1300 0xae79 : { *(.text.disk_1300) }
+.text.basic_access 0xaebb : { *(.text.basic_access) }
+.text.disk_1305 0xb02e : { *(.text.disk_1305) }
+.text.disk_1310 0xfeae : { *(.text.disk_1310) }
+.text.extended_access 0xb15c : { *(.text.extended_access) }
+.text.disk_13 0xb256 : { *(.text.disk_13) }
+.text.handle_legacy_disk 0xb616 : { *(.text.handle_legacy_disk) }
+.text.wait_irq 0xb6bd : { *(.text.wait_irq) }
 .text.dequeue_key 0xe742 : { *(.text.dequeue_key) }
-.text.handle_1553 0xc031 : { *(.text.handle_1553) }
-.text.handle_40 0xc1ab : { *(.text.handle_40) }
-.text.handle_13 0xc1e3 : { *(.text.handle_13) }
-.text.handle_76 0xc285 : { *(.text.handle_76) }
-.text.invoke_mouse_handler 0xc29b : { *(.text.invoke_mouse_handler) }
-.text.handle_16 0xc30d : { *(.text.handle_16) }
-.text.handle_1589 0xc404 : { *(.text.handle_1589) }
-.text.handle_15 0xf0fc : { *(.text.handle_15) }
-.text.handle_14 0xc49e : { *(.text.handle_14) }
-.text.handle_17 0xef50 : { *(.text.handle_17) }
-.text.handle_sercon 0xc6ad : { *(.text.handle_sercon) }
-.text.handle_1a 0xe990 : { *(.text.handle_1a) }
-.text.handle_08 0xcabb : { *(.text.handle_08) }
-.text.handle_resume 0xcce2 : { *(.text.handle_resume) }
-.text.handle_pnp 0xcdac : { *(.text.handle_pnp) }
-.text.handle_pcibios 0xcdf5 : { *(.text.handle_pcibios) }
+.text.handle_1553 0xb6dd : { *(.text.handle_1553) }
+.text.handle_40 0xb84f : { *(.text.handle_40) }
+.text.handle_13 0xb872 : { *(.text.handle_13) }
+.text.handle_76 0xb926 : { *(.text.handle_76) }
+.text.invoke_mouse_handler 0xb93c : { *(.text.invoke_mouse_handler) }
+.text.handle_16 0xb9ae : { *(.text.handle_16) }
+.text.handle_1589 0xbac5 : { *(.text.handle_1589) }
+.text.handle_15 0xbb5f : { *(.text.handle_15) }
+.text.handle_14 0xc381 : { *(.text.handle_14) }
+.text.handle_17 0xc5b1 : { *(.text.handle_17) }
+.text.handle_sercon 0xf0fc : { *(.text.handle_sercon) }
+.text.handle_1a 0xe411 : { *(.text.handle_1a) }
+.text.handle_08 0xc5e0 : { *(.text.handle_08) }
+.text.handle_resume 0xc807 : { *(.text.handle_resume) }
+.text.handle_pnp 0xc8d1 : { *(.text.handle_pnp) }
+.text.handle_pcibios 0xc91a : { *(.text.handle_pcibios) }
 .text.handle_apm 0xf84a : { *(.text.handle_apm) }
-.text.handle_hwpic1 0xefc1 : { *(.text.handle_hwpic1) }
-.text.handle_hwpic2 0xd166 : { *(.text.handle_hwpic2) }
-.text.handle_74 0xd16e : { *(.text.handle_74) }
-.text.handle_09 0xd1f8 : { *(.text.handle_09) }
-.text.handle_0e 0xd241 : { *(.text.handle_0e) }
-.text.asm.transition32 0xd25b : { *(.text.asm.transition32) }
-.text.asm.transition16 0xd2a9 : { *(.text.asm.transition16) }
-.text.asm.__farcall16 0xd2f7 : { *(.text.asm.__farcall16) }
-.text.asm.irq_trampoline_0x02 0xd384 : { *(.text.asm.irq_trampoline_0x02) }
-.text.asm.irq_trampoline_0x05 0xd387 : { *(.text.asm.irq_trampoline_0x05) }
-.text.asm.irq_trampoline_0x10 0xd38a : { *(.text.asm.irq_trampoline_0x10) }
-.text.asm.irq_trampoline_0x13 0xd38d : { *(.text.asm.irq_trampoline_0x13) }
-.text.asm.irq_trampoline_0x15 0xd390 : { *(.text.asm.irq_trampoline_0x15) }
-.text.asm.irq_trampoline_0x16 0xd393 : { *(.text.asm.irq_trampoline_0x16) }
-.text.asm.irq_trampoline_0x18 0xd396 : { *(.text.asm.irq_trampoline_0x18) }
+.text.handle_hwpic1 0xef50 : { *(.text.handle_hwpic1) }
+.text.handle_hwpic2 0xccc3 : { *(.text.handle_hwpic2) }
+.text.handle_74 0xcccb : { *(.text.handle_74) }
+.text.handle_09 0xcd55 : { *(.text.handle_09) }
+.text.handle_0e 0xcd9e : { *(.text.handle_0e) }
+.text.asm.transition32 0xcdb8 : { *(.text.asm.transition32) }
+.text.asm.transition16 0xce06 : { *(.text.asm.transition16) }
+.text.asm.__farcall16 0xce54 : { *(.text.asm.__farcall16) }
+.text.asm.irq_trampoline_0x02 0xcee1 : { *(.text.asm.irq_trampoline_0x02) }
+.text.asm.irq_trampoline_0x05 0xcee4 : { *(.text.asm.irq_trampoline_0x05) }
+.text.asm.irq_trampoline_0x10 0xcee7 : { *(.text.asm.irq_trampoline_0x10) }
+.text.asm.irq_trampoline_0x13 0xceea : { *(.text.asm.irq_trampoline_0x13) }
+.text.asm.irq_trampoline_0x15 0xceed : { *(.text.asm.irq_trampoline_0x15) }
+.text.asm.irq_trampoline_0x16 0xcef0 : { *(.text.asm.irq_trampoline_0x16) }
+.text.asm.irq_trampoline_0x18 0xcef3 : { *(.text.asm.irq_trampoline_0x18) }
 .text.asm.irq_trampoline_0x19 0xe983 : { *(.text.asm.irq_trampoline_0x19) }
 .text.asm.irq_trampoline_0x1b 0xff50 : { *(.text.asm.irq_trampoline_0x1b) }
 .text.asm.irq_trampoline_0x1c 0xf856 : { *(.text.asm.irq_trampoline_0x1c) }
-.text.asm.entry_smp 0xd399 : { *(.text.asm.entry_smp) }
-.text.asm.entry_resume 0xd3c9 : { *(.text.asm.entry_resume) }
-.text.asm.entry_pmm 0xd3de : { *(.text.asm.entry_pmm) }
-.text.asm.entry_pnp_real 0xd43c : { *(.text.asm.entry_pnp_real) }
-.text.asm.entry_apm16 0xd484 : { *(.text.asm.entry_apm16) }
-.text.asm.entry_apm32 0xd4c5 : { *(.text.asm.entry_apm32) }
-.text.asm.entry_pcibios32 0xd4f7 : { *(.text.asm.entry_pcibios32) }
-.text.asm.entry_pcibios16 0xd525 : { *(.text.asm.entry_pcibios16) }
-.text.asm.entry_1589 0xd55f : { *(.text.asm.entry_1589) }
+.text.asm.entry_smp 0xcef6 : { *(.text.asm.entry_smp) }
+.text.asm.entry_resume 0xcf26 : { *(.text.asm.entry_resume) }
+.text.asm.entry_pmm 0xcf3b : { *(.text.asm.entry_pmm) }
+.text.asm.entry_pnp_real 0xcf99 : { *(.text.asm.entry_pnp_real) }
+.text.asm.entry_apm16 0xcfe1 : { *(.text.asm.entry_apm16) }
+.text.asm.entry_apm32 0xd022 : { *(.text.asm.entry_apm32) }
+.text.asm.entry_pcibios32 0xd054 : { *(.text.asm.entry_pcibios32) }
+.text.asm.entry_pcibios16 0xd082 : { *(.text.asm.entry_pcibios16) }
+.text.asm.entry_1589 0xd0bc : { *(.text.asm.entry_1589) }
 .text.asm.entry_bios32 0xf046 : { *(.text.asm.entry_bios32) }
-.text.asm.entry_sercon 0xd599 : { *(.text.asm.entry_sercon) }
-.text.asm.irqentry_extrastack 0xd5e0 : { *(.text.asm.irqentry_extrastack) }
-.text.asm.irqentry_arg_extrastack 0xd66d : { *(.text.asm.irqentry_arg_extrastack) }
-.text.asm.entry_13 0xd70f : { *(.text.asm.entry_13) }
-.text.asm.entry_76 0xd718 : { *(.text.asm.entry_76) }
-.text.asm.entry_74 0xd721 : { *(.text.asm.entry_74) }
-.text.asm.entry_75 0xd72a : { *(.text.asm.entry_75) }
-.text.asm.entry_hwpic1 0xd733 : { *(.text.asm.entry_hwpic1) }
-.text.asm.entry_hwpic2 0xe2b8 : { *(.text.asm.entry_hwpic2) }
-.text.asm.entry_19 0xd73c : { *(.text.asm.entry_19) }
-.text.asm.entry_18 0xd74f : { *(.text.asm.entry_18) }
-.rodata 0xd762 : { *(.rodata) }
-.rodata.__func__.1 0xd9ec : { *(.rodata.__func__.1) }
-.rodata.__func__.2 0xd9f8 : { *(.rodata.__func__.2) }
-.rodata.__func__.3 0xda0c : { *(.rodata.__func__.3) }
-.rodata.__func__.4 0xda18 : { *(.rodata.__func__.4) }
-.rodata.__func__.5 0xda24 : { *(.rodata.__func__.5) }
-.rodata.__func__.9 0xda34 : { *(.rodata.__func__.9) }
-.rodata.__func__.10 0xda44 : { *(.rodata.__func__.10) }
-.rodata.__func__.74 0xda58 : { *(.rodata.__func__.74) }
-.rodata.__func__.79 0xda64 : { *(.rodata.__func__.79) }
-.rodata.__func__.82 0xda70 : { *(.rodata.__func__.82) }
-.rodata.__func__.83 0xda7c : { *(.rodata.__func__.83) }
-.rodata.__func__.84 0xda88 : { *(.rodata.__func__.84) }
+.text.asm.entry_sercon 0xd0f6 : { *(.text.asm.entry_sercon) }
+.text.asm.irqentry_extrastack 0xd13d : { *(.text.asm.irqentry_extrastack) }
+.text.asm.irqentry_arg_extrastack 0xd1ca : { *(.text.asm.irqentry_arg_extrastack) }
+.text.asm.entry_13 0xd26c : { *(.text.asm.entry_13) }
+.text.asm.entry_76 0xd275 : { *(.text.asm.entry_76) }
+.text.asm.entry_74 0xd27e : { *(.text.asm.entry_74) }
+.text.asm.entry_75 0xd287 : { *(.text.asm.entry_75) }
+.text.asm.entry_hwpic1 0xd290 : { *(.text.asm.entry_hwpic1) }
+.text.asm.entry_hwpic2 0xd299 : { *(.text.asm.entry_hwpic2) }
+.text.asm.entry_19 0xd2a2 : { *(.text.asm.entry_19) }
+.text.asm.entry_18 0xd2b5 : { *(.text.asm.entry_18) }
+.rodata 0xd2c8 : { *(.rodata) }
+.rodata.__func__.1 0xd628 : { *(.rodata.__func__.1) }
+.rodata.__func__.2 0xd634 : { *(.rodata.__func__.2) }
+.rodata.__func__.3 0xd648 : { *(.rodata.__func__.3) }
+.rodata.__func__.4 0xd654 : { *(.rodata.__func__.4) }
+.rodata.__func__.5 0xd660 : { *(.rodata.__func__.5) }
+.rodata.__func__.9 0xd670 : { *(.rodata.__func__.9) }
+.rodata.__func__.10 0xd680 : { *(.rodata.__func__.10) }
+.rodata.__func__.11 0xd694 : { *(.rodata.__func__.11) }
+.rodata.__func__.12 0xd6a4 : { *(.rodata.__func__.12) }
+.rodata.__func__.13 0xd6b4 : { *(.rodata.__func__.13) }
+.rodata.__func__.14 0xd6c4 : { *(.rodata.__func__.14) }
+.rodata.__func__.15 0xd6d4 : { *(.rodata.__func__.15) }
+.rodata.__func__.17 0xd6e4 : { *(.rodata.__func__.17) }
+.rodata.__func__.18 0xd6f4 : { *(.rodata.__func__.18) }
+.rodata.__func__.19 0xd704 : { *(.rodata.__func__.19) }
+.rodata.__func__.20 0xd710 : { *(.rodata.__func__.20) }
+.rodata.__func__.21 0xd720 : { *(.rodata.__func__.21) }
+.rodata.__func__.22 0xd72c : { *(.rodata.__func__.22) }
+.rodata.__func__.23 0xd738 : { *(.rodata.__func__.23) }
+.rodata.__func__.24 0xd744 : { *(.rodata.__func__.24) }
+.rodata.__func__.25 0xd750 : { *(.rodata.__func__.25) }
+.rodata.__func__.26 0xd75c : { *(.rodata.__func__.26) }
+.rodata.__func__.27 0xd768 : { *(.rodata.__func__.27) }
+.rodata.__func__.28 0xd774 : { *(.rodata.__func__.28) }
+.rodata.__func__.29 0xd780 : { *(.rodata.__func__.29) }
+.rodata.__func__.30 0xd78c : { *(.rodata.__func__.30) }
+.rodata.__func__.31 0xd798 : { *(.rodata.__func__.31) }
+.rodata.__func__.32 0xd7a4 : { *(.rodata.__func__.32) }
+.rodata.__func__.33 0xd7b0 : { *(.rodata.__func__.33) }
+.rodata.__func__.34 0xd7bc : { *(.rodata.__func__.34) }
+.rodata.__func__.35 0xd7cc : { *(.rodata.__func__.35) }
+.rodata.__func__.36 0xd7dc : { *(.rodata.__func__.36) }
+.rodata.__func__.37 0xd7ec : { *(.rodata.__func__.37) }
+.rodata.__func__.38 0xd7f8 : { *(.rodata.__func__.38) }
+.rodata.__func__.39 0xd808 : { *(.rodata.__func__.39) }
+.rodata.__func__.40 0xd818 : { *(.rodata.__func__.40) }
+.rodata.__func__.41 0xd828 : { *(.rodata.__func__.41) }
+.rodata.__func__.42 0xd838 : { *(.rodata.__func__.42) }
+.rodata.__func__.43 0xd848 : { *(.rodata.__func__.43) }
+.rodata.__func__.44 0xd858 : { *(.rodata.__func__.44) }
+.rodata.__func__.45 0xd868 : { *(.rodata.__func__.45) }
+.rodata.__func__.46 0xd878 : { *(.rodata.__func__.46) }
+.rodata.__func__.47 0xd888 : { *(.rodata.__func__.47) }
+.rodata.__func__.48 0xd898 : { *(.rodata.__func__.48) }
+.rodata.__func__.49 0xd8a8 : { *(.rodata.__func__.49) }
+.rodata.__func__.50 0xd8b8 : { *(.rodata.__func__.50) }
+.rodata.__func__.51 0xd8c8 : { *(.rodata.__func__.51) }
+.rodata.__func__.52 0xd8d4 : { *(.rodata.__func__.52) }
+.rodata.__func__.53 0xd8e0 : { *(.rodata.__func__.53) }
+.rodata.__func__.54 0xd8ec : { *(.rodata.__func__.54) }
+.rodata.__func__.55 0xd8f8 : { *(.rodata.__func__.55) }
+.rodata.__func__.56 0xd904 : { *(.rodata.__func__.56) }
+.rodata.__func__.57 0xd910 : { *(.rodata.__func__.57) }
+.rodata.__func__.58 0xd91c : { *(.rodata.__func__.58) }
+.rodata.__func__.59 0xd928 : { *(.rodata.__func__.59) }
+.rodata.__func__.60 0xd934 : { *(.rodata.__func__.60) }
+.rodata.__func__.61 0xd940 : { *(.rodata.__func__.61) }
+.rodata.__func__.62 0xd94c : { *(.rodata.__func__.62) }
+.rodata.__func__.63 0xd958 : { *(.rodata.__func__.63) }
+.rodata.__func__.64 0xd964 : { *(.rodata.__func__.64) }
+.rodata.__func__.65 0xd970 : { *(.rodata.__func__.65) }
+.rodata.__func__.66 0xd980 : { *(.rodata.__func__.66) }
+.rodata.__func__.67 0xd98c : { *(.rodata.__func__.67) }
+.rodata.__func__.68 0xd998 : { *(.rodata.__func__.68) }
+.rodata.__func__.69 0xd9a4 : { *(.rodata.__func__.69) }
+.rodata.__func__.70 0xd9b0 : { *(.rodata.__func__.70) }
+.rodata.__func__.71 0xd9bc : { *(.rodata.__func__.71) }
+.rodata.__func__.72 0xd9c8 : { *(.rodata.__func__.72) }
+.rodata.__func__.73 0xd9d4 : { *(.rodata.__func__.73) }
+.rodata.__func__.74 0xd9e0 : { *(.rodata.__func__.74) }
+.rodata.__func__.75 0xd9ec : { *(.rodata.__func__.75) }
+.rodata.__func__.76 0xd9f8 : { *(.rodata.__func__.76) }
+.rodata.__func__.77 0xda04 : { *(.rodata.__func__.77) }
+.rodata.__func__.78 0xda14 : { *(.rodata.__func__.78) }
+.rodata.__func__.79 0xda20 : { *(.rodata.__func__.79) }
+.rodata.__func__.80 0xda2c : { *(.rodata.__func__.80) }
+.rodata.__func__.81 0xda40 : { *(.rodata.__func__.81) }
+.rodata.__func__.84 0xda4c : { *(.rodata.__func__.84) }
+.rodata.__func__.85 0xda58 : { *(.rodata.__func__.85) }
+.rodata.__func__.86 0xda64 : { *(.rodata.__func__.86) }
+.rodata.__func__.87 0xda70 : { *(.rodata.__func__.87) }
+.rodata.__func__.88 0xda7c : { *(.rodata.__func__.88) }
 .data16../src/cp437.c.11 0xdaa0 : { *(.data16../src/cp437.c.11) }
 .data16../src/sercon.c.554 0xdca0 : { *(.data16../src/sercon.c.554) }
 .data16../src/sercon.c.70 0xdd50 : { *(.data16../src/sercon.c.70) }

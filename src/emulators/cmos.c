@@ -49,9 +49,8 @@ void cmos_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count,
         }
         else 
         {
-            goto unhandled;
+            registers[cur_register] = base[data_offset];
         }
-        cur_register = 0x0d;
     }
     break;
     default:

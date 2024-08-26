@@ -27,6 +27,10 @@ enum pci_config_space_registers
     LATENCY_TIMER,
     HEADER_TYPE,
     BIST,
+    PCI_SUBSYSTEM_VENDOR_ID_LOW = 0x2c,
+    PCI_SUBSYSTEM_VENDOR_ID_HIGH,
+    SUBSYSTEM_ID_LOW,
+    SUBSYSTEM_ID_HIGH,
     // BAR_START,
     // BAR_END = 0x27,
     // CIS_PTR_START,
@@ -139,7 +143,9 @@ void pci_init()
     pci_set_config_u8(PCI_BRIDGE, REVISION_ID, 0x2);
     pci_set_config_u8(PCI_BRIDGE, CLASS_CODE, 0x06);
     pci_set_config_u8(PCI_BRIDGE, DRB0, 0x01);
-    pci_set_config_u8(PCI_BRIDGE, TOM, 0x01);
+    pci_set_config_u16(PCI_BRIDGE, PCI_SUBSYSTEM_VENDOR_ID_LOW, 0x1af4);
+    pci_set_config_u16(PCI_BRIDGE, SUBSYSTEM_ID_LOW, 0x1100);
+    // pci_set_config_u8(PCI_BRIDGE, TOM, 0x01);
 }
 
 void pci_add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vendor_id, uint16_t device_id)
@@ -156,9 +162,8 @@ void pci_add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vend
 void pci_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, uint8_t *base, uint64_t data_offset)
 {
     LOG_MSG("Handling pci port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%x", port, direction, size, count, BUILD_UINT32(base + data_offset));
-    getchar();
 
-    if (port == CONFIG_ADDRESS)
+    if (port == CONFIG_ADDRESS) // SET CONFIG ADDRESS AND REGISTER
     {
         if (direction == KVM_EXIT_IO_OUT)
         {
@@ -176,7 +181,7 @@ void pci_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, 
             exit(1);
         }
     }
-    if (port >= CONFIG_DATA && port <= CONFIG_DATA + 3)
+    if (port >= CONFIG_DATA && port <= CONFIG_DATA + 3) // GET/SET CONFIG DATA BASED ON PREVIOUS CONFIG ADDRESS AND REGISTER
     {
         if (direction == KVM_EXIT_IO_IN)
         {
@@ -187,8 +192,8 @@ void pci_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, 
         }
         else
         {
-            printf("unhandled KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%lx\n", direction, size, port, count, data_offset);
-            exit(1);
+            uint32_t additional_offset = port - CONFIG_DATA;
+            memcpy(&devices[config_index].config_space[config_register + additional_offset], base + data_offset, size);
         }
     }
 }
