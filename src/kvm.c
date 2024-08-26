@@ -156,7 +156,7 @@ void kvm_run()
     FILE *log = fopen("bios_log.txt", "w");
     if (log == NULL)
         err(1, "Failed to open log file");
-    
+
     while (1)
     {
         if (ioctl(vcpu, KVM_RUN, 0) < 0)
@@ -255,18 +255,32 @@ void kvm_init(char *file_name)
     size_t size;
     read_file(file_name, &buf, &size);
 
-    uint8_t *guest_memory = mmap(0, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-    if (guest_memory == MAP_FAILED)
+    uint8_t *guest_memory_low = mmap(0, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if (guest_memory_low == MAP_FAILED)
         err(1, "Failed to map guest memory");
-    memcpy(guest_memory + 0x100000 - size, buf, size);
+    memcpy(guest_memory_low + 0x100000 - size, buf, size);
 
     struct kvm_userspace_memory_region memory_region = {
         .slot = 0,
         .guest_phys_addr = 0,
         .memory_size = 0x100000,
-        .userspace_addr = (uint64_t)guest_memory,
+        .userspace_addr = (uint64_t)guest_memory_low,
         .flags = 0};
     kvm_set_userspace_memory_region(&memory_region);
+
+    uint8_t *bios_high = mmap(0xfff00000, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if (bios_high == MAP_FAILED)
+        err(1, "Failed to map guest memory");
+    memcpy(bios_high + 0x100000 - size, buf, size);
+
+    struct kvm_userspace_memory_region bios_region = {
+        .slot = 1,
+        .guest_phys_addr = 0xfff00000,
+        .memory_size = 0x100000,
+        .userspace_addr = (uint64_t)bios_high,
+        .flags = 0};
+    kvm_set_userspace_memory_region(&bios_region);
+
     free(buf);
 
     kvm_create_vcpu();
@@ -312,13 +326,13 @@ void kvm_deinit()
 void kvm_pause_vcpu()
 {
     struct kvm_debugregs debugregs;
-    if(ioctl(vcpu, KVM_GET_DEBUGREGS, &debugregs) < 0)
+    if (ioctl(vcpu, KVM_GET_DEBUGREGS, &debugregs) < 0)
     {
         err(1, "KVM_GET_DEBUGREGS");
     }
     debugregs.db[0] = 0x0;
     debugregs.dr7 |= 0x1;
-    if(ioctl(vcpu, KVM_SET_DEBUGREGS, &debugregs) < 0)
+    if (ioctl(vcpu, KVM_SET_DEBUGREGS, &debugregs) < 0)
     {
         err(1, "KVM_SET_DEBUGREGS");
     }
