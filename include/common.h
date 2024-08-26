@@ -10,14 +10,20 @@
 
 #define GET_BITS(value, start, length) (((value) >> (start)) & ((1U << (length)) - 1))
 #define BUILD_UINT32(addr)                          \
-    (((uint32_t)(*((uint8_t *)(addr) + 0)) << 24) | \
-     ((uint32_t)(*((uint8_t *)(addr) + 1)) << 16) | \
-     ((uint32_t)(*((uint8_t *)(addr) + 2)) << 8) |  \
-     ((uint32_t)(*((uint8_t *)(addr) + 3))))
+    (((uint32_t)(*((uint8_t *)(addr) + 3)) << 24) | \
+     ((uint32_t)(*((uint8_t *)(addr) + 2)) << 16) | \
+     ((uint32_t)(*((uint8_t *)(addr) + 1)) << 8) |  \
+     ((uint32_t)(*((uint8_t *)(addr) + 0))))
 
+#define WRITE_UINT8(value, addr) (*((uint8_t *)(addr)) = value)
 #define WRITE_UINT16(value, addr)                       \
-    (*((uint8_t *)(addr) + 0)) = GET_BITS(value, 8, 8); \
-    (*((uint8_t *)(addr) + 1)) = GET_BITS(value, 0, 8);
+    (*((uint8_t *)(addr) + 0)) = GET_BITS(value, 0, 8); \
+    (*((uint8_t *)(addr) + 1)) = GET_BITS(value, 8, 8);
+#define WRITE_UINT32(value, addr)                       \
+    (*((uint8_t *)(addr) + 0)) = GET_BITS(value, 0, 8); \
+    (*((uint8_t *)(addr) + 1)) = GET_BITS(value, 8, 8); \
+    (*((uint8_t *)(addr) + 2)) = GET_BITS(value, 16, 8);  \
+    (*((uint8_t *)(addr) + 3)) = GET_BITS(value, 24, 8);
 
 int page_align_up(int address);
 int page_align_down(int address);

@@ -12,15 +12,19 @@ bool nmi_disabled = false;
 #define NUM_REGISTERS 50
 uint8_t registers[NUM_REGISTERS] = {0};
 
-uint8_t cur_register;
+uint8_t cur_register = 0;
 
-void cmos_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, uint8_t *base, uint64_t data_offset)
+void cmos_init()
 {
     uint16_t conventional_memory_kb = 640;
     registers[0x15] = conventional_memory_kb & 0xFF;
     registers[0x16] = (conventional_memory_kb >> 8) & 0xFF;
+}
+
+void cmos_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, uint8_t *base, uint64_t data_offset)
+{
     // printf("data: %x\n", base[data_offset]);
-    LOG_MSG("data: %x", base[data_offset]);
+    LOG_MSG("Handling cmos port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%lx", port, direction, size, count, base[data_offset]);
     switch (port)
     {
     case 0x70:

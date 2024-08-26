@@ -189,7 +189,7 @@ void kvm_run()
                 if (wrote != run->io.count)
                     err(1, "Failed to write to log file");
             }
-            else if (run->io.port == 0xcf8 || run->io.port == 0xcfc)
+            else if (run->io.port == 0xcf8 || (run->io.port >= 0xcfc && run->io.port <= 0xcff))
             {
                 pci_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
             }
@@ -296,6 +296,9 @@ void kvm_init(char *file_name)
     regs.rip = 0xFFF0;
     regs.rflags = 0x2;
     kvm_set_regs(&regs);
+
+    cmos_init();
+    pci_init();
 }
 
 void kvm_deinit()

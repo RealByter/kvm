@@ -7,7 +7,7 @@ uint8_t bus = 0;
 
 void a20_handle(uint8_t direction, uint8_t size, uint16_t port, uint32_t count, uint8_t *base, uint64_t data_offset)
 {
-    LOG_MSG("Call to a20");
+    LOG_MSG("Handling a20 port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%x", port, direction, size, count, base[data_offset]);
     switch (port)
     {
     case 0x92:

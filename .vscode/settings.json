@@ -17,6 +17,9 @@
         "gui.h": "c",
         "sdl.h": "c",
         "typeinfo": "cpp",
-        "a20.h": "c"
+        "a20.h": "c",
+        "log.h": "c",
+        "*.tcc": "c",
+        "type_traits": "c"
     }
 }

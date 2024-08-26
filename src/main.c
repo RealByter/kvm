@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
     gui_init();
     log_init();
 
+    cmos_init();
+
     if (argc != 2)
     {
         errx(1, "Usage: %s <filename>", argv[0]);

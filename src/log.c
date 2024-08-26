@@ -24,6 +24,7 @@ void log_print(const char *fmt, ...)
     vfprintf(log_file, fmt, args);
     fprintf(log_file, "\n");
     va_end(args);
+    fflush(log_file);
 }
 
 void log_deinit()
