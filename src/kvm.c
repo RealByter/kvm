@@ -161,8 +161,10 @@ void kvm_run()
         }
         // sleep(3);
 
-        print_regs();
-        print_sregs();
+        // print_regs();
+        // print_sregs();
+        kvm_get_regs(&regs);
+        printf("0x%llx: ", regs.rip);
         switch (run->exit_reason)
         {
         case KVM_EXIT_HLT:
