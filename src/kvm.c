@@ -265,8 +265,6 @@ void kvm_init(char *file_name)
     sregs.ss.base = 0;
     sregs.ss.selector = 0;
     sregs.cr0 &= ~(1 << 0);
-    sregs.idt.base = 0;
-    sregs.idt.limit = 0x3ff;
     kvm_set_sregs(&sregs);
 
     struct kvm_regs regs;
