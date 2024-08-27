@@ -7,10 +7,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include "emulators/cmos.h"
-#include "emulators/a20.h"
-#include "emulators/pci.h"
 #include "gui.h"
+#include "device_manager.h"
 
 int kvm, vm, vcpu;
 struct kvm_run *run;
@@ -153,9 +151,6 @@ void print_sregs()
 void kvm_run()
 {
     struct kvm_regs regs;
-    FILE *log = fopen("bios_log.txt", "w");
-    if (log == NULL)
-        err(1, "Failed to open log file");
     int i = 0;
     char *sig = "QEMO";
     while (1)
@@ -176,71 +171,7 @@ void kvm_run()
             break;
         case KVM_EXIT_IO:
             printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, run->io.data_offset);
-            if (run->io.port >= 0x70 && run->io.port <= 0x71)
-            {
-                cmos_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
-            }
-            else if (run->io.port == 0x92)
-            {
-                a20_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
-            }
-            else if (run->io.port == 0x402)
-            {
-                if (run->io.direction == KVM_EXIT_IO_OUT)
-                {
-                    int wrote = fwrite((uint8_t *)(run) + run->io.data_offset, 1, run->io.count, log);
-                    if (wrote != run->io.count)
-                        err(1, "Failed to write to log file");
-                }
-                else
-                {
-                    ((uint8_t *)(run))[run->io.data_offset] = 0xe9; // 0xe9
-                }
-            }
-            else if (run->io.port == 0x510)
-            {
-                printf("set to value: %x\n", ((uint8_t *)(run))[run->io.data_offset]);
-            }
-            else if (run->io.port == 0x511)
-            {
-                if (run->io.direction == KVM_EXIT_IO_IN)
-                {
-                    for(int j = 0; j < run->io.count; j++)
-                    {
-                        ((uint8_t*)(run))[run->io.data_offset + j] = sig[i + j];
-                        if(sig[i + j] == '\n')
-                        {
-                            i = 0;
-                        } 
-                        else
-                        {
-                            i++;
-                        } 
-                    }
-                    getchar();
-                }
-            }
-            else if (run->io.port == 0xcf8 || (run->io.port >= 0xcfc && run->io.port <= 0xcff))
-            {
-                pci_handle(run->io.direction, run->io.size, run->io.port, run->io.count, (uint8_t *)run, run->io.data_offset);
-            }
-            else
-            {
-                if (run->io.direction == KVM_EXIT_IO_OUT && run->io.size == 1 && run->io.port == 0x3f8 && run->io.count == 1)
-                {
-                    printf("%c", (*(((char *)run) + run->io.data_offset)));
-                    fflush(stdout);
-                }
-                else
-                {
-                    printf("got: 0x%x\n", (uint8_t)(*(((char *)run) + run->io.data_offset)));
-                    // errx(1, "unhandled KVM_EXIT_IO: "
-                    // "direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x\n",
-                    //  run->io.direction, run->io.size, run->io.port, run->io.count);
-                    // print_regs(vcpu);
-                    return 0;
-                }
-            }
+            device_manager_handle(&run->io, (uint8_t*)run);
             break;
         case KVM_EXIT_MMIO:
             printf("KVM_EXIT_MMIO: is_write=%d len=%d phys_addr=0x%llx data=",

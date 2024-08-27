@@ -1,6 +1,7 @@
 #include "loaders/elf_loader.h"
 #include "kvm.h"
 #include <elf.h>
+#include <stdio.h>
 #include <sys/mman.h>
 
 uint32_t elf_load(int vm, uint8_t *code, size_t size)

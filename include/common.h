@@ -5,6 +5,7 @@
 #include <linux/kvm.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "device_manager.h"
 
 #define PAGE_SIZE 0x1000
 
@@ -29,5 +30,7 @@ int page_align_up(int address);
 int page_align_down(int address);
 
 void read_file(char *filename, uint8_t **buf, size_t *size);
+
+void unhandled(exit_io_info_t* io);
 
 #endif

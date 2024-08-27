@@ -20,6 +20,17 @@
         "a20.h": "c",
         "log.h": "c",
         "*.tcc": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "device_manager.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "algorithm": "c",
+        "stdio.h": "c",
+        "cstdio": "c",
+        "cmath": "c",
+        "pci.h": "c",
+        "seabios_log.h": "c"
     }
 }
