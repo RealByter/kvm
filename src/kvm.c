@@ -272,9 +272,6 @@ void kvm_init(char *file_name)
     regs.rip = 0xFFF0;
     regs.rflags = 0x2;
     kvm_set_regs(&regs);
-
-    cmos_init();
-    pci_init();
 }
 
 void kvm_deinit()
