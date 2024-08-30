@@ -40,67 +40,40 @@
 #define MASTER_MULTICHANNEL_MASK 0xDE
 #define MASTER_INDEX(n) ((n) - MASTER_BASE)
 
+
 #define MAX_REGISTERS 0x0f
 
 static uint8_t *slave_registers[MAX_REGISTERS] = {0};
 static uint16_t *master_registers[MAX_REGISTERS] = {0};
 
-static uint8_t master_flip_flop = 0;
+#define READ_REGISTER(n, slave) ((slave) ? slave_registers[SLAVE_INDEX(n)] : master_registers[MASTER_INDEX(n / 2)])
+#define WRITE_REGISTER(n, value, slave) ((slave) ? (slave_registers[SLAVE_INDEX(n)] = value) : (master_registers[MASTER_INDEX(n) / 2] = value))
+
+static uint8_t flip_flop = 0;
 static uint8_t mask = 0;
 
-// void dma_handle(exit_io_info_t* io, uint8_t* base, uint8_t port_offset, uint8_t* registers)
-// {
-
-// }
-
-void dma_handle_master(exit_io_info_t *io, uint8_t *base)
+void dma_handle(exit_io_info_t *io, uint8_t *base, uint8_t slave)
 {
-    // dma_handle(io, base, master_registers);
-    switch (io->port)
-    {
-    case 0x00:
+    if (io->port == MASTER_INTERMEDIATE_MASTER_RESET || io->port == SLAVE_INTERMEDIATE_MASTER_RESET)
     {
         if (io->direction == EXIT_IO_OUT)
         {
-            master_flip_flop = 0;
-            master_registers[MASTER_INDEX(MASTER_STATUS_COMMAND)] = 0;
-            mask |= 0xf0; // mask all master channels
-        }
-        else
-        {
-            goto dma_master_unhandled;
+            flip_flop = 0;
+            WRITE_REGISTER(MASTER_STATUS_COMMAND, 0, slave);
+            mask |= slave ? 0x0f : 0xf0;
+            return;
         }
     }
-    default:
-    {
-    dma_master_unhandled:
-        printf("DMA Port 0x%02x is unhandled for direction: %d\n", io->port, io->direction);
-        exit(1);
-    }
-    }
+    printf("DMA Port 0x%02x is unhandled for direction: %d\n", io->port, io->direction);
+    exit(1);
+}
+
+void dma_handle_master(exit_io_info_t *io, uint8_t *base)
+{
+    dma_handle(io, base, 0);
 }
 
 void dma_handle_slave(exit_io_info_t *io, uint8_t *base)
 {
-    // dma_handle(io, base, slave_registers);
-    switch (io->port)
-    {
-    case MASTER_INTERMEDIATE_MASTER_RESET:
-    {
-        if (io->direction == EXIT_IO_OUT)
-        {
-            printf("slave: write to master: %x\n", base[io->data_offset]);
-        }
-        else
-        {
-            goto dma_slave_unhandled;
-        }
-    }
-    default:
-    {
-    dma_slave_unhandled:
-        printf("DMA Port 0x%02x is unhandled for direction: %d\n", io->port, io->direction);
-        exit(1);
-    }
-    }
+    dma_handle(io, base, 1);
 }

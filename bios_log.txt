@@ -12,4 +12,3 @@ init PMM
 init PNPBIOS table
 init keyboard
 init mouse
-init pic

@@ -173,9 +173,8 @@ void kvm_run()
             break;
         case KVM_EXIT_IO:
             printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t*)run)[run->io.data_offset]);
-            if (run->io.port == 0xd || run->io.port == 0xda || run->io.port == 0xd6 || run->io.port == 0xd4)
+            if (0)
             {
-                // some sort of seabios debug port
                 printf("------------------0x%02x:%x------------------\n", run->io.port, ((uint8_t*)run)[run->io.data_offset]);
             }
             else
