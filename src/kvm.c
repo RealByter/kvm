@@ -173,7 +173,15 @@ void kvm_run()
             break;
         case KVM_EXIT_IO:
             printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, run->io.data_offset);
-            device_manager_handle(&run->io, (uint8_t*)run);
+            if (run->io.port == 0xd)
+            {
+                // some sort of seabios debug port
+                printf("------------------0xd:%x------------------\n", ((uint8_t*)run)[run->io.data_offset]);
+            }
+            else
+            {
+                device_manager_handle(&run->io, (uint8_t *)run);
+            }
             break;
         case KVM_EXIT_MMIO:
             printf("KVM_EXIT_MMIO: is_write=%d len=%d phys_addr=0x%llx data=",

@@ -9,7 +9,7 @@ LOG_DEFINE("cmos");
 static bool nmi_disabled = false;
 
 // REMEMBER THAT 0xf register is whether or not RTC is powered on. right now it's off but maybe i'll want it on
-#define NUM_REGISTERS 50
+#define NUM_REGISTERS 0xff
 static uint8_t registers[NUM_REGISTERS] = {0};
 
 static uint8_t cur_register = 0;
