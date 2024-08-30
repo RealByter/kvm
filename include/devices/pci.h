@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include "common.h"
-#include "device_manager.h"
+#include "io_manager.h"
 
 void pci_init();
 // void pci_add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vendor_id, uint16_t device_id);

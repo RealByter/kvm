@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include "gui.h"
-#include "device_manager.h"
+#include "io_manager.h"
 
 int kvm, vm, vcpu;
 struct kvm_run *run;
@@ -172,15 +172,15 @@ void kvm_run()
             // return 0;
             break;
         case KVM_EXIT_IO:
-            printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, offset = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, run->io.data_offset);
-            if (run->io.port == 0xd)
+            printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t*)run)[run->io.data_offset]);
+            if (run->io.port == 0xd || run->io.port == 0xda || run->io.port == 0xd6 || run->io.port == 0xd4)
             {
                 // some sort of seabios debug port
-                printf("------------------0xd:%x------------------\n", ((uint8_t*)run)[run->io.data_offset]);
+                printf("------------------0x%02x:%x------------------\n", run->io.port, ((uint8_t*)run)[run->io.data_offset]);
             }
             else
             {
-                device_manager_handle(&run->io, (uint8_t *)run);
+                io_manager_handle(&run->io, (uint8_t *)run);
             }
             break;
         case KVM_EXIT_MMIO:
