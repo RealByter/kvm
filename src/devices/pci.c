@@ -87,6 +87,7 @@ enum pci_config_space_registers
 #define MAX_DEVICES 32
 #define MAX_FUNCTIONS 8
 
+static uint32_t last_config_address = 0;
 static uint8_t config_index = 0;
 static uint8_t config_register = 0;
 
@@ -168,6 +169,8 @@ void pci_handle(exit_io_info_t* io, uint8_t* base)
         if (io->direction == KVM_EXIT_IO_OUT)
         {
             uint32_t data = BUILD_UINT32(base + io->data_offset);
+            printf("data: %x\n", data);
+            last_config_address = data;
             uint32_t bus = (data >> 16) & 0xFF;
             uint32_t device = (data >> 11) & 0x1F;
             uint32_t function = (data >> 8) & 0x07;
@@ -177,7 +180,13 @@ void pci_handle(exit_io_info_t* io, uint8_t* base)
         }
         else
         {
-            unhandled(io);
+            // uint32_t bus = (config_index / (MAX_DEVICES * MAX_FUNCTIONS));
+            // uint32_t device = (config_index % (MAX_DEVICES * MAX_FUNCTIONS)) / MAX_FUNCTIONS;
+            // uint32_t function = (config_index % (MAX_DEVICES * MAX_FUNCTIONS)) % MAX_FUNCTIONS;
+
+            // base[io->data_offset] = (bus << 16) | (device << 11) | (function << 8) | (config_register << 2); 
+            printf("last: %x\n", last_config_address);
+            WRITE_UINT32(last_config_address, base + io->data_offset);
         }
     }
     else if (io->port >= CONFIG_DATA && io->port <= CONFIG_DATA + 3) // GET/SET CONFIG DATA BASED ON PREVIOUS CONFIG ADDRESS AND REGISTER
