@@ -32,6 +32,9 @@
         "cmath": "c",
         "pci.h": "c",
         "seabios_log.h": "c",
-        "io_manager.h": "c"
+        "io_manager.h": "c",
+        "system_error": "c",
+        "functional": "c",
+        "tuple": "c"
     }
 }

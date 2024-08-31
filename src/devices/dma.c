@@ -1,4 +1,5 @@
 #include "devices/dma.h"
+#include "common.h"
 #include <stdlib.h>
 
 #define SLAVE_BASE 0x00
@@ -19,7 +20,6 @@
 #define SLAVE_INTERMEDIATE_MASTER_RESET 0x0D
 #define SLAVE_MASK_RESET 0x0E
 #define SLAVE_MULTICHANNEL_MASK 0x0F
-#define SLAVE_INDEX(n) ((n) - SLAVE_BASE)
 
 #define MASTER_BASE 0xC0
 #define MASTER_ADDR4 0xC0
@@ -38,60 +38,93 @@
 #define MASTER_INTERMEDIATE_MASTER_RESET 0xDA
 #define MASTER_MASK_RESET 0xDC
 #define MASTER_MULTICHANNEL_MASK 0xDE
-#define MASTER_INDEX(n) ((n) - MASTER_BASE)
 
+typedef enum
+{
+    ON_DEMAND,
+    SINGLE_DMA,
+    BLOCK_DMA,
+    CASCADE,
+} dma_mode_t;
 
-#define MAX_REGISTERS 0x0f
+typedef enum
+{
+    SELF_TEST,
+    WRITE,
+    READ,
+    INVALID
+} dma_transfer_t;
 
-static uint8_t *slave_registers[MAX_REGISTERS] = {0};
-static uint16_t *master_registers[MAX_REGISTERS] = {0};
+typedef struct
+{
+    dma_mode_t mode;
+    uint8_t down;
+    uint8_t auto_init;
+    dma_transfer_t transfer_type;
+    uint8_t selection;
+    uint8_t mask;
+    uint8_t flip_flop;
+    uint8_t status;
+} dma_config_t;
 
-// uses the "slave" variable from the dma_handle function
-#define READ_REGISTER(n, slave) ((slave) ? slave_registers[SLAVE_INDEX(n)] : master_registers[MASTER_INDEX(n / 2)])
-#define WRITE_REGISTER(n, value) ((slave) ? (slave_registers[SLAVE_INDEX(n)] = value) : (master_registers[MASTER_INDEX(n) / 2] = value))
+typedef struct
+{
+    dma_config_t config;
+} dma_slave_t;
+
+typedef struct
+{
+    dma_config_t config;
+} dma_master_t;
+
+static dma_slave_t slave_controller;
+static dma_master_t master_controller;
+
+// uses the "slave" variable from the dma_handle function to get the config struct which will always be in the beginning
+#define CONFIG_CONTROLLER ((dma_config_t *)((slave) ? &slave_controller : &master_controller))
 
 static uint8_t flip_flop = 0;
-static uint8_t mask = 0xff;
 
 void dma_handle(exit_io_info_t *io, uint8_t *base, uint8_t slave)
 {
+
     if (io->port == MASTER_INTERMEDIATE_MASTER_RESET || io->port == SLAVE_INTERMEDIATE_MASTER_RESET)
     {
         if (io->direction == EXIT_IO_OUT)
         {
-            flip_flop = 0;
-            if(!slave)
-            {
-                master_registers[MASTER_INDEX(MASTER_STATUS_COMMAND / 2)] = 0;
-            }
-            else
-            {
-                slave_registers[SLAVE_INDEX(SLAVE_STATUS_COMMAND)] = 0;
-            }
-            mask |= slave ? 0x0f : 0xf0;
+            dma_config_t *config = CONFIG_CONTROLLER;
+            config->flip_flop = 0;
+            config->status = 0;
+            config->mask = 0x0f;
             return;
         }
     }
-    else if(io->port == MASTER_MODE || io->port == SLAVE_MODE)
+    else if (io->port == MASTER_MODE || io->port == SLAVE_MODE)
     {
-        if(io->direction == EXIT_IO_OUT)
+        if (io->direction == EXIT_IO_OUT)
         {
-            WRITE_REGISTER(io->port, base[io->data_offset]);
-            return;   
+            dma_config_t *config = CONFIG_CONTROLLER;
+            uint8_t data = base[io->data_offset];
+            config->mode = GET_BITS(data, 6, 2);
+            config->down = GET_BITS(data, 5, 1);
+            config->auto_init = GET_BITS(data, 4, 1);
+            config->transfer_type = GET_BITS(data, 2, 2);
+            config->selection = GET_BITS(data, 0, 2);
+            return;
         }
     }
-    else if(io->port == MASTER_SINGLE_CHANNEL_MASK || io->port == SLAVE_SINGLE_CHANNEL_MASK)
+    else if (io->port == MASTER_SINGLE_CHANNEL_MASK || io->port == SLAVE_SINGLE_CHANNEL_MASK)
     {
-        if(io->direction == EXIT_IO_OUT)
+        if (io->direction == EXIT_IO_OUT)
         {
-            uint8_t data = base[io->data_offset]; 
-            uint8_t sel = data & 0b11;
-            uint8_t mask_on = data & 0b100;
-            uint8_t offset = slave ? 0 : 4; // the 8 masks are in a single byte so if it's supposed to change the master than it's the higher nibble (4 bit)
-            mask = mask_on ? (mask | (1 << (sel + offset))) : (mask & ~(1 << (sel + offset)));
-            if(!slave && sel == 0 && mask_on) // masking 4 on master cascades to 5, 6 and 7
+            uint8_t data = base[io->data_offset];
+            uint8_t sel = GET_BITS(data, 0, 2);
+            uint8_t mask_on = GET_BITS(data, 3, 1);
+            uint8_t* mask = &CONFIG_CONTROLLER->mask;
+            *mask = mask_on ? (*mask | (1 << sel)) : (*mask & ~(1 << sel));
+            if (!slave && sel == 0 && mask_on) // masking 4 on master cascades to 5, 6 and 7
             {
-                mask |= 0b11110000;
+                master_controller.config.mask = 0x0f;
             }
             return;
         }
