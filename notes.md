@@ -14,3 +14,6 @@ Before that:
 I want to clean the kvm code and export the if's into functions and files.
 I think this is the time to make the general io handler. I want to be able to give init and handle commands in addition to port ranges
 Then I want to call all the init methods and be able to send the exit io to the correct handler
+
+Next step:
+Manage interrupts in the pic

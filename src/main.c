@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     io_manager_register(NULL, com_handle, 0x3f8, 0x3f8);
     io_manager_register(NULL, dma_handle_master, 0xc0, 0xde);
     io_manager_register(NULL, dma_handle_slave, 0x00, 0x0f);
-    io_manager_register(NULL, pic_handle_master, 0x20, 0x21);
-    io_manager_register(NULL, pic_handle_slave, 0xa0, 0xa1);
+    io_manager_register(pic_init_master, pic_handle_master, 0x20, 0x21);
+    io_manager_register(pic_init_slave, pic_handle_slave, 0xa0, 0xa1);
 
     kvm_init(argv[1]);
     kvm_run();

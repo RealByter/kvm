@@ -36,6 +36,7 @@
         "system_error": "c",
         "functional": "c",
         "tuple": "c",
-        "pic.h": "c"
+        "pic.h": "c",
+        "err.h": "c"
     }
 }
