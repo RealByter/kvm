@@ -1,3 +1,4 @@
 bios_log.txt
 log.txt
 build
+build/**/* 

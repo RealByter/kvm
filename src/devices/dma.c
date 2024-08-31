@@ -46,11 +46,12 @@
 static uint8_t *slave_registers[MAX_REGISTERS] = {0};
 static uint16_t *master_registers[MAX_REGISTERS] = {0};
 
+// uses the "slave" variable from the dma_handle function
 #define READ_REGISTER(n, slave) ((slave) ? slave_registers[SLAVE_INDEX(n)] : master_registers[MASTER_INDEX(n / 2)])
-#define WRITE_REGISTER(n, value, slave) ((slave) ? (slave_registers[SLAVE_INDEX(n)] = value) : (master_registers[MASTER_INDEX(n) / 2] = value))
+#define WRITE_REGISTER(n, value) ((slave) ? (slave_registers[SLAVE_INDEX(n)] = value) : (master_registers[MASTER_INDEX(n) / 2] = value))
 
 static uint8_t flip_flop = 0;
-static uint8_t mask = 0;
+static uint8_t mask = 0xff;
 
 void dma_handle(exit_io_info_t *io, uint8_t *base, uint8_t slave)
 {
@@ -59,8 +60,39 @@ void dma_handle(exit_io_info_t *io, uint8_t *base, uint8_t slave)
         if (io->direction == EXIT_IO_OUT)
         {
             flip_flop = 0;
-            WRITE_REGISTER(MASTER_STATUS_COMMAND, 0, slave);
+            if(!slave)
+            {
+                master_registers[MASTER_INDEX(MASTER_STATUS_COMMAND / 2)] = 0;
+            }
+            else
+            {
+                slave_registers[SLAVE_INDEX(SLAVE_STATUS_COMMAND)] = 0;
+            }
             mask |= slave ? 0x0f : 0xf0;
+            return;
+        }
+    }
+    else if(io->port == MASTER_MODE || io->port == SLAVE_MODE)
+    {
+        if(io->direction == EXIT_IO_OUT)
+        {
+            WRITE_REGISTER(io->port, base[io->data_offset]);
+            return;   
+        }
+    }
+    else if(io->port == MASTER_SINGLE_CHANNEL_MASK || io->port == SLAVE_SINGLE_CHANNEL_MASK)
+    {
+        if(io->direction == EXIT_IO_OUT)
+        {
+            uint8_t data = base[io->data_offset]; 
+            uint8_t sel = data & 0b11;
+            uint8_t mask_on = data & 0b100;
+            uint8_t offset = slave ? 0 : 4; // the 8 masks are in a single byte so if it's supposed to change the master than it's the higher nibble (4 bit)
+            mask = mask_on ? (mask | (1 << (sel + offset))) : (mask & ~(1 << (sel + offset)));
+            if(!slave && sel == 0 && mask_on) // masking 4 on master cascades to 5, 6 and 7
+            {
+                mask |= 0b11110000;
+            }
             return;
         }
     }
