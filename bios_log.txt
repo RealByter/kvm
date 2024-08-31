@@ -13,3 +13,6 @@ init PNPBIOS table
 init keyboard
 init mouse
 init pic
+math cp init
+pci setup
+=== PCI bus & bridge init ===

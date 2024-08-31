@@ -35,6 +35,7 @@
         "io_manager.h": "c",
         "system_error": "c",
         "functional": "c",
-        "tuple": "c"
+        "tuple": "c",
+        "pic.h": "c"
     }
 }

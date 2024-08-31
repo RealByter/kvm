@@ -12,6 +12,7 @@
 #include "devices/seabios_log.h"
 #include "devices/com.h"
 #include "devices/dma.h"
+#include "devices/pic.h"
 
 void handle_sigint(int sig)
 {
@@ -36,8 +37,10 @@ int main(int argc, char *argv[])
     io_manager_register(seabios_log_init, seabios_log_handle, 0x402, 0x402);
     io_manager_register(NULL, seabios_info_handle, 0x510, 0x511);
     io_manager_register(NULL, com_handle, 0x3f8, 0x3f8);
-    io_manager_register(NULL, dma_handle_slave, 0x00, 0x0f);
     io_manager_register(NULL, dma_handle_master, 0xc0, 0xde);
+    io_manager_register(NULL, dma_handle_slave, 0x00, 0x0f);
+    io_manager_register(NULL, pic_handle_master, 0x20, 0x21);
+    io_manager_register(NULL, pic_handle_slave, 0xa0, 0xa1);
 
     kvm_init(argv[1]);
     kvm_run();
