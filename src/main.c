@@ -5,14 +5,14 @@
 #include "gui.h"
 #include "log.h"
 #include "io_manager.h"
-#include "devices/cmos.h"
-#include "devices/a20.h"
-#include "devices/pci.h"
-#include "devices/seabios_info.h"
-#include "devices/seabios_log.h"
-#include "devices/com.h"
-#include "devices/dma.h"
-#include "devices/pic.h"
+#include "components/cmos.h"
+#include "components/a20.h"
+#include "components/pci.h"
+#include "components/seabios_info.h"
+#include "components/seabios_log.h"
+#include "components/com.h"
+#include "components/dma.h"
+#include "components/pic.h"
 
 void handle_sigint(int sig)
 {

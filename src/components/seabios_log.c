@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stddef.h>
-#include "devices/seabios_log.h"
+#include "components/seabios_log.h"
 
 FILE *seabios_log_file;
 

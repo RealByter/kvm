@@ -1,4 +1,4 @@
-#include "devices/pci.h"
+#include "components/pci.h"
 #include "log.h"
 #include "common.h"
 #include <err.h>
