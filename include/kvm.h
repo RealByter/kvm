@@ -2,6 +2,7 @@
 #define KVM_H
 
 #include <linux/kvm.h>
+#include <stdint.h>
 
 // int kvm_open();
 // void kvm_verify_version(int kvm);
@@ -17,5 +18,6 @@ void kvm_init(char *file_name);
 void kvm_run();
 void kvm_deinit();
 void kvm_pause_vcpu();
+void kvm_interrupt(uint32_t vector);
 
 #endif

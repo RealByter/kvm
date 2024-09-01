@@ -150,9 +150,18 @@ void print_sregs()
 
 void kvm_run()
 {
+    // struct kvm_cpuid_entry cpuid_entry = {
+    //     .function = 1,
+    //     .eax = 0x1,
+    //     .ebx = 0xFFFFFFFF,
+    //     .ecx = 0xFFFFFFFF,
+    //     .edx = 0xFFFFFFFF};
+    // if (ioctl(vcpu, KVM_SET_CPUID, cpuid_entry) < 0)
+    // {
+    //     err(1, "KVM_SET_CPUID");
+    // }
+    // struct kvm_pit_state2
     struct kvm_regs regs;
-    int i = 0;
-    char *sig = "QEMO";
     while (1)
     {
         if (ioctl(vcpu, KVM_RUN, 0) < 0)
@@ -172,10 +181,10 @@ void kvm_run()
             // return 0;
             break;
         case KVM_EXIT_IO:
-            printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t*)run)[run->io.data_offset]);
+            printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t *)run)[run->io.data_offset]);
             if (0)
             {
-                printf("------------------0x%02x:%x------------------\n", run->io.port, ((uint8_t*)run)[run->io.data_offset]);
+                printf("------------------0x%02x:%x------------------\n", run->io.port, ((uint8_t *)run)[run->io.data_offset]);
             }
             else
             {
@@ -190,7 +199,7 @@ void kvm_run()
                 printf("%02x", run->mmio.data[i]);
             }
             printf("\n");
-            if(run->mmio.phys_addr != 0xfee00030)
+            if (run->mmio.phys_addr != 0xfee00030)
             {
                 return;
             }
@@ -303,5 +312,14 @@ void kvm_pause_vcpu()
     if (ioctl(vcpu, KVM_SET_DEBUGREGS, &debugregs) < 0)
     {
         err(1, "KVM_SET_DEBUGREGS");
+    }
+}
+
+void kvm_interrupt(uint32_t vector)
+{
+    struct kvm_interrupt irq = {.irq = vector};
+    if (ioctl(vcpu, KVM_INTERRUPT, &irq) < 0)
+    {
+        err(1, "KVM_INTERRUPT");
     }
 }

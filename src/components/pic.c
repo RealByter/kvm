@@ -1,7 +1,11 @@
 #include <stdbool.h>
 #include <err.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <time.h>
 #include "components/pic.h"
 #include "common.h"
+#include "kvm.h"
 
 #define PIC_MASTER_COMMAND 0x20
 #define PIC_MASTER_DATA 0x21
@@ -47,47 +51,136 @@ typedef struct
         bool sfnm; // 1 = special fully nested mode, 0 = not special fully nested mode
     } icw4;
 
-    struct {
+    struct
+    {
         // uint8_t interrupt_mask;
     } ocw1;
 
-    struct {
+    struct
+    {
         uint8_t level; // #irq#
         bool eoi;
-        bool rotate; // 1 = rotate, 0 = not rotate
+        bool rotate;   // 1 = rotate, 0 = not rotate
         bool specific; // 1 = specific eoi, 0 = not specific eoi
     } ocw2;
 
-    struct {
-        bool ris; // 1 = read IS register, 0 = read IR register
-        bool rr; // read register command
+    struct
+    {
+        bool ris;  // 1 = read IS register, 0 = read IR register
+        bool rr;   // read register command
         bool poll; // read pool command
-        bool smm; // special mask mode
+        bool smm;  // special mask mode
     } ocw3;
 
     uint8_t imr;
     uint8_t irr;
     uint8_t isr;
+    uint8_t lowest_priority;
+    bool auto_rotate;
 } pic_t;
 
 static pic_t pic_master;
 static pic_t pic_slave;
 
+#define PIC_CLOCK_FREQUENCY_HZ 1000
+static pthread_mutex_t pic_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static pthread_t pic_thread = NULL;
+
 // #define PIC_CONTROLLER ((slave) ? (pic_slave) : (pic_master))
+
+uint8_t pic_get_next_interrupt(pic_t *pic)
+{
+    uint8_t pending = pic->irr & ~pic->imr; // only the interrupts that are pending and not masked will remain
+
+    if (pending == 0)
+    {
+        return 0xff; // not interrupt pending
+    }
+
+    for (int i = 0; i < 8; i++)
+    {
+        uint8_t check_level = (pic->lowest_priority + i) % 8; // check from the lowest priority in a clock-like cycle
+        if (pending & (1 << check_level))
+        {
+            pic->irr &= ~(1 << check_level); // clear interrupt
+            return check_level;
+        }
+    }
+
+    return 0xff; // shouldn't happen if pending is non-zero
+}
+
+void pic_process_interrupts()
+{
+    pic_t *pics[] = {&pic_master, &pic_slave};
+    for (int i = 0; i < 2; i++) // 2 for the 2 pic's: master and slave
+    {
+        pic_t *pic = pics[i];
+        uint8_t next_interrupt = pic_get_next_interrupt(pic);
+        if (next_interrupt != 0xff) // no interrupt
+        {
+            uint8_t vector = pic->icw2.offset + next_interrupt;
+            kvm_interrupt(vector);
+
+            if (!pic->icw4.aeoi)
+            {
+                pic->isr |= (1 << next_interrupt);
+            }
+            else if(pic->auto_rotate)
+            {  
+                pic->lowest_priority = next_interrupt;
+            }
+        }
+    }
+}
+
+void pic_clock_thread(void *arg)
+{
+    struct timespec sleep_time;
+    sleep_time.tv_sec = 0;
+    sleep_time.tv_nsec = 1000000000 / PIC_CLOCK_FREQUENCY_HZ; // nanoseconds per clock tick
+
+    while (1)
+    {
+        nanosleep(&sleep_time, NULL);
+
+        pthread_mutex_lock(&pic_mutex);
+        pic_process_interrupts();
+        pthread_mutex_unlock(&pic_mutex);
+    }
+
+    return NULL;
+}
+
+void pic_init(bool slave)
+{
+    if (pic_thread == NULL)
+    {
+        if (pthread_create(&pic_thread, NULL, pic_clock_thread, NULL) != 0)
+        {
+            errx(1, "Failed to create pic clock thread");
+        }
+    }
+
+    pic_t *pic = slave ? &pic_slave : &pic_master;
+    pic->imr = 0xff;
+    pic->lowest_priority = 7;
+}
 
 void pic_init_master()
 {
-    pic_master.imr = 0xff;
+    pic_init(false);
 }
 
 void pic_init_slave()
 {
-    pic_slave.imr = 0xff;
+    pic_init(true);
 }
 
 void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
 {
-    pic_t* pic = slave ? &pic_slave : &pic_master;
+    pic_t *pic = slave ? &pic_slave : &pic_master;
     if (io->port == PIC_MASTER_COMMAND || io->port == PIC_SLAVE_COMMAND)
     {
         if (io->direction == EXIT_IO_OUT)
@@ -106,10 +199,51 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
                 pic->init_state = PIC_ICW2;
                 return;
             }
-            if(GET_BITS(base[io->data_offset], 6, 2) != 0b01) // ocw2
+            if (GET_BITS(base[io->data_offset], 6, 2) != 0b01) // ocw2
             {
                 uint8_t data = base[io->data_offset];
                 pic->ocw2.level = GET_BITS(data, 0, 2);
+                pic->ocw2.eoi = GET_BITS(data, 5, 1);
+                pic->ocw2.rotate = GET_BITS(data, 6, 1);
+                pic->ocw2.specific = GET_BITS(data, 7, 1);
+                if (pic->ocw2.eoi)
+                {
+                    if (pic->ocw2.specific)
+                    {
+                        pic->isr &= ~(1 << pic->ocw2.level);
+                    }
+                    else
+                    {
+                        for(int i = 0; i < 8; i++)
+                        {
+                            int irq = (pic->lowest_priority + i + 1) % 8;
+                            if(pic->isr & (1 << irq)) {
+                                pic->isr &= ~(1 << irq);
+                                if(pic->ocw2.rotate)
+                                {
+                                    pic->lowest_priority = irq;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (pic->ocw2.rotate)
+                {
+                    if (pic->ocw2.specific)
+                    {
+                        pic->lowest_priority = pic->ocw2.level;
+                    }
+                    else
+                    {
+                        pic->auto_rotate = true;
+                    }
+                }
+                else if (!pic->ocw2.specific)
+                {
+                    pic->auto_rotate = false;
+                }
             }
             else // ocw3
             {
@@ -171,14 +305,14 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
         }
         else
         {
-            if(!pic->ocw3.rr)
+            if (!pic->ocw3.rr)
             {
                 base[io->data_offset] = pic->imr;
                 return;
             }
             else
             {
-                if(pic->ocw3.ris)
+                if (pic->ocw3.ris)
                 {
                     base[io->data_offset] = pic->isr;
                     return;
@@ -204,4 +338,22 @@ void pic_handle_master(exit_io_info_t *io, uint8_t *base)
 void pic_handle_slave(exit_io_info_t *io, uint8_t *base)
 {
     pic_handle(io, base, true);
+}
+
+void pic_raise_interrupt(uint8_t irq)
+{
+    if (irq >= 16)
+    {
+        return;
+    }
+
+    pic_t *pic = irq < 8 ? &pic_master : &pic_master;
+    irq = irq % 8;
+
+    pthread_mutex_lock(&pic_mutex);
+    if (!(pic->irr & (1 << irq)) && !(pic->isr & (1 << irq)) && !(pic->imr & (1 << irq))) // not pending, not in service, and not masked
+    {
+        pic->irr |= 1 << irq; // raise interrupt
+    }
+    pthread_mutex_unlock(&pic_mutex);
 }

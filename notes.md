@@ -20,3 +20,6 @@ Manage interrupts in the pic
 Add more devices to the pci - already added vga (only semantically)
 Handle additional cmos registers
 Handle APIC
+
+
+I'll understand how to implement multicore once I search globally: "No apic - only the main cpu is present."

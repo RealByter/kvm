@@ -29,7 +29,7 @@ void cmos_handle(exit_io_info_t* io, uint8_t* base)
     {
     case 0x70:
     {
-        if (io->direction == KVM_EXIT_IO_OUT)
+        if (io->direction == EXIT_IO_OUT)
         {
             nmi_disabled = GET_BITS(base[io->data_offset], 7, 1);
             cur_register = GET_BITS(base[io->data_offset], 0, 7);
@@ -43,7 +43,7 @@ void cmos_handle(exit_io_info_t* io, uint8_t* base)
     break;
     case 0x71:
     {
-        if (io->direction == KVM_EXIT_IO_IN)
+        if (io->direction == EXIT_IO_IN)
         {
             base[io->data_offset] = registers[cur_register];
         }

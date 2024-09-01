@@ -147,14 +147,8 @@ void pci_init()
 void pci_add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vendor_id, uint16_t device_id)
 {
     uint8_t device_index = bus * 32 + device * 8 + function;
-    pci_device_t *pci_device = &devices[device_index];
-    printf("device index: %d\n", device_index);
-
     pci_set_config_u16(device_index, VENDOR_ID_LOW, vendor_id);
-    printf("%x\n", pci_get_config_u16(device_index, VENDOR_ID_LOW));
     pci_set_config_u16(device_index, DEVICE_ID_LOW, device_id);
-    printf("%x\n", pci_get_config_u16(device_index, DEVICE_ID_LOW));
-    printf("%x\n", pci_get_config_u32(device_index, 0));
 }
 
 void pci_handle(exit_io_info_t *io, uint8_t *base)
