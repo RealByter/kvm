@@ -48,3 +48,9 @@ No apic - only the main cpu is present.
 init PIR table
 Copying PIR from 0x0008fd00 to 0x000f6980
 init MPTable
+Copying MPTABLE from 0x00006da0/76ae0 to 0x000f68a0
+init SMBIOS tables
+WARNING - Unable to allocate resource at smbios_legacy_setup:520!
+load ACPI tables
+init ACPI tables
+init timer

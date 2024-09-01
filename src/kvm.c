@@ -190,8 +190,10 @@ void kvm_run()
                 printf("%02x", run->mmio.data[i]);
             }
             printf("\n");
-            print_regs(vcpu);
-            return;
+            if(run->mmio.phys_addr != 0xfee00030)
+            {
+                return;
+            }
             break;
         case KVM_EXIT_FAIL_ENTRY:
             errx(1, "KVM_EXIT_FAIL_ENTRY: hardware_entry_failure_reason = 0x%llx",

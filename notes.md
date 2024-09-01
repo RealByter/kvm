@@ -17,5 +17,6 @@ Then I want to call all the init methods and be able to send the exit io to the 
 
 Next step:
 Manage interrupts in the pic
-Add more devices to the pci
+Add more devices to the pci - already added vga (only semantically)
 Handle additional cmos registers
+Handle APIC
