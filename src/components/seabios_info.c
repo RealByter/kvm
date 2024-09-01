@@ -1,4 +1,4 @@
-#include "devices/seabios_info.h"
+#include "components/seabios_info.h"
 #include <stdio.h>
 #include <common.h>
 

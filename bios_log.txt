@@ -1,6 +1,7 @@
 SeaBIOS (version ?-20240827_001116-DESKTOP-8NA919H)
 BUILD: gcc: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0 binutils: (GNU Binutils for Ubuntu) 2.38
 enabling shadow ram
+Unable to unlock ram - bridge not found
 RamSize: 0x00100000 [cmos]
 malloc preinit
 Relocating init from 0x000db5e0 to 0x0007ec40 (size 70528)
@@ -19,22 +20,31 @@ pci setup
 PCI: pci_bios_init_bus_rec bus = 0x0
 === PCI device probing ===
 PCI probe
-PCI device 00:00.0 (vd=8086:1237 c=0006)
-Found 1 PCI devices (max PCI bus is 00)
+PCI device 00:00.0 (vd=0086:0000 c=1af4)
+PCI device 00:02.0 (vd=0086:0000 c=0300)
+Found 2 PCI devices (max PCI bus is 00)
 === PCI new allocation pass #1 ===
 PCI: check devices
 === PCI new allocation pass #2 ===
 PCI: IO: c000 - bfff
-PCI: 32: 0000000080000000 - 00000000fec00000
-PCI: map device bdf=00:00.0  bar 0, addr febf9000, size 00001000 [mem]
-PCI: map device bdf=00:00.0  bar 1, addr febfa000, size 00001000 [mem]
-PCI: map device bdf=00:00.0  bar 2, addr febfb000, size 00001000 [mem]
-PCI: map device bdf=00:00.0  bar 3, addr febfc000, size 00001000 [mem]
-PCI: map device bdf=00:00.0  bar 4, addr febfd000, size 00001000 [mem]
-PCI: map device bdf=00:00.0  bar 5, addr febfe000, size 00001000 [mem]
-PCI: map device bdf=00:00.0  bar 6, addr febff000, size 00001000 [mem]
-PCI: init bdf=00:00.0 id=8086:1237
-PCI: No VGA devices found
+PCI: 32: 0000000000100000 - 00000000fec00000
+PCI: map device bdf=00:00.0  bar 0, addr febf2000, size 00001000 [mem]
+PCI: map device bdf=00:00.0  bar 1, addr febf3000, size 00001000 [mem]
+PCI: map device bdf=00:00.0  bar 2, addr febf4000, size 00001000 [mem]
+PCI: map device bdf=00:00.0  bar 3, addr febf5000, size 00001000 [mem]
+PCI: map device bdf=00:00.0  bar 4, addr febf6000, size 00001000 [mem]
+PCI: map device bdf=00:00.0  bar 5, addr febf7000, size 00001000 [mem]
+PCI: map device bdf=00:00.0  bar 6, addr febf8000, size 00001000 [mem]
+PCI: map device bdf=00:02.0  bar 0, addr febf9000, size 00001000 [mem]
+PCI: map device bdf=00:02.0  bar 1, addr febfa000, size 00001000 [mem]
+PCI: map device bdf=00:02.0  bar 2, addr febfb000, size 00001000 [mem]
+PCI: map device bdf=00:02.0  bar 3, addr febfc000, size 00001000 [mem]
+PCI: map device bdf=00:02.0  bar 4, addr febfd000, size 00001000 [mem]
+PCI: map device bdf=00:02.0  bar 5, addr febfe000, size 00001000 [mem]
+PCI: map device bdf=00:02.0  bar 6, addr febff000, size 00001000 [mem]
+PCI: init bdf=00:00.0 id=0086:0000
+PCI: init bdf=00:02.0 id=0086:0000
+PCI: Using 00:02.0 for primary VGA
 No apic - only the main cpu is present.
 init PIR table
 Copying PIR from 0x0008fd00 to 0x000f6980

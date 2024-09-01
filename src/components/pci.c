@@ -1,4 +1,4 @@
-#include "devices/pci.h"
+#include "components/pci.h"
 #include "log.h"
 #include "common.h"
 #include <err.h>
@@ -93,47 +93,39 @@ static uint8_t config_register = 0;
 
 typedef struct
 {
-    uint8_t config_space[256];
+    uint32_t config_space[64];
 } pci_device_t;
 
 static pci_device_t devices[MAX_BUSES] = {(pci_device_t){{0}}}; // set all values in the config_space to 0
 
 static inline void pci_set_config_u8(uint8_t device_index, enum pci_config_space_registers reg, uint8_t value)
 {
-    devices[device_index].config_space[reg] = value;
+    devices[device_index].config_space[reg / 4] = (devices[device_index].config_space[reg / 4] & ~(0xFF << (8 * (reg % 4)))) | (value << (8 * (reg % 4)));
 }
 
 static inline void pci_get_config_u8(uint8_t device_index, enum pci_config_space_registers reg, uint8_t *value)
 {
-    *value = devices[device_index].config_space[reg];
+    *value = (devices[device_index].config_space[reg / 4] >> (8 * (reg % 4))) & 0xFF;
 }
 
 static inline void pci_set_config_u16(uint8_t device_index, enum pci_config_space_registers reg, uint16_t value)
 {
-    devices[device_index].config_space[reg] = value & 0xFF;
-    devices[device_index].config_space[reg + 1] = (value >> 8) & 0xFF;
+    devices[device_index].config_space[reg / 4] = (devices[device_index].config_space[reg / 4] & ~(0xFFFF << (16 * (reg % 4)))) | (value << (16 * (reg % 4)));
 }
 
 static inline void pci_get_config_u16(uint8_t device_index, enum pci_config_space_registers reg, uint16_t *value)
 {
-    *value = devices[device_index].config_space[reg] |
-             (devices[device_index].config_space[reg + 1] << 8);
+    *value = (devices[device_index].config_space[reg / 4] >> (16 * (reg % 4))) & 0xFFFF;
 }
 
 static inline void pci_set_config_u32(uint8_t device_index, enum pci_config_space_registers reg, uint32_t value)
 {
-    devices[device_index].config_space[reg] = value & 0xFF;
-    devices[device_index].config_space[reg + 1] = (value >> 8) & 0xFF;
-    devices[device_index].config_space[reg + 2] = (value >> 16) & 0xFF;
-    devices[device_index].config_space[reg + 3] = (value >> 24) & 0xFF;
+    devices[device_index].config_space[reg / 4] = value;
 }
 
 static inline void pci_get_config_u32(uint8_t device_index, enum pci_config_space_registers reg, uint32_t *value)
 {
-    *value = devices[device_index].config_space[reg] |
-             (devices[device_index].config_space[reg + 1] << 8) |
-             (devices[device_index].config_space[reg + 2] << 16) |
-             (devices[device_index].config_space[reg + 3] << 24);
+    *value = devices[device_index].config_space[reg / 4];
 }
 
 void pci_init()
@@ -147,12 +139,20 @@ void pci_init()
     pci_set_config_u16(PCI_BRIDGE, PCI_SUBSYSTEM_VENDOR_ID_LOW, 0x1af4);
     pci_set_config_u16(PCI_BRIDGE, SUBSYSTEM_ID_LOW, 0x1100);
     // pci_set_config_u8(PCI_BRIDGE, TOM, 0x01);
+
+    pci_add_device(0, 2, 0, VI_INTEL, 0x0166);
+    pci_set_config_u32(0 * 32 + 2 * 8 + 0, 0x8, 0x03000000);
+    // for(int i = 6; i < 32; i++)
+    // {
+    //     pci_set_config_u8(0x10, i, 0x33);
+    // }
 }
 
 void pci_add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vendor_id, uint16_t device_id)
 {
     uint8_t device_index = bus * 32 + device * 8 + function;
     pci_device_t *pci_device = &devices[device_index];
+    printf("device index: %d\n", device_index);
 
     pci_device->config_space[VENDOR_ID_LOW] = vendor_id & 0xff;
     pci_device->config_space[VENDOR_ID_HIGH] = vendor_id >> 8;
@@ -176,7 +176,7 @@ void pci_handle(exit_io_info_t* io, uint8_t* base)
             uint32_t function = (data >> 8) & 0x07;
             config_register = (data >> 2) & 0x3F;
             config_index = (bus * MAX_DEVICES * MAX_FUNCTIONS) + (device * MAX_FUNCTIONS) + function;
-            printf("config_address: %b;%x, config_register: %b;%x\n", config_index, config_index, config_register, config_register);
+            printf("bus: %x, device: %x, function: %x, config register: %x, config index: %x\n", bus, device, function, config_register, config_index);
         }
         else
         {
@@ -193,7 +193,7 @@ void pci_handle(exit_io_info_t* io, uint8_t* base)
     {
         if (io->direction == KVM_EXIT_IO_IN)
         {
-            uint32_t value;
+            uint16_t value;
             memcpy(&value, &devices[config_index].config_space[config_register + io->port - CONFIG_DATA], io->size);
             printf("value: %x\n", value);
             memcpy(base + io->data_offset, &devices[config_index].config_space[config_register + io->port - CONFIG_DATA], io->size);

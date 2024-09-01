@@ -1,4 +1,4 @@
-#include "devices/a20.h"
+#include "components/a20.h"
 #include "log.h"
 
 LOG_DEFINE("a20");

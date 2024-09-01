@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "devices/com.h"
+#include "components/com.h"
 
 void com_handle(exit_io_info_t* io, uint8_t* base)
 {

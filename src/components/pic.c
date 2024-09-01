@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <err.h>
-#include "devices/pic.h"
+#include "components/pic.h"
 #include "common.h"
 
 #define PIC_MASTER_COMMAND 0x20

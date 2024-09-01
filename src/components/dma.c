@@ -1,4 +1,4 @@
-#include "devices/dma.h"
+#include "components/dma.h"
 #include "common.h"
 #include <stdbool.h>
 #include <stdlib.h>
