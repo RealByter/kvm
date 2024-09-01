@@ -10,7 +10,12 @@
 #define PAGE_SIZE 0x1000
 
 #define GET_BITS(value, start, length) (((value) >> (start)) & ((1U << (length)) - 1))
-#define BUILD_UINT32(addr)                          \
+
+#define READ_UINT8(addr) (*((uint8_t *)(addr))) 
+#define READ_UINT16(addr)                          \
+    (((uint16_t)(*((uint8_t *)(addr) + 1)) << 8) | \
+     ((uint16_t)(*((uint8_t *)(addr) + 0))))
+#define READ_UINT32(addr)                          \
     (((uint32_t)(*((uint8_t *)(addr) + 3)) << 24) | \
      ((uint32_t)(*((uint8_t *)(addr) + 2)) << 16) | \
      ((uint32_t)(*((uint8_t *)(addr) + 1)) << 8) |  \

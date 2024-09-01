@@ -37,6 +37,7 @@
         "functional": "c",
         "tuple": "c",
         "pic.h": "c",
-        "err.h": "c"
+        "err.h": "c",
+        "common.h": "c"
     }
 }
