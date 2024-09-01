@@ -2,6 +2,9 @@
 #include "common.h"
 #include <stdbool.h>
 #include <stdlib.h>
+#include "log.h"
+
+LOG_DEFINE("dma");
 
 #define DMA_SLAVE_BASE 0x00
 #define DMA_SLAVE_ADDR0 0x00
@@ -88,6 +91,7 @@ static uint8_t flip_flop = 0;
 
 void dma_handle(exit_io_info_t *io, uint8_t *base, bool slave)
 {
+    LOG_MSG("Handling dma port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%lx", io->port, io->direction, io->size, io->count, base[io->data_offset]);
 
     if (io->port == DMA_MASTER_INTERMEDIATE_MASTER_RESET || io->port == DMA_SLAVE_INTERMEDIATE_MASTER_RESET)
     {
@@ -121,7 +125,7 @@ void dma_handle(exit_io_info_t *io, uint8_t *base, bool slave)
             uint8_t data = base[io->data_offset];
             uint8_t sel = GET_BITS(data, 0, 2);
             uint8_t mask_on = GET_BITS(data, 3, 1);
-            uint8_t* mask = &DMA_CONFIG_CONTROLLER->mask;
+            uint8_t *mask = &DMA_CONFIG_CONTROLLER->mask;
             *mask = mask_on ? (*mask | (1 << sel)) : (*mask & ~(1 << sel));
             if (!slave && sel == 0 && mask_on) // masking 4 on master cascades to 5, 6 and 7
             {
