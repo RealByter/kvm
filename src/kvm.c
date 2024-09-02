@@ -247,18 +247,32 @@ void kvm_init(char *file_name)
     size_t size;
     read_file(file_name, &buf, &size);
 
-    uint8_t *guest_memory_low = mmap(0, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    // Leave 0xA0000-0xBFFFF for vga
+    uint8_t *guest_memory_high = mmap(0xC0000, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    if (guest_memory_high == MAP_FAILED)
+        err(1, "Failed to map guest memory");
+    memcpy(guest_memory_high + 0x100000 - 0xC0000 - size, buf, size);
+
+    struct kvm_userspace_memory_region memory_region_high = {
+        .slot = 0,
+        .guest_phys_addr = 0xC0000,
+        .memory_size = 0x100000,
+        .userspace_addr = (uint64_t)guest_memory_high,
+        .flags = 0};
+    kvm_set_userspace_memory_region(&memory_region_high);
+
+    uint8_t *guest_memory_low = mmap(0, 0xA0000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if (guest_memory_low == MAP_FAILED)
         err(1, "Failed to map guest memory");
-    memcpy(guest_memory_low + 0x100000 - size, buf, size);
+    memset(guest_memory_low, 0, 0xA0000);
 
-    struct kvm_userspace_memory_region memory_region = {
-        .slot = 0,
+    struct kvm_userspace_memory_region memory_region_low = {
+        .slot = 1,
         .guest_phys_addr = 0,
-        .memory_size = 0x100000,
+        .memory_size = 0xA0000,
         .userspace_addr = (uint64_t)guest_memory_low,
         .flags = 0};
-    kvm_set_userspace_memory_region(&memory_region);
+    kvm_set_userspace_memory_region(&memory_region_low);
 
     uint8_t *bios_high = mmap(0xfff00000, 0x100000, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if (bios_high == MAP_FAILED)
@@ -266,7 +280,7 @@ void kvm_init(char *file_name)
     memcpy(bios_high + 0x100000 - size, buf, size);
 
     struct kvm_userspace_memory_region bios_region = {
-        .slot = 1,
+        .slot = 2,
         .guest_phys_addr = 0xfff00000,
         .memory_size = 0x100000,
         .userspace_addr = (uint64_t)bios_high,
