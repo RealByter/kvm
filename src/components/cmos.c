@@ -37,7 +37,7 @@ void cmos_handle(exit_io_info_t* io, uint8_t* base)
         }
         else 
         {
-            unhandled(io);
+            base[io->data_offset] = cur_register;
         }
     }
     break;

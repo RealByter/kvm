@@ -194,11 +194,21 @@ void kvm_run()
         case KVM_EXIT_MMIO:
             printf("KVM_EXIT_MMIO: is_write=%d len=%d phys_addr=0x%llx data=",
                    run->mmio.is_write, run->mmio.len, run->mmio.phys_addr);
-            for (int i = 0; i < sizeof(run->mmio.data); i++)
+            if (run->mmio.is_write == 1)
             {
-                printf("%02x", run->mmio.data[i]);
+
+                for (int i = 0; i < sizeof(run->mmio.data); i++)
+                {
+                    printf("%02x", run->mmio.data[i]);
+                }
+                printf("\n");
             }
-            printf("\n");
+            if(run->mmio.phys_addr == 0xfebff000)
+            {
+                run->mmio.data[0] = 0x80;
+                run->mmio.data[1] = 0x0b;
+                break;
+            }
             if (run->mmio.phys_addr != 0xfee00030)
             {
                 return;

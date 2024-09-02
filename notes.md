@@ -21,6 +21,8 @@ Add more devices to the pci - already added vga (only semantically)
 Handle additional cmos registers
 Handle APIC
 Generalize clocks
+Understand better the BAR's and investigate the mmio exit
+Add ps2port support
 
 
 I'll understand how to implement multicore once I search globally: "No apic - only the main cpu is present."
