@@ -19,7 +19,7 @@ pci setup
 PCI: pci_bios_init_bus_rec bus = 0x0
 === PCI device probing ===
 PCI probe
-PCI device 00:00.0 (vd=8086:1237 c=0600)
+PCI device 00:00.0 (vd=8086:1237 c=0006)
 PCI device 00:02.0 (vd=8086:0166 c=0300)
 Found 2 PCI devices (max PCI bus is 00)
 === PCI new allocation pass #1 ===

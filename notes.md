@@ -15,11 +15,12 @@ I want to clean the kvm code and export the if's into functions and files.
 I think this is the time to make the general io handler. I want to be able to give init and handle commands in addition to port ranges
 Then I want to call all the init methods and be able to send the exit io to the correct handler
 
-Next step:
-Manage interrupts in the pic
+Next steps:
+Manage interrupts in the pic - DONE
 Add more devices to the pci - already added vga (only semantically)
 Handle additional cmos registers
 Handle APIC
+Generalize clocks
 
 
 I'll understand how to implement multicore once I search globally: "No apic - only the main cpu is present."

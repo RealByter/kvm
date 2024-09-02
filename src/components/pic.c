@@ -6,6 +6,9 @@
 #include "components/pic.h"
 #include "common.h"
 #include "kvm.h"
+#include "log.h"
+
+LOG_DEFINE("pic");
 
 #define PIC_MASTER_COMMAND 0x20
 #define PIC_MASTER_DATA 0x21
@@ -127,8 +130,8 @@ void pic_process_interrupts()
             {
                 pic->isr |= (1 << next_interrupt);
             }
-            else if(pic->auto_rotate)
-            {  
+            else if (pic->auto_rotate)
+            {
                 pic->lowest_priority = next_interrupt;
             }
         }
@@ -214,12 +217,13 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
                     }
                     else
                     {
-                        for(int i = 0; i < 8; i++)
+                        for (int i = 0; i < 8; i++)
                         {
                             int irq = (pic->lowest_priority + i + 1) % 8;
-                            if(pic->isr & (1 << irq)) {
+                            if (pic->isr & (1 << irq))
+                            {
                                 pic->isr &= ~(1 << irq);
-                                if(pic->ocw2.rotate)
+                                if (pic->ocw2.rotate)
                                 {
                                     pic->lowest_priority = irq;
                                 }

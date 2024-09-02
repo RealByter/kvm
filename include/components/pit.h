@@ -3,6 +3,7 @@
 
 #include "io_manager.h"
 
+void pit_init();
 void pit_handle(exit_io_info_t* io, uint8_t* base);
 
 #endif

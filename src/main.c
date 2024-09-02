@@ -13,6 +13,7 @@
 #include "components/com.h"
 #include "components/dma.h"
 #include "components/pic.h"
+#include "components/pit.h"
 
 void handle_sigint(int sig)
 {
@@ -41,6 +42,7 @@ int main(int argc, char *argv[])
     io_manager_register(NULL, dma_handle_slave, 0x00, 0x0f);
     io_manager_register(pic_init_master, pic_handle_master, 0x20, 0x21);
     io_manager_register(pic_init_slave, pic_handle_slave, 0xa0, 0xa1);
+    io_manager_register(pit_init, pit_handle, 0x40, 0x43);
 
     kvm_init(argv[1]);
     kvm_run();
