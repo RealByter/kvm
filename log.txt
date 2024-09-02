@@ -435,108 +435,26 @@
 [0x7ed51 - pci] Handling pci port: 0xcf8, direction: 0x1, size: 0x4, count: 0x1, data: 0x8000103c
 [0x7ed5b - pci] Handling pci port: 0xcfc, direction: 0x0, size: 0x1, count: 0x1, data: 0x80001000
 [0x8bcfc - pit] data: 0
-
 [0x8bcfc - pit] divisor low: 0
-
-[0x8bcfc - pit] raised interrupt
-
-[0x8bcfc - pic] pic_raise_interrupt: 0
-
 [0x8bcfe - pit] data: 0
-
 [0x8bcfe - pit] divisor high: 0
-
 [0x8bd02 - cmos] Handling cmos port: 0x70, direction: 0x1, size: 0x1, count: 0x1, data: 0x8a
-[0x8bd02 - pit] raised interrupt
-
-[0x8bd02 - pic] pic_raise_interrupt: 0
-
-[0x8bd02 - pit] raised interrupt
-
-[0x8bd02 - pic] pic_raise_interrupt: 0
-
 [0x8bd04 - cmos] Handling cmos port: 0x71, direction: 0x0, size: 0x1, count: 0x1, data: 0x0
 [0x8bd36 - cmos] Handling cmos port: 0x70, direction: 0x1, size: 0x1, count: 0x1, data: 0x80
-[0x8bd36 - pit] raised interrupt
-
-[0x8bd36 - pic] pic_raise_interrupt: 0
-
-[0x8bd36 - pit] raised interrupt
-
-[0x8bd36 - pic] pic_raise_interrupt: 0
-
 [0x8bd38 - cmos] Handling cmos port: 0x71, direction: 0x0, size: 0x1, count: 0x1, data: 0x0
 [0x8bd3e - cmos] Handling cmos port: 0x70, direction: 0x1, size: 0x1, count: 0x1, data: 0x82
-[0x8bd3e - pit] raised interrupt
-
-[0x8bd3e - pic] pic_raise_interrupt: 0
-
-[0x8bd3e - pit] raised interrupt
-
-[0x8bd3e - pic] pic_raise_interrupt: 0
-
 [0x8bd40 - cmos] Handling cmos port: 0x71, direction: 0x0, size: 0x1, count: 0x1, data: 0x0
 [0x8bd46 - cmos] Handling cmos port: 0x70, direction: 0x1, size: 0x1, count: 0x1, data: 0x84
 [0x8bd48 - cmos] Handling cmos port: 0x71, direction: 0x0, size: 0x1, count: 0x1, data: 0x0
-[0x8bd48 - pit] raised interrupt
-
-[0x8bd48 - pic] pic_raise_interrupt: 0
-
-[0x8bd48 - pit] raised interrupt
-
-[0x8bd48 - pic] pic_raise_interrupt: 0
-
 [0x8bdb5 - cmos] Handling cmos port: 0x70, direction: 0x1, size: 0x1, count: 0x1, data: 0xb2
 [0x8bdb7 - cmos] Handling cmos port: 0x71, direction: 0x0, size: 0x1, count: 0x1, data: 0x0
-[0x8bdb7 - pit] raised interrupt
-
-[0x8bdb7 - pic] pic_raise_interrupt: 0
-
-[0x8bdb7 - pit] raised interrupt
-
-[0x8bdb7 - pic] pic_raise_interrupt: 0
-
-[0x80417 - pit] raised interrupt
-
-[0x80417 - pic] pic_raise_interrupt: 0
-
-[0x80417 - pic] raise interrupt 0;11111010
-
-[0x80417 - pit] raised interrupt
-
-[0x80417 - pic] pic_raise_interrupt: 0
-
-[0x80417 - pic] pic 0: vector 8, offset: 8
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
-[0x80419 - pit] raised interrupt
-
-[0x80419 - pic] pic_raise_interrupt: 0
-
+[0xecbf3 - pci] Handling pci port: 0xcf8, direction: 0x1, size: 0x4, count: 0x1, data: 0x80001004
+[0xecbfd - pci] Handling pci port: 0xcfc, direction: 0x0, size: 0x2, count: 0x1, data: 0x80000000
+[0xecbba - pci] Handling pci port: 0xcf8, direction: 0x1, size: 0x4, count: 0x1, data: 0x80001030
+[0xecbc0 - pci] Handling pci port: 0xcfc, direction: 0x0, size: 0x4, count: 0x1, data: 0x0
+[0xecb3f - pci] Handling pci port: 0xcf8, direction: 0x1, size: 0x4, count: 0x1, data: 0x80001030
+[0xecb47 - pci] Handling pci port: 0xcfc, direction: 0x1, size: 0x4, count: 0x1, data: 0xfffffffe
+[0xecbba - pci] Handling pci port: 0xcf8, direction: 0x1, size: 0x4, count: 0x1, data: 0x80001030
+[0xecbc0 - pci] Handling pci port: 0xcfc, direction: 0x0, size: 0x4, count: 0x1, data: 0x0
+[0xecb3f - pci] Handling pci port: 0xcf8, direction: 0x1, size: 0x4, count: 0x1, data: 0x80001030
+[0xecb47 - pci] Handling pci port: 0xcfc, direction: 0x1, size: 0x4, count: 0x1, data: 0xfebff001

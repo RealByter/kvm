@@ -54,3 +54,7 @@ WARNING - Unable to allocate resource at smbios_legacy_setup:520!
 load ACPI tables
 init ACPI tables
 init timer
+rsdp=0x00000000
+rsdp=0x00000000
+Scan for VGA option rom
+Attempting to init PCI bdf 00:02.0 (vd 8086:0166)

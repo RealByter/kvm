@@ -134,7 +134,7 @@ void pci_init()
     pci_set_config_u16(PCI_BRIDGE, COMMAND_LOW, 0x0006);
     pci_set_config_u16(PCI_BRIDGE, STATUS_LOW, 0x0280);
     pci_set_config_u8(PCI_BRIDGE, REVISION_ID, 0x2);
-    pci_set_config_u16(PCI_BRIDGE, SUBCLASS, 0x0006);
+    pci_set_config_u8(PCI_BRIDGE, CLASS_CODE, 0x06);
     pci_set_config_u8(PCI_BRIDGE, DRB0, 0x01);
     pci_set_config_u16(PCI_BRIDGE, PCI_SUBSYSTEM_VENDOR_ID_LOW, 0x1af4);
     pci_set_config_u16(PCI_BRIDGE, SUBSYSTEM_ID_LOW, 0x1100);
