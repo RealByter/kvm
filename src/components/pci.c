@@ -227,6 +227,6 @@ void pci_handle(exit_io_info_t *io, uint8_t *base)
     }
     else
     {
-        unhandled(io);
+        unhandled(io, base);
     }
 }

@@ -94,7 +94,7 @@ void pit_handle(exit_io_info_t *io, uint8_t *base)
         if (io->direction == EXIT_IO_IN)
         {
             // base[io->data_offset] = channel->divisor;
-            unhandled(io);
+            unhandled(io, base);
         }
         else
         {
@@ -120,7 +120,7 @@ void pit_handle(exit_io_info_t *io, uint8_t *base)
             }
             else
             {
-                unhandled(io);
+                unhandled(io, base);
             }
         }
     }
@@ -134,7 +134,7 @@ void pit_handle(exit_io_info_t *io, uint8_t *base)
             channel->operating_mode = GET_BITS(data, 1, 3);
             if (channel->access_mode == PIT_LATCH)
             {
-                unhandled(io);
+                unhandled(io, base);
             }
             if (channel->access_mode == PIT_HIGH)
             {
@@ -148,7 +148,7 @@ void pit_handle(exit_io_info_t *io, uint8_t *base)
         }
         else
         {
-            unhandled(io);
+            unhandled(io, base);
         }
     }
 }

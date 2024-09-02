@@ -14,6 +14,7 @@
 #include "components/dma.h"
 #include "components/pic.h"
 #include "components/pit.h"
+#include "components/ps2.h"
 
 void handle_sigint(int sig)
 {
@@ -43,6 +44,8 @@ int main(int argc, char *argv[])
     io_manager_register(pic_init_master, pic_handle_master, 0x20, 0x21);
     io_manager_register(pic_init_slave, pic_handle_slave, 0xa0, 0xa1);
     io_manager_register(pit_init, pit_handle, 0x40, 0x43);
+    io_manager_register(ps2_init, ps2_init, 0x60, 0x60);
+    io_manager_register(NULL, ps2_handle, 0x64, 0x64);
 
     kvm_init(argv[1]);
     kvm_run();

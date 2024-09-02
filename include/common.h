@@ -36,6 +36,6 @@ int page_align_down(int address);
 
 void read_file(char *filename, uint8_t **buf, size_t *size);
 
-void unhandled(exit_io_info_t* io);
+void unhandled(exit_io_info_t* io, uint8_t* base);
 
 #endif

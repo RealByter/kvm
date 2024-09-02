@@ -47,8 +47,8 @@ void read_file(char *filename, uint8_t **buf, size_t *size)
     fclose(file);
 }
 
-void unhandled(exit_io_info_t* io)
+void unhandled(exit_io_info_t* io, uint8_t* base)
 {
-    printf("Unhandled port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%x\n", io->port, io->direction, io->size, io->count, io->data_offset);
+    printf("Unhandled port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%x\n", io->port, io->direction, io->size, io->count, base[io->data_offset]); 
     exit(1);
 }

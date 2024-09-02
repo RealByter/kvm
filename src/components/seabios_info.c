@@ -15,7 +15,7 @@ void seabios_info_handle(exit_io_info_t *io, uint8_t *base)
         }
         else
         {
-            unhandled(io);
+            unhandled(io, base);
         }
     }
     else if (io->port == 0x511)
@@ -37,7 +37,7 @@ void seabios_info_handle(exit_io_info_t *io, uint8_t *base)
         }
         else
         {
-            unhandled(io);
+            unhandled(io, base);
         }
     }
 }

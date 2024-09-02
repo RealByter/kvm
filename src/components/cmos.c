@@ -54,6 +54,6 @@ void cmos_handle(exit_io_info_t* io, uint8_t* base)
     }
     break;
     default:
-        unhandled(io);
+        unhandled(io, base);
     }
 }
