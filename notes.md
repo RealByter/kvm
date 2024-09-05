@@ -17,12 +17,14 @@ Then I want to call all the init methods and be able to send the exit io to the 
 
 Next steps:
 Manage interrupts in the pic - DONE
-Add more devices to the pci - already added vga (only semantically)
+Add more devices to the pci - already added vga (only semantically) by now also added ata
 Handle additional cmos registers
 Handle APIC
 Generalize clocks
 Understand better the BAR's and investigate the mmio exit
-Add ps2port support - Partially DONE
+Add ps2port support - DONE
+Create interrupts upon keyboard keystrokes
+Implement ATA - help: ata 955
 
 
 I'll understand how to implement multicore once I search globally: "No apic - only the main cpu is present."
