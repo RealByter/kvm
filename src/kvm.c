@@ -139,13 +139,18 @@ void print_sregs()
     struct kvm_sregs sregs;
     kvm_get_sregs(&sregs);
     printf("sregs:\n");
-    printf("  cs: 0x%x\n", sregs.cs.base);
-    printf("  ds: 0x%x\n", sregs.ds.base);
-    printf("  es: 0x%x\n", sregs.es.base);
-    printf("  fs: 0x%x\n", sregs.fs.base);
-    printf("  gs: 0x%x\n", sregs.gs.base);
-    printf("  ss: 0x%x\n", sregs.ss.base);
-    printf("  tr: 0x%x\n", sregs.tr.base);
+    printf("  cs: 0x%x\n", sregs.cs.selector);
+    printf("  ds: 0x%x\n", sregs.ds.selector);
+    printf("  es: 0x%x\n", sregs.es.selector);
+    printf("  fs: 0x%x\n", sregs.fs.selector);
+    printf("  gs: 0x%x\n", sregs.gs.selector);
+    printf("  ss: 0x%x\n", sregs.ss.selector);
+    printf("  tr: 0x%x\n", sregs.tr.selector);
+    printf("  cr0: 0x%x\n", sregs.cr0);
+    printf("  cr2: 0x%x\n", sregs.cr2);
+    printf("  cr3: 0x%x\n", sregs.cr3);
+    printf("  cr4: 0x%x\n", sregs.cr4);
+    printf("  cr8: 0x%x\n", sregs.cr8);
 }
 
 void kvm_run()
@@ -170,10 +175,6 @@ void kvm_run()
         }
         // sleep(3);
 
-        // print_regs();
-        // print_sregs();
-        kvm_get_regs(&regs);
-        printf("0x%llx: ", regs.rip);
         switch (run->exit_reason)
         {
         case KVM_EXIT_HLT:
@@ -181,7 +182,12 @@ void kvm_run()
             // return 0;
             break;
         case KVM_EXIT_IO:
-            printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t *)run)[run->io.data_offset]);
+            if (run->io.port != 0x402)
+            {
+                kvm_get_regs(&regs);
+                printf("0x%llx: ", regs.rip);
+                printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t *)run)[run->io.data_offset]);
+            }
             if (0)
             {
                 printf("------------------0x%02x:%x------------------\n", run->io.port, ((uint8_t *)run)[run->io.data_offset]);
@@ -203,7 +209,7 @@ void kvm_run()
                 }
                 printf("\n");
             }
-            if(run->mmio.phys_addr == 0xfebff000)
+            if (run->mmio.phys_addr == 0xfebff000) // vga bar
             {
                 run->mmio.data[0] = 0x80;
                 run->mmio.data[1] = 0x0b;
@@ -213,8 +219,17 @@ void kvm_run()
             {
                 return;
             }
+            else
+            {
+                // run->mmio.data[0] = 0x10;
+                // run->mmio.data[1] = 0x10;
+                // run->mmio.data[2] = 0x10;
+                // run->mmio.data[3] = 0x10;
+            }
             break;
         case KVM_EXIT_FAIL_ENTRY:
+            print_regs();
+            print_sregs();
             errx(1, "KVM_EXIT_FAIL_ENTRY: hardware_entry_failure_reason = 0x%llx",
                  (unsigned long long)run->fail_entry.hardware_entry_failure_reason);
         case KVM_EXIT_INTERNAL_ERROR:

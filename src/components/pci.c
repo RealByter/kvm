@@ -130,6 +130,7 @@ static inline uint32_t pci_get_config_u32(uint8_t device_index, enum pci_config_
 
 void pci_init()
 {
+    // i440fx
     pci_add_device(0, 0, 0, VI_INTEL, DI_I440FX);
     pci_set_config_u16(PCI_BRIDGE, COMMAND_LOW, 0x0006);
     pci_set_config_u16(PCI_BRIDGE, STATUS_LOW, 0x0280);
@@ -140,8 +141,13 @@ void pci_init()
     pci_set_config_u16(PCI_BRIDGE, SUBSYSTEM_ID_LOW, 0x1100);
     // pci_set_config_u8(PCI_BRIDGE, TOM, 0x01);
 
+    // vga
     pci_add_device(0, 2, 0, VI_INTEL, 0x0166);
     pci_set_config_u16(0 * 32 + 2 * 8 + 0, SUBCLASS, 0x0300);
+
+    // ata
+    pci_add_device(0, 1, 0, 0x1002, 0x4391); // vendor ati, device sb700
+    pci_set_config_u16(0 * 32 + 1 * 8 + 0, SUBCLASS, 0x0101);
 }
 
 void pci_add_device(uint8_t bus, uint8_t device, uint8_t function, uint16_t vendor_id, uint16_t device_id)

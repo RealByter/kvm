@@ -124,6 +124,7 @@ void pic_process_interrupts()
         if (next_interrupt != 0xff) // no interrupt
         {
             uint8_t vector = pic->icw2.offset + next_interrupt;
+            LOG_MSG("Interrupt %d, vector %d", next_interrupt, vector);
             kvm_interrupt(vector);
 
             if (!pic->icw4.aeoi)
