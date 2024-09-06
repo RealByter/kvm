@@ -157,3 +157,5 @@ PS2 keyboard initialized
 init floppy drives
 init hard drives
 ATA controller 1 at 1f0/3f4/0 (irq 14 dev 8)
+powerup iobase=1f0 st=0
+powerup iobase=1f0 st=0
