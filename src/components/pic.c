@@ -149,9 +149,12 @@ void pic_clock_thread(void *arg)
     {
         nanosleep(&sleep_time, NULL);
 
-        pthread_mutex_lock(&pic_mutex);
-        pic_process_interrupts();
-        pthread_mutex_unlock(&pic_mutex);
+        if (kvm_is_interrupts_enabled())
+        {
+            pthread_mutex_lock(&pic_mutex);
+            pic_process_interrupts();
+            pthread_mutex_unlock(&pic_mutex);
+        }
     }
 
     return NULL;
@@ -184,6 +187,8 @@ void pic_init_slave()
 
 void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
 {
+    LOG_MSG("Handling pic port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%lx", io->port, io->direction, io->size, io->count, base[io->data_offset]);
+
     pic_t *pic = slave ? &pic_slave : &pic_master;
     if (io->port == PIC_MASTER_COMMAND || io->port == PIC_SLAVE_COMMAND)
     {
@@ -249,6 +254,7 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
                 {
                     pic->auto_rotate = false;
                 }
+                return;
             }
             else // ocw3
             {
@@ -257,6 +263,7 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
                 pic->ocw3.rr = GET_BITS(data, 1, 1);
                 pic->ocw3.poll = GET_BITS(data, 2, 1);
                 pic->ocw3.smm = GET_BITS(data, 5, 1);
+                return;
             }
         }
     }
@@ -331,7 +338,7 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
         }
     }
 
-    printf("DMA Port 0x%02x is unhandled for direction: %d\n", io->port, io->direction);
+    printf("PIC Port 0x%02x is unhandled for direction: %d\n", io->port, io->direction);
     exit(1);
 }
 

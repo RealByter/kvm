@@ -3,6 +3,7 @@
 
 #include <linux/kvm.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 // int kvm_open();
 // void kvm_verify_version(int kvm);
@@ -19,5 +20,6 @@ void kvm_run();
 void kvm_deinit();
 void kvm_pause_vcpu();
 void kvm_interrupt(uint32_t vector);
+bool kvm_is_interrupts_enabled();
 
 #endif

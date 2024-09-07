@@ -215,7 +215,7 @@ void kvm_run()
                 run->mmio.data[1] = 0x0b;
                 break;
             }
-            if (run->mmio.phys_addr != 0xfee00030)
+            if (run->mmio.phys_addr != 0xfee00030 && run->mmio.phys_addr != 0xfebf1000 && run->mmio.phys_addr != 0xfebf8000)
             {
                 return;
             }
@@ -361,4 +361,15 @@ void kvm_interrupt(uint32_t vector)
     {
         err(1, "KVM_INTERRUPT");
     }
+}
+
+bool kvm_is_interrupts_enabled()
+{
+    if (vcpu != NULL)
+    {
+        struct kvm_regs regs;
+        kvm_get_regs(&regs);
+        return regs.rflags & 0x200;
+    }
+    return false;
 }
