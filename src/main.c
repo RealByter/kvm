@@ -22,6 +22,10 @@ void handle_sigint(int sig)
     exit(0);
 }
 
+void null_handle(exit_io_info_t *io, uint8_t *base)
+{
+}
+
 int main(int argc, char *argv[])
 {
     if (argc != 4)
@@ -40,7 +44,11 @@ int main(int argc, char *argv[])
     io_manager_register(pci_init, pci_handle, 0xcf8, 0xcff);
     io_manager_register(seabios_log_init, seabios_log_handle, 0x402, 0x402);
     io_manager_register(NULL, seabios_info_handle, 0x510, 0x511);
-    io_manager_register(NULL, com_handle, 0x3f8, 0x3f8);
+    io_manager_register(com_init, com_handle, 0x3f8, 0x3ff);
+    // ignore the other com ports
+    io_manager_register(NULL, null_handle, 0x2f8, 0x2ff);
+    io_manager_register(NULL, null_handle, 0x3e8, 0x3ef);
+    io_manager_register(NULL, null_handle, 0x2e8, 0x2ef);
     io_manager_register(NULL, dma_handle_master, 0xc0, 0xde);
     io_manager_register(NULL, dma_handle_slave, 0x00, 0x0f);
     io_manager_register(pic_init_master, pic_handle_master, 0x20, 0x21);
