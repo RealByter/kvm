@@ -10,6 +10,25 @@ int page_align_down(int address)
     return address & ~(PAGE_SIZE - 1);
 }
 
+uint32_t get_file_size(FILE* file)
+{
+    int ret = fseek(file, 0, SEEK_END);
+    if (ret < 0)
+    {
+        err(1, "Failed to seek the file");
+    }
+
+    uint32_t size = ftell(file);
+
+    ret = fseek(file, 0, SEEK_SET);
+    if (ret < 0)
+    {
+        err(1, "Failed to seek the file");
+    }
+
+    return size;
+}
+
 void read_file(char *filename, uint8_t **buf, size_t *size)
 {
     FILE *file = fopen(filename, "rb");
@@ -18,19 +37,7 @@ void read_file(char *filename, uint8_t **buf, size_t *size)
         err(1, "Failed to open the file");
     }
 
-    int ret = fseek(file, 0, SEEK_END);
-    if (ret < 0)
-    {
-        err(1, "Failed to seek the file");
-    }
-
-    *size = ftell(file);
-
-    ret = fseek(file, 0, SEEK_SET);
-    if (ret < 0)
-    {
-        err(1, "Failed to seek the file");
-    }
+    *size = get_file_size(file);
 
     *buf = malloc(*size);
     if (*buf == NULL)
@@ -38,7 +45,7 @@ void read_file(char *filename, uint8_t **buf, size_t *size)
         err(1, "Failed to allocate memory");
     }
 
-    ret = fread(*buf, 1, *size, file);
+    int ret = fread(*buf, 1, *size, file);
     if (ret < 0)
     {
         err(1, "Failed to read the file");

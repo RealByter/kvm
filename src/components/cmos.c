@@ -24,7 +24,7 @@ void cmos_init()
 void cmos_handle(exit_io_info_t* io, uint8_t* base)
 {
     // printf("data: %x\n", base[data_offset]);
-    LOG_MSG("Handling cmos port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%lx", io->port, io->direction, io->size, io->count, base[io->data_offset]);
+    // LOG_MSG("Handling cmos port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%lx", io->port, io->direction, io->size, io->count, base[io->data_offset]);
     switch (io->port)
     {
     case 0x70:

@@ -35,6 +35,7 @@
 int page_align_up(int address);
 int page_align_down(int address);
 
+uint32_t get_file_size(FILE* file);
 void read_file(char *filename, uint8_t **buf, size_t *size);
 
 void unhandled(exit_io_info_t* io, uint8_t* base);

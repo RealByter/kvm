@@ -4,50 +4,50 @@ OUTPUT_FORMAT("elf32-i386")
 OUTPUT_ARCH("i386")
 SECTIONS
 {
-TPM_interface_shutdown = 0xeb600 ;
-sercon_attr = 0xeb638 ;
-BootSequence = 0xeb618 ;
-sercon_col_last = 0xeb63b ;
-TimerLast = 0xeb620 ;
-tpm_state = 0xeb604 ;
-emulated_drive_gf = 0xeb654 ;
-sercon_port = 0xeb640 ;
-StackPos = 0xeb67c ;
-CDEmu = 0xeb658 ;
-Century = 0xeb624 ;
-sercon_split = 0xeb63e ;
-ExtraStack = 0xeb680 ;
-sercon_attr_last = 0xeb63c ;
-DefaultDPTE = 0xeb66c ;
-sercon_enable = 0xeb63d ;
-sercon_row_last = 0xeb63a ;
-rx_buf = 0xeb628 ;
-Ps2ctr = 0xeb61d ;
-rx_bytes = 0xeb625 ;
-Call16Data = 0xebe84 ;
-sercon_char = 0xeb639 ;
-CDRom_locks = 0xeb644 ;
-TPM_working = 0xeb601 ;
-FloppyDOR = 0xeb61c ;
+TPM_interface_shutdown = 0xeb120 ;
+sercon_attr = 0xeb158 ;
+BootSequence = 0xeb138 ;
+sercon_col_last = 0xeb15b ;
+TimerLast = 0xeb140 ;
+tpm_state = 0xeb124 ;
+emulated_drive_gf = 0xeb174 ;
+sercon_port = 0xeb160 ;
+StackPos = 0xeb19c ;
+CDEmu = 0xeb178 ;
+Century = 0xeb144 ;
+sercon_split = 0xeb15e ;
+ExtraStack = 0xeb1a0 ;
+sercon_attr_last = 0xeb15c ;
+DefaultDPTE = 0xeb18c ;
+sercon_enable = 0xeb15d ;
+sercon_row_last = 0xeb15a ;
+rx_buf = 0xeb148 ;
+Ps2ctr = 0xeb13d ;
+rx_bytes = 0xeb145 ;
+Call16Data = 0xeb9a4 ;
+sercon_char = 0xeb159 ;
+CDRom_locks = 0xeb164 ;
+TPM_working = 0xeb121 ;
+FloppyDOR = 0xeb13c ;
 reset_vector = 0xffff0 ;
-transition16big = 0xfcc43 ;
-transition16 = 0xfcc2e ;
-_cfunc16_call16_helper = 0xf8d86 ;
-transition32_nmi_off = 0xfcbf8 ;
-_cfunc16_check_irqs = 0xf94f4 ;
-_cfunc16_wait_irq = 0xfb3cb ;
-_cfunc16__farcall16 = 0xf8e31 ;
+transition16big = 0xfcb3c ;
+transition16 = 0xfcb27 ;
+_cfunc16_call16_helper = 0xf8bd5 ;
+transition32_nmi_off = 0xfcaf1 ;
+_cfunc16_check_irqs = 0xf9324 ;
+_cfunc16_wait_irq = 0xfb24d ;
+_cfunc16__farcall16 = 0xf8c80 ;
 entry_10 = 0xff065 ;
-irq_trampoline_0x10 = 0xfef50 ;
-irq_trampoline_0x16 = 0xfe82a ;
-entry_smp = 0xfcd0c ;
+irq_trampoline_0x10 = 0xfe6ea ;
+irq_trampoline_0x16 = 0xfe827 ;
+entry_smp = 0xfcc02 ;
 entry_09 = 0xfe987 ;
-entry_74 = 0xfd05a ;
+entry_74 = 0xfcf50 ;
 entry_19_official = 0xfe6f2 ;
 irq_trampoline_0x13 = 0xffa69 ;
 entry_iret_official = 0xfff53 ;
-entry_hwpic1 = 0xfd06c ;
-entry_hwpic2 = 0xfd075 ;
+entry_hwpic1 = 0xfcf62 ;
+entry_hwpic2 = 0xfcf6b ;
 entry_02 = 0xfe2c3 ;
 entry_05 = 0xfff54 ;
 entry_11 = 0xff84d ;
@@ -57,3055 +57,3086 @@ entry_14 = 0xfe739 ;
 entry_15_official = 0xff859 ;
 entry_16 = 0xfe82e ;
 entry_17 = 0xfefd2 ;
-entry_18 = 0xfd091 ;
+entry_18 = 0xfcf87 ;
 entry_1a_official = 0xffe6e ;
 entry_40 = 0xfec59 ;
 entry_bios32 = 0xff046 ;
-entry_pmm = 0xfcd51 ;
-entry_pnp_real = 0xfcdb3 ;
-entry_pnp_prot = 0xfcdaf ;
-irq_trampoline_0x18 = 0xfe827 ;
-irq_trampoline_0x19 = 0xfff50 ;
-entry_75 = 0xfd063 ;
+entry_pmm = 0xfcc47 ;
+entry_pnp_real = 0xfcca9 ;
+entry_pnp_prot = 0xfcca5 ;
+irq_trampoline_0x18 = 0xfff50 ;
+irq_trampoline_0x19 = 0xff0a0 ;
+entry_75 = 0xfcf59 ;
 entry_08 = 0xffea5 ;
-entry_sercon = 0xfced2 ;
+entry_sercon = 0xfcdc8 ;
 entry_0e = 0xfef57 ;
-entry_76 = 0xfd051 ;
+entry_76 = 0xfcf47 ;
 
     _reloc_min_align = 0x20 ;
-    zonefseg_start = 0xf5de0 ;
-    zonefseg_end = 0xf65e0 ;
+    zonefseg_start = 0xf5b60 ;
+    zonefseg_end = 0xf6360 ;
     zonelow_base = 0xdc000 ;
-    final_varlow_start = 0xeb600 ;
-    final_readonly_start = 0xebea0 ;
-    varlow_start = 0xd9fc0 ;
-    varlow_end = 0xda860 ;
-    code32init_start = 0xda860 ;
-    code32init_end = 0xebea0 ;
+    final_varlow_start = 0xeb120 ;
+    final_readonly_start = 0xeb9c0 ;
+    varlow_start = 0xd9a40 ;
+    varlow_end = 0xda2e0 ;
+    code32init_start = 0xda2e0 ;
+    code32init_end = 0xeb9c0 ;
 
-    code32flat_start = 0xd8b80 ;
+    code32flat_start = 0xd85e0 ;
     .text code32flat_start : {
 
         _reloc_abs_start = ABSOLUTE(.) ;
-LONG(0xdaa77 - code32init_start)
-LONG(0xdaad0 - code32init_start)
-LONG(0xdaad8 - code32init_start)
-LONG(0xdab06 - code32init_start)
-LONG(0xdab0e - code32init_start)
-LONG(0xdab26 - code32init_start)
-LONG(0xdabc1 - code32init_start)
-LONG(0xdac55 - code32init_start)
-LONG(0xdac5e - code32init_start)
-LONG(0xdac91 - code32init_start)
-LONG(0xdac9a - code32init_start)
-LONG(0xdace4 - code32init_start)
-LONG(0xdacf1 - code32init_start)
-LONG(0xdacfc - code32init_start)
-LONG(0xdad29 - code32init_start)
-LONG(0xdae09 - code32init_start)
-LONG(0xdae21 - code32init_start)
-LONG(0xdae59 - code32init_start)
-LONG(0xdae87 - code32init_start)
-LONG(0xdae93 - code32init_start)
-LONG(0xdaecd - code32init_start)
-LONG(0xdaeda - code32init_start)
-LONG(0xdaeed - code32init_start)
-LONG(0xdaef7 - code32init_start)
-LONG(0xdaf01 - code32init_start)
-LONG(0xdaf05 - code32init_start)
-LONG(0xdb038 - code32init_start)
-LONG(0xdb040 - code32init_start)
-LONG(0xdba5a - code32init_start)
-LONG(0xdba6f - code32init_start)
-LONG(0xdba82 - code32init_start)
-LONG(0xdba95 - code32init_start)
-LONG(0xdbaa8 - code32init_start)
-LONG(0xdbabb - code32init_start)
-LONG(0xdbad3 - code32init_start)
-LONG(0xdbae3 - code32init_start)
-LONG(0xdbd36 - code32init_start)
-LONG(0xdc54a - code32init_start)
-LONG(0xdc7b3 - code32init_start)
-LONG(0xdcb08 - code32init_start)
-LONG(0xdcbae - code32init_start)
-LONG(0xdd007 - code32init_start)
-LONG(0xdd033 - code32init_start)
-LONG(0xdd04e - code32init_start)
-LONG(0xdd0d2 - code32init_start)
-LONG(0xdd107 - code32init_start)
-LONG(0xdd145 - code32init_start)
-LONG(0xdd195 - code32init_start)
-LONG(0xdd19c - code32init_start)
-LONG(0xdd20d - code32init_start)
-LONG(0xdd28f - code32init_start)
-LONG(0xdd296 - code32init_start)
-LONG(0xdd2d2 - code32init_start)
-LONG(0xdd541 - code32init_start)
-LONG(0xdd55b - code32init_start)
-LONG(0xdd56a - code32init_start)
-LONG(0xdd60a - code32init_start)
-LONG(0xdd629 - code32init_start)
-LONG(0xdd63f - code32init_start)
-LONG(0xdd650 - code32init_start)
-LONG(0xdd6da - code32init_start)
-LONG(0xdd6ed - code32init_start)
-LONG(0xdd762 - code32init_start)
-LONG(0xdd812 - code32init_start)
-LONG(0xdd820 - code32init_start)
-LONG(0xdd854 - code32init_start)
-LONG(0xdd8e0 - code32init_start)
-LONG(0xdda2a - code32init_start)
-LONG(0xddaac - code32init_start)
-LONG(0xddaf1 - code32init_start)
-LONG(0xddaff - code32init_start)
-LONG(0xddb5d - code32init_start)
-LONG(0xddbae - code32init_start)
-LONG(0xddbbf - code32init_start)
-LONG(0xddbc7 - code32init_start)
-LONG(0xddbe6 - code32init_start)
-LONG(0xddbf0 - code32init_start)
-LONG(0xddc9a - code32init_start)
-LONG(0xddca0 - code32init_start)
-LONG(0xddcca - code32init_start)
-LONG(0xddcdc - code32init_start)
-LONG(0xddce1 - code32init_start)
-LONG(0xdde36 - code32init_start)
-LONG(0xdde74 - code32init_start)
-LONG(0xddff9 - code32init_start)
-LONG(0xde092 - code32init_start)
-LONG(0xde2cb - code32init_start)
-LONG(0xde46d - code32init_start)
-LONG(0xde5a0 - code32init_start)
-LONG(0xde665 - code32init_start)
-LONG(0xde6e0 - code32init_start)
-LONG(0xde6fe - code32init_start)
-LONG(0xde917 - code32init_start)
-LONG(0xde976 - code32init_start)
-LONG(0xde98c - code32init_start)
-LONG(0xde9d7 - code32init_start)
-LONG(0xdea47 - code32init_start)
-LONG(0xdeba0 - code32init_start)
-LONG(0xdef7c - code32init_start)
-LONG(0xdefb4 - code32init_start)
-LONG(0xdefbc - code32init_start)
-LONG(0xdf00e - code32init_start)
-LONG(0xdf079 - code32init_start)
-LONG(0xdf0b2 - code32init_start)
-LONG(0xdf20f - code32init_start)
-LONG(0xdf22a - code32init_start)
-LONG(0xdf230 - code32init_start)
-LONG(0xdf23b - code32init_start)
-LONG(0xdf247 - code32init_start)
-LONG(0xdf251 - code32init_start)
-LONG(0xdf262 - code32init_start)
-LONG(0xdf26a - code32init_start)
-LONG(0xdf270 - code32init_start)
-LONG(0xdf278 - code32init_start)
-LONG(0xdf2d2 - code32init_start)
-LONG(0xdf2d7 - code32init_start)
-LONG(0xdf2dd - code32init_start)
-LONG(0xdf2e6 - code32init_start)
-LONG(0xdf31f - code32init_start)
-LONG(0xdf352 - code32init_start)
-LONG(0xdf388 - code32init_start)
-LONG(0xdf896 - code32init_start)
-LONG(0xdf89c - code32init_start)
-LONG(0xdf8a9 - code32init_start)
-LONG(0xdf91e - code32init_start)
-LONG(0xdf9cd - code32init_start)
-LONG(0xdfa0c - code32init_start)
-LONG(0xdfa26 - code32init_start)
-LONG(0xdfa37 - code32init_start)
-LONG(0xdfa7d - code32init_start)
-LONG(0xdfa83 - code32init_start)
-LONG(0xdfad7 - code32init_start)
-LONG(0xdfadd - code32init_start)
-LONG(0xdfaf0 - code32init_start)
-LONG(0xdfb55 - code32init_start)
-LONG(0xdfb5f - code32init_start)
-LONG(0xdfbc9 - code32init_start)
-LONG(0xdfbcf - code32init_start)
-LONG(0xdfbec - code32init_start)
-LONG(0xdfbf2 - code32init_start)
-LONG(0xdfc5b - code32init_start)
-LONG(0xdfdbc - code32init_start)
-LONG(0xdfdc2 - code32init_start)
-LONG(0xdfde4 - code32init_start)
-LONG(0xdfdea - code32init_start)
-LONG(0xdfe86 - code32init_start)
-LONG(0xdfe9e - code32init_start)
-LONG(0xdffa5 - code32init_start)
-LONG(0xe0028 - code32init_start)
-LONG(0xe0086 - code32init_start)
-LONG(0xe00cd - code32init_start)
-LONG(0xe00e6 - code32init_start)
-LONG(0xe00ee - code32init_start)
-LONG(0xe0139 - code32init_start)
-LONG(0xe026a - code32init_start)
-LONG(0xe027c - code32init_start)
-LONG(0xe030d - code32init_start)
-LONG(0xe033c - code32init_start)
-LONG(0xe039b - code32init_start)
-LONG(0xe03d6 - code32init_start)
-LONG(0xe048a - code32init_start)
-LONG(0xe0799 - code32init_start)
-LONG(0xe0b01 - code32init_start)
-LONG(0xe0cfa - code32init_start)
-LONG(0xe0d26 - code32init_start)
-LONG(0xe0e02 - code32init_start)
-LONG(0xe0fd2 - code32init_start)
-LONG(0xe0fee - code32init_start)
-LONG(0xe104b - code32init_start)
-LONG(0xe1076 - code32init_start)
-LONG(0xe10ad - code32init_start)
-LONG(0xe10d5 - code32init_start)
-LONG(0xe10f4 - code32init_start)
-LONG(0xe1126 - code32init_start)
-LONG(0xe11e3 - code32init_start)
-LONG(0xe1205 - code32init_start)
-LONG(0xe1237 - code32init_start)
-LONG(0xe1476 - code32init_start)
-LONG(0xe14a1 - code32init_start)
-LONG(0xe14da - code32init_start)
-LONG(0xe14f4 - code32init_start)
-LONG(0xe153c - code32init_start)
-LONG(0xe155c - code32init_start)
-LONG(0xe15f2 - code32init_start)
-LONG(0xe188d - code32init_start)
-LONG(0xe1926 - code32init_start)
-LONG(0xe1930 - code32init_start)
-LONG(0xe193a - code32init_start)
-LONG(0xe193e - code32init_start)
-LONG(0xe1960 - code32init_start)
-LONG(0xe1966 - code32init_start)
-LONG(0xe197e - code32init_start)
-LONG(0xe198e - code32init_start)
-LONG(0xe19b7 - code32init_start)
-LONG(0xe1a9d - code32init_start)
-LONG(0xe1b22 - code32init_start)
-LONG(0xe1b34 - code32init_start)
-LONG(0xe1c6f - code32init_start)
-LONG(0xe1c83 - code32init_start)
-LONG(0xe1e79 - code32init_start)
-LONG(0xe1e8c - code32init_start)
-LONG(0xe1ea8 - code32init_start)
-LONG(0xe1f13 - code32init_start)
-LONG(0xe20c8 - code32init_start)
-LONG(0xe21c3 - code32init_start)
-LONG(0xe2265 - code32init_start)
-LONG(0xe227b - code32init_start)
-LONG(0xe228c - code32init_start)
-LONG(0xe233b - code32init_start)
-LONG(0xe245d - code32init_start)
-LONG(0xe2462 - code32init_start)
-LONG(0xe24b2 - code32init_start)
-LONG(0xe253a - code32init_start)
-LONG(0xe258b - code32init_start)
-LONG(0xe25a2 - code32init_start)
-LONG(0xe260d - code32init_start)
-LONG(0xe2685 - code32init_start)
-LONG(0xe26b7 - code32init_start)
-LONG(0xe28b7 - code32init_start)
-LONG(0xe292b - code32init_start)
-LONG(0xe294f - code32init_start)
-LONG(0xe2964 - code32init_start)
-LONG(0xe2994 - code32init_start)
-LONG(0xe29d5 - code32init_start)
-LONG(0xe29e1 - code32init_start)
-LONG(0xe2a0a - code32init_start)
-LONG(0xe2ac1 - code32init_start)
-LONG(0xe2b0e - code32init_start)
-LONG(0xe2b7a - code32init_start)
-LONG(0xe2c2b - code32init_start)
-LONG(0xe2c31 - code32init_start)
-LONG(0xe2c41 - code32init_start)
-LONG(0xe2c63 - code32init_start)
-LONG(0xe2cf2 - code32init_start)
-LONG(0xe2d00 - code32init_start)
-LONG(0xe2d0b - code32init_start)
-LONG(0xe2d1c - code32init_start)
-LONG(0xe2d2c - code32init_start)
-LONG(0xe2d3d - code32init_start)
-LONG(0xe2d6c - code32init_start)
-LONG(0xe2e92 - code32init_start)
-LONG(0xe2f19 - code32init_start)
-LONG(0xe312c - code32init_start)
-LONG(0xe324b - code32init_start)
-LONG(0xe3318 - code32init_start)
-LONG(0xe3377 - code32init_start)
-LONG(0xe33a9 - code32init_start)
-LONG(0xe3951 - code32init_start)
-LONG(0xe3959 - code32init_start)
-LONG(0xe395f - code32init_start)
-LONG(0xe3abb - code32init_start)
-LONG(0xe3b00 - code32init_start)
-LONG(0xe3b06 - code32init_start)
-LONG(0xe3b2d - code32init_start)
-LONG(0xe3b33 - code32init_start)
-LONG(0xe3ba1 - code32init_start)
-LONG(0xe3bed - code32init_start)
-LONG(0xe3bf3 - code32init_start)
-LONG(0xe3c4c - code32init_start)
-LONG(0xe3d4e - code32init_start)
-LONG(0xe3dc4 - code32init_start)
-LONG(0xe3ec6 - code32init_start)
-LONG(0xe3ef0 - code32init_start)
-LONG(0xe3f7a - code32init_start)
-LONG(0xe3f88 - code32init_start)
-LONG(0xe3fd6 - code32init_start)
-LONG(0xe4017 - code32init_start)
-LONG(0xe4092 - code32init_start)
-LONG(0xe4118 - code32init_start)
-LONG(0xe421a - code32init_start)
-LONG(0xe4221 - code32init_start)
-LONG(0xe4266 - code32init_start)
-LONG(0xe428f - code32init_start)
-LONG(0xe4296 - code32init_start)
-LONG(0xe42d0 - code32init_start)
-LONG(0xe4480 - code32init_start)
-LONG(0xe44c5 - code32init_start)
-LONG(0xe44cc - code32init_start)
-LONG(0xe44e6 - code32init_start)
-LONG(0xe44ff - code32init_start)
-LONG(0xe451d - code32init_start)
-LONG(0xe4561 - code32init_start)
-LONG(0xe4577 - code32init_start)
-LONG(0xe45d2 - code32init_start)
-LONG(0xe4631 - code32init_start)
-LONG(0xe469f - code32init_start)
-LONG(0xe46ae - code32init_start)
-LONG(0xe46b4 - code32init_start)
-LONG(0xe46ca - code32init_start)
-LONG(0xe46d0 - code32init_start)
-LONG(0xe4761 - code32init_start)
-LONG(0xe4861 - code32init_start)
-LONG(0xe48b2 - code32init_start)
-LONG(0xe4948 - code32init_start)
-LONG(0xe4a9e - code32init_start)
-LONG(0xe4b57 - code32init_start)
-LONG(0xe4c90 - code32init_start)
-LONG(0xe4cad - code32init_start)
-LONG(0xe4e65 - code32init_start)
-LONG(0xe4ee0 - code32init_start)
-LONG(0xe4f33 - code32init_start)
-LONG(0xe4f61 - code32init_start)
-LONG(0xe4fb6 - code32init_start)
-LONG(0xe5087 - code32init_start)
-LONG(0xe509c - code32init_start)
-LONG(0xe54d3 - code32init_start)
-LONG(0xe54e4 - code32init_start)
-LONG(0xe5551 - code32init_start)
-LONG(0xe5561 - code32init_start)
-LONG(0xe55d2 - code32init_start)
-LONG(0xe55e2 - code32init_start)
-LONG(0xe57f1 - code32init_start)
-LONG(0xe5826 - code32init_start)
-LONG(0xe5830 - code32init_start)
-LONG(0xe5865 - code32init_start)
-LONG(0xe5b4c - code32init_start)
-LONG(0xe5b52 - code32init_start)
-LONG(0xe5b68 - code32init_start)
-LONG(0xe5b6e - code32init_start)
-LONG(0xe5c02 - code32init_start)
-LONG(0xe5c24 - code32init_start)
-LONG(0xe5c67 - code32init_start)
-LONG(0xe5c7f - code32init_start)
-LONG(0xe5c87 - code32init_start)
-LONG(0xe5eae - code32init_start)
-LONG(0xe5eb8 - code32init_start)
-LONG(0xe5ec2 - code32init_start)
-LONG(0xe5ecc - code32init_start)
-LONG(0xe5f3e - code32init_start)
-LONG(0xe5f4e - code32init_start)
-LONG(0xe5f5b - code32init_start)
-LONG(0xe5f65 - code32init_start)
-LONG(0xe5f97 - code32init_start)
-LONG(0xe5fc3 - code32init_start)
-LONG(0xe5fc8 - code32init_start)
-LONG(0xe5fd5 - code32init_start)
-LONG(0xe5fde - code32init_start)
-LONG(0xe5ff5 - code32init_start)
-LONG(0xe600d - code32init_start)
-LONG(0xe6062 - code32init_start)
-LONG(0xe608e - code32init_start)
-LONG(0xe6093 - code32init_start)
-LONG(0xe60a0 - code32init_start)
-LONG(0xe60a9 - code32init_start)
-LONG(0xe60c0 - code32init_start)
-LONG(0xe60dc - code32init_start)
-LONG(0xe6261 - code32init_start)
-LONG(0xe63d9 - code32init_start)
-LONG(0xe63e0 - code32init_start)
-LONG(0xe641c - code32init_start)
-LONG(0xe6887 - code32init_start)
-LONG(0xe68c3 - code32init_start)
-LONG(0xe68e2 - code32init_start)
-LONG(0xe694a - code32init_start)
-LONG(0xe699c - code32init_start)
-LONG(0xe69c7 - code32init_start)
-LONG(0xe69d6 - code32init_start)
-LONG(0xe6a63 - code32init_start)
-LONG(0xe6ba9 - code32init_start)
-LONG(0xe6d7a - code32init_start)
-LONG(0xe709a - code32init_start)
-LONG(0xe70f3 - code32init_start)
-LONG(0xe710a - code32init_start)
-LONG(0xe7121 - code32init_start)
-LONG(0xe713f - code32init_start)
-LONG(0xe722e - code32init_start)
-LONG(0xe73cd - code32init_start)
-LONG(0xe7579 - code32init_start)
-LONG(0xe7589 - code32init_start)
-LONG(0xe7b2b - code32init_start)
-LONG(0xe7d8c - code32init_start)
-LONG(0xe7fed - code32init_start)
-LONG(0xe81cd - code32init_start)
-LONG(0xe81d2 - code32init_start)
+LONG(0xda4f7 - code32init_start)
+LONG(0xda51b - code32init_start)
+LONG(0xda523 - code32init_start)
+LONG(0xda551 - code32init_start)
+LONG(0xda559 - code32init_start)
+LONG(0xda571 - code32init_start)
+LONG(0xda60c - code32init_start)
+LONG(0xda6a0 - code32init_start)
+LONG(0xda6a9 - code32init_start)
+LONG(0xda6dc - code32init_start)
+LONG(0xda6e5 - code32init_start)
+LONG(0xda72f - code32init_start)
+LONG(0xda73c - code32init_start)
+LONG(0xda747 - code32init_start)
+LONG(0xda774 - code32init_start)
+LONG(0xda854 - code32init_start)
+LONG(0xda86c - code32init_start)
+LONG(0xda8a4 - code32init_start)
+LONG(0xda8d2 - code32init_start)
+LONG(0xda8de - code32init_start)
+LONG(0xda918 - code32init_start)
+LONG(0xda925 - code32init_start)
+LONG(0xda938 - code32init_start)
+LONG(0xda942 - code32init_start)
+LONG(0xda94c - code32init_start)
+LONG(0xda950 - code32init_start)
+LONG(0xdaa83 - code32init_start)
+LONG(0xdaa8b - code32init_start)
+LONG(0xdb02e - code32init_start)
+LONG(0xdb043 - code32init_start)
+LONG(0xdb056 - code32init_start)
+LONG(0xdb069 - code32init_start)
+LONG(0xdb07c - code32init_start)
+LONG(0xdb08f - code32init_start)
+LONG(0xdb0a7 - code32init_start)
+LONG(0xdb0b7 - code32init_start)
+LONG(0xdb30a - code32init_start)
+LONG(0xdba1a - code32init_start)
+LONG(0xdbc45 - code32init_start)
+LONG(0xdbf9a - code32init_start)
+LONG(0xdc040 - code32init_start)
+LONG(0xdc4a8 - code32init_start)
+LONG(0xdc4c3 - code32init_start)
+LONG(0xdc50f - code32init_start)
+LONG(0xdc544 - code32init_start)
+LONG(0xdc582 - code32init_start)
+LONG(0xdc5d2 - code32init_start)
+LONG(0xdc5d9 - code32init_start)
+LONG(0xdc64a - code32init_start)
+LONG(0xdc6cc - code32init_start)
+LONG(0xdc6d3 - code32init_start)
+LONG(0xdc70f - code32init_start)
+LONG(0xdc782 - code32init_start)
+LONG(0xdc79c - code32init_start)
+LONG(0xdc7ab - code32init_start)
+LONG(0xdc892 - code32init_start)
+LONG(0xdc9ae - code32init_start)
+LONG(0xdca30 - code32init_start)
+LONG(0xdca75 - code32init_start)
+LONG(0xdca83 - code32init_start)
+LONG(0xdcb14 - code32init_start)
+LONG(0xdcb9c - code32init_start)
+LONG(0xdcba6 - code32init_start)
+LONG(0xdcc50 - code32init_start)
+LONG(0xdcc56 - code32init_start)
+LONG(0xdcc80 - code32init_start)
+LONG(0xdcc92 - code32init_start)
+LONG(0xdcc97 - code32init_start)
+LONG(0xdcdec - code32init_start)
+LONG(0xdce2a - code32init_start)
+LONG(0xdcfaf - code32init_start)
+LONG(0xdd048 - code32init_start)
+LONG(0xdd281 - code32init_start)
+LONG(0xdd423 - code32init_start)
+LONG(0xddb85 - code32init_start)
+LONG(0xddc4a - code32init_start)
+LONG(0xddcc5 - code32init_start)
+LONG(0xddce3 - code32init_start)
+LONG(0xddefc - code32init_start)
+LONG(0xde1b4 - code32init_start)
+LONG(0xde1d3 - code32init_start)
+LONG(0xde1f5 - code32init_start)
+LONG(0xde208 - code32init_start)
+LONG(0xde265 - code32init_start)
+LONG(0xde2b6 - code32init_start)
+LONG(0xde2c7 - code32init_start)
+LONG(0xde2cf - code32init_start)
+LONG(0xde316 - code32init_start)
+LONG(0xde3c6 - code32init_start)
+LONG(0xde3d4 - code32init_start)
+LONG(0xde3f8 - code32init_start)
+LONG(0xde419 - code32init_start)
+LONG(0xde467 - code32init_start)
+LONG(0xde496 - code32init_start)
+LONG(0xde4ac - code32init_start)
+LONG(0xde4f7 - code32init_start)
+LONG(0xde567 - code32init_start)
+LONG(0xde6c0 - code32init_start)
+LONG(0xdea9c - code32init_start)
+LONG(0xdead4 - code32init_start)
+LONG(0xdeadc - code32init_start)
+LONG(0xdeb2e - code32init_start)
+LONG(0xdeb99 - code32init_start)
+LONG(0xdebd2 - code32init_start)
+LONG(0xded2f - code32init_start)
+LONG(0xded4a - code32init_start)
+LONG(0xded50 - code32init_start)
+LONG(0xded5b - code32init_start)
+LONG(0xded67 - code32init_start)
+LONG(0xded71 - code32init_start)
+LONG(0xded82 - code32init_start)
+LONG(0xded8a - code32init_start)
+LONG(0xded90 - code32init_start)
+LONG(0xded98 - code32init_start)
+LONG(0xdedf2 - code32init_start)
+LONG(0xdedf7 - code32init_start)
+LONG(0xdedfd - code32init_start)
+LONG(0xdee06 - code32init_start)
+LONG(0xdee3f - code32init_start)
+LONG(0xdee72 - code32init_start)
+LONG(0xdeea8 - code32init_start)
+LONG(0xdf3b6 - code32init_start)
+LONG(0xdf3bc - code32init_start)
+LONG(0xdf3c9 - code32init_start)
+LONG(0xdf43e - code32init_start)
+LONG(0xdf4ed - code32init_start)
+LONG(0xdf52c - code32init_start)
+LONG(0xdf546 - code32init_start)
+LONG(0xdf557 - code32init_start)
+LONG(0xdf59d - code32init_start)
+LONG(0xdf5a3 - code32init_start)
+LONG(0xdf5f7 - code32init_start)
+LONG(0xdf5fd - code32init_start)
+LONG(0xdf610 - code32init_start)
+LONG(0xdf675 - code32init_start)
+LONG(0xdf67f - code32init_start)
+LONG(0xdf6e9 - code32init_start)
+LONG(0xdf6ef - code32init_start)
+LONG(0xdf70c - code32init_start)
+LONG(0xdf712 - code32init_start)
+LONG(0xdf77b - code32init_start)
+LONG(0xdf8dc - code32init_start)
+LONG(0xdf8e2 - code32init_start)
+LONG(0xdf904 - code32init_start)
+LONG(0xdf90a - code32init_start)
+LONG(0xdf9a6 - code32init_start)
+LONG(0xdf9be - code32init_start)
+LONG(0xdfac5 - code32init_start)
+LONG(0xdfb48 - code32init_start)
+LONG(0xdfba6 - code32init_start)
+LONG(0xdfbed - code32init_start)
+LONG(0xdfc06 - code32init_start)
+LONG(0xdfc0e - code32init_start)
+LONG(0xdfc59 - code32init_start)
+LONG(0xdfd8a - code32init_start)
+LONG(0xdfd9c - code32init_start)
+LONG(0xdfe2d - code32init_start)
+LONG(0xdfe5c - code32init_start)
+LONG(0xdfebb - code32init_start)
+LONG(0xdfef6 - code32init_start)
+LONG(0xdffaa - code32init_start)
+LONG(0xe02b9 - code32init_start)
+LONG(0xe0621 - code32init_start)
+LONG(0xe081a - code32init_start)
+LONG(0xe0846 - code32init_start)
+LONG(0xe0922 - code32init_start)
+LONG(0xe0af2 - code32init_start)
+LONG(0xe0b0e - code32init_start)
+LONG(0xe0b6b - code32init_start)
+LONG(0xe0b96 - code32init_start)
+LONG(0xe0bcd - code32init_start)
+LONG(0xe0bf5 - code32init_start)
+LONG(0xe0c14 - code32init_start)
+LONG(0xe0c46 - code32init_start)
+LONG(0xe0d03 - code32init_start)
+LONG(0xe0d25 - code32init_start)
+LONG(0xe0d57 - code32init_start)
+LONG(0xe0f96 - code32init_start)
+LONG(0xe0fc1 - code32init_start)
+LONG(0xe0ffa - code32init_start)
+LONG(0xe1014 - code32init_start)
+LONG(0xe105c - code32init_start)
+LONG(0xe107c - code32init_start)
+LONG(0xe1112 - code32init_start)
+LONG(0xe13ad - code32init_start)
+LONG(0xe1446 - code32init_start)
+LONG(0xe1450 - code32init_start)
+LONG(0xe145a - code32init_start)
+LONG(0xe145e - code32init_start)
+LONG(0xe1480 - code32init_start)
+LONG(0xe1486 - code32init_start)
+LONG(0xe149e - code32init_start)
+LONG(0xe14ae - code32init_start)
+LONG(0xe14d7 - code32init_start)
+LONG(0xe15bd - code32init_start)
+LONG(0xe1642 - code32init_start)
+LONG(0xe1654 - code32init_start)
+LONG(0xe178f - code32init_start)
+LONG(0xe17a3 - code32init_start)
+LONG(0xe1999 - code32init_start)
+LONG(0xe19ac - code32init_start)
+LONG(0xe19c8 - code32init_start)
+LONG(0xe1a33 - code32init_start)
+LONG(0xe1be8 - code32init_start)
+LONG(0xe1ce3 - code32init_start)
+LONG(0xe1d85 - code32init_start)
+LONG(0xe1d9b - code32init_start)
+LONG(0xe1dac - code32init_start)
+LONG(0xe1e5b - code32init_start)
+LONG(0xe1f7d - code32init_start)
+LONG(0xe1f82 - code32init_start)
+LONG(0xe1fd2 - code32init_start)
+LONG(0xe205a - code32init_start)
+LONG(0xe20ab - code32init_start)
+LONG(0xe20c2 - code32init_start)
+LONG(0xe212d - code32init_start)
+LONG(0xe21a5 - code32init_start)
+LONG(0xe21d7 - code32init_start)
+LONG(0xe23d7 - code32init_start)
+LONG(0xe244b - code32init_start)
+LONG(0xe246f - code32init_start)
+LONG(0xe2484 - code32init_start)
+LONG(0xe24b4 - code32init_start)
+LONG(0xe24f5 - code32init_start)
+LONG(0xe2501 - code32init_start)
+LONG(0xe252a - code32init_start)
+LONG(0xe25e1 - code32init_start)
+LONG(0xe262e - code32init_start)
+LONG(0xe269a - code32init_start)
+LONG(0xe274b - code32init_start)
+LONG(0xe2751 - code32init_start)
+LONG(0xe2761 - code32init_start)
+LONG(0xe2783 - code32init_start)
+LONG(0xe2812 - code32init_start)
+LONG(0xe2820 - code32init_start)
+LONG(0xe282b - code32init_start)
+LONG(0xe283c - code32init_start)
+LONG(0xe284c - code32init_start)
+LONG(0xe285d - code32init_start)
+LONG(0xe288c - code32init_start)
+LONG(0xe29b2 - code32init_start)
+LONG(0xe2a39 - code32init_start)
+LONG(0xe2c4c - code32init_start)
+LONG(0xe2d6b - code32init_start)
+LONG(0xe2e38 - code32init_start)
+LONG(0xe2e97 - code32init_start)
+LONG(0xe2ec9 - code32init_start)
+LONG(0xe3471 - code32init_start)
+LONG(0xe3479 - code32init_start)
+LONG(0xe347f - code32init_start)
+LONG(0xe35db - code32init_start)
+LONG(0xe3620 - code32init_start)
+LONG(0xe3626 - code32init_start)
+LONG(0xe364d - code32init_start)
+LONG(0xe3653 - code32init_start)
+LONG(0xe36c1 - code32init_start)
+LONG(0xe370d - code32init_start)
+LONG(0xe3713 - code32init_start)
+LONG(0xe376c - code32init_start)
+LONG(0xe386e - code32init_start)
+LONG(0xe38e4 - code32init_start)
+LONG(0xe39e6 - code32init_start)
+LONG(0xe3a10 - code32init_start)
+LONG(0xe3a9a - code32init_start)
+LONG(0xe3aa8 - code32init_start)
+LONG(0xe3af6 - code32init_start)
+LONG(0xe3b37 - code32init_start)
+LONG(0xe3bb2 - code32init_start)
+LONG(0xe3c38 - code32init_start)
+LONG(0xe3d3a - code32init_start)
+LONG(0xe3d41 - code32init_start)
+LONG(0xe3d86 - code32init_start)
+LONG(0xe3daf - code32init_start)
+LONG(0xe3db6 - code32init_start)
+LONG(0xe3df0 - code32init_start)
+LONG(0xe3fa0 - code32init_start)
+LONG(0xe3fe5 - code32init_start)
+LONG(0xe3fec - code32init_start)
+LONG(0xe4006 - code32init_start)
+LONG(0xe401f - code32init_start)
+LONG(0xe403d - code32init_start)
+LONG(0xe4081 - code32init_start)
+LONG(0xe4097 - code32init_start)
+LONG(0xe40f2 - code32init_start)
+LONG(0xe4151 - code32init_start)
+LONG(0xe41bf - code32init_start)
+LONG(0xe41ce - code32init_start)
+LONG(0xe41d4 - code32init_start)
+LONG(0xe41ea - code32init_start)
+LONG(0xe41f0 - code32init_start)
+LONG(0xe4281 - code32init_start)
+LONG(0xe4381 - code32init_start)
+LONG(0xe43d2 - code32init_start)
+LONG(0xe4468 - code32init_start)
+LONG(0xe45be - code32init_start)
+LONG(0xe4677 - code32init_start)
+LONG(0xe47b0 - code32init_start)
+LONG(0xe47cd - code32init_start)
+LONG(0xe4985 - code32init_start)
+LONG(0xe4a00 - code32init_start)
+LONG(0xe4a53 - code32init_start)
+LONG(0xe4a81 - code32init_start)
+LONG(0xe4ad6 - code32init_start)
+LONG(0xe4ba7 - code32init_start)
+LONG(0xe4bbc - code32init_start)
+LONG(0xe4ff3 - code32init_start)
+LONG(0xe5004 - code32init_start)
+LONG(0xe5071 - code32init_start)
+LONG(0xe5081 - code32init_start)
+LONG(0xe50f2 - code32init_start)
+LONG(0xe5102 - code32init_start)
+LONG(0xe5311 - code32init_start)
+LONG(0xe5346 - code32init_start)
+LONG(0xe5350 - code32init_start)
+LONG(0xe5385 - code32init_start)
+LONG(0xe566c - code32init_start)
+LONG(0xe5672 - code32init_start)
+LONG(0xe5688 - code32init_start)
+LONG(0xe568e - code32init_start)
+LONG(0xe5722 - code32init_start)
+LONG(0xe5744 - code32init_start)
+LONG(0xe5787 - code32init_start)
+LONG(0xe579f - code32init_start)
+LONG(0xe57a7 - code32init_start)
+LONG(0xe59ce - code32init_start)
+LONG(0xe59d8 - code32init_start)
+LONG(0xe59e2 - code32init_start)
+LONG(0xe59ec - code32init_start)
+LONG(0xe5a5e - code32init_start)
+LONG(0xe5a6e - code32init_start)
+LONG(0xe5a7b - code32init_start)
+LONG(0xe5a85 - code32init_start)
+LONG(0xe5ab7 - code32init_start)
+LONG(0xe5ae3 - code32init_start)
+LONG(0xe5ae8 - code32init_start)
+LONG(0xe5af5 - code32init_start)
+LONG(0xe5afe - code32init_start)
+LONG(0xe5b15 - code32init_start)
+LONG(0xe5b2d - code32init_start)
+LONG(0xe5b82 - code32init_start)
+LONG(0xe5bae - code32init_start)
+LONG(0xe5bb3 - code32init_start)
+LONG(0xe5bc0 - code32init_start)
+LONG(0xe5bc9 - code32init_start)
+LONG(0xe5be0 - code32init_start)
+LONG(0xe5bfc - code32init_start)
+LONG(0xe5d81 - code32init_start)
+LONG(0xe5ef9 - code32init_start)
+LONG(0xe5f00 - code32init_start)
+LONG(0xe5f3c - code32init_start)
+LONG(0xe63a7 - code32init_start)
+LONG(0xe63e3 - code32init_start)
+LONG(0xe6402 - code32init_start)
+LONG(0xe646a - code32init_start)
+LONG(0xe64bc - code32init_start)
+LONG(0xe64e7 - code32init_start)
+LONG(0xe64f6 - code32init_start)
+LONG(0xe6583 - code32init_start)
+LONG(0xe66c9 - code32init_start)
+LONG(0xe689a - code32init_start)
+LONG(0xe6bba - code32init_start)
+LONG(0xe6c13 - code32init_start)
+LONG(0xe6c2a - code32init_start)
+LONG(0xe6c41 - code32init_start)
+LONG(0xe6c5f - code32init_start)
+LONG(0xe6d4e - code32init_start)
+LONG(0xe6eed - code32init_start)
+LONG(0xe7099 - code32init_start)
+LONG(0xe70a9 - code32init_start)
+LONG(0xe764b - code32init_start)
+LONG(0xe78ac - code32init_start)
+LONG(0xe7b0d - code32init_start)
+LONG(0xe7ced - code32init_start)
+LONG(0xe7cf2 - code32init_start)
+LONG(0xe7d42 - code32init_start)
+LONG(0xe7d7d - code32init_start)
+LONG(0xe7dd8 - code32init_start)
+LONG(0xe7e71 - code32init_start)
+LONG(0xe7ed8 - code32init_start)
+LONG(0xe7f5e - code32init_start)
+LONG(0xe7f94 - code32init_start)
+LONG(0xe7fe4 - code32init_start)
+LONG(0xe8001 - code32init_start)
+LONG(0xe805b - code32init_start)
+LONG(0xe808a - code32init_start)
+LONG(0xe8136 - code32init_start)
 LONG(0xe8222 - code32init_start)
-LONG(0xe825d - code32init_start)
-LONG(0xe82b8 - code32init_start)
-LONG(0xe8351 - code32init_start)
-LONG(0xe83b8 - code32init_start)
-LONG(0xe843e - code32init_start)
-LONG(0xe8474 - code32init_start)
-LONG(0xe84c4 - code32init_start)
-LONG(0xe84e1 - code32init_start)
-LONG(0xe853b - code32init_start)
-LONG(0xe856a - code32init_start)
-LONG(0xe8616 - code32init_start)
-LONG(0xe8702 - code32init_start)
-LONG(0xe871a - code32init_start)
-LONG(0xe8734 - code32init_start)
-LONG(0xe882e - code32init_start)
-LONG(0xe8c40 - code32init_start)
-LONG(0xe8e97 - code32init_start)
-LONG(0xe9cf5 - code32init_start)
-LONG(0xe9d42 - code32init_start)
-LONG(0xe9d4b - code32init_start)
-LONG(0xe9d7d - code32init_start)
-LONG(0xe9da9 - code32init_start)
-LONG(0xea425 - code32init_start)
-LONG(0xea443 - code32init_start)
-LONG(0xea47a - code32init_start)
-LONG(0xea547 - code32init_start)
-LONG(0xea599 - code32init_start)
-LONG(0xea6a5 - code32init_start)
-LONG(0xea6b5 - code32init_start)
-LONG(0xea72f - code32init_start)
-LONG(0xea8a2 - code32init_start)
-LONG(0xea8a9 - code32init_start)
-LONG(0xea99b - code32init_start)
-LONG(0xea9b3 - code32init_start)
-LONG(0xeaa2e - code32init_start)
-LONG(0xeaa40 - code32init_start)
-LONG(0xeaa59 - code32init_start)
-LONG(0xeabd4 - code32init_start)
-LONG(0xeabf6 - code32init_start)
-LONG(0xeac07 - code32init_start)
-LONG(0xeac18 - code32init_start)
-LONG(0xeac1d - code32init_start)
-LONG(0xeac27 - code32init_start)
-LONG(0xeac2d - code32init_start)
-LONG(0xeac39 - code32init_start)
-LONG(0xeac49 - code32init_start)
-LONG(0xeac4f - code32init_start)
-LONG(0xeac9f - code32init_start)
+LONG(0xe823a - code32init_start)
+LONG(0xe8254 - code32init_start)
+LONG(0xe834e - code32init_start)
+LONG(0xe8760 - code32init_start)
+LONG(0xe89b7 - code32init_start)
+LONG(0xe9815 - code32init_start)
+LONG(0xe9862 - code32init_start)
+LONG(0xe986b - code32init_start)
+LONG(0xe989d - code32init_start)
+LONG(0xe98c9 - code32init_start)
+LONG(0xe9f45 - code32init_start)
+LONG(0xe9f63 - code32init_start)
+LONG(0xe9f9a - code32init_start)
+LONG(0xea067 - code32init_start)
+LONG(0xea0b9 - code32init_start)
+LONG(0xea1c5 - code32init_start)
+LONG(0xea1d5 - code32init_start)
+LONG(0xea24f - code32init_start)
+LONG(0xea3c2 - code32init_start)
+LONG(0xea3c9 - code32init_start)
+LONG(0xea4bb - code32init_start)
+LONG(0xea4d3 - code32init_start)
+LONG(0xea54e - code32init_start)
+LONG(0xea560 - code32init_start)
+LONG(0xea579 - code32init_start)
+LONG(0xea6f4 - code32init_start)
+LONG(0xea716 - code32init_start)
+LONG(0xea727 - code32init_start)
+LONG(0xea738 - code32init_start)
+LONG(0xea73d - code32init_start)
+LONG(0xea747 - code32init_start)
+LONG(0xea74d - code32init_start)
+LONG(0xea759 - code32init_start)
+LONG(0xea769 - code32init_start)
+LONG(0xea76f - code32init_start)
+LONG(0xea7bf - code32init_start)
+LONG(0xea7d4 - code32init_start)
+LONG(0xea8db - code32init_start)
+LONG(0xea8f8 - code32init_start)
+LONG(0xea90b - code32init_start)
+LONG(0xea9c3 - code32init_start)
+LONG(0xea9d8 - code32init_start)
+LONG(0xeaa6b - code32init_start)
+LONG(0xeaa70 - code32init_start)
+LONG(0xeaa77 - code32init_start)
+LONG(0xeaa7c - code32init_start)
+LONG(0xeab3e - code32init_start)
+LONG(0xeabd1 - code32init_start)
+LONG(0xeac24 - code32init_start)
+LONG(0xeac28 - code32init_start)
+LONG(0xeac2c - code32init_start)
+LONG(0xeac30 - code32init_start)
+LONG(0xeac34 - code32init_start)
+LONG(0xeac38 - code32init_start)
+LONG(0xeac3c - code32init_start)
+LONG(0xeac40 - code32init_start)
+LONG(0xeac44 - code32init_start)
+LONG(0xeac48 - code32init_start)
+LONG(0xeac4c - code32init_start)
+LONG(0xeac50 - code32init_start)
+LONG(0xeac54 - code32init_start)
+LONG(0xeac58 - code32init_start)
+LONG(0xeac5c - code32init_start)
+LONG(0xeac60 - code32init_start)
+LONG(0xeac64 - code32init_start)
+LONG(0xeac68 - code32init_start)
+LONG(0xeac6c - code32init_start)
+LONG(0xeac70 - code32init_start)
+LONG(0xeac74 - code32init_start)
+LONG(0xeac78 - code32init_start)
+LONG(0xeac7c - code32init_start)
+LONG(0xeac80 - code32init_start)
+LONG(0xeac84 - code32init_start)
+LONG(0xeac88 - code32init_start)
+LONG(0xeac8c - code32init_start)
+LONG(0xeac90 - code32init_start)
+LONG(0xeac94 - code32init_start)
+LONG(0xeac98 - code32init_start)
+LONG(0xeac9c - code32init_start)
+LONG(0xeaca0 - code32init_start)
+LONG(0xeaca4 - code32init_start)
+LONG(0xeaca8 - code32init_start)
+LONG(0xeacac - code32init_start)
+LONG(0xeacb0 - code32init_start)
 LONG(0xeacb4 - code32init_start)
-LONG(0xeadbb - code32init_start)
-LONG(0xeadd8 - code32init_start)
-LONG(0xeadeb - code32init_start)
-LONG(0xeaea3 - code32init_start)
-LONG(0xeaeb8 - code32init_start)
-LONG(0xeaf4b - code32init_start)
-LONG(0xeaf50 - code32init_start)
-LONG(0xeaf57 - code32init_start)
-LONG(0xeaf5c - code32init_start)
-LONG(0xeb01e - code32init_start)
-LONG(0xeb0b1 - code32init_start)
-LONG(0xeb104 - code32init_start)
-LONG(0xeb108 - code32init_start)
-LONG(0xeb10c - code32init_start)
-LONG(0xeb110 - code32init_start)
-LONG(0xeb114 - code32init_start)
-LONG(0xeb118 - code32init_start)
-LONG(0xeb11c - code32init_start)
-LONG(0xeb120 - code32init_start)
-LONG(0xeb124 - code32init_start)
-LONG(0xeb128 - code32init_start)
-LONG(0xeb12c - code32init_start)
-LONG(0xeb130 - code32init_start)
-LONG(0xeb134 - code32init_start)
-LONG(0xeb138 - code32init_start)
-LONG(0xeb13c - code32init_start)
-LONG(0xeb140 - code32init_start)
-LONG(0xeb144 - code32init_start)
-LONG(0xeb148 - code32init_start)
-LONG(0xeb14c - code32init_start)
-LONG(0xeb150 - code32init_start)
-LONG(0xeb154 - code32init_start)
-LONG(0xeb158 - code32init_start)
-LONG(0xeb15c - code32init_start)
-LONG(0xeb160 - code32init_start)
-LONG(0xeb164 - code32init_start)
-LONG(0xeb168 - code32init_start)
-LONG(0xeb16c - code32init_start)
-LONG(0xeb170 - code32init_start)
-LONG(0xeb174 - code32init_start)
-LONG(0xeb178 - code32init_start)
-LONG(0xeb17c - code32init_start)
-LONG(0xeb180 - code32init_start)
-LONG(0xeb184 - code32init_start)
-LONG(0xeb188 - code32init_start)
-LONG(0xeb18c - code32init_start)
-LONG(0xeb190 - code32init_start)
-LONG(0xeb194 - code32init_start)
-LONG(0xeb198 - code32init_start)
-LONG(0xeb19c - code32init_start)
-LONG(0xeb1a0 - code32init_start)
-LONG(0xeb1a4 - code32init_start)
-LONG(0xeb1a8 - code32init_start)
-LONG(0xeb1ac - code32init_start)
-LONG(0xeb1b0 - code32init_start)
-LONG(0xeb1b4 - code32init_start)
-LONG(0xeb1b8 - code32init_start)
-LONG(0xeb1bc - code32init_start)
-LONG(0xeb1c0 - code32init_start)
-LONG(0xeb1c4 - code32init_start)
-LONG(0xeb1c8 - code32init_start)
-LONG(0xeb1cc - code32init_start)
-LONG(0xeb1d0 - code32init_start)
-LONG(0xeb1d4 - code32init_start)
-LONG(0xeb1d8 - code32init_start)
-LONG(0xeb1dc - code32init_start)
-LONG(0xeb1e0 - code32init_start)
-LONG(0xeb1e4 - code32init_start)
-LONG(0xeb1e8 - code32init_start)
-LONG(0xeb1ec - code32init_start)
-LONG(0xeb1f0 - code32init_start)
-LONG(0xeb1f4 - code32init_start)
-LONG(0xeb1f8 - code32init_start)
-LONG(0xeb1fc - code32init_start)
-LONG(0xeb930 - code32init_start)
-LONG(0xeb944 - code32init_start)
-LONG(0xeb970 - code32init_start)
-LONG(0xeb984 - code32init_start)
-LONG(0xeb9b0 - code32init_start)
-LONG(0xeb9c4 - code32init_start)
-LONG(0xeb9d8 - code32init_start)
-LONG(0xeb9ec - code32init_start)
-LONG(0xeba00 - code32init_start)
-LONG(0xeba14 - code32init_start)
-LONG(0xeba28 - code32init_start)
-LONG(0xeba3c - code32init_start)
-LONG(0xeba50 - code32init_start)
-LONG(0xeba64 - code32init_start)
-LONG(0xeba78 - code32init_start)
-LONG(0xeba8c - code32init_start)
-LONG(0xebaa0 - code32init_start)
-LONG(0xebb90 - code32init_start)
-LONG(0xebba4 - code32init_start)
-LONG(0xebd38 - code32init_start)
-LONG(0xebde4 - code32init_start)
-LONG(0xebde8 - code32init_start)
-LONG(0xebdec - code32init_start)
-LONG(0xebdf0 - code32init_start)
-LONG(0xebdf4 - code32init_start)
+LONG(0xeacb8 - code32init_start)
+LONG(0xeacbc - code32init_start)
+LONG(0xeacc0 - code32init_start)
+LONG(0xeacc4 - code32init_start)
+LONG(0xeacc8 - code32init_start)
+LONG(0xeaccc - code32init_start)
+LONG(0xeacd0 - code32init_start)
+LONG(0xeacd4 - code32init_start)
+LONG(0xeacd8 - code32init_start)
+LONG(0xeacdc - code32init_start)
+LONG(0xeace0 - code32init_start)
+LONG(0xeace4 - code32init_start)
+LONG(0xeace8 - code32init_start)
+LONG(0xeacec - code32init_start)
+LONG(0xeacf0 - code32init_start)
+LONG(0xeacf4 - code32init_start)
+LONG(0xeacf8 - code32init_start)
+LONG(0xeacfc - code32init_start)
+LONG(0xead00 - code32init_start)
+LONG(0xead04 - code32init_start)
+LONG(0xead08 - code32init_start)
+LONG(0xead0c - code32init_start)
+LONG(0xead10 - code32init_start)
+LONG(0xead14 - code32init_start)
+LONG(0xead18 - code32init_start)
+LONG(0xead1c - code32init_start)
+LONG(0xeb450 - code32init_start)
+LONG(0xeb464 - code32init_start)
+LONG(0xeb490 - code32init_start)
+LONG(0xeb4a4 - code32init_start)
+LONG(0xeb4d0 - code32init_start)
+LONG(0xeb4e4 - code32init_start)
+LONG(0xeb4f8 - code32init_start)
+LONG(0xeb50c - code32init_start)
+LONG(0xeb520 - code32init_start)
+LONG(0xeb534 - code32init_start)
+LONG(0xeb548 - code32init_start)
+LONG(0xeb55c - code32init_start)
+LONG(0xeb570 - code32init_start)
+LONG(0xeb584 - code32init_start)
+LONG(0xeb598 - code32init_start)
+LONG(0xeb5ac - code32init_start)
+LONG(0xeb5c0 - code32init_start)
+LONG(0xeb6b0 - code32init_start)
+LONG(0xeb6c4 - code32init_start)
+LONG(0xeb858 - code32init_start)
+LONG(0xeb904 - code32init_start)
+LONG(0xeb908 - code32init_start)
+LONG(0xeb90c - code32init_start)
+LONG(0xeb910 - code32init_start)
+LONG(0xeb914 - code32init_start)
         _reloc_abs_end = ABSOLUTE(.) ;
         _reloc_rel_start = ABSOLUTE(.) ;
-LONG(0xda8d5 - code32init_start)
-LONG(0xda993 - code32init_start)
-LONG(0xdaa1b - code32init_start)
-LONG(0xdab38 - code32init_start)
-LONG(0xdabb5 - code32init_start)
-LONG(0xdaec8 - code32init_start)
-LONG(0xdb323 - code32init_start)
-LONG(0xdb335 - code32init_start)
-LONG(0xdb352 - code32init_start)
-LONG(0xdb37b - code32init_start)
-LONG(0xdb396 - code32init_start)
-LONG(0xdb3b6 - code32init_start)
-LONG(0xdb3c6 - code32init_start)
-LONG(0xdb3e4 - code32init_start)
-LONG(0xdb498 - code32init_start)
-LONG(0xdb4aa - code32init_start)
-LONG(0xdb4bd - code32init_start)
-LONG(0xdb4e4 - code32init_start)
-LONG(0xdb4fa - code32init_start)
-LONG(0xdb75c - code32init_start)
-LONG(0xdb81d - code32init_start)
-LONG(0xdb841 - code32init_start)
-LONG(0xdbd6b - code32init_start)
-LONG(0xdbf5e - code32init_start)
-LONG(0xdbf9c - code32init_start)
-LONG(0xdbfbb - code32init_start)
-LONG(0xdc019 - code32init_start)
-LONG(0xdc094 - code32init_start)
-LONG(0xdc0a9 - code32init_start)
-LONG(0xdc5ac - code32init_start)
-LONG(0xdc5ee - code32init_start)
-LONG(0xdc692 - code32init_start)
-LONG(0xdc6a5 - code32init_start)
-LONG(0xdc6be - code32init_start)
-LONG(0xdc6d6 - code32init_start)
-LONG(0xdc724 - code32init_start)
-LONG(0xdc790 - code32init_start)
-LONG(0xdc7aa - code32init_start)
-LONG(0xdc83c - code32init_start)
-LONG(0xdc845 - code32init_start)
-LONG(0xdc84e - code32init_start)
-LONG(0xdc857 - code32init_start)
+LONG(0xda355 - code32init_start)
+LONG(0xda413 - code32init_start)
+LONG(0xda49b - code32init_start)
+LONG(0xda583 - code32init_start)
+LONG(0xda600 - code32init_start)
+LONG(0xda913 - code32init_start)
+LONG(0xdad30 - code32init_start)
+LONG(0xdadf1 - code32init_start)
+LONG(0xdae15 - code32init_start)
+LONG(0xdb33f - code32init_start)
+LONG(0xdb42e - code32init_start)
+LONG(0xdb46c - code32init_start)
+LONG(0xdb48b - code32init_start)
+LONG(0xdb4e9 - code32init_start)
+LONG(0xdb564 - code32init_start)
+LONG(0xdb579 - code32init_start)
+LONG(0xdba80 - code32init_start)
+LONG(0xdbb24 - code32init_start)
+LONG(0xdbb37 - code32init_start)
+LONG(0xdbb50 - code32init_start)
+LONG(0xdbb68 - code32init_start)
+LONG(0xdbbb6 - code32init_start)
+LONG(0xdbc22 - code32init_start)
+LONG(0xdbc3c - code32init_start)
+LONG(0xdbcce - code32init_start)
+LONG(0xdbcd7 - code32init_start)
+LONG(0xdbce0 - code32init_start)
+LONG(0xdbce9 - code32init_start)
+LONG(0xdbcfc - code32init_start)
+LONG(0xdbd5c - code32init_start)
+LONG(0xdbd6c - code32init_start)
+LONG(0xdbd7d - code32init_start)
+LONG(0xdbda2 - code32init_start)
+LONG(0xdbdd9 - code32init_start)
+LONG(0xdbdf3 - code32init_start)
+LONG(0xdbe06 - code32init_start)
+LONG(0xdbe1d - code32init_start)
+LONG(0xdbe2b - code32init_start)
+LONG(0xdbe54 - code32init_start)
+LONG(0xdbe7f - code32init_start)
+LONG(0xdbe84 - code32init_start)
+LONG(0xdbeca - code32init_start)
+LONG(0xdbee1 - code32init_start)
+LONG(0xdbef0 - code32init_start)
+LONG(0xdbf3a - code32init_start)
+LONG(0xdbf51 - code32init_start)
+LONG(0xdbf72 - code32init_start)
+LONG(0xdbfb3 - code32init_start)
+LONG(0xdc0d4 - code32init_start)
+LONG(0xdc0e5 - code32init_start)
+LONG(0xdc195 - code32init_start)
+LONG(0xdc354 - code32init_start)
+LONG(0xdc365 - code32init_start)
+LONG(0xdc49f - code32init_start)
+LONG(0xdc4cd - code32init_start)
+LONG(0xdc4fc - code32init_start)
+LONG(0xdc859 - code32init_start)
 LONG(0xdc86a - code32init_start)
-LONG(0xdc8ca - code32init_start)
-LONG(0xdc8da - code32init_start)
-LONG(0xdc8eb - code32init_start)
-LONG(0xdc910 - code32init_start)
-LONG(0xdc947 - code32init_start)
-LONG(0xdc961 - code32init_start)
-LONG(0xdc974 - code32init_start)
-LONG(0xdc98b - code32init_start)
-LONG(0xdc999 - code32init_start)
-LONG(0xdc9c2 - code32init_start)
-LONG(0xdc9ed - code32init_start)
-LONG(0xdc9f2 - code32init_start)
-LONG(0xdca38 - code32init_start)
-LONG(0xdca4f - code32init_start)
-LONG(0xdca5e - code32init_start)
-LONG(0xdcaa8 - code32init_start)
-LONG(0xdcabf - code32init_start)
-LONG(0xdcae0 - code32init_start)
-LONG(0xdcb21 - code32init_start)
-LONG(0xdcc42 - code32init_start)
-LONG(0xdcc53 - code32init_start)
-LONG(0xdcd03 - code32init_start)
-LONG(0xdcec2 - code32init_start)
-LONG(0xdced3 - code32init_start)
-LONG(0xdd011 - code32init_start)
-LONG(0xdd02a - code32init_start)
-LONG(0xdd058 - code32init_start)
-LONG(0xdd091 - code32init_start)
-LONG(0xdd0b0 - code32init_start)
-LONG(0xdd0bf - code32init_start)
-LONG(0xdd66f - code32init_start)
-LONG(0xdd70a - code32init_start)
-LONG(0xdd77a - code32init_start)
-LONG(0xdd86c - code32init_start)
-LONG(0xdd8a7 - code32init_start)
-LONG(0xdd8b8 - code32init_start)
-LONG(0xdd8cf - code32init_start)
-LONG(0xdd8d6 - code32init_start)
-LONG(0xdd8ea - code32init_start)
-LONG(0xdd8f1 - code32init_start)
-LONG(0xdd904 - code32init_start)
-LONG(0xdd913 - code32init_start)
-LONG(0xdd925 - code32init_start)
-LONG(0xdd966 - code32init_start)
-LONG(0xdd992 - code32init_start)
-LONG(0xdd9bb - code32init_start)
-LONG(0xdd9c0 - code32init_start)
-LONG(0xdd9e0 - code32init_start)
-LONG(0xdda0c - code32init_start)
-LONG(0xdda22 - code32init_start)
-LONG(0xdda34 - code32init_start)
-LONG(0xdda4b - code32init_start)
-LONG(0xdda5e - code32init_start)
-LONG(0xdda77 - code32init_start)
-LONG(0xdda90 - code32init_start)
-LONG(0xddaa1 - code32init_start)
-LONG(0xddab6 - code32init_start)
-LONG(0xddae4 - code32init_start)
-LONG(0xddaf6 - code32init_start)
-LONG(0xddb09 - code32init_start)
-LONG(0xddb13 - code32init_start)
-LONG(0xddb2b - code32init_start)
+LONG(0xdc881 - code32init_start)
+LONG(0xdc888 - code32init_start)
+LONG(0xdc89c - code32init_start)
+LONG(0xdc8a3 - code32init_start)
+LONG(0xdc8b6 - code32init_start)
+LONG(0xdc8c5 - code32init_start)
+LONG(0xdc8d7 - code32init_start)
+LONG(0xdc8ea - code32init_start)
+LONG(0xdc916 - code32init_start)
+LONG(0xdc93f - code32init_start)
+LONG(0xdc944 - code32init_start)
+LONG(0xdc964 - code32init_start)
+LONG(0xdc990 - code32init_start)
+LONG(0xdc9a6 - code32init_start)
+LONG(0xdc9b8 - code32init_start)
+LONG(0xdc9cf - code32init_start)
+LONG(0xdc9e2 - code32init_start)
+LONG(0xdc9fb - code32init_start)
+LONG(0xdca14 - code32init_start)
+LONG(0xdca25 - code32init_start)
+LONG(0xdca3a - code32init_start)
+LONG(0xdca68 - code32init_start)
+LONG(0xdca7a - code32init_start)
+LONG(0xdca8d - code32init_start)
+LONG(0xdca97 - code32init_start)
+LONG(0xdcaaf - code32init_start)
+LONG(0xdcae7 - code32init_start)
+LONG(0xdcb1e - code32init_start)
+LONG(0xdcb63 - code32init_start)
+LONG(0xdcb82 - code32init_start)
+LONG(0xdcb97 - code32init_start)
+LONG(0xdcc4a - code32init_start)
+LONG(0xdcde3 - code32init_start)
+LONG(0xdce04 - code32init_start)
+LONG(0xdce12 - code32init_start)
+LONG(0xdce34 - code32init_start)
+LONG(0xdce79 - code32init_start)
+LONG(0xdced1 - code32init_start)
+LONG(0xdceed - code32init_start)
+LONG(0xdcf11 - code32init_start)
+LONG(0xdcf2a - code32init_start)
+LONG(0xdcf40 - code32init_start)
+LONG(0xdcf87 - code32init_start)
+LONG(0xdcf97 - code32init_start)
+LONG(0xdcfb9 - code32init_start)
+LONG(0xdcfe2 - code32init_start)
+LONG(0xdcff9 - code32init_start)
+LONG(0xdd007 - code32init_start)
+LONG(0xdd038 - code32init_start)
+LONG(0xdd052 - code32init_start)
+LONG(0xdd075 - code32init_start)
+LONG(0xdd084 - code32init_start)
+LONG(0xdd094 - code32init_start)
+LONG(0xdd0c3 - code32init_start)
+LONG(0xdd0d7 - code32init_start)
+LONG(0xdd0e7 - code32init_start)
+LONG(0xdd10c - code32init_start)
+LONG(0xdd143 - code32init_start)
+LONG(0xdd16c - code32init_start)
+LONG(0xdd18d - code32init_start)
+LONG(0xdd1ad - code32init_start)
+LONG(0xdd1c8 - code32init_start)
+LONG(0xdd1dc - code32init_start)
+LONG(0xdd1f7 - code32init_start)
+LONG(0xdd297 - code32init_start)
+LONG(0xdd2f5 - code32init_start)
+LONG(0xdd324 - code32init_start)
+LONG(0xdd3d4 - code32init_start)
+LONG(0xdd3e6 - code32init_start)
+LONG(0xdd446 - code32init_start)
+LONG(0xdd472 - code32init_start)
+LONG(0xdd49b - code32init_start)
+LONG(0xdd4a9 - code32init_start)
+LONG(0xdd594 - code32init_start)
+LONG(0xdd5a6 - code32init_start)
+LONG(0xdd5c4 - code32init_start)
+LONG(0xdd5f0 - code32init_start)
+LONG(0xdd60c - code32init_start)
+LONG(0xdd62c - code32init_start)
+LONG(0xdd63c - code32init_start)
+LONG(0xdd658 - code32init_start)
+LONG(0xdd68d - code32init_start)
+LONG(0xdd706 - code32init_start)
+LONG(0xdd794 - code32init_start)
+LONG(0xdd7a7 - code32init_start)
+LONG(0xdd7ba - code32init_start)
+LONG(0xdd7e2 - code32init_start)
+LONG(0xdd7f9 - code32init_start)
+LONG(0xddaaf - code32init_start)
+LONG(0xddaf9 - code32init_start)
+LONG(0xddb1b - code32init_start)
+LONG(0xddb4d - code32init_start)
+LONG(0xddb63 - code32init_start)
+LONG(0xddb72 - code32init_start)
 LONG(0xddb7c - code32init_start)
-LONG(0xddbba - code32init_start)
-LONG(0xddbe1 - code32init_start)
-LONG(0xddc94 - code32init_start)
-LONG(0xdde2d - code32init_start)
-LONG(0xdde4e - code32init_start)
-LONG(0xdde5c - code32init_start)
-LONG(0xdde7e - code32init_start)
-LONG(0xddec3 - code32init_start)
-LONG(0xddf1b - code32init_start)
-LONG(0xddf37 - code32init_start)
-LONG(0xddf5b - code32init_start)
-LONG(0xddf74 - code32init_start)
-LONG(0xddf8a - code32init_start)
-LONG(0xddfd1 - code32init_start)
-LONG(0xddfe1 - code32init_start)
-LONG(0xde003 - code32init_start)
-LONG(0xde02c - code32init_start)
-LONG(0xde043 - code32init_start)
-LONG(0xde051 - code32init_start)
-LONG(0xde082 - code32init_start)
-LONG(0xde09c - code32init_start)
-LONG(0xde0bf - code32init_start)
-LONG(0xde0ce - code32init_start)
-LONG(0xde0de - code32init_start)
-LONG(0xde10d - code32init_start)
-LONG(0xde121 - code32init_start)
-LONG(0xde131 - code32init_start)
-LONG(0xde156 - code32init_start)
-LONG(0xde18d - code32init_start)
-LONG(0xde1b6 - code32init_start)
-LONG(0xde1d7 - code32init_start)
-LONG(0xde1f7 - code32init_start)
-LONG(0xde212 - code32init_start)
-LONG(0xde226 - code32init_start)
-LONG(0xde241 - code32init_start)
-LONG(0xde2e1 - code32init_start)
-LONG(0xde33f - code32init_start)
-LONG(0xde36e - code32init_start)
-LONG(0xde41e - code32init_start)
-LONG(0xde430 - code32init_start)
-LONG(0xde490 - code32init_start)
-LONG(0xde4bc - code32init_start)
-LONG(0xde4e5 - code32init_start)
-LONG(0xde4f3 - code32init_start)
-LONG(0xde514 - code32init_start)
-LONG(0xde536 - code32init_start)
-LONG(0xde568 - code32init_start)
-LONG(0xde57e - code32init_start)
-LONG(0xde58d - code32init_start)
-LONG(0xde597 - code32init_start)
-LONG(0xde5aa - code32init_start)
-LONG(0xde5c7 - code32init_start)
-LONG(0xde5d7 - code32init_start)
-LONG(0xde5f2 - code32init_start)
-LONG(0xde779 - code32init_start)
-LONG(0xde7aa - code32init_start)
-LONG(0xde7bf - code32init_start)
-LONG(0xde7d6 - code32init_start)
-LONG(0xde7ea - code32init_start)
-LONG(0xde7f7 - code32init_start)
-LONG(0xde805 - code32init_start)
-LONG(0xde844 - code32init_start)
-LONG(0xde85c - code32init_start)
-LONG(0xde874 - code32init_start)
-LONG(0xde8aa - code32init_start)
-LONG(0xde8da - code32init_start)
-LONG(0xde8ed - code32init_start)
-LONG(0xde930 - code32init_start)
-LONG(0xde94d - code32init_start)
-LONG(0xde95e - code32init_start)
-LONG(0xde9a2 - code32init_start)
-LONG(0xdea04 - code32init_start)
-LONG(0xdea5f - code32init_start)
-LONG(0xdeabb - code32init_start)
+LONG(0xddb8f - code32init_start)
+LONG(0xddbac - code32init_start)
+LONG(0xddbbc - code32init_start)
+LONG(0xddbd7 - code32init_start)
+LONG(0xddd5e - code32init_start)
+LONG(0xddd8f - code32init_start)
+LONG(0xddda4 - code32init_start)
+LONG(0xdddbb - code32init_start)
+LONG(0xdddcf - code32init_start)
+LONG(0xddddc - code32init_start)
+LONG(0xdddea - code32init_start)
+LONG(0xdde29 - code32init_start)
+LONG(0xdde41 - code32init_start)
+LONG(0xdde59 - code32init_start)
+LONG(0xdde8f - code32init_start)
+LONG(0xddebf - code32init_start)
+LONG(0xdded2 - code32init_start)
+LONG(0xddf15 - code32init_start)
+LONG(0xddf32 - code32init_start)
+LONG(0xddf43 - code32init_start)
+LONG(0xddf85 - code32init_start)
+LONG(0xde18f - code32init_start)
+LONG(0xde225 - code32init_start)
+LONG(0xde284 - code32init_start)
+LONG(0xde2c2 - code32init_start)
+LONG(0xde32e - code32init_start)
+LONG(0xde431 - code32init_start)
+LONG(0xde486 - code32init_start)
+LONG(0xde4c2 - code32init_start)
+LONG(0xde524 - code32init_start)
+LONG(0xde57f - code32init_start)
+LONG(0xde5db - code32init_start)
+LONG(0xde5ef - code32init_start)
+LONG(0xde60e - code32init_start)
+LONG(0xde618 - code32init_start)
+LONG(0xde62c - code32init_start)
+LONG(0xde641 - code32init_start)
+LONG(0xde652 - code32init_start)
+LONG(0xde66c - code32init_start)
+LONG(0xde676 - code32init_start)
+LONG(0xde68c - code32init_start)
+LONG(0xde698 - code32init_start)
+LONG(0xde6aa - code32init_start)
+LONG(0xde6b7 - code32init_start)
+LONG(0xde6ca - code32init_start)
+LONG(0xde6d8 - code32init_start)
+LONG(0xde6e8 - code32init_start)
+LONG(0xde706 - code32init_start)
+LONG(0xde715 - code32init_start)
+LONG(0xde72c - code32init_start)
+LONG(0xde752 - code32init_start)
+LONG(0xde765 - code32init_start)
+LONG(0xde91b - code32init_start)
+LONG(0xde92a - code32init_start)
+LONG(0xde950 - code32init_start)
+LONG(0xde974 - code32init_start)
+LONG(0xde997 - code32init_start)
+LONG(0xde9ae - code32init_start)
+LONG(0xde9c9 - code32init_start)
+LONG(0xde9e0 - code32init_start)
+LONG(0xdea15 - code32init_start)
 LONG(0xdeacf - code32init_start)
-LONG(0xdeaee - code32init_start)
-LONG(0xdeaf8 - code32init_start)
-LONG(0xdeb0c - code32init_start)
-LONG(0xdeb21 - code32init_start)
-LONG(0xdeb32 - code32init_start)
-LONG(0xdeb4c - code32init_start)
-LONG(0xdeb56 - code32init_start)
-LONG(0xdeb6c - code32init_start)
-LONG(0xdeb78 - code32init_start)
-LONG(0xdeb8a - code32init_start)
-LONG(0xdeb97 - code32init_start)
-LONG(0xdebaa - code32init_start)
-LONG(0xdebb8 - code32init_start)
-LONG(0xdebc8 - code32init_start)
-LONG(0xdebe6 - code32init_start)
-LONG(0xdebf5 - code32init_start)
-LONG(0xdec0c - code32init_start)
-LONG(0xdec32 - code32init_start)
-LONG(0xdec45 - code32init_start)
-LONG(0xdedfb - code32init_start)
-LONG(0xdee0a - code32init_start)
-LONG(0xdee30 - code32init_start)
-LONG(0xdee54 - code32init_start)
-LONG(0xdee77 - code32init_start)
-LONG(0xdee8e - code32init_start)
-LONG(0xdeea9 - code32init_start)
-LONG(0xdeec0 - code32init_start)
-LONG(0xdeef5 - code32init_start)
-LONG(0xdefaf - code32init_start)
-LONG(0xdf03a - code32init_start)
-LONG(0xdf04a - code32init_start)
-LONG(0xdf0d2 - code32init_start)
-LONG(0xdf126 - code32init_start)
-LONG(0xdf136 - code32init_start)
-LONG(0xdf1a6 - code32init_start)
-LONG(0xdf1ed - code32init_start)
-LONG(0xdf209 - code32init_start)
-LONG(0xdf286 - code32init_start)
-LONG(0xdf2c8 - code32init_start)
-LONG(0xdf336 - code32init_start)
+LONG(0xdeb5a - code32init_start)
+LONG(0xdeb6a - code32init_start)
+LONG(0xdebf2 - code32init_start)
+LONG(0xdec46 - code32init_start)
+LONG(0xdec56 - code32init_start)
+LONG(0xdecc6 - code32init_start)
+LONG(0xded0d - code32init_start)
+LONG(0xded29 - code32init_start)
+LONG(0xdeda6 - code32init_start)
+LONG(0xdede8 - code32init_start)
+LONG(0xdee56 - code32init_start)
+LONG(0xdee99 - code32init_start)
+LONG(0xdeea3 - code32init_start)
+LONG(0xdef40 - code32init_start)
+LONG(0xdef5b - code32init_start)
+LONG(0xdefd5 - code32init_start)
+LONG(0xdefe0 - code32init_start)
+LONG(0xdefff - code32init_start)
+LONG(0xdf014 - code32init_start)
+LONG(0xdf024 - code32init_start)
+LONG(0xdf02f - code32init_start)
+LONG(0xdf03e - code32init_start)
+LONG(0xdf17e - code32init_start)
+LONG(0xdf213 - code32init_start)
+LONG(0xdf250 - code32init_start)
+LONG(0xdf262 - code32init_start)
+LONG(0xdf27f - code32init_start)
+LONG(0xdf295 - code32init_start)
+LONG(0xdf2a7 - code32init_start)
+LONG(0xdf2b9 - code32init_start)
+LONG(0xdf2e9 - code32init_start)
+LONG(0xdf354 - code32init_start)
+LONG(0xdf36c - code32init_start)
 LONG(0xdf379 - code32init_start)
-LONG(0xdf383 - code32init_start)
-LONG(0xdf420 - code32init_start)
-LONG(0xdf43b - code32init_start)
-LONG(0xdf4b5 - code32init_start)
-LONG(0xdf4c0 - code32init_start)
-LONG(0xdf4df - code32init_start)
-LONG(0xdf4f4 - code32init_start)
-LONG(0xdf504 - code32init_start)
-LONG(0xdf50f - code32init_start)
-LONG(0xdf51e - code32init_start)
-LONG(0xdf65e - code32init_start)
-LONG(0xdf6f3 - code32init_start)
-LONG(0xdf730 - code32init_start)
-LONG(0xdf742 - code32init_start)
-LONG(0xdf75f - code32init_start)
-LONG(0xdf775 - code32init_start)
-LONG(0xdf787 - code32init_start)
-LONG(0xdf799 - code32init_start)
-LONG(0xdf7c9 - code32init_start)
-LONG(0xdf834 - code32init_start)
-LONG(0xdf84c - code32init_start)
-LONG(0xdf859 - code32init_start)
-LONG(0xdf86a - code32init_start)
-LONG(0xdf930 - code32init_start)
-LONG(0xdf9e6 - code32init_start)
-LONG(0xdfa4d - code32init_start)
-LONG(0xdfa5d - code32init_start)
-LONG(0xdfaca - code32init_start)
-LONG(0xdfae7 - code32init_start)
-LONG(0xdfb6d - code32init_start)
-LONG(0xdfdf8 - code32init_start)
-LONG(0xdfe65 - code32init_start)
-LONG(0xdfe95 - code32init_start)
-LONG(0xdfeec - code32init_start)
-LONG(0xdff21 - code32init_start)
-LONG(0xdff47 - code32init_start)
-LONG(0xdff8a - code32init_start)
-LONG(0xdffbd - code32init_start)
+LONG(0xdf38a - code32init_start)
+LONG(0xdf450 - code32init_start)
+LONG(0xdf506 - code32init_start)
+LONG(0xdf56d - code32init_start)
+LONG(0xdf57d - code32init_start)
+LONG(0xdf5ea - code32init_start)
+LONG(0xdf607 - code32init_start)
+LONG(0xdf68d - code32init_start)
+LONG(0xdf918 - code32init_start)
+LONG(0xdf985 - code32init_start)
+LONG(0xdf9b5 - code32init_start)
+LONG(0xdfa0c - code32init_start)
+LONG(0xdfa41 - code32init_start)
+LONG(0xdfa67 - code32init_start)
+LONG(0xdfaaa - code32init_start)
+LONG(0xdfadd - code32init_start)
+LONG(0xdfc50 - code32init_start)
+LONG(0xdfc98 - code32init_start)
+LONG(0xdfdb8 - code32init_start)
+LONG(0xdfdf2 - code32init_start)
+LONG(0xdfe0a - code32init_start)
+LONG(0xdfe46 - code32init_start)
+LONG(0xdfe76 - code32init_start)
+LONG(0xdfea3 - code32init_start)
+LONG(0xdff49 - code32init_start)
+LONG(0xdff55 - code32init_start)
+LONG(0xdff61 - code32init_start)
+LONG(0xdff85 - code32init_start)
+LONG(0xdffec - code32init_start)
+LONG(0xe0023 - code32init_start)
+LONG(0xe004b - code32init_start)
+LONG(0xe007b - code32init_start)
 LONG(0xe0130 - code32init_start)
-LONG(0xe0178 - code32init_start)
-LONG(0xe0298 - code32init_start)
-LONG(0xe02d2 - code32init_start)
-LONG(0xe02ea - code32init_start)
-LONG(0xe0326 - code32init_start)
-LONG(0xe0356 - code32init_start)
-LONG(0xe0383 - code32init_start)
-LONG(0xe0429 - code32init_start)
-LONG(0xe0435 - code32init_start)
-LONG(0xe0441 - code32init_start)
-LONG(0xe0465 - code32init_start)
-LONG(0xe04cc - code32init_start)
-LONG(0xe0503 - code32init_start)
-LONG(0xe052b - code32init_start)
-LONG(0xe055b - code32init_start)
-LONG(0xe0610 - code32init_start)
-LONG(0xe062d - code32init_start)
-LONG(0xe063e - code32init_start)
-LONG(0xe06af - code32init_start)
-LONG(0xe06e4 - code32init_start)
-LONG(0xe0729 - code32init_start)
-LONG(0xe0746 - code32init_start)
-LONG(0xe0769 - code32init_start)
-LONG(0xe0790 - code32init_start)
-LONG(0xe07a3 - code32init_start)
-LONG(0xe07d9 - code32init_start)
-LONG(0xe0812 - code32init_start)
-LONG(0xe0844 - code32init_start)
-LONG(0xe08a1 - code32init_start)
-LONG(0xe0934 - code32init_start)
-LONG(0xe09fb - code32init_start)
-LONG(0xe0a4a - code32init_start)
-LONG(0xe0a56 - code32init_start)
-LONG(0xe0aaf - code32init_start)
-LONG(0xe0b19 - code32init_start)
-LONG(0xe0b96 - code32init_start)
-LONG(0xe0e0c - code32init_start)
-LONG(0xe0e59 - code32init_start)
-LONG(0xe0e7f - code32init_start)
-LONG(0xe0ea8 - code32init_start)
-LONG(0xe0eba - code32init_start)
-LONG(0xe0ff8 - code32init_start)
-LONG(0xe1055 - code32init_start)
-LONG(0xe10df - code32init_start)
-LONG(0xe119a - code32init_start)
-LONG(0xe11ac - code32init_start)
-LONG(0xe120f - code32init_start)
-LONG(0xe12a0 - code32init_start)
-LONG(0xe133c - code32init_start)
-LONG(0xe139b - code32init_start)
-LONG(0xe1499 - code32init_start)
-LONG(0xe1546 - code32init_start)
-LONG(0xe1566 - code32init_start)
-LONG(0xe1583 - code32init_start)
-LONG(0xe15a6 - code32init_start)
-LONG(0xe15ca - code32init_start)
-LONG(0xe15df - code32init_start)
-LONG(0xe15e9 - code32init_start)
-LONG(0xe15fc - code32init_start)
-LONG(0xe1606 - code32init_start)
-LONG(0xe1630 - code32init_start)
-LONG(0xe163b - code32init_start)
-LONG(0xe1640 - code32init_start)
-LONG(0xe1683 - code32init_start)
-LONG(0xe16a9 - code32init_start)
-LONG(0xe16c7 - code32init_start)
-LONG(0xe17a2 - code32init_start)
-LONG(0xe1849 - code32init_start)
-LONG(0xe1865 - code32init_start)
-LONG(0xe1880 - code32init_start)
+LONG(0xe014d - code32init_start)
+LONG(0xe015e - code32init_start)
+LONG(0xe01cf - code32init_start)
+LONG(0xe0204 - code32init_start)
+LONG(0xe0249 - code32init_start)
+LONG(0xe0266 - code32init_start)
+LONG(0xe0289 - code32init_start)
+LONG(0xe02b0 - code32init_start)
+LONG(0xe02c3 - code32init_start)
+LONG(0xe02f9 - code32init_start)
+LONG(0xe0332 - code32init_start)
+LONG(0xe0364 - code32init_start)
+LONG(0xe03c1 - code32init_start)
+LONG(0xe0454 - code32init_start)
+LONG(0xe051b - code32init_start)
+LONG(0xe056a - code32init_start)
+LONG(0xe0576 - code32init_start)
+LONG(0xe05cf - code32init_start)
+LONG(0xe0639 - code32init_start)
+LONG(0xe06b6 - code32init_start)
+LONG(0xe092c - code32init_start)
+LONG(0xe0979 - code32init_start)
+LONG(0xe099f - code32init_start)
+LONG(0xe09c8 - code32init_start)
+LONG(0xe09da - code32init_start)
+LONG(0xe0b18 - code32init_start)
+LONG(0xe0b75 - code32init_start)
+LONG(0xe0bff - code32init_start)
+LONG(0xe0cba - code32init_start)
+LONG(0xe0ccc - code32init_start)
+LONG(0xe0d2f - code32init_start)
+LONG(0xe0dc0 - code32init_start)
+LONG(0xe0e5c - code32init_start)
+LONG(0xe0ebb - code32init_start)
+LONG(0xe0fb9 - code32init_start)
+LONG(0xe1066 - code32init_start)
+LONG(0xe1086 - code32init_start)
+LONG(0xe10a3 - code32init_start)
+LONG(0xe10c6 - code32init_start)
+LONG(0xe10ea - code32init_start)
+LONG(0xe10ff - code32init_start)
+LONG(0xe1109 - code32init_start)
+LONG(0xe111c - code32init_start)
+LONG(0xe1126 - code32init_start)
+LONG(0xe1150 - code32init_start)
+LONG(0xe115b - code32init_start)
+LONG(0xe1160 - code32init_start)
+LONG(0xe11a3 - code32init_start)
+LONG(0xe11c9 - code32init_start)
+LONG(0xe11e7 - code32init_start)
+LONG(0xe12c2 - code32init_start)
+LONG(0xe1369 - code32init_start)
+LONG(0xe1385 - code32init_start)
+LONG(0xe13a0 - code32init_start)
+LONG(0xe13b7 - code32init_start)
+LONG(0xe13be - code32init_start)
+LONG(0xe1419 - code32init_start)
+LONG(0xe142b - code32init_start)
+LONG(0xe14b8 - code32init_start)
+LONG(0xe14cd - code32init_start)
+LONG(0xe14e1 - code32init_start)
+LONG(0xe14f5 - code32init_start)
+LONG(0xe14fe - code32init_start)
+LONG(0xe1544 - code32init_start)
+LONG(0xe157a - code32init_start)
+LONG(0xe158b - code32init_start)
+LONG(0xe15a2 - code32init_start)
+LONG(0xe15d8 - code32init_start)
+LONG(0xe1605 - code32init_start)
+LONG(0xe16bf - code32init_start)
+LONG(0xe16cc - code32init_start)
+LONG(0xe170c - code32init_start)
+LONG(0xe1736 - code32init_start)
+LONG(0xe17cb - code32init_start)
+LONG(0xe17f0 - code32init_start)
+LONG(0xe17fb - code32init_start)
+LONG(0xe1819 - code32init_start)
+LONG(0xe186b - code32init_start)
 LONG(0xe1897 - code32init_start)
-LONG(0xe189e - code32init_start)
-LONG(0xe18f9 - code32init_start)
-LONG(0xe190b - code32init_start)
-LONG(0xe1998 - code32init_start)
-LONG(0xe19ad - code32init_start)
-LONG(0xe19c1 - code32init_start)
-LONG(0xe19d5 - code32init_start)
-LONG(0xe19de - code32init_start)
-LONG(0xe1a24 - code32init_start)
-LONG(0xe1a5a - code32init_start)
-LONG(0xe1a6b - code32init_start)
+LONG(0xe189f - code32init_start)
+LONG(0xe18aa - code32init_start)
+LONG(0xe18d8 - code32init_start)
+LONG(0xe192a - code32init_start)
+LONG(0xe1981 - code32init_start)
+LONG(0xe19e3 - code32init_start)
+LONG(0xe1a3d - code32init_start)
 LONG(0xe1a82 - code32init_start)
-LONG(0xe1ab8 - code32init_start)
-LONG(0xe1ae5 - code32init_start)
-LONG(0xe1b9f - code32init_start)
-LONG(0xe1bac - code32init_start)
-LONG(0xe1bec - code32init_start)
-LONG(0xe1c16 - code32init_start)
-LONG(0xe1cab - code32init_start)
-LONG(0xe1cd0 - code32init_start)
-LONG(0xe1cdb - code32init_start)
-LONG(0xe1cf9 - code32init_start)
-LONG(0xe1d4b - code32init_start)
-LONG(0xe1d77 - code32init_start)
-LONG(0xe1d7f - code32init_start)
-LONG(0xe1d8a - code32init_start)
-LONG(0xe1db8 - code32init_start)
-LONG(0xe1e0a - code32init_start)
-LONG(0xe1e61 - code32init_start)
-LONG(0xe1ec3 - code32init_start)
-LONG(0xe1f1d - code32init_start)
-LONG(0xe1f62 - code32init_start)
-LONG(0xe1faf - code32init_start)
-LONG(0xe1fff - code32init_start)
-LONG(0xe2022 - code32init_start)
-LONG(0xe2030 - code32init_start)
-LONG(0xe205b - code32init_start)
-LONG(0xe207c - code32init_start)
-LONG(0xe208a - code32init_start)
-LONG(0xe209e - code32init_start)
-LONG(0xe20e8 - code32init_start)
-LONG(0xe20f2 - code32init_start)
-LONG(0xe211e - code32init_start)
-LONG(0xe212b - code32init_start)
-LONG(0xe216f - code32init_start)
-LONG(0xe219a - code32init_start)
-LONG(0xe2214 - code32init_start)
-LONG(0xe222a - code32init_start)
-LONG(0xe224e - code32init_start)
-LONG(0xe2303 - code32init_start)
-LONG(0xe23fe - code32init_start)
-LONG(0xe2445 - code32init_start)
-LONG(0xe2457 - code32init_start)
-LONG(0xe24bf - code32init_start)
-LONG(0xe2643 - code32init_start)
-LONG(0xe26a0 - code32init_start)
-LONG(0xe26b2 - code32init_start)
-LONG(0xe26e6 - code32init_start)
-LONG(0xe26f9 - code32init_start)
-LONG(0xe2722 - code32init_start)
-LONG(0xe2735 - code32init_start)
-LONG(0xe274c - code32init_start)
-LONG(0xe275f - code32init_start)
-LONG(0xe2788 - code32init_start)
-LONG(0xe279b - code32init_start)
-LONG(0xe2863 - code32init_start)
-LONG(0xe28b2 - code32init_start)
-LONG(0xe28e0 - code32init_start)
-LONG(0xe29a9 - code32init_start)
-LONG(0xe29ed - code32init_start)
-LONG(0xe29f9 - code32init_start)
-LONG(0xe2a3f - code32init_start)
-LONG(0xe2a5a - code32init_start)
-LONG(0xe2a7a - code32init_start)
-LONG(0xe2bd1 - code32init_start)
-LONG(0xe2bf6 - code32init_start)
-LONG(0xe2cc1 - code32init_start)
-LONG(0xe2cd2 - code32init_start)
-LONG(0xe2cec - code32init_start)
-LONG(0xe2d05 - code32init_start)
-LONG(0xe2d31 - code32init_start)
-LONG(0xe2d56 - code32init_start)
-LONG(0xe2d87 - code32init_start)
-LONG(0xe2dd3 - code32init_start)
-LONG(0xe2e34 - code32init_start)
+LONG(0xe1acf - code32init_start)
+LONG(0xe1b1f - code32init_start)
+LONG(0xe1b42 - code32init_start)
+LONG(0xe1b50 - code32init_start)
+LONG(0xe1b7b - code32init_start)
+LONG(0xe1b9c - code32init_start)
+LONG(0xe1baa - code32init_start)
+LONG(0xe1bbe - code32init_start)
+LONG(0xe1c08 - code32init_start)
+LONG(0xe1c12 - code32init_start)
+LONG(0xe1c3e - code32init_start)
+LONG(0xe1c4b - code32init_start)
+LONG(0xe1c8f - code32init_start)
+LONG(0xe1cba - code32init_start)
+LONG(0xe1d34 - code32init_start)
+LONG(0xe1d4a - code32init_start)
+LONG(0xe1d6e - code32init_start)
+LONG(0xe1e23 - code32init_start)
+LONG(0xe1f1e - code32init_start)
+LONG(0xe1f65 - code32init_start)
+LONG(0xe1f77 - code32init_start)
+LONG(0xe1fdf - code32init_start)
+LONG(0xe2163 - code32init_start)
+LONG(0xe21c0 - code32init_start)
+LONG(0xe21d2 - code32init_start)
+LONG(0xe2206 - code32init_start)
+LONG(0xe2219 - code32init_start)
+LONG(0xe2242 - code32init_start)
+LONG(0xe2255 - code32init_start)
+LONG(0xe226c - code32init_start)
+LONG(0xe227f - code32init_start)
+LONG(0xe22a8 - code32init_start)
+LONG(0xe22bb - code32init_start)
+LONG(0xe2383 - code32init_start)
+LONG(0xe23d2 - code32init_start)
+LONG(0xe2400 - code32init_start)
+LONG(0xe24c9 - code32init_start)
+LONG(0xe250d - code32init_start)
+LONG(0xe2519 - code32init_start)
+LONG(0xe255f - code32init_start)
+LONG(0xe257a - code32init_start)
+LONG(0xe259a - code32init_start)
+LONG(0xe26f1 - code32init_start)
+LONG(0xe2716 - code32init_start)
+LONG(0xe27e1 - code32init_start)
+LONG(0xe27f2 - code32init_start)
+LONG(0xe280c - code32init_start)
+LONG(0xe2825 - code32init_start)
+LONG(0xe2851 - code32init_start)
+LONG(0xe2876 - code32init_start)
+LONG(0xe28a7 - code32init_start)
+LONG(0xe28f3 - code32init_start)
+LONG(0xe2954 - code32init_start)
+LONG(0xe29c6 - code32init_start)
+LONG(0xe29e7 - code32init_start)
+LONG(0xe2a18 - code32init_start)
+LONG(0xe2adf - code32init_start)
+LONG(0xe2b38 - code32init_start)
+LONG(0xe2bc7 - code32init_start)
+LONG(0xe2bdf - code32init_start)
+LONG(0xe2c05 - code32init_start)
+LONG(0xe2c18 - code32init_start)
+LONG(0xe2c38 - code32init_start)
+LONG(0xe2c6b - code32init_start)
+LONG(0xe2c88 - code32init_start)
+LONG(0xe2d75 - code32init_start)
+LONG(0xe2d9a - code32init_start)
+LONG(0xe2db8 - code32init_start)
+LONG(0xe2e2b - code32init_start)
+LONG(0xe2e76 - code32init_start)
 LONG(0xe2ea6 - code32init_start)
-LONG(0xe2ec7 - code32init_start)
-LONG(0xe2ef8 - code32init_start)
-LONG(0xe2fbf - code32init_start)
-LONG(0xe3018 - code32init_start)
-LONG(0xe30a7 - code32init_start)
-LONG(0xe30bf - code32init_start)
-LONG(0xe30e5 - code32init_start)
-LONG(0xe30f8 - code32init_start)
-LONG(0xe3118 - code32init_start)
-LONG(0xe314b - code32init_start)
-LONG(0xe3168 - code32init_start)
-LONG(0xe3255 - code32init_start)
-LONG(0xe327a - code32init_start)
-LONG(0xe3298 - code32init_start)
-LONG(0xe330b - code32init_start)
-LONG(0xe3356 - code32init_start)
-LONG(0xe3386 - code32init_start)
-LONG(0xe3391 - code32init_start)
-LONG(0xe33c8 - code32init_start)
-LONG(0xe34ed - code32init_start)
-LONG(0xe3698 - code32init_start)
-LONG(0xe3cee - code32init_start)
-LONG(0xe3dee - code32init_start)
-LONG(0xe3e5d - code32init_start)
-LONG(0xe3e75 - code32init_start)
-LONG(0xe3e9b - code32init_start)
-LONG(0xe3ed0 - code32init_start)
-LONG(0xe412e - code32init_start)
-LONG(0xe422b - code32init_start)
-LONG(0xe4248 - code32init_start)
-LONG(0xe42a0 - code32init_start)
-LONG(0xe42da - code32init_start)
-LONG(0xe4354 - code32init_start)
-LONG(0xe436e - code32init_start)
-LONG(0xe4381 - code32init_start)
-LONG(0xe441f - code32init_start)
-LONG(0xe4447 - code32init_start)
-LONG(0xe4467 - code32init_start)
-LONG(0xe44af - code32init_start)
-LONG(0xe44f0 - code32init_start)
-LONG(0xe44fa - code32init_start)
-LONG(0xe45a0 - code32init_start)
-LONG(0xe45ba - code32init_start)
-LONG(0xe48bc - code32init_start)
-LONG(0xe4960 - code32init_start)
-LONG(0xe49e5 - code32init_start)
-LONG(0xe4a25 - code32init_start)
-LONG(0xe4ab6 - code32init_start)
-LONG(0xe4b75 - code32init_start)
-LONG(0xe4bae - code32init_start)
-LONG(0xe4c00 - code32init_start)
-LONG(0xe4d08 - code32init_start)
-LONG(0xe4d6a - code32init_start)
-LONG(0xe4dcf - code32init_start)
-LONG(0xe4e88 - code32init_start)
-LONG(0xe4f8e - code32init_start)
-LONG(0xe4fd3 - code32init_start)
-LONG(0xe5002 - code32init_start)
-LONG(0xe502f - code32init_start)
-LONG(0xe50b9 - code32init_start)
-LONG(0xe51c8 - code32init_start)
-LONG(0xe5200 - code32init_start)
-LONG(0xe551d - code32init_start)
-LONG(0xe5536 - code32init_start)
-LONG(0xe558a - code32init_start)
-LONG(0xe55a3 - code32init_start)
-LONG(0xe55c3 - code32init_start)
-LONG(0xe5604 - code32init_start)
-LONG(0xe5670 - code32init_start)
-LONG(0xe56fd - code32init_start)
-LONG(0xe571e - code32init_start)
-LONG(0xe57e7 - code32init_start)
-LONG(0xe5859 - code32init_start)
-LONG(0xe5882 - code32init_start)
-LONG(0xe58db - code32init_start)
-LONG(0xe5932 - code32init_start)
-LONG(0xe5953 - code32init_start)
-LONG(0xe5989 - code32init_start)
-LONG(0xe59a9 - code32init_start)
-LONG(0xe59cb - code32init_start)
-LONG(0xe5a3d - code32init_start)
-LONG(0xe5a5d - code32init_start)
-LONG(0xe5a66 - code32init_start)
-LONG(0xe5a80 - code32init_start)
-LONG(0xe5a89 - code32init_start)
-LONG(0xe5ac7 - code32init_start)
-LONG(0xe5ade - code32init_start)
-LONG(0xe5b78 - code32init_start)
-LONG(0xe5ba1 - code32init_start)
-LONG(0xe5bbd - code32init_start)
-LONG(0xe5c3f - code32init_start)
-LONG(0xe5c7a - code32init_start)
-LONG(0xe5e1b - code32init_start)
-LONG(0xe5e2c - code32init_start)
-LONG(0xe5e4d - code32init_start)
-LONG(0xe6005 - code32init_start)
-LONG(0xe603f - code32init_start)
-LONG(0xe60d3 - code32init_start)
-LONG(0xe6141 - code32init_start)
-LONG(0xe6155 - code32init_start)
-LONG(0xe616e - code32init_start)
-LONG(0xe617e - code32init_start)
-LONG(0xe61a1 - code32init_start)
-LONG(0xe61b1 - code32init_start)
-LONG(0xe61d6 - code32init_start)
-LONG(0xe61e6 - code32init_start)
-LONG(0xe621b - code32init_start)
-LONG(0xe627d - code32init_start)
-LONG(0xe62d8 - code32init_start)
-LONG(0xe6325 - code32init_start)
-LONG(0xe63ad - code32init_start)
-LONG(0xe63c1 - code32init_start)
-LONG(0xe63d0 - code32init_start)
-LONG(0xe63ec - code32init_start)
-LONG(0xe6465 - code32init_start)
-LONG(0xe647c - code32init_start)
-LONG(0xe64ef - code32init_start)
-LONG(0xe676c - code32init_start)
-LONG(0xe6833 - code32init_start)
-LONG(0xe687e - code32init_start)
-LONG(0xe68ff - code32init_start)
-LONG(0xe6920 - code32init_start)
-LONG(0xe693e - code32init_start)
-LONG(0xe6943 - code32init_start)
-LONG(0xe6955 - code32init_start)
-LONG(0xe69ba - code32init_start)
-LONG(0xe69d1 - code32init_start)
-LONG(0xe6a0d - code32init_start)
-LONG(0xe6a25 - code32init_start)
-LONG(0xe6a7a - code32init_start)
-LONG(0xe6a9c - code32init_start)
-LONG(0xe6ac1 - code32init_start)
-LONG(0xe6aca - code32init_start)
-LONG(0xe6aff - code32init_start)
-LONG(0xe6b18 - code32init_start)
-LONG(0xe6b42 - code32init_start)
-LONG(0xe6be0 - code32init_start)
-LONG(0xe6c24 - code32init_start)
-LONG(0xe6c49 - code32init_start)
-LONG(0xe6ca8 - code32init_start)
-LONG(0xe6cf7 - code32init_start)
-LONG(0xe6d10 - code32init_start)
-LONG(0xe6d2b - code32init_start)
-LONG(0xe6d4b - code32init_start)
-LONG(0xe6d5b - code32init_start)
-LONG(0xe6d71 - code32init_start)
-LONG(0xe6d84 - code32init_start)
-LONG(0xe6da5 - code32init_start)
-LONG(0xe6db9 - code32init_start)
-LONG(0xe6e65 - code32init_start)
-LONG(0xe6ec2 - code32init_start)
-LONG(0xe6fd5 - code32init_start)
-LONG(0xe7024 - code32init_start)
-LONG(0xe706d - code32init_start)
-LONG(0xe717f - code32init_start)
-LONG(0xe7195 - code32init_start)
-LONG(0xe71a8 - code32init_start)
+LONG(0xe2eb1 - code32init_start)
+LONG(0xe2ee8 - code32init_start)
+LONG(0xe300d - code32init_start)
+LONG(0xe31b8 - code32init_start)
+LONG(0xe380e - code32init_start)
+LONG(0xe390e - code32init_start)
+LONG(0xe397d - code32init_start)
+LONG(0xe3995 - code32init_start)
+LONG(0xe39bb - code32init_start)
+LONG(0xe39f0 - code32init_start)
+LONG(0xe3c4e - code32init_start)
+LONG(0xe3d4b - code32init_start)
+LONG(0xe3d68 - code32init_start)
+LONG(0xe3dc0 - code32init_start)
+LONG(0xe3dfa - code32init_start)
+LONG(0xe3e74 - code32init_start)
+LONG(0xe3e8e - code32init_start)
+LONG(0xe3ea1 - code32init_start)
+LONG(0xe3f3f - code32init_start)
+LONG(0xe3f67 - code32init_start)
+LONG(0xe3f87 - code32init_start)
+LONG(0xe3fcf - code32init_start)
+LONG(0xe4010 - code32init_start)
+LONG(0xe401a - code32init_start)
+LONG(0xe40c0 - code32init_start)
+LONG(0xe40da - code32init_start)
+LONG(0xe43dc - code32init_start)
+LONG(0xe4480 - code32init_start)
+LONG(0xe4505 - code32init_start)
+LONG(0xe4545 - code32init_start)
+LONG(0xe45d6 - code32init_start)
+LONG(0xe4695 - code32init_start)
+LONG(0xe46ce - code32init_start)
+LONG(0xe4720 - code32init_start)
+LONG(0xe4828 - code32init_start)
+LONG(0xe488a - code32init_start)
+LONG(0xe48ef - code32init_start)
+LONG(0xe49a8 - code32init_start)
+LONG(0xe4aae - code32init_start)
+LONG(0xe4af3 - code32init_start)
+LONG(0xe4b22 - code32init_start)
+LONG(0xe4b4f - code32init_start)
+LONG(0xe4bd9 - code32init_start)
+LONG(0xe4ce8 - code32init_start)
+LONG(0xe4d20 - code32init_start)
+LONG(0xe503d - code32init_start)
+LONG(0xe5056 - code32init_start)
+LONG(0xe50aa - code32init_start)
+LONG(0xe50c3 - code32init_start)
+LONG(0xe50e3 - code32init_start)
+LONG(0xe5124 - code32init_start)
+LONG(0xe5190 - code32init_start)
+LONG(0xe521d - code32init_start)
+LONG(0xe523e - code32init_start)
+LONG(0xe5307 - code32init_start)
+LONG(0xe5379 - code32init_start)
+LONG(0xe53a2 - code32init_start)
+LONG(0xe53fb - code32init_start)
+LONG(0xe5452 - code32init_start)
+LONG(0xe5473 - code32init_start)
+LONG(0xe54a9 - code32init_start)
+LONG(0xe54c9 - code32init_start)
+LONG(0xe54eb - code32init_start)
+LONG(0xe555d - code32init_start)
+LONG(0xe557d - code32init_start)
+LONG(0xe5586 - code32init_start)
+LONG(0xe55a0 - code32init_start)
+LONG(0xe55a9 - code32init_start)
+LONG(0xe55e7 - code32init_start)
+LONG(0xe55fe - code32init_start)
+LONG(0xe5698 - code32init_start)
+LONG(0xe56c1 - code32init_start)
+LONG(0xe56dd - code32init_start)
+LONG(0xe575f - code32init_start)
+LONG(0xe579a - code32init_start)
+LONG(0xe593b - code32init_start)
+LONG(0xe594c - code32init_start)
+LONG(0xe596d - code32init_start)
+LONG(0xe5b25 - code32init_start)
+LONG(0xe5b5f - code32init_start)
+LONG(0xe5bf3 - code32init_start)
+LONG(0xe5c61 - code32init_start)
+LONG(0xe5c75 - code32init_start)
+LONG(0xe5c8e - code32init_start)
+LONG(0xe5c9e - code32init_start)
+LONG(0xe5cc1 - code32init_start)
+LONG(0xe5cd1 - code32init_start)
+LONG(0xe5cf6 - code32init_start)
+LONG(0xe5d06 - code32init_start)
+LONG(0xe5d3b - code32init_start)
+LONG(0xe5d9d - code32init_start)
+LONG(0xe5df8 - code32init_start)
+LONG(0xe5e45 - code32init_start)
+LONG(0xe5ecd - code32init_start)
+LONG(0xe5ee1 - code32init_start)
+LONG(0xe5ef0 - code32init_start)
+LONG(0xe5f0c - code32init_start)
+LONG(0xe5f85 - code32init_start)
+LONG(0xe5f9c - code32init_start)
+LONG(0xe600f - code32init_start)
+LONG(0xe628c - code32init_start)
+LONG(0xe6353 - code32init_start)
+LONG(0xe639e - code32init_start)
+LONG(0xe641f - code32init_start)
+LONG(0xe6440 - code32init_start)
+LONG(0xe645e - code32init_start)
+LONG(0xe6463 - code32init_start)
+LONG(0xe6475 - code32init_start)
+LONG(0xe64da - code32init_start)
+LONG(0xe64f1 - code32init_start)
+LONG(0xe652d - code32init_start)
+LONG(0xe6545 - code32init_start)
+LONG(0xe659a - code32init_start)
+LONG(0xe65bc - code32init_start)
+LONG(0xe65e1 - code32init_start)
+LONG(0xe65ea - code32init_start)
+LONG(0xe661f - code32init_start)
+LONG(0xe6638 - code32init_start)
+LONG(0xe6662 - code32init_start)
+LONG(0xe6700 - code32init_start)
+LONG(0xe6744 - code32init_start)
+LONG(0xe6769 - code32init_start)
+LONG(0xe67c8 - code32init_start)
+LONG(0xe6817 - code32init_start)
+LONG(0xe6830 - code32init_start)
+LONG(0xe684b - code32init_start)
+LONG(0xe686b - code32init_start)
+LONG(0xe687b - code32init_start)
+LONG(0xe6891 - code32init_start)
+LONG(0xe68a4 - code32init_start)
+LONG(0xe68c5 - code32init_start)
+LONG(0xe68d9 - code32init_start)
+LONG(0xe6985 - code32init_start)
+LONG(0xe69e2 - code32init_start)
+LONG(0xe6af5 - code32init_start)
+LONG(0xe6b44 - code32init_start)
+LONG(0xe6b8d - code32init_start)
+LONG(0xe6c9f - code32init_start)
+LONG(0xe6cb5 - code32init_start)
+LONG(0xe6cc8 - code32init_start)
+LONG(0xe6ce1 - code32init_start)
+LONG(0xe6cf1 - code32init_start)
+LONG(0xe6d2d - code32init_start)
+LONG(0xe6dcc - code32init_start)
+LONG(0xe6e07 - code32init_start)
+LONG(0xe6f11 - code32init_start)
+LONG(0xe6f1e - code32init_start)
+LONG(0xe6f35 - code32init_start)
+LONG(0xe7082 - code32init_start)
+LONG(0xe70f2 - code32init_start)
 LONG(0xe71c1 - code32init_start)
-LONG(0xe71d1 - code32init_start)
-LONG(0xe720d - code32init_start)
-LONG(0xe72ac - code32init_start)
-LONG(0xe72e7 - code32init_start)
-LONG(0xe73f1 - code32init_start)
-LONG(0xe73fe - code32init_start)
-LONG(0xe7415 - code32init_start)
-LONG(0xe7562 - code32init_start)
-LONG(0xe75d2 - code32init_start)
-LONG(0xe76a1 - code32init_start)
-LONG(0xe76bb - code32init_start)
-LONG(0xe76ff - code32init_start)
-LONG(0xe77a7 - code32init_start)
-LONG(0xe7812 - code32init_start)
-LONG(0xe7821 - code32init_start)
-LONG(0xe7836 - code32init_start)
-LONG(0xe786f - code32init_start)
-LONG(0xe7882 - code32init_start)
-LONG(0xe789c - code32init_start)
-LONG(0xe78ac - code32init_start)
-LONG(0xe78e8 - code32init_start)
-LONG(0xe78f4 - code32init_start)
-LONG(0xe790b - code32init_start)
-LONG(0xe7924 - code32init_start)
-LONG(0xe794d - code32init_start)
-LONG(0xe796f - code32init_start)
-LONG(0xe799d - code32init_start)
-LONG(0xe79e4 - code32init_start)
-LONG(0xe7b04 - code32init_start)
-LONG(0xe7b15 - code32init_start)
-LONG(0xe7b35 - code32init_start)
-LONG(0xe7b64 - code32init_start)
-LONG(0xe7b84 - code32init_start)
-LONG(0xe7b97 - code32init_start)
-LONG(0xe7ba0 - code32init_start)
-LONG(0xe7c4b - code32init_start)
-LONG(0xe7c59 - code32init_start)
-LONG(0xe7d08 - code32init_start)
-LONG(0xe7d25 - code32init_start)
-LONG(0xe7d6a - code32init_start)
-LONG(0xe7d7f - code32init_start)
-LONG(0xe7de8 - code32init_start)
-LONG(0xe7e08 - code32init_start)
-LONG(0xe7e42 - code32init_start)
-LONG(0xe7e5d - code32init_start)
-LONG(0xe7e75 - code32init_start)
-LONG(0xe7ee1 - code32init_start)
-LONG(0xe7efa - code32init_start)
-LONG(0xe7f6f - code32init_start)
-LONG(0xe7f85 - code32init_start)
-LONG(0xe7f9e - code32init_start)
-LONG(0xe804c - code32init_start)
-LONG(0xe8062 - code32init_start)
-LONG(0xe8074 - code32init_start)
-LONG(0xe80a0 - code32init_start)
-LONG(0xe80dc - code32init_start)
-LONG(0xe8100 - code32init_start)
-LONG(0xe816e - code32init_start)
-LONG(0xe81be - code32init_start)
-LONG(0xe81c8 - code32init_start)
-LONG(0xe8258 - code32init_start)
-LONG(0xe82ee - code32init_start)
-LONG(0xe8325 - code32init_start)
-LONG(0xe8364 - code32init_start)
-LONG(0xe83d0 - code32init_start)
-LONG(0xe83dd - code32init_start)
-LONG(0xe83ea - code32init_start)
-LONG(0xe83f9 - code32init_start)
-LONG(0xe840b - code32init_start)
-LONG(0xe8424 - code32init_start)
-LONG(0xe8435 - code32init_start)
-LONG(0xe84ae - code32init_start)
-LONG(0xe8521 - code32init_start)
-LONG(0xe8536 - code32init_start)
-LONG(0xe855f - code32init_start)
-LONG(0xe8581 - code32init_start)
-LONG(0xe85ca - code32init_start)
-LONG(0xe8629 - code32init_start)
-LONG(0xe8633 - code32init_start)
-LONG(0xe867e - code32init_start)
-LONG(0xe86a7 - code32init_start)
-LONG(0xe86f3 - code32init_start)
-LONG(0xe8750 - code32init_start)
-LONG(0xe876b - code32init_start)
-LONG(0xe87b5 - code32init_start)
-LONG(0xe880b - code32init_start)
-LONG(0xe8847 - code32init_start)
-LONG(0xe8c1a - code32init_start)
-LONG(0xe8c59 - code32init_start)
-LONG(0xe8ccd - code32init_start)
-LONG(0xe8cfb - code32init_start)
-LONG(0xe8d36 - code32init_start)
-LONG(0xe8d46 - code32init_start)
-LONG(0xe8d61 - code32init_start)
-LONG(0xe8db4 - code32init_start)
-LONG(0xe8e42 - code32init_start)
-LONG(0xe8e50 - code32init_start)
-LONG(0xe8e63 - code32init_start)
-LONG(0xe8e6e - code32init_start)
-LONG(0xe8ec3 - code32init_start)
-LONG(0xe8fc7 - code32init_start)
-LONG(0xe9bf7 - code32init_start)
-LONG(0xe9c69 - code32init_start)
-LONG(0xe9c78 - code32init_start)
-LONG(0xe9c8b - code32init_start)
-LONG(0xe9cc7 - code32init_start)
-LONG(0xe9cd4 - code32init_start)
-LONG(0xe9cef - code32init_start)
-LONG(0xe9d73 - code32init_start)
-LONG(0xe9db4 - code32init_start)
-LONG(0xe9dd3 - code32init_start)
-LONG(0xe9de9 - code32init_start)
-LONG(0xe9e4c - code32init_start)
-LONG(0xe9e7d - code32init_start)
-LONG(0xe9e98 - code32init_start)
-LONG(0xe9f22 - code32init_start)
-LONG(0xe9f2c - code32init_start)
-LONG(0xe9f36 - code32init_start)
-LONG(0xe9fb2 - code32init_start)
-LONG(0xea03b - code32init_start)
-LONG(0xea062 - code32init_start)
-LONG(0xea08e - code32init_start)
-LONG(0xea0d2 - code32init_start)
-LONG(0xea0e5 - code32init_start)
-LONG(0xea0f0 - code32init_start)
-LONG(0xea103 - code32init_start)
-LONG(0xea116 - code32init_start)
-LONG(0xea126 - code32init_start)
-LONG(0xea140 - code32init_start)
-LONG(0xea15a - code32init_start)
-LONG(0xea174 - code32init_start)
-LONG(0xea184 - code32init_start)
-LONG(0xea18f - code32init_start)
-LONG(0xea1a5 - code32init_start)
-LONG(0xea1c6 - code32init_start)
-LONG(0xea1e5 - code32init_start)
-LONG(0xea207 - code32init_start)
-LONG(0xea229 - code32init_start)
-LONG(0xea255 - code32init_start)
-LONG(0xea297 - code32init_start)
-LONG(0xea377 - code32init_start)
-LONG(0xea39d - code32init_start)
-LONG(0xea3ce - code32init_start)
-LONG(0xea3e4 - code32init_start)
-LONG(0xea3ff - code32init_start)
-LONG(0xea41e - code32init_start)
-LONG(0xea462 - code32init_start)
-LONG(0xea493 - code32init_start)
-LONG(0xea4a2 - code32init_start)
-LONG(0xea4c0 - code32init_start)
-LONG(0xea4e4 - code32init_start)
-LONG(0xea4fe - code32init_start)
-LONG(0xea51e - code32init_start)
-LONG(0xea63f - code32init_start)
-LONG(0xea691 - code32init_start)
-LONG(0xea70e - code32init_start)
-LONG(0xea757 - code32init_start)
-LONG(0xea775 - code32init_start)
-LONG(0xea791 - code32init_start)
-LONG(0xea7a0 - code32init_start)
-LONG(0xea7ae - code32init_start)
-LONG(0xea7e9 - code32init_start)
-LONG(0xea7f8 - code32init_start)
-LONG(0xea814 - code32init_start)
-LONG(0xea850 - code32init_start)
-LONG(0xea871 - code32init_start)
-LONG(0xea893 - code32init_start)
-LONG(0xea8f4 - code32init_start)
-LONG(0xea912 - code32init_start)
-LONG(0xea935 - code32init_start)
-LONG(0xea9a5 - code32init_start)
-LONG(0xea9db - code32init_start)
-LONG(0xeaa13 - code32init_start)
-LONG(0xeaa21 - code32init_start)
-LONG(0xeaa4d - code32init_start)
-LONG(0xeaa74 - code32init_start)
-LONG(0xeaa82 - code32init_start)
-LONG(0xeaaa3 - code32init_start)
-LONG(0xeaaac - code32init_start)
-LONG(0xeaac6 - code32init_start)
-LONG(0xeaaf1 - code32init_start)
-LONG(0xeab02 - code32init_start)
-LONG(0xeab3a - code32init_start)
-LONG(0xeab7d - code32init_start)
-LONG(0xeabb6 - code32init_start)
-LONG(0xeac43 - code32init_start)
-LONG(0xeac59 - code32init_start)
-LONG(0xeacbe - code32init_start)
-LONG(0xeace0 - code32init_start)
-LONG(0xeae29 - code32init_start)
-LONG(0xeae3a - code32init_start)
-LONG(0xeaefc - code32init_start)
-LONG(0xeaf37 - code32init_start)
-LONG(0xeb09d - code32init_start)
-LONG(0xeb0e3 - code32init_start)
+LONG(0xe71db - code32init_start)
+LONG(0xe721f - code32init_start)
+LONG(0xe72c7 - code32init_start)
+LONG(0xe7332 - code32init_start)
+LONG(0xe7341 - code32init_start)
+LONG(0xe7356 - code32init_start)
+LONG(0xe738f - code32init_start)
+LONG(0xe73a2 - code32init_start)
+LONG(0xe73bc - code32init_start)
+LONG(0xe73cc - code32init_start)
+LONG(0xe7408 - code32init_start)
+LONG(0xe7414 - code32init_start)
+LONG(0xe742b - code32init_start)
+LONG(0xe7444 - code32init_start)
+LONG(0xe746d - code32init_start)
+LONG(0xe748f - code32init_start)
+LONG(0xe74bd - code32init_start)
+LONG(0xe7504 - code32init_start)
+LONG(0xe7624 - code32init_start)
+LONG(0xe7635 - code32init_start)
+LONG(0xe7655 - code32init_start)
+LONG(0xe7684 - code32init_start)
+LONG(0xe76a4 - code32init_start)
+LONG(0xe76b7 - code32init_start)
+LONG(0xe76c0 - code32init_start)
+LONG(0xe776b - code32init_start)
+LONG(0xe7779 - code32init_start)
+LONG(0xe7828 - code32init_start)
+LONG(0xe7845 - code32init_start)
+LONG(0xe788a - code32init_start)
+LONG(0xe789f - code32init_start)
+LONG(0xe7908 - code32init_start)
+LONG(0xe7928 - code32init_start)
+LONG(0xe7962 - code32init_start)
+LONG(0xe797d - code32init_start)
+LONG(0xe7995 - code32init_start)
+LONG(0xe7a01 - code32init_start)
+LONG(0xe7a1a - code32init_start)
+LONG(0xe7a8f - code32init_start)
+LONG(0xe7aa5 - code32init_start)
+LONG(0xe7abe - code32init_start)
+LONG(0xe7b6c - code32init_start)
+LONG(0xe7b82 - code32init_start)
+LONG(0xe7b94 - code32init_start)
+LONG(0xe7bc0 - code32init_start)
+LONG(0xe7bfc - code32init_start)
+LONG(0xe7c20 - code32init_start)
+LONG(0xe7c8e - code32init_start)
+LONG(0xe7cde - code32init_start)
+LONG(0xe7ce8 - code32init_start)
+LONG(0xe7d78 - code32init_start)
+LONG(0xe7e0e - code32init_start)
+LONG(0xe7e45 - code32init_start)
+LONG(0xe7e84 - code32init_start)
+LONG(0xe7ef0 - code32init_start)
+LONG(0xe7efd - code32init_start)
+LONG(0xe7f0a - code32init_start)
+LONG(0xe7f19 - code32init_start)
+LONG(0xe7f2b - code32init_start)
+LONG(0xe7f44 - code32init_start)
+LONG(0xe7f55 - code32init_start)
+LONG(0xe7fce - code32init_start)
+LONG(0xe8041 - code32init_start)
+LONG(0xe8056 - code32init_start)
+LONG(0xe807f - code32init_start)
+LONG(0xe80a1 - code32init_start)
+LONG(0xe80ea - code32init_start)
+LONG(0xe8149 - code32init_start)
+LONG(0xe8153 - code32init_start)
+LONG(0xe819e - code32init_start)
+LONG(0xe81c7 - code32init_start)
+LONG(0xe8213 - code32init_start)
+LONG(0xe8270 - code32init_start)
+LONG(0xe828b - code32init_start)
+LONG(0xe82d5 - code32init_start)
+LONG(0xe832b - code32init_start)
+LONG(0xe8367 - code32init_start)
+LONG(0xe873a - code32init_start)
+LONG(0xe8779 - code32init_start)
+LONG(0xe87ed - code32init_start)
+LONG(0xe881b - code32init_start)
+LONG(0xe8856 - code32init_start)
+LONG(0xe8866 - code32init_start)
+LONG(0xe8881 - code32init_start)
+LONG(0xe88d4 - code32init_start)
+LONG(0xe8962 - code32init_start)
+LONG(0xe8970 - code32init_start)
+LONG(0xe8983 - code32init_start)
+LONG(0xe898e - code32init_start)
+LONG(0xe89e3 - code32init_start)
+LONG(0xe8ae7 - code32init_start)
+LONG(0xe9717 - code32init_start)
+LONG(0xe9789 - code32init_start)
+LONG(0xe9798 - code32init_start)
+LONG(0xe97ab - code32init_start)
+LONG(0xe97e7 - code32init_start)
+LONG(0xe97f4 - code32init_start)
+LONG(0xe980f - code32init_start)
+LONG(0xe9893 - code32init_start)
+LONG(0xe98d4 - code32init_start)
+LONG(0xe98f3 - code32init_start)
+LONG(0xe9909 - code32init_start)
+LONG(0xe996c - code32init_start)
+LONG(0xe999d - code32init_start)
+LONG(0xe99b8 - code32init_start)
+LONG(0xe9a42 - code32init_start)
+LONG(0xe9a4c - code32init_start)
+LONG(0xe9a56 - code32init_start)
+LONG(0xe9ad2 - code32init_start)
+LONG(0xe9b5b - code32init_start)
+LONG(0xe9b82 - code32init_start)
+LONG(0xe9bae - code32init_start)
+LONG(0xe9bf2 - code32init_start)
+LONG(0xe9c05 - code32init_start)
+LONG(0xe9c10 - code32init_start)
+LONG(0xe9c23 - code32init_start)
+LONG(0xe9c36 - code32init_start)
+LONG(0xe9c46 - code32init_start)
+LONG(0xe9c60 - code32init_start)
+LONG(0xe9c7a - code32init_start)
+LONG(0xe9c94 - code32init_start)
+LONG(0xe9ca4 - code32init_start)
+LONG(0xe9caf - code32init_start)
+LONG(0xe9cc5 - code32init_start)
+LONG(0xe9ce6 - code32init_start)
+LONG(0xe9d05 - code32init_start)
+LONG(0xe9d27 - code32init_start)
+LONG(0xe9d49 - code32init_start)
+LONG(0xe9d75 - code32init_start)
+LONG(0xe9db7 - code32init_start)
+LONG(0xe9e97 - code32init_start)
+LONG(0xe9ebd - code32init_start)
+LONG(0xe9eee - code32init_start)
+LONG(0xe9f04 - code32init_start)
+LONG(0xe9f1f - code32init_start)
+LONG(0xe9f3e - code32init_start)
+LONG(0xe9f82 - code32init_start)
+LONG(0xe9fb3 - code32init_start)
+LONG(0xe9fc2 - code32init_start)
+LONG(0xe9fe0 - code32init_start)
+LONG(0xea004 - code32init_start)
+LONG(0xea01e - code32init_start)
+LONG(0xea03e - code32init_start)
+LONG(0xea15f - code32init_start)
+LONG(0xea1b1 - code32init_start)
+LONG(0xea22e - code32init_start)
+LONG(0xea277 - code32init_start)
+LONG(0xea295 - code32init_start)
+LONG(0xea2b1 - code32init_start)
+LONG(0xea2c0 - code32init_start)
+LONG(0xea2ce - code32init_start)
+LONG(0xea309 - code32init_start)
+LONG(0xea318 - code32init_start)
+LONG(0xea334 - code32init_start)
+LONG(0xea370 - code32init_start)
+LONG(0xea391 - code32init_start)
+LONG(0xea3b3 - code32init_start)
+LONG(0xea414 - code32init_start)
+LONG(0xea432 - code32init_start)
+LONG(0xea455 - code32init_start)
+LONG(0xea4c5 - code32init_start)
+LONG(0xea4fb - code32init_start)
+LONG(0xea533 - code32init_start)
+LONG(0xea541 - code32init_start)
+LONG(0xea56d - code32init_start)
+LONG(0xea594 - code32init_start)
+LONG(0xea5a2 - code32init_start)
+LONG(0xea5c3 - code32init_start)
+LONG(0xea5cc - code32init_start)
+LONG(0xea5e6 - code32init_start)
+LONG(0xea611 - code32init_start)
+LONG(0xea622 - code32init_start)
+LONG(0xea65a - code32init_start)
+LONG(0xea69d - code32init_start)
+LONG(0xea6d6 - code32init_start)
+LONG(0xea763 - code32init_start)
+LONG(0xea779 - code32init_start)
+LONG(0xea7de - code32init_start)
+LONG(0xea800 - code32init_start)
+LONG(0xea949 - code32init_start)
+LONG(0xea95a - code32init_start)
+LONG(0xeaa1c - code32init_start)
+LONG(0xeaa57 - code32init_start)
+LONG(0xeabbd - code32init_start)
+LONG(0xeac03 - code32init_start)
         _reloc_rel_end = ABSOLUTE(.) ;
         _reloc_init_start = ABSOLUTE(.) ;
-LONG(0xf05df - code32flat_start)
-LONG(0xfcd76 - code32flat_start)
+LONG(0xf01aa - code32flat_start)
+LONG(0xfcc6c - code32flat_start)
         _reloc_init_end = ABSOLUTE(.) ;
 
-. = ( 0xd9fc0 - code32flat_start ) ;
+. = ( 0xd9a40 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/tcgbios.c.1414)
-. = ( 0xd9fc1 - code32flat_start ) ;
+. = ( 0xd9a41 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/tcgbios.c.962)
-. = ( 0xd9fc4 - code32flat_start ) ;
+. = ( 0xd9a44 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/tcgbios.c.49)
-. = ( 0xd9fd8 - code32flat_start ) ;
+. = ( 0xd9a58 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/boot.c.1024)
-. = ( 0xd9fdc - code32flat_start ) ;
+. = ( 0xd9a5c - code32flat_start ) ;
 *32flat.*(.data.varlow../src/hw/floppy.c.194)
-. = ( 0xd9fdd - code32flat_start ) ;
+. = ( 0xd9a5d - code32flat_start ) ;
 *32flat.*(.data.varlow../src/hw/ps2port.c.211)
-. = ( 0xd9fe0 - code32flat_start ) ;
+. = ( 0xd9a60 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/hw/timer.c.155)
-. = ( 0xd9fe4 - code32flat_start ) ;
+. = ( 0xd9a64 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/clock.c.30)
-. = ( 0xd9fe5 - code32flat_start ) ;
+. = ( 0xd9a65 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.552)
-. = ( 0xd9fe8 - code32flat_start ) ;
+. = ( 0xd9a68 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.551)
-. = ( 0xd9ff8 - code32flat_start ) ;
+. = ( 0xd9a78 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.68)
-. = ( 0xd9ff9 - code32flat_start ) ;
+. = ( 0xd9a79 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.67)
-. = ( 0xd9ffa - code32flat_start ) ;
+. = ( 0xd9a7a - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.66)
-. = ( 0xd9ffb - code32flat_start ) ;
+. = ( 0xd9a7b - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.65)
-. = ( 0xd9ffc - code32flat_start ) ;
+. = ( 0xd9a7c - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.64)
-. = ( 0xd9ffd - code32flat_start ) ;
+. = ( 0xd9a7d - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.51)
-. = ( 0xd9ffe - code32flat_start ) ;
+. = ( 0xd9a7e - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.50)
-. = ( 0xda000 - code32flat_start ) ;
+. = ( 0xd9a80 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/sercon.c.49)
-. = ( 0xda004 - code32flat_start ) ;
+. = ( 0xd9a84 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/disk.c.439)
-. = ( 0xda014 - code32flat_start ) ;
+. = ( 0xd9a94 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/cdrom.c.26)
-. = ( 0xda018 - code32flat_start ) ;
+. = ( 0xd9a98 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/cdrom.c.25)
-. = ( 0xda02c - code32flat_start ) ;
+. = ( 0xd9aac - code32flat_start ) ;
 *32flat.*(.data.varlow../src/block.c.418)
-. = ( 0xda03c - code32flat_start ) ;
+. = ( 0xd9abc - code32flat_start ) ;
 *32flat.*(.data.varlow../src/stacks.c.327)
-. = ( 0xda040 - code32flat_start ) ;
+. = ( 0xd9ac0 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/stacks.c.326)
-. = ( 0xda844 - code32flat_start ) ;
+. = ( 0xda2c4 - code32flat_start ) ;
 *32flat.*(.data.varlow../src/stacks.c.33)
-. = ( 0xda860 - code32flat_start ) ;
+. = ( 0xda2e0 - code32flat_start ) ;
 *32flat.*(.text.hlist_del)
-. = ( 0xda86f - code32flat_start ) ;
+. = ( 0xda2ef - code32flat_start ) ;
 *32flat.*(.text.hlist_add)
-. = ( 0xda880 - code32flat_start ) ;
+. = ( 0xda300 - code32flat_start ) ;
 *32flat.*(.text.putc_str)
-. = ( 0xda88e - code32flat_start ) ;
+. = ( 0xda30e - code32flat_start ) ;
 *32flat.*(.text.memcmp)
-. = ( 0xda8af - code32flat_start ) ;
+. = ( 0xda32f - code32flat_start ) ;
 *32flat.*(.text.strtcpy)
-. = ( 0xda8d1 - code32flat_start ) ;
+. = ( 0xda351 - code32flat_start ) ;
 *32flat.*(.text.nullTrailingSpace)
-. = ( 0xda8fc - code32flat_start ) ;
+. = ( 0xda37c - code32flat_start ) ;
 *32flat.*(.text.pci_config_writew)
-. = ( 0xda941 - code32flat_start ) ;
+. = ( 0xda3c1 - code32flat_start ) ;
 *32flat.*(.text.pci_config_readb)
-. = ( 0xda97d - code32flat_start ) ;
+. = ( 0xda3fd - code32flat_start ) ;
 *32flat.*(.text.pci_find_capability)
-. = ( 0xda9f0 - code32flat_start ) ;
+. = ( 0xda470 - code32flat_start ) ;
 *32flat.*(.text.pci_next)
-. = ( 0xdaa36 - code32flat_start ) ;
+. = ( 0xda4b6 - code32flat_start ) ;
 *32flat.*(.text.ata_extract_version)
-. = ( 0xdaa56 - code32flat_start ) ;
+. = ( 0xda4d6 - code32flat_start ) ;
 *32flat.*(.text.found_compatibleahci)
-. = ( 0xdaa57 - code32flat_start ) ;
+. = ( 0xda4d7 - code32flat_start ) ;
 *32flat.*(.text.alloc_free)
-. = ( 0xdaa70 - code32flat_start ) ;
+. = ( 0xda4f0 - code32flat_start ) ;
 *32flat.*(.text.alloc_find)
-. = ( 0xdaa8f - code32flat_start ) ;
-*32flat.*(.text.malloc_pfree)
-. = ( 0xdaac4 - code32flat_start ) ;
+. = ( 0xda50f - code32flat_start ) ;
 *32flat.*(.text.malloc_getspace)
-. = ( 0xdab23 - code32flat_start ) ;
+. = ( 0xda56e - code32flat_start ) ;
 *32flat.*(.text.rom_reserve)
-. = ( 0xdab5f - code32flat_start ) ;
+. = ( 0xda5aa - code32flat_start ) ;
 *32flat.*(.text.calcRamSize)
-. = ( 0xdabad - code32flat_start ) ;
+. = ( 0xda5f8 - code32flat_start ) ;
 *32flat.*(.text.romfile_findprefix)
-. = ( 0xdabe3 - code32flat_start ) ;
+. = ( 0xda62e - code32flat_start ) ;
 *32flat.*(.text.glob_prefix)
-. = ( 0xdac1d - code32flat_start ) ;
+. = ( 0xda668 - code32flat_start ) ;
 *32flat.*(.text.parse_u32)
-. = ( 0xdac4b - code32flat_start ) ;
+. = ( 0xda696 - code32flat_start ) ;
 *32flat.*(.text.add_bev)
-. = ( 0xdaca2 - code32flat_start ) ;
+. = ( 0xda6ed - code32flat_start ) ;
 *32flat.*(.text.getword)
-. = ( 0xdaccb - code32flat_start ) ;
+. = ( 0xda716 - code32flat_start ) ;
 *32flat.*(.text.idctqtab)
-. = ( 0xdad25 - code32flat_start ) ;
+. = ( 0xda770 - code32flat_start ) ;
 *32flat.*(.text.pci_find_device)
-. = ( 0xdad4d - code32flat_start ) ;
+. = ( 0xda798 - code32flat_start ) ;
 *32flat.*(.text.pci_init_device)
-. = ( 0xdada4 - code32flat_start ) ;
+. = ( 0xda7ef - code32flat_start ) ;
 *32flat.*(.text.smbios_next)
-. = ( 0xdae05 - code32flat_start ) ;
+. = ( 0xda850 - code32flat_start ) ;
 *32flat.*(.text.smbios_get_tables)
-. = ( 0xdae33 - code32flat_start ) ;
+. = ( 0xda87e - code32flat_start ) ;
 *32flat.*(.text.piix_pci_slot_get_irq)
-. = ( 0xdae5f - code32flat_start ) ;
+. = ( 0xda8aa - code32flat_start ) ;
 *32flat.*(.text.mch_pci_slot_get_irq)
-. = ( 0xdae99 - code32flat_start ) ;
+. = ( 0xda8e4 - code32flat_start ) ;
 *32flat.*(.text.piix_ide_setup)
-. = ( 0xdaebf - code32flat_start ) ;
+. = ( 0xda90a - code32flat_start ) ;
 *32flat.*(.text.ich9_smbus_setup)
-. = ( 0xdaecc - code32flat_start ) ;
+. = ( 0xda917 - code32flat_start ) ;
 *32flat.*(.text.i440fx_mem_addr_setup)
-. = ( 0xdaf0a - code32flat_start ) ;
+. = ( 0xda955 - code32flat_start ) ;
 *32flat.*(.text.pci_region_align)
-. = ( 0xdaf25 - code32flat_start ) ;
+. = ( 0xda970 - code32flat_start ) ;
 *32flat.*(.text.pci_region_sum)
-. = ( 0xdaf4d - code32flat_start ) ;
+. = ( 0xda998 - code32flat_start ) ;
 *32flat.*(.text.pci_region_migrate_64bit_entries)
-. = ( 0xdaf97 - code32flat_start ) ;
+. = ( 0xda9e2 - code32flat_start ) ;
 *32flat.*(.text.pci_bios_init_root_regions_mem)
-. = ( 0xdb067 - code32flat_start ) ;
+. = ( 0xdaab2 - code32flat_start ) ;
 *32flat.*(.text.piix4_fadt_setup)
-. = ( 0xdb0b3 - code32flat_start ) ;
+. = ( 0xdaafe - code32flat_start ) ;
 *32flat.*(.text.ich9_lpc_fadt_setup)
-. = ( 0xdb0fe - code32flat_start ) ;
+. = ( 0xdab49 - code32flat_start ) ;
 *32flat.*(.text.getHex)
-. = ( 0xdb10e - code32flat_start ) ;
+. = ( 0xdab59 - code32flat_start ) ;
 *32flat.*(.text.build_notify)
-. = ( 0xdb1b0 - code32flat_start ) ;
+. = ( 0xdabfb - code32flat_start ) ;
 *32flat.*(.text.parse_resource_int)
-. = ( 0xdb1f8 - code32flat_start ) ;
+. = ( 0xdac43 - code32flat_start ) ;
 *32flat.*(.text.parse_pkglength)
-. = ( 0xdb25e - code32flat_start ) ;
-*32flat.*(.text._vp_read)
-. = ( 0xdb40c - code32flat_start ) ;
-*32flat.*(.text._vp_write)
-. = ( 0xdb51a - code32flat_start ) ;
-*32flat.*(.text.vp_get_features)
-. = ( 0xdb5df - code32flat_start ) ;
-*32flat.*(.text.vp_set_features)
-. = ( 0xdb6d5 - code32flat_start ) ;
+. = ( 0xdaca9 - code32flat_start ) ;
 *32flat.*(.text.const_read_file)
-. = ( 0xdb6fb - code32flat_start ) ;
+. = ( 0xdaccf - code32flat_start ) ;
 *32flat.*(.text.tpm20_write_EfiSpecIdEventStruct)
-. = ( 0xdb82d - code32flat_start ) ;
+. = ( 0xdae01 - code32flat_start ) ;
 *32flat.*(.text.is_pci_vga)
-. = ( 0xdb874 - code32flat_start ) ;
+. = ( 0xdae48 - code32flat_start ) ;
 *32flat.*(.text.fillbits)
-. = ( 0xdb8f0 - code32flat_start ) ;
+. = ( 0xdaec4 - code32flat_start ) ;
 *32flat.*(.text.dec_rec2)
-. = ( 0xdba0a - code32flat_start ) ;
+. = ( 0xdafde - code32flat_start ) ;
 *32flat.*(.text.idct)
-. = ( 0xdbd19 - code32flat_start ) ;
+. = ( 0xdb2ed - code32flat_start ) ;
 *32flat.*(.text.tpm_can_show_menu)
-. = ( 0xdbd4b - code32flat_start ) ;
+. = ( 0xdb31f - code32flat_start ) ;
 *32flat.*(.text.romfile_loader_find)
-. = ( 0xdbd88 - code32flat_start ) ;
+. = ( 0xdb35c - code32flat_start ) ;
 *32flat.*(.text.parse_nameseg)
-. = ( 0xdbde3 - code32flat_start ) ;
-*32flat.*(.text.vp_get_status)
-. = ( 0xdbe1a - code32flat_start ) ;
-*32flat.*(.text.vp_set_status)
-. = ( 0xdbe60 - code32flat_start ) ;
-*32flat.*(.text.vp_reset)
-. = ( 0xdbee7 - code32flat_start ) ;
+. = ( 0xdb3b7 - code32flat_start ) ;
 *32flat.*(.text.ata_extract_model.constprop.0)
-. = ( 0xdbf0c - code32flat_start ) ;
+. = ( 0xdb3dc - code32flat_start ) ;
 *32flat.*(.text.detect_serial.constprop.0)
-. = ( 0xdbf50 - code32flat_start ) ;
+. = ( 0xdb420 - code32flat_start ) ;
 *32flat.*(.text.pci_config_maskw.constprop.0)
-. = ( 0xdbf74 - code32flat_start ) ;
+. = ( 0xdb444 - code32flat_start ) ;
 *32flat.*(.text.get_acpi_rsdp_length)
-. = ( 0xdbfda - code32flat_start ) ;
+. = ( 0xdb4aa - code32flat_start ) ;
 *32flat.*(.text.build_header.constprop.0)
-. = ( 0xdc022 - code32flat_start ) ;
+. = ( 0xdb4f2 - code32flat_start ) ;
 *32flat.*(.text.enable_hwirq.constprop.0)
-. = ( 0xdc05a - code32flat_start ) ;
+. = ( 0xdb52a - code32flat_start ) ;
 *32flat.*(.text.pci_set_io_region_addr)
-. = ( 0xdc0b2 - code32flat_start ) ;
+. = ( 0xdb582 - code32flat_start ) ;
 *32flat.*(.text.storage_ide_setup)
-. = ( 0xdc113 - code32flat_start ) ;
+. = ( 0xdb5e3 - code32flat_start ) ;
 *32flat.*(.text.pic_ibm_setup)
-. = ( 0xdc127 - code32flat_start ) ;
+. = ( 0xdb5f7 - code32flat_start ) ;
 *32flat.*(.text.apple_macio_setup)
-. = ( 0xdc13b - code32flat_start ) ;
+. = ( 0xdb60b - code32flat_start ) ;
 *32flat.*(.text.tpm20_get_suppt_pcrbanks.isra.0)
-. = ( 0xdc1bd - code32flat_start ) ;
+. = ( 0xdb68d - code32flat_start ) ;
 *32flat.*(.text.readtables)
-. = ( 0xdc530 - code32flat_start ) ;
+. = ( 0xdba00 - code32flat_start ) ;
 *32flat.*(.text.getFBSize.isra.0)
-. = ( 0xdc553 - code32flat_start ) ;
+. = ( 0xdba23 - code32flat_start ) ;
 *32flat.*(.text.memmove.isra.0)
-. = ( 0xdc571 - code32flat_start ) ;
+. = ( 0xdba41 - code32flat_start ) ;
 *32flat.*(.text.remove_e820)
-. = ( 0xdc5a0 - code32flat_start ) ;
-*32flat.*(.text.vp_init_mmio)
-. = ( 0xdc5de - code32flat_start ) ;
+. = ( 0xdba70 - code32flat_start ) ;
 *32flat.*(.text.tpm_set_log_area)
-. = ( 0xdc623 - code32flat_start ) ;
+. = ( 0xdbab5 - code32flat_start ) ;
 *32flat.*(.text.alloc_new.isra.0)
-. = ( 0xdc66f - code32flat_start ) ;
+. = ( 0xdbb01 - code32flat_start ) ;
 *32flat.*(.text.tpm12_get_capability)
-. = ( 0xdc6e3 - code32flat_start ) ;
+. = ( 0xdbb75 - code32flat_start ) ;
 *32flat.*(.text.tpm12_read_has_owner)
-. = ( 0xdc714 - code32flat_start ) ;
+. = ( 0xdbba6 - code32flat_start ) ;
 *32flat.*(.text.tpm12_read_permanent_flags.constprop.0)
-. = ( 0xdc75b - code32flat_start ) ;
+. = ( 0xdbbed - code32flat_start ) ;
 *32flat.*(.text.tpm12_enable_tpm.constprop.0)
-. = ( 0xdc7a4 - code32flat_start ) ;
+. = ( 0xdbc36 - code32flat_start ) ;
 *32flat.*(.text.romfile_find)
-. = ( 0xdc7d5 - code32flat_start ) ;
+. = ( 0xdbc67 - code32flat_start ) ;
 *32flat.*(.text.romfile_loadint)
-. = ( 0xdc82f - code32flat_start ) ;
+. = ( 0xdbcc1 - code32flat_start ) ;
 *32flat.*(.text.wait_threads)
-. = ( 0xdc843 - code32flat_start ) ;
+. = ( 0xdbcd5 - code32flat_start ) ;
 *32flat.*(.text.msleep)
-. = ( 0xdc85f - code32flat_start ) ;
+. = ( 0xdbcf1 - code32flat_start ) ;
 *32flat.*(.text.iomemcpy)
-. = ( 0xdc8a3 - code32flat_start ) ;
+. = ( 0xdbd35 - code32flat_start ) ;
 *32flat.*(.text.qemu_cfg_read_file)
-. = ( 0xdc8fd - code32flat_start ) ;
+. = ( 0xdbd8f - code32flat_start ) ;
 *32flat.*(.text.wait_preempt.isra.0)
-. = ( 0xdc91e - code32flat_start ) ;
+. = ( 0xdbdb0 - code32flat_start ) ;
 *32flat.*(.text.pci_enable_busmaster)
-. = ( 0xdc941 - code32flat_start ) ;
+. = ( 0xdbdd3 - code32flat_start ) ;
 *32flat.*(.text.get_keystroke_full)
-. = ( 0xdc9d1 - code32flat_start ) ;
+. = ( 0xdbe63 - code32flat_start ) ;
 *32flat.*(.text.get_keystroke)
-. = ( 0xdc9de - code32flat_start ) ;
+. = ( 0xdbe70 - code32flat_start ) ;
 *32flat.*(.text.call16_int10)
-. = ( 0xdc9f6 - code32flat_start ) ;
+. = ( 0xdbe88 - code32flat_start ) ;
 *32flat.*(.text.tpm12_activate_tpm.constprop.0)
-. = ( 0xdca6b - code32flat_start ) ;
+. = ( 0xdbefd - code32flat_start ) ;
 *32flat.*(.text.tpm12_set_owner_install.constprop.0)
-. = ( 0xdcaf3 - code32flat_start ) ;
+. = ( 0xdbf85 - code32flat_start ) ;
 *32flat.*(.text.snprintf)
-. = ( 0xdcb3e - code32flat_start ) ;
+. = ( 0xdbfd0 - code32flat_start ) ;
 *32flat.*(.text.get_field)
-. = ( 0xdcb89 - code32flat_start ) ;
+. = ( 0xdc01b - code32flat_start ) ;
 *32flat.*(.text.acpi_dsdt_find_string)
-. = ( 0xdcbda - code32flat_start ) ;
+. = ( 0xdc06c - code32flat_start ) ;
 *32flat.*(.text.smbios_init_type_4)
-. = ( 0xdcdf8 - code32flat_start ) ;
+. = ( 0xdc28a - code32flat_start ) ;
 *32flat.*(.text.smbios_init_type_17)
-. = ( 0xdcf49 - code32flat_start ) ;
+. = ( 0xdc3db - code32flat_start ) ;
 *32flat.*(.text.build_pci_path.constprop.0)
-. = ( 0xdcff9 - code32flat_start ) ;
-*32flat.*(.text.free)
-. = ( 0xdd016 - code32flat_start ) ;
+. = ( 0xdc48b - code32flat_start ) ;
 *32flat.*(.text.pci_enable_iobar)
-. = ( 0xdd07f - code32flat_start ) ;
-*32flat.*(.text.__end_thread)
-. = ( 0xdd0b7 - code32flat_start ) ;
+. = ( 0xdc4f4 - code32flat_start ) ;
 *32flat.*(.text.__warn_noalloc)
-. = ( 0xdd0c7 - code32flat_start ) ;
+. = ( 0xdc504 - code32flat_start ) ;
 *32flat.*(.text.add_drive)
-. = ( 0xdd0e8 - code32flat_start ) ;
+. = ( 0xdc525 - code32flat_start ) ;
 *32flat.*(.text.deploy_romfile)
-. = ( 0xdd12d - code32flat_start ) ;
+. = ( 0xdc56a - code32flat_start ) ;
 *32flat.*(.text.wrmsr_smp)
-. = ( 0xdd174 - code32flat_start ) ;
+. = ( 0xdc5b1 - code32flat_start ) ;
 *32flat.*(.text.get_external)
-. = ( 0xdd2aa - code32flat_start ) ;
+. = ( 0xdc6e7 - code32flat_start ) ;
 *32flat.*(.text.insert_e820)
-. = ( 0xdd334 - code32flat_start ) ;
-*32flat.*(.text.e820_add.part.0)
-. = ( 0xdd503 - code32flat_start ) ;
-*32flat.*(.text.e820_add)
-. = ( 0xdd530 - code32flat_start ) ;
+. = ( 0xdc771 - code32flat_start ) ;
 *32flat.*(.text.alloc_new_detail)
-. = ( 0xdd5ba - code32flat_start ) ;
-*32flat.*(.text.malloc_palloc.part.0)
-. = ( 0xdd5f6 - code32flat_start ) ;
-*32flat.*(.text.malloc_palloc)
-. = ( 0xdd602 - code32flat_start ) ;
-*32flat.*(.text.malloc_tmphigh)
-. = ( 0xdd613 - code32flat_start ) ;
-*32flat.*(.text.malloc_tmp)
-. = ( 0xdd637 - code32flat_start ) ;
-*32flat.*(.text.malloc_fseg)
-. = ( 0xdd648 - code32flat_start ) ;
-*32flat.*(.text.malloc_high)
-. = ( 0xdd659 - code32flat_start ) ;
-*32flat.*(.text.zalloc_page_aligned)
-. = ( 0xdd675 - code32flat_start ) ;
+. = ( 0xdc7fb - code32flat_start ) ;
 *32flat.*(.text.alloc_add)
-. = ( 0xdd6c6 - code32flat_start ) ;
-*32flat.*(.text.znprintf)
-. = ( 0xdd727 - code32flat_start ) ;
-*32flat.*(.text.pci_region_create_entry)
-. = ( 0xdd7fb - code32flat_start ) ;
-*32flat.*(.text.create_bounce_buf)
-. = ( 0xdd83c - code32flat_start ) ;
-*32flat.*(.text.init_atadrive)
-. = ( 0xdd89a - code32flat_start ) ;
+. = ( 0xdc84c - code32flat_start ) ;
 *32flat.*(.text.ahci_port_reset)
-. = ( 0xdd92e - code32flat_start ) ;
-*32flat.*(.text.ahci_port_release)
-. = ( 0xdd95c - code32flat_start ) ;
+. = ( 0xdc8e0 - code32flat_start ) ;
 *32flat.*(.text.piix4_pm_setup)
-. = ( 0xdd9ab - code32flat_start ) ;
+. = ( 0xdc92f - code32flat_start ) ;
 *32flat.*(.text.i8042_command)
-. = ( 0xdda6f - code32flat_start ) ;
+. = ( 0xdc9f3 - code32flat_start ) ;
 *32flat.*(.text.i8042_flush)
-. = ( 0xddac4 - code32flat_start ) ;
+. = ( 0xdca48 - code32flat_start ) ;
 *32flat.*(.text.powerup_await_non_bsy)
-. = ( 0xddb3a - code32flat_start ) ;
-*32flat.*(.text.qemu_romfile_add)
-. = ( 0xddbd3 - code32flat_start ) ;
+. = ( 0xdcabe - code32flat_start ) ;
+*32flat.*(.text.malloc_pfree)
+. = ( 0xdcb06 - code32flat_start ) ;
+*32flat.*(.text.free)
+. = ( 0xdcb23 - code32flat_start ) ;
+*32flat.*(.text.ahci_port_release)
+. = ( 0xdcb51 - code32flat_start ) ;
+*32flat.*(.text.__end_thread)
+. = ( 0xdcb89 - code32flat_start ) ;
 *32flat.*(.text.boot_lchs_find)
-. = ( 0xddc1c - code32flat_start ) ;
+. = ( 0xdcbd2 - code32flat_start ) ;
 *32flat.*(.text.boot_lchs_find_ata_device.isra.0)
-. = ( 0xddc87 - code32flat_start ) ;
+. = ( 0xdcc3d - code32flat_start ) ;
 *32flat.*(.text.find_prio)
-. = ( 0xddcc8 - code32flat_start ) ;
+. = ( 0xdcc7e - code32flat_start ) ;
 *32flat.*(.text.is_bootprio_strict)
-. = ( 0xddceb - code32flat_start ) ;
+. = ( 0xdcca1 - code32flat_start ) ;
 *32flat.*(.text.bootprio_find_pci_device)
-. = ( 0xddd0d - code32flat_start ) ;
+. = ( 0xdccc3 - code32flat_start ) ;
 *32flat.*(.text.bootprio_find_ata_device)
-. = ( 0xddd58 - code32flat_start ) ;
+. = ( 0xdcd0e - code32flat_start ) ;
 *32flat.*(.text.bootprio_find_named_rom)
-. = ( 0xddda7 - code32flat_start ) ;
+. = ( 0xdcd5d - code32flat_start ) ;
 *32flat.*(.text.getRomPriority)
-. = ( 0xdde1b - code32flat_start ) ;
+. = ( 0xdcdd1 - code32flat_start ) ;
 *32flat.*(.text.pci_enable_membar)
-. = ( 0xddea5 - code32flat_start ) ;
+. = ( 0xdce5b - code32flat_start ) ;
 *32flat.*(.text.sdcard_set_frequency)
-. = ( 0xddf50 - code32flat_start ) ;
+. = ( 0xdcf06 - code32flat_start ) ;
 *32flat.*(.text.pci_find_resource_reserve_capability)
-. = ( 0xddfec - code32flat_start ) ;
+. = ( 0xdcfa2 - code32flat_start ) ;
 *32flat.*(.text.pci_bios_init_bus_rec)
-. = ( 0xde23b - code32flat_start ) ;
+. = ( 0xdd1f1 - code32flat_start ) ;
 *32flat.*(.text.dummy_pci_slot_get_irq)
-. = ( 0xde24c - code32flat_start ) ;
+. = ( 0xdd202 - code32flat_start ) ;
 *32flat.*(.text.pci_region_map_entries)
-. = ( 0xde457 - code32flat_start ) ;
+. = ( 0xdd40d - code32flat_start ) ;
 *32flat.*(.text.piix_isa_bridge_setup)
-. = ( 0xde4c8 - code32flat_start ) ;
+. = ( 0xdd47e - code32flat_start ) ;
 *32flat.*(.text.fill_dsdt)
-. = ( 0xde4fc - code32flat_start ) ;
+. = ( 0xdd4b2 - code32flat_start ) ;
+*32flat.*(.text._vp_read)
+. = ( 0xdd6a4 - code32flat_start ) ;
+*32flat.*(.text.vp_get_status)
+. = ( 0xdd6db - code32flat_start ) ;
+*32flat.*(.text._vp_write)
+. = ( 0xdd81b - code32flat_start ) ;
+*32flat.*(.text.vp_get_features)
+. = ( 0xdd8e0 - code32flat_start ) ;
+*32flat.*(.text.vp_set_features)
+. = ( 0xdd9d6 - code32flat_start ) ;
+*32flat.*(.text.vp_set_status)
+. = ( 0xdda1c - code32flat_start ) ;
+*32flat.*(.text.vp_reset)
+. = ( 0xddaa3 - code32flat_start ) ;
+*32flat.*(.text.vp_init_mmio)
+. = ( 0xddae1 - code32flat_start ) ;
 *32flat.*(.text.nvme_init_queue_common)
-. = ( 0xde547 - code32flat_start ) ;
+. = ( 0xddb2c - code32flat_start ) ;
 *32flat.*(.text.nvme_wait_csts_rdy)
-. = ( 0xde5ba - code32flat_start ) ;
+. = ( 0xddb9f - code32flat_start ) ;
 *32flat.*(.text.enable_vga_console)
-. = ( 0xde79c - code32flat_start ) ;
+. = ( 0xddd81 - code32flat_start ) ;
 *32flat.*(.text.map_pcirom)
-. = ( 0xde96c - code32flat_start ) ;
+. = ( 0xddf51 - code32flat_start ) ;
+*32flat.*(.text.e820_add)
+. = ( 0xde144 - code32flat_start ) ;
+*32flat.*(.text.malloc_palloc.part.0)
+. = ( 0xde1a0 - code32flat_start ) ;
+*32flat.*(.text.malloc_palloc)
+. = ( 0xde1ac - code32flat_start ) ;
+*32flat.*(.text.malloc_tmphigh)
+. = ( 0xde1bd - code32flat_start ) ;
+*32flat.*(.text.malloc_tmp)
+. = ( 0xde1e1 - code32flat_start ) ;
+*32flat.*(.text.znprintf)
+. = ( 0xde242 - code32flat_start ) ;
+*32flat.*(.text.qemu_romfile_add)
+. = ( 0xde2db - code32flat_start ) ;
+*32flat.*(.text.pci_region_create_entry)
+. = ( 0xde3af - code32flat_start ) ;
+*32flat.*(.text.create_bounce_buf)
+. = ( 0xde3f0 - code32flat_start ) ;
+*32flat.*(.text.malloc_fseg)
+. = ( 0xde401 - code32flat_start ) ;
+*32flat.*(.text.init_atadrive)
+. = ( 0xde45f - code32flat_start ) ;
+*32flat.*(.text.malloc_high)
+. = ( 0xde470 - code32flat_start ) ;
+*32flat.*(.text.zalloc_page_aligned)
+. = ( 0xde48c - code32flat_start ) ;
 *32flat.*(.text.run_thread)
-. = ( 0xdea17 - code32flat_start ) ;
+. = ( 0xde537 - code32flat_start ) ;
 *32flat.*(.text.romfile_loadfile)
-. = ( 0xdea9a - code32flat_start ) ;
+. = ( 0xde5ba - code32flat_start ) ;
 *32flat.*(.text.ahci_port_setup)
-. = ( 0xdef5a - code32flat_start ) ;
+. = ( 0xdea7a - code32flat_start ) ;
 *32flat.*(.text.bootentry_add)
-. = ( 0xdf00b - code32flat_start ) ;
+. = ( 0xdeb2b - code32flat_start ) ;
 *32flat.*(.text.boot_add_hd)
-. = ( 0xdf02a - code32flat_start ) ;
+. = ( 0xdeb4a - code32flat_start ) ;
 *32flat.*(.text.pci_probe_devices)
-. = ( 0xdf1fc - code32flat_start ) ;
+. = ( 0xded1c - code32flat_start ) ;
 *32flat.*(.text.pci_setup)
-. = ( 0xdff74 - code32flat_start ) ;
+. = ( 0xdfa94 - code32flat_start ) ;
 *32flat.*(.text.init_floppy)
-. = ( 0xdfffb - code32flat_start ) ;
+. = ( 0xdfb1b - code32flat_start ) ;
 *32flat.*(.text.addFloppy)
-. = ( 0xe00a2 - code32flat_start ) ;
+. = ( 0xdfbc2 - code32flat_start ) ;
 *32flat.*(.text.init_controller)
-. = ( 0xe0149 - code32flat_start ) ;
+. = ( 0xdfc69 - code32flat_start ) ;
 *32flat.*(.text.found_genericata)
-. = ( 0xe024f - code32flat_start ) ;
+. = ( 0xdfd6f - code32flat_start ) ;
 *32flat.*(.text.nvme_init_sq)
-. = ( 0xe02b3 - code32flat_start ) ;
+. = ( 0xdfdd3 - code32flat_start ) ;
 *32flat.*(.text.sdcard_pio_app.constprop.0)
-. = ( 0xe02f5 - code32flat_start ) ;
+. = ( 0xdfe15 - code32flat_start ) ;
 *32flat.*(.text.copy_fseg_table)
-. = ( 0xe033a - code32flat_start ) ;
+. = ( 0xdfe5a - code32flat_start ) ;
 *32flat.*(.text.copy_smbios_21)
-. = ( 0xe03a4 - code32flat_start ) ;
+. = ( 0xdfec4 - code32flat_start ) ;
 *32flat.*(.text.smbios_build_tables)
-. = ( 0xe05d8 - code32flat_start ) ;
+. = ( 0xe00f8 - code32flat_start ) ;
 *32flat.*(.text.qemu_cfg_detect)
-. = ( 0xe0660 - code32flat_start ) ;
+. = ( 0xe0180 - code32flat_start ) ;
 *32flat.*(.text.sdcard_card_setup.constprop.0)
-. = ( 0xe0a1e - code32flat_start ) ;
+. = ( 0xe053e - code32flat_start ) ;
 *32flat.*(.text.sdcard_controller_setup)
-. = ( 0xe0b46 - code32flat_start ) ;
+. = ( 0xe0666 - code32flat_start ) ;
 *32flat.*(.text.sdcard_pci_setup)
-. = ( 0xe0b6f - code32flat_start ) ;
+. = ( 0xe068f - code32flat_start ) ;
 *32flat.*(.text.sdcard_romfile_setup)
-. = ( 0xe0baa - code32flat_start ) ;
+. = ( 0xe06ca - code32flat_start ) ;
 *32flat.*(.text.find_resource)
-. = ( 0xe0e4c - code32flat_start ) ;
+. = ( 0xe096c - code32flat_start ) ;
 *32flat.*(.text.hex.constprop.0)
-. = ( 0xe0ec2 - code32flat_start ) ;
+. = ( 0xe09e2 - code32flat_start ) ;
 *32flat.*(.text.parse_namestring)
-. = ( 0xe1006 - code32flat_start ) ;
+. = ( 0xe0b26 - code32flat_start ) ;
 *32flat.*(.text.parse_pkg_skip)
-. = ( 0xe1065 - code32flat_start ) ;
+. = ( 0xe0b85 - code32flat_start ) ;
 *32flat.*(.text.parse_termarg_int)
-. = ( 0xe10eb - code32flat_start ) ;
+. = ( 0xe0c0b - code32flat_start ) ;
 *32flat.*(.text.ps2port_setup)
-. = ( 0xe11f3 - code32flat_start ) ;
+. = ( 0xe0d13 - code32flat_start ) ;
 *32flat.*(.text.parse_termobj)
-. = ( 0xe1518 - code32flat_start ) ;
+. = ( 0xe1038 - code32flat_start ) ;
 *32flat.*(.text.parse_termlist)
-. = ( 0xe1579 - code32flat_start ) ;
+. = ( 0xe1099 - code32flat_start ) ;
 *32flat.*(.text.ps2_recvbyte.constprop.0)
-. = ( 0xe161c - code32flat_start ) ;
+. = ( 0xe113c - code32flat_start ) ;
 *32flat.*(.text.ps2_sendbyte.constprop.0)
-. = ( 0xe1671 - code32flat_start ) ;
+. = ( 0xe1191 - code32flat_start ) ;
 *32flat.*(.text.ps2_kbd_command)
-. = ( 0xe17b7 - code32flat_start ) ;
+. = ( 0xe12d7 - code32flat_start ) ;
 *32flat.*(.text.ps2_keyboard_setup)
-. = ( 0xe1902 - code32flat_start ) ;
+. = ( 0xe1422 - code32flat_start ) ;
 *32flat.*(.text.mch_mem_addr_setup)
-. = ( 0xe196b - code32flat_start ) ;
+. = ( 0xe148b - code32flat_start ) ;
 *32flat.*(.text.nvme_admin_identify)
-. = ( 0xe19fe - code32flat_start ) ;
+. = ( 0xe151e - code32flat_start ) ;
 *32flat.*(.text.nvme_controller_setup)
-. = ( 0xe200c - code32flat_start ) ;
+. = ( 0xe1b2c - code32flat_start ) ;
 *32flat.*(.text.send_ata_identity)
-. = ( 0xe20b2 - code32flat_start ) ;
+. = ( 0xe1bd2 - code32flat_start ) ;
 *32flat.*(.text.mch_isa_bridge_setup)
-. = ( 0xe218b - code32flat_start ) ;
+. = ( 0xe1cab - code32flat_start ) ;
 *32flat.*(.text.init_optionrom.isra.0)
-. = ( 0xe2298 - code32flat_start ) ;
+. = ( 0xe1db8 - code32flat_start ) ;
 *32flat.*(.text.run_file_roms)
-. = ( 0xe22e4 - code32flat_start ) ;
+. = ( 0xe1e04 - code32flat_start ) ;
 *32flat.*(.text.init_pcirom)
-. = ( 0xe2428 - code32flat_start ) ;
+. = ( 0xe1f48 - code32flat_start ) ;
 *32flat.*(.text.optionrom_setup)
-. = ( 0xe263b - code32flat_start ) ;
+. = ( 0xe215b - code32flat_start ) ;
 *32flat.*(.text.vgarom_setup)
-. = ( 0xe2942 - code32flat_start ) ;
+. = ( 0xe2462 - code32flat_start ) ;
 *32flat.*(.text.memalign_tmp)
-. = ( 0xe2974 - code32flat_start ) ;
+. = ( 0xe2494 - code32flat_start ) ;
 *32flat.*(.text.qemu_platform_setup)
-. = ( 0xe5070 - code32flat_start ) ;
+. = ( 0xe4b90 - code32flat_start ) ;
 *32flat.*(.text.vp_find_vq)
-. = ( 0xe549a - code32flat_start ) ;
+. = ( 0xe4fba - code32flat_start ) ;
 *32flat.*(.text.intel_igd_setup)
-. = ( 0xe55b0 - code32flat_start ) ;
+. = ( 0xe50d0 - code32flat_start ) ;
 *32flat.*(.text.init_virtio_blk_mmio)
-. = ( 0xe57d7 - code32flat_start ) ;
+. = ( 0xe52f7 - code32flat_start ) ;
 *32flat.*(.text.interface_init)
-. = ( 0xe6246 - code32flat_start ) ;
+. = ( 0xe5d66 - code32flat_start ) ;
 *32flat.*(.text.prepareboot)
-. = ( 0xe6aae - code32flat_start ) ;
+. = ( 0xe65ce - code32flat_start ) ;
 *32flat.*(.text.cdrom_media_info)
-. = ( 0xe6b6f - code32flat_start ) ;
+. = ( 0xe668f - code32flat_start ) ;
 *32flat.*(.text.boot_add_cd)
-. = ( 0xe6bc6 - code32flat_start ) ;
+. = ( 0xe66e6 - code32flat_start ) ;
 *32flat.*(.text.ata_detect)
-. = ( 0xe705e - code32flat_start ) ;
+. = ( 0xe6b7e - code32flat_start ) ;
 *32flat.*(.text.ahci_port_detect)
-. = ( 0xe71f8 - code32flat_start ) ;
+. = ( 0xe6d18 - code32flat_start ) ;
 *32flat.*(.text.init_virtio_scsi_mmio)
-. = ( 0xe7ae4 - code32flat_start ) ;
+. = ( 0xe7604 - code32flat_start ) ;
 *32flat.*(.text.maininit)
-. = ( 0xea74f - code32flat_start ) ;
+. = ( 0xea26f - code32flat_start ) ;
 *32flat.*(.text.init../src/post.c.303)
-. = ( 0xeaee7 - code32flat_start ) ;
+. = ( 0xeaa07 - code32flat_start ) ;
 *32flat.*(.text.init../src/pmm.c.133)
-. = ( 0xeb104 - code32flat_start ) ;
+. = ( 0xeac24 - code32flat_start ) ;
 *32flat.*(.rodata.find_resource)
-. = ( 0xeb118 - code32flat_start ) ;
+. = ( 0xeac38 - code32flat_start ) ;
 *32flat.*(.rodata.parse_termarg_int)
-. = ( 0xeb14c - code32flat_start ) ;
+. = ( 0xeac6c - code32flat_start ) ;
 *32flat.*(.rodata.parse_termobj)
-. = ( 0xeb1a0 - code32flat_start ) ;
+. = ( 0xeacc0 - code32flat_start ) ;
 *32flat.*(.rodata.maininit)
-. = ( 0xeb200 - code32flat_start ) ;
+. = ( 0xead20 - code32flat_start ) ;
 *32flat.*(.rodata.CSWTCH.1702)
-. = ( 0xeb214 - code32flat_start ) ;
+. = ( 0xead34 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.2)
-. = ( 0xeb224 - code32flat_start ) ;
+. = ( 0xead44 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.3)
-. = ( 0xeb238 - code32flat_start ) ;
+. = ( 0xead58 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.4)
-. = ( 0xeb24c - code32flat_start ) ;
+. = ( 0xead6c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.5)
-. = ( 0xeb25c - code32flat_start ) ;
+. = ( 0xead7c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.6)
-. = ( 0xeb26c - code32flat_start ) ;
+. = ( 0xead8c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.7)
-. = ( 0xeb284 - code32flat_start ) ;
+. = ( 0xeada4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.12)
-. = ( 0xeb298 - code32flat_start ) ;
+. = ( 0xeadb8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.13)
-. = ( 0xeb2b0 - code32flat_start ) ;
+. = ( 0xeadd0 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.14)
-. = ( 0xeb2e0 - code32flat_start ) ;
+. = ( 0xeae00 - code32flat_start ) ;
 *32flat.*(.rodata.names.15)
-. = ( 0xeb34c - code32flat_start ) ;
+. = ( 0xeae6c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.17)
-. = ( 0xeb358 - code32flat_start ) ;
+. = ( 0xeae78 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.19)
-. = ( 0xeb36c - code32flat_start ) ;
+. = ( 0xeae8c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.20)
-. = ( 0xeb37c - code32flat_start ) ;
+. = ( 0xeae9c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.21)
-. = ( 0xeb390 - code32flat_start ) ;
+. = ( 0xeaeb0 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.22)
-. = ( 0xeb3a0 - code32flat_start ) ;
+. = ( 0xeaec0 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.23)
-. = ( 0xeb3b0 - code32flat_start ) ;
+. = ( 0xeaed0 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.24)
-. = ( 0xeb3c4 - code32flat_start ) ;
+. = ( 0xeaee4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.25)
-. = ( 0xeb3d4 - code32flat_start ) ;
+. = ( 0xeaef4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.26)
-. = ( 0xeb3f4 - code32flat_start ) ;
+. = ( 0xeaf14 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.27)
-. = ( 0xeb410 - code32flat_start ) ;
+. = ( 0xeaf30 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.28)
-. = ( 0xeb42c - code32flat_start ) ;
+. = ( 0xeaf4c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.29)
-. = ( 0xeb444 - code32flat_start ) ;
+. = ( 0xeaf64 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.30)
-. = ( 0xeb45c - code32flat_start ) ;
+. = ( 0xeaf7c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.31)
-. = ( 0xeb478 - code32flat_start ) ;
+. = ( 0xeaf98 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.32)
-. = ( 0xeb488 - code32flat_start ) ;
+. = ( 0xeafa8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.34)
-. = ( 0xeb49c - code32flat_start ) ;
+. = ( 0xeafbc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.35)
-. = ( 0xeb4ac - code32flat_start ) ;
+. = ( 0xeafcc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.36)
-. = ( 0xeb4bc - code32flat_start ) ;
+. = ( 0xeafdc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.37)
-. = ( 0xeb4c8 - code32flat_start ) ;
+. = ( 0xeafe8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.38)
-. = ( 0xeb4d4 - code32flat_start ) ;
+. = ( 0xeaff4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.39)
-. = ( 0xeb4e0 - code32flat_start ) ;
+. = ( 0xeb000 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.40)
-. = ( 0xeb4ec - code32flat_start ) ;
+. = ( 0xeb00c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.41)
-. = ( 0xeb4f8 - code32flat_start ) ;
+. = ( 0xeb018 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.42)
-. = ( 0xeb504 - code32flat_start ) ;
+. = ( 0xeb024 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.43)
-. = ( 0xeb510 - code32flat_start ) ;
+. = ( 0xeb030 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.44)
-. = ( 0xeb51c - code32flat_start ) ;
+. = ( 0xeb03c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.45)
-. = ( 0xeb52c - code32flat_start ) ;
+. = ( 0xeb04c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.46)
-. = ( 0xeb544 - code32flat_start ) ;
+. = ( 0xeb064 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.47)
-. = ( 0xeb55c - code32flat_start ) ;
+. = ( 0xeb07c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.48)
-. = ( 0xeb568 - code32flat_start ) ;
+. = ( 0xeb088 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.49)
-. = ( 0xeb57c - code32flat_start ) ;
+. = ( 0xeb09c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.50)
-. = ( 0xeb594 - code32flat_start ) ;
+. = ( 0xeb0b4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.51)
-. = ( 0xeb5a8 - code32flat_start ) ;
+. = ( 0xeb0c8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.54)
-. = ( 0xeb5bc - code32flat_start ) ;
+. = ( 0xeb0dc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.55)
-. = ( 0xeb5c8 - code32flat_start ) ;
+. = ( 0xeb0e8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.56)
-. = ( 0xeb5dc - code32flat_start ) ;
+. = ( 0xeb0fc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.57)
-. = ( 0xeb5f8 - code32flat_start ) ;
+. = ( 0xeb118 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.58)
-. = ( 0xeb608 - code32flat_start ) ;
+. = ( 0xeb128 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.59)
-. = ( 0xeb618 - code32flat_start ) ;
+. = ( 0xeb138 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.60)
-. = ( 0xeb62c - code32flat_start ) ;
+. = ( 0xeb14c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.61)
-. = ( 0xeb644 - code32flat_start ) ;
+. = ( 0xeb164 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.64)
-. = ( 0xeb654 - code32flat_start ) ;
+. = ( 0xeb174 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.65)
-. = ( 0xeb668 - code32flat_start ) ;
+. = ( 0xeb188 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.66)
-. = ( 0xeb678 - code32flat_start ) ;
+. = ( 0xeb198 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.67)
-. = ( 0xeb688 - code32flat_start ) ;
+. = ( 0xeb1a8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.68)
-. = ( 0xeb6a0 - code32flat_start ) ;
+. = ( 0xeb1c0 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.70)
-. = ( 0xeb6b4 - code32flat_start ) ;
+. = ( 0xeb1d4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.71)
-. = ( 0xeb6c8 - code32flat_start ) ;
+. = ( 0xeb1e8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.72)
-. = ( 0xeb6dc - code32flat_start ) ;
+. = ( 0xeb1fc - code32flat_start ) ;
 *32flat.*(.rodata.evt_separator.74)
-. = ( 0xeb6e0 - code32flat_start ) ;
+. = ( 0xeb200 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.75)
-. = ( 0xeb6f4 - code32flat_start ) ;
+. = ( 0xeb214 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.76)
-. = ( 0xeb708 - code32flat_start ) ;
+. = ( 0xeb228 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.79)
-. = ( 0xeb718 - code32flat_start ) ;
+. = ( 0xeb238 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.80)
-. = ( 0xeb72c - code32flat_start ) ;
+. = ( 0xeb24c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.81)
-. = ( 0xeb73c - code32flat_start ) ;
+. = ( 0xeb25c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.83)
-. = ( 0xeb74c - code32flat_start ) ;
+. = ( 0xeb26c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.84)
-. = ( 0xeb758 - code32flat_start ) ;
+. = ( 0xeb278 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.85)
-. = ( 0xeb768 - code32flat_start ) ;
+. = ( 0xeb288 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.86)
-. = ( 0xeb77c - code32flat_start ) ;
+. = ( 0xeb29c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.87)
-. = ( 0xeb794 - code32flat_start ) ;
+. = ( 0xeb2b4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.88)
-. = ( 0xeb7a8 - code32flat_start ) ;
+. = ( 0xeb2c8 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.89)
-. = ( 0xeb7b4 - code32flat_start ) ;
+. = ( 0xeb2d4 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.90)
-. = ( 0xeb7bc - code32flat_start ) ;
+. = ( 0xeb2dc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.91)
-. = ( 0xeb7d0 - code32flat_start ) ;
+. = ( 0xeb2f0 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.92)
-. = ( 0xeb7dc - code32flat_start ) ;
+. = ( 0xeb2fc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.93)
-. = ( 0xeb7ec - code32flat_start ) ;
+. = ( 0xeb30c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.94)
-. = ( 0xeb7fc - code32flat_start ) ;
+. = ( 0xeb31c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.95)
-. = ( 0xeb814 - code32flat_start ) ;
+. = ( 0xeb334 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.97)
-. = ( 0xeb824 - code32flat_start ) ;
+. = ( 0xeb344 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.98)
-. = ( 0xeb830 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.103)
-. = ( 0xeb83c - code32flat_start ) ;
+. = ( 0xeb350 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.104)
-. = ( 0xeb850 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.107)
-. = ( 0xeb85c - code32flat_start ) ;
+. = ( 0xeb35c - code32flat_start ) ;
+*32flat.*(.rodata.__func__.105)
+. = ( 0xeb370 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.108)
-. = ( 0xeb870 - code32flat_start ) ;
+. = ( 0xeb37c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.109)
-. = ( 0xeb880 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.110)
-. = ( 0xeb890 - code32flat_start ) ;
-*32flat.*(.rodata.mem_power.117)
-. = ( 0xeb898 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.183)
-. = ( 0xeb8a8 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.184)
-. = ( 0xeb8b4 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.185)
-. = ( 0xeb8c8 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.186)
-. = ( 0xeb8e0 - code32flat_start ) ;
+. = ( 0xeb390 - code32flat_start ) ;
+*32flat.*(.rodata.__func__.112)
+. = ( 0xeb3a0 - code32flat_start ) ;
+*32flat.*(.rodata.__func__.113)
+. = ( 0xeb3b0 - code32flat_start ) ;
+*32flat.*(.rodata.mem_power.122)
+. = ( 0xeb3b8 - code32flat_start ) ;
+*32flat.*(.rodata.__func__.194)
+. = ( 0xeb3c8 - code32flat_start ) ;
+*32flat.*(.rodata.__func__.195)
+. = ( 0xeb3d4 - code32flat_start ) ;
+*32flat.*(.rodata.__func__.196)
+. = ( 0xeb3e8 - code32flat_start ) ;
+*32flat.*(.rodata.__func__.197)
+. = ( 0xeb400 - code32flat_start ) ;
 *32flat.*(.rodata.acpi_find_tbl)
-. = ( 0xeb920 - code32flat_start ) ;
+. = ( 0xeb440 - code32flat_start ) ;
 *32flat.*(.rodata.fadt_init_tbl)
-. = ( 0xeb960 - code32flat_start ) ;
+. = ( 0xeb480 - code32flat_start ) ;
 *32flat.*(.rodata.pci_platform_tbl)
-. = ( 0xeb9a0 - code32flat_start ) ;
+. = ( 0xeb4c0 - code32flat_start ) ;
 *32flat.*(.rodata.pci_device_tbl)
-. = ( 0xebab8 - code32flat_start ) ;
+. = ( 0xeb5d8 - code32flat_start ) ;
 *32flat.*(.rodata.pci_irqs)
-. = ( 0xebabc - code32flat_start ) ;
+. = ( 0xeb5dc - code32flat_start ) ;
 *32flat.*(.rodata.region_type_name)
-. = ( 0xebae0 - code32flat_start ) ;
+. = ( 0xeb600 - code32flat_start ) ;
 *32flat.*(.rodata.aaidct)
-. = ( 0xebb00 - code32flat_start ) ;
+. = ( 0xeb620 - code32flat_start ) ;
 *32flat.*(.rodata.zig)
-. = ( 0xebb40 - code32flat_start ) ;
+. = ( 0xeb660 - code32flat_start ) ;
 *32flat.*(.rodata.menuchars)
-. = ( 0xebb80 - code32flat_start ) ;
+. = ( 0xeb6a0 - code32flat_start ) ;
 *32flat.*(.rodata.pci_ata_tbl)
-. = ( 0xebbbc - code32flat_start ) ;
+. = ( 0xeb6dc - code32flat_start ) ;
 *32flat.*(.data.prio_halt.82)
-. = ( 0xebbc0 - code32flat_start ) ;
+. = ( 0xeb6e0 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/fw/dsdt_parser.c.27)
-. = ( 0xebbe0 - code32flat_start ) ;
+. = ( 0xeb700 - code32flat_start ) ;
 *32flat.*(.data.PIR_TABLE)
-. = ( 0xebc60 - code32flat_start ) ;
+. = ( 0xeb780 - code32flat_start ) ;
 *32flat.*(.data.ssdp_pcihp_aml)
-. = ( 0xebcc0 - code32flat_start ) ;
+. = ( 0xeb7e0 - code32flat_start ) ;
 *32flat.*(.data.ssdp_proc_aml)
-. = ( 0xebd38 - code32flat_start ) ;
+. = ( 0xeb858 - code32flat_start ) ;
 *32flat.*(.data.pci_slot_get_irq)
-. = ( 0xebd40 - code32flat_start ) ;
+. = ( 0xeb860 - code32flat_start ) ;
 *32flat.*(.data.pci_io_low_end)
-. = ( 0xebd48 - code32flat_start ) ;
+. = ( 0xeb868 - code32flat_start ) ;
 *32flat.*(.data.pcimem64_end)
-. = ( 0xebd50 - code32flat_start ) ;
+. = ( 0xeb870 - code32flat_start ) ;
 *32flat.*(.data.pcimem64_start)
-. = ( 0xebd58 - code32flat_start ) ;
+. = ( 0xeb878 - code32flat_start ) ;
 *32flat.*(.data.pcimem_start)
-. = ( 0xebd60 - code32flat_start ) ;
+. = ( 0xeb880 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/hw/pcidevice.c.16)
-. = ( 0xebd80 - code32flat_start ) ;
+. = ( 0xeb8a0 - code32flat_start ) ;
 *32flat.*(.data.zig2)
-. = ( 0xebdc0 - code32flat_start ) ;
+. = ( 0xeb8e0 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/boot.c.514)
-. = ( 0xebdc4 - code32flat_start ) ;
+. = ( 0xeb8e4 - code32flat_start ) ;
 *32flat.*(.data.DefaultBEVPrio)
-. = ( 0xebdc8 - code32flat_start ) ;
+. = ( 0xeb8e8 - code32flat_start ) ;
 *32flat.*(.data.DefaultHDPrio)
-. = ( 0xebdcc - code32flat_start ) ;
+. = ( 0xeb8ec - code32flat_start ) ;
 *32flat.*(.data.DefaultCDPrio)
-. = ( 0xebdd0 - code32flat_start ) ;
+. = ( 0xeb8f0 - code32flat_start ) ;
 *32flat.*(.data.DefaultFloppyPrio)
-. = ( 0xebdd4 - code32flat_start ) ;
+. = ( 0xeb8f4 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/boot.c.245)
-. = ( 0xebdd8 - code32flat_start ) ;
+. = ( 0xeb8f8 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/boot.c.110)
-. = ( 0xebddc - code32flat_start ) ;
+. = ( 0xeb8fc - code32flat_start ) ;
 *32flat.*(.data.varinit../src/romfile.c.13)
-. = ( 0xebde0 - code32flat_start ) ;
+. = ( 0xeb900 - code32flat_start ) ;
 *32flat.*(.data.RomEnd)
-. = ( 0xebde4 - code32flat_start ) ;
+. = ( 0xeb904 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/malloc.c.40)
-. = ( 0xebdf8 - code32flat_start ) ;
+. = ( 0xeb918 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/malloc.c.38)
-. = ( 0xebe00 - code32flat_start ) ;
+. = ( 0xeb920 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/malloc.c.37)
-. = ( 0xebe04 - code32flat_start ) ;
+. = ( 0xeb924 - code32flat_start ) ;
 *32flat.*(.data.varinit../src/malloc.c.36)
-. = ( 0xebe20 - code32flat_start ) ;
+. = ( 0xeb940 - code32flat_start ) ;
 *32flat.*(.bss.used_bitmap.33)
-. = ( 0xebe40 - code32flat_start ) ;
+. = ( 0xeb960 - code32flat_start ) ;
 *32flat.*(.bss.ataid.96)
-. = ( 0xebe44 - code32flat_start ) ;
+. = ( 0xeb964 - code32flat_start ) ;
 *32flat.*(.bss.pci_pad_mem64)
-. = ( 0xebe48 - code32flat_start ) ;
+. = ( 0xeb968 - code32flat_start ) ;
 *32flat.*(.bss.pci_mem64_top)
-. = ( 0xebe50 - code32flat_start ) ;
+. = ( 0xeb970 - code32flat_start ) ;
 *32flat.*(.bss.kvmclock)
-. = ( 0xebe54 - code32flat_start ) ;
+. = ( 0xeb974 - code32flat_start ) ;
 *32flat.*(.bss.kvm_cpuid_base)
-. = ( 0xebe58 - code32flat_start ) ;
+. = ( 0xeb978 - code32flat_start ) ;
 *32flat.*(.bss.CPULongMode)
-. = ( 0xebe59 - code32flat_start ) ;
+. = ( 0xeb979 - code32flat_start ) ;
 *32flat.*(.bss.CPUPhysBits)
-. = ( 0xebe60 - code32flat_start ) ;
+. = ( 0xeb980 - code32flat_start ) ;
 *32flat.*(.bss.RamSizeOver4G)
-. = ( 0xebe68 - code32flat_start ) ;
+. = ( 0xeb988 - code32flat_start ) ;
 *32flat.*(.bss.RamSize)
-. = ( 0xebe6c - code32flat_start ) ;
+. = ( 0xeb98c - code32flat_start ) ;
 *32flat.*(.bss.SMBios30Addr)
-. = ( 0xebe70 - code32flat_start ) ;
+. = ( 0xeb990 - code32flat_start ) ;
 *32flat.*(.bss.SMBios21Addr)
-. = ( 0xebe74 - code32flat_start ) ;
+. = ( 0xeb994 - code32flat_start ) ;
 *32flat.*(.bss.TPM_has_physical_presence)
-. = ( 0xebe78 - code32flat_start ) ;
+. = ( 0xeb998 - code32flat_start ) ;
 *32flat.*(.bss.BootsplashActive)
-. = ( 0xebe7c - code32flat_start ) ;
+. = ( 0xeb99c - code32flat_start ) ;
 *32flat.*(.bss.HaveFDBoot)
-. = ( 0xebe80 - code32flat_start ) ;
+. = ( 0xeb9a0 - code32flat_start ) ;
 *32flat.*(.bss.HaveHDBoot)
-. = ( 0xebe84 - code32flat_start ) ;
+. = ( 0xeb9a4 - code32flat_start ) ;
 *32flat.*(.bss.BootorderCount)
-. = ( 0xebe88 - code32flat_start ) ;
+. = ( 0xeb9a8 - code32flat_start ) ;
 *32flat.*(.bss.BiosGeometryCount)
-. = ( 0xebe8c - code32flat_start ) ;
+. = ( 0xeb9ac - code32flat_start ) ;
 *32flat.*(.bss.RunPCIroms)
-. = ( 0xebe90 - code32flat_start ) ;
+. = ( 0xeb9b0 - code32flat_start ) ;
 *32flat.*(.bss.SpinupEnd)
-. = ( 0xebe94 - code32flat_start ) ;
+. = ( 0xeb9b4 - code32flat_start ) ;
 *32flat.*(.bss.CDCount)
-. = ( 0xebe95 - code32flat_start ) ;
+. = ( 0xeb9b5 - code32flat_start ) ;
 *32flat.*(.bss.ThreadControl)
-. = ( 0xebea0 - code32flat_start ) ;
+. = ( 0xeb9c0 - code32flat_start ) ;
 *32flat.*(.text.switch_next)
-. = ( 0xebebe - code32flat_start ) ;
+. = ( 0xeb9de - code32flat_start ) ;
 *32flat.*(.text.putc)
-. = ( 0xebec3 - code32flat_start ) ;
+. = ( 0xeb9e3 - code32flat_start ) ;
 *32flat.*(.text.putuint)
-. = ( 0xebf11 - code32flat_start ) ;
+. = ( 0xeba31 - code32flat_start ) ;
 *32flat.*(.text.putsinglehex)
-. = ( 0xebf2d - code32flat_start ) ;
+. = ( 0xeba4d - code32flat_start ) ;
 *32flat.*(.text.puthex)
-. = ( 0xebfc6 - code32flat_start ) ;
+. = ( 0xebae6 - code32flat_start ) ;
 *32flat.*(.text.putprettyhex)
-. = ( 0xec01b - code32flat_start ) ;
+. = ( 0xebb3b - code32flat_start ) ;
 *32flat.*(.text.strlen)
-. = ( 0xec02c - code32flat_start ) ;
+. = ( 0xebb4c - code32flat_start ) ;
 *32flat.*(.text.strcmp)
-. = ( 0xec04c - code32flat_start ) ;
+. = ( 0xebb6c - code32flat_start ) ;
 *32flat.*(.text.pci_config_writel)
-. = ( 0xec08b - code32flat_start ) ;
+. = ( 0xebbab - code32flat_start ) ;
 *32flat.*(.text.pci_config_writeb)
-. = ( 0xec0ce - code32flat_start ) ;
+. = ( 0xebbee - code32flat_start ) ;
 *32flat.*(.text.pci_config_readl)
-. = ( 0xec102 - code32flat_start ) ;
+. = ( 0xebc22 - code32flat_start ) ;
 *32flat.*(.text.pci_config_readw)
-. = ( 0xec140 - code32flat_start ) ;
+. = ( 0xebc60 - code32flat_start ) ;
 *32flat.*(.text.qemu_debug_putc)
-. = ( 0xec14e - code32flat_start ) ;
+. = ( 0xebc6e - code32flat_start ) ;
 *32flat.*(.text.debug_putc)
-. = ( 0xec156 - code32flat_start ) ;
+. = ( 0xebc76 - code32flat_start ) ;
 *32flat.*(.text.rom_get_max)
-. = ( 0xec167 - code32flat_start ) ;
+. = ( 0xebc87 - code32flat_start ) ;
 *32flat.*(.text.cpuid)
-. = ( 0xec1be - code32flat_start ) ;
+. = ( 0xebcde - code32flat_start ) ;
 *32flat.*(.text.make_bios_readonly_intel)
-. = ( 0xec25b - code32flat_start ) ;
+. = ( 0xebd7b - code32flat_start ) ;
 *32flat.*(.text.mch_isa_lpc_setup)
-. = ( 0xec2a0 - code32flat_start ) ;
+. = ( 0xebdc0 - code32flat_start ) ;
 *32flat.*(.text.piix4_pm_config_setup)
-. = ( 0xec30d - code32flat_start ) ;
+. = ( 0xebe2d - code32flat_start ) ;
 *32flat.*(.text.ich9_smbus_enable)
-. = ( 0xec343 - code32flat_start ) ;
+. = ( 0xebe63 - code32flat_start ) ;
 *32flat.*(.text.smp_write_msrs)
-. = ( 0xec36b - code32flat_start ) ;
+. = ( 0xebe8b - code32flat_start ) ;
 *32flat.*(.text.apic_id_init)
-. = ( 0xec3e2 - code32flat_start ) ;
+. = ( 0xebf02 - code32flat_start ) ;
 *32flat.*(.text.crb_get_tpm_version)
-. = ( 0xec3e5 - code32flat_start ) ;
+. = ( 0xebf05 - code32flat_start ) ;
 *32flat.*(.text.crb_activate)
-. = ( 0xec3f5 - code32flat_start ) ;
+. = ( 0xebf15 - code32flat_start ) ;
 *32flat.*(.text.crb_waitdatavalid)
-. = ( 0xec3f8 - code32flat_start ) ;
+. = ( 0xebf18 - code32flat_start ) ;
 *32flat.*(.text.tpm_log_event)
-. = ( 0xec467 - code32flat_start ) ;
+. = ( 0xebf87 - code32flat_start ) ;
 *32flat.*(.text.set_timeouts)
-. = ( 0xec4be - code32flat_start ) ;
+. = ( 0xebfde - code32flat_start ) ;
 *32flat.*(.text.cpu_to_be32)
-. = ( 0xec4c1 - code32flat_start ) ;
+. = ( 0xebfe1 - code32flat_start ) ;
 *32flat.*(.text.sha1_block)
-. = ( 0xec62a - code32flat_start ) ;
+. = ( 0xec14a - code32flat_start ) ;
 *32flat.*(.text.tpmhw_transmit)
-. = ( 0xec69c - code32flat_start ) ;
+. = ( 0xec1bc - code32flat_start ) ;
 *32flat.*(.text.sha256_block)
-. = ( 0xec8c0 - code32flat_start ) ;
+. = ( 0xec3e0 - code32flat_start ) ;
 *32flat.*(.text.code_mutable_preinit)
-. = ( 0xec8dc - code32flat_start ) ;
+. = ( 0xec3fc - code32flat_start ) ;
 *32flat.*(.text.tis_get_tpm_version)
-. = ( 0xec903 - code32flat_start ) ;
+. = ( 0xec423 - code32flat_start ) ;
 *32flat.*(.text.crb_senddata)
-. = ( 0xec92e - code32flat_start ) ;
+. = ( 0xec44e - code32flat_start ) ;
 *32flat.*(.text.init_timeout)
-. = ( 0xec984 - code32flat_start ) ;
+. = ( 0xec4a4 - code32flat_start ) ;
 *32flat.*(.text.crb_init)
-. = ( 0xec9b4 - code32flat_start ) ;
+. = ( 0xec4d4 - code32flat_start ) ;
 *32flat.*(.text.tis_init)
-. = ( 0xec9c8 - code32flat_start ) ;
+. = ( 0xec4e8 - code32flat_start ) ;
 *32flat.*(.text.cpu_to_be64)
-. = ( 0xec9d7 - code32flat_start ) ;
+. = ( 0xec4f7 - code32flat_start ) ;
 *32flat.*(.text.sha512_block)
-. = ( 0xeceec - code32flat_start ) ;
+. = ( 0xeca0c - code32flat_start ) ;
 *32flat.*(.text.crb_readresp)
-. = ( 0xecf46 - code32flat_start ) ;
+. = ( 0xeca66 - code32flat_start ) ;
 *32flat.*(.text.checksum)
-. = ( 0xecf56 - code32flat_start ) ;
+. = ( 0xeca76 - code32flat_start ) ;
 *32flat.*(.text.ahci_port_writel.isra.0)
-. = ( 0xecf69 - code32flat_start ) ;
+. = ( 0xeca89 - code32flat_start ) ;
 *32flat.*(.text.ahci_port_readl.isra.0)
-. = ( 0xecf78 - code32flat_start ) ;
+. = ( 0xeca98 - code32flat_start ) ;
 *32flat.*(.text.default_process_op.isra.0)
-. = ( 0xecf91 - code32flat_start ) ;
+. = ( 0xecab1 - code32flat_start ) ;
 *32flat.*(.text.memset.isra.0)
-. = ( 0xecf9c - code32flat_start ) ;
+. = ( 0xecabc - code32flat_start ) ;
 *32flat.*(.text.scsi_fill_cmd.constprop.0)
-. = ( 0xed057 - code32flat_start ) ;
+. = ( 0xecb77 - code32flat_start ) ;
 *32flat.*(.text.sha512_do)
-. = ( 0xed18c - code32flat_start ) ;
+. = ( 0xeccac - code32flat_start ) ;
 *32flat.*(.text.sha384)
-. = ( 0xed1bf - code32flat_start ) ;
+. = ( 0xeccdf - code32flat_start ) ;
 *32flat.*(.text.sha512)
-. = ( 0xed1f2 - code32flat_start ) ;
+. = ( 0xecd12 - code32flat_start ) ;
 *32flat.*(.text.sha256)
-. = ( 0xed2f8 - code32flat_start ) ;
+. = ( 0xece18 - code32flat_start ) ;
 *32flat.*(.text.tpm_simple_cmd)
-. = ( 0xed3a5 - code32flat_start ) ;
+. = ( 0xecec5 - code32flat_start ) ;
 *32flat.*(.text.tpm20_hierarchycontrol.constprop.0.isra.0)
-. = ( 0xed413 - code32flat_start ) ;
+. = ( 0xecf33 - code32flat_start ) ;
 *32flat.*(.text.tpm_set_failure)
-. = ( 0xed45c - code32flat_start ) ;
+. = ( 0xecf7c - code32flat_start ) ;
 *32flat.*(.text.tpm20_extend)
-. = ( 0xed4f7 - code32flat_start ) ;
+. = ( 0xed017 - code32flat_start ) ;
 *32flat.*(.text.tpm_extend)
-. = ( 0xed589 - code32flat_start ) ;
+. = ( 0xed0a9 - code32flat_start ) ;
 *32flat.*(.text.irqtimer_calc)
-. = ( 0xed5cc - code32flat_start ) ;
+. = ( 0xed0ec - code32flat_start ) ;
 *32flat.*(.text.sha1_do)
-. = ( 0xed6b2 - code32flat_start ) ;
+. = ( 0xed1d2 - code32flat_start ) ;
 *32flat.*(.text.sha1)
-. = ( 0xed6e5 - code32flat_start ) ;
+. = ( 0xed205 - code32flat_start ) ;
 *32flat.*(.text.tpm_build_digest)
-. = ( 0xed86c - code32flat_start ) ;
+. = ( 0xed38c - code32flat_start ) ;
 *32flat.*(.text.tpm_add_measurement_to_log)
-. = ( 0xed906 - code32flat_start ) ;
+. = ( 0xed426 - code32flat_start ) ;
 *32flat.*(.text.tpm_add_action)
-. = ( 0xed92c - code32flat_start ) ;
+. = ( 0xed44c - code32flat_start ) ;
 *32flat.*(.text.hash_log_extend.constprop.0)
-. = ( 0xed9d4 - code32flat_start ) ;
+. = ( 0xed4f4 - code32flat_start ) ;
 *32flat.*(.text.timer_read)
-. = ( 0xeda27 - code32flat_start ) ;
+. = ( 0xed547 - code32flat_start ) ;
 *32flat.*(.text.timer_calc)
-. = ( 0xeda3a - code32flat_start ) ;
+. = ( 0xed55a - code32flat_start ) ;
 *32flat.*(.text.timer_calc_usec)
-. = ( 0xeda7e - code32flat_start ) ;
+. = ( 0xed59e - code32flat_start ) ;
 *32flat.*(.text.timer_check)
-. = ( 0xeda92 - code32flat_start ) ;
+. = ( 0xed5b2 - code32flat_start ) ;
 *32flat.*(.text.timer_delay)
-. = ( 0xedaa6 - code32flat_start ) ;
+. = ( 0xed5c6 - code32flat_start ) ;
 *32flat.*(.text.udelay)
-. = ( 0xedab0 - code32flat_start ) ;
+. = ( 0xed5d0 - code32flat_start ) ;
 *32flat.*(.text.pci_ioconfig_next.constprop.0)
-. = ( 0xedb21 - code32flat_start ) ;
+. = ( 0xed641 - code32flat_start ) ;
 *32flat.*(.text.__make_bios_writable_intel)
-. = ( 0xedbdc - code32flat_start ) ;
+. = ( 0xed6fc - code32flat_start ) ;
 *32flat.*(.text.make_bios_writable_intel)
-. = ( 0xedc1b - code32flat_start ) ;
+. = ( 0xed73b - code32flat_start ) ;
 *32flat.*(.text.bvprintf)
-. = ( 0xede8c - code32flat_start ) ;
+. = ( 0xed9ac - code32flat_start ) ;
 *32flat.*(.text.panic)
-. = ( 0xedea2 - code32flat_start ) ;
+. = ( 0xed9c2 - code32flat_start ) ;
 *32flat.*(.text.call16_override)
-. = ( 0xededf - code32flat_start ) ;
+. = ( 0xed9ff - code32flat_start ) ;
 *32flat.*(.text.call16.isra.0)
-. = ( 0xedf30 - code32flat_start ) ;
+. = ( 0xeda50 - code32flat_start ) ;
 *32flat.*(.text.reset)
-. = ( 0xedf43 - code32flat_start ) ;
+. = ( 0xeda63 - code32flat_start ) ;
 *32flat.*(.text.check_irqs)
-. = ( 0xedf5d - code32flat_start ) ;
+. = ( 0xeda7d - code32flat_start ) ;
 *32flat.*(.text.yield)
-. = ( 0xedf8a - code32flat_start ) ;
+. = ( 0xedaaa - code32flat_start ) ;
 *32flat.*(.text.yield_toirq)
-. = ( 0xedfb2 - code32flat_start ) ;
+. = ( 0xedad2 - code32flat_start ) ;
 *32flat.*(.text.qemu_cfg_dma_transfer)
-. = ( 0xee006 - code32flat_start ) ;
+. = ( 0xedb26 - code32flat_start ) ;
 *32flat.*(.text.qemu_cfg_read.part.0)
-. = ( 0xee027 - code32flat_start ) ;
+. = ( 0xedb47 - code32flat_start ) ;
 *32flat.*(.text.qemu_cfg_read_entry)
-. = ( 0xee064 - code32flat_start ) ;
+. = ( 0xedb84 - code32flat_start ) ;
 *32flat.*(.text.qemu_get_present_cpus_count)
-. = ( 0xee0af - code32flat_start ) ;
+. = ( 0xedbcf - code32flat_start ) ;
 *32flat.*(.text.qemu_cfg_skip)
-. = ( 0xee0d8 - code32flat_start ) ;
+. = ( 0xedbf8 - code32flat_start ) ;
 *32flat.*(.text.__call16_int)
-. = ( 0xee0fa - code32flat_start ) ;
+. = ( 0xedc1a - code32flat_start ) ;
 *32flat.*(.text.screenc)
-. = ( 0xee14e - code32flat_start ) ;
+. = ( 0xedc6e - code32flat_start ) ;
 *32flat.*(.text.screen_putc)
-. = ( 0xee17b - code32flat_start ) ;
+. = ( 0xedc9b - code32flat_start ) ;
 *32flat.*(.text.printf)
-. = ( 0xee18e - code32flat_start ) ;
+. = ( 0xedcae - code32flat_start ) ;
 *32flat.*(.text.boot_fail)
-. = ( 0xee203 - code32flat_start ) ;
+. = ( 0xedd23 - code32flat_start ) ;
 *32flat.*(.text.__dprintf)
-. = ( 0xee275 - code32flat_start ) ;
+. = ( 0xedd95 - code32flat_start ) ;
 *32flat.*(.text.__warn_internalerror)
-. = ( 0xee285 - code32flat_start ) ;
+. = ( 0xedda5 - code32flat_start ) ;
 *32flat.*(.text.qemu_cfg_write_file_simple)
-. = ( 0xee2f2 - code32flat_start ) ;
+. = ( 0xede12 - code32flat_start ) ;
 *32flat.*(.text.__warn_timeout)
-. = ( 0xee302 - code32flat_start ) ;
+. = ( 0xede22 - code32flat_start ) ;
 *32flat.*(.text.await_ide.constprop.0)
-. = ( 0xee356 - code32flat_start ) ;
+. = ( 0xede76 - code32flat_start ) ;
 *32flat.*(.text.await_not_bsy)
-. = ( 0xee365 - code32flat_start ) ;
+. = ( 0xede85 - code32flat_start ) ;
 *32flat.*(.text.ndelay_await_not_bsy)
-. = ( 0xee399 - code32flat_start ) ;
+. = ( 0xedeb9 - code32flat_start ) ;
 *32flat.*(.text.send_cmd)
-. = ( 0xee476 - code32flat_start ) ;
+. = ( 0xedf96 - code32flat_start ) ;
 *32flat.*(.text.wait_reg8)
-. = ( 0xee4c2 - code32flat_start ) ;
+. = ( 0xedfe2 - code32flat_start ) ;
 *32flat.*(.text.crb_probe)
-. = ( 0xee52b - code32flat_start ) ;
+. = ( 0xee04b - code32flat_start ) ;
 *32flat.*(.text.tis_activate)
-. = ( 0xee599 - code32flat_start ) ;
+. = ( 0xee0b9 - code32flat_start ) ;
 *32flat.*(.text.tis_find_active_locality)
-. = ( 0xee5c0 - code32flat_start ) ;
+. = ( 0xee0e0 - code32flat_start ) ;
 *32flat.*(.text.tis_readresp)
-. = ( 0xee5ff - code32flat_start ) ;
+. = ( 0xee11f - code32flat_start ) ;
 *32flat.*(.text.tis_probe)
-. = ( 0xee65d - code32flat_start ) ;
+. = ( 0xee17d - code32flat_start ) ;
 *32flat.*(.text.crb_waitrespready)
-. = ( 0xee679 - code32flat_start ) ;
+. = ( 0xee199 - code32flat_start ) ;
 *32flat.*(.text.crb_ready)
-. = ( 0xee69e - code32flat_start ) ;
+. = ( 0xee1be - code32flat_start ) ;
 *32flat.*(.text.tis_ready)
-. = ( 0xee6d3 - code32flat_start ) ;
+. = ( 0xee1f3 - code32flat_start ) ;
 *32flat.*(.text.tis_waitdatavalid)
-. = ( 0xee707 - code32flat_start ) ;
+. = ( 0xee227 - code32flat_start ) ;
 *32flat.*(.text.tis_waitrespready)
-. = ( 0xee746 - code32flat_start ) ;
+. = ( 0xee266 - code32flat_start ) ;
 *32flat.*(.text.tis_senddata)
-. = ( 0xee7ec - code32flat_start ) ;
+. = ( 0xee30c - code32flat_start ) ;
 *32flat.*(.text.sdcard_reset.isra.0)
-. = ( 0xee825 - code32flat_start ) ;
+. = ( 0xee345 - code32flat_start ) ;
 *32flat.*(.text.pic_setup)
-. = ( 0xee855 - code32flat_start ) ;
+. = ( 0xee375 - code32flat_start ) ;
 *32flat.*(.text.i8042_wait_write)
-. = ( 0xee891 - code32flat_start ) ;
+. = ( 0xee3b1 - code32flat_start ) ;
 *32flat.*(.text.ata_wait_data)
-. = ( 0xee8e1 - code32flat_start ) ;
+. = ( 0xee401 - code32flat_start ) ;
 *32flat.*(.text.is_valid_rom)
-. = ( 0xee94a - code32flat_start ) ;
+. = ( 0xee46a - code32flat_start ) ;
 *32flat.*(.text.ahci_command)
-. = ( 0xeebc8 - code32flat_start ) ;
+. = ( 0xee708 - code32flat_start ) ;
 *32flat.*(.text.ahci_disk_readwrite_aligned)
-. = ( 0xeecb9 - code32flat_start ) ;
+. = ( 0xee82b - code32flat_start ) ;
 *32flat.*(.text.ahci_disk_readwrite)
-. = ( 0xeed88 - code32flat_start ) ;
+. = ( 0xee8fa - code32flat_start ) ;
 *32flat.*(.text.sdcard_waitw)
-. = ( 0xeedf3 - code32flat_start ) ;
+. = ( 0xee965 - code32flat_start ) ;
 *32flat.*(.text.find_acpi_table)
-. = ( 0xeeee0 - code32flat_start ) ;
+. = ( 0xeea52 - code32flat_start ) ;
 *32flat.*(.text.make_bios_readonly)
-. = ( 0xeef2a - code32flat_start ) ;
+. = ( 0xeea9c - code32flat_start ) ;
 *32flat.*(.text.nvme_commit_sqe)
-. = ( 0xeef58 - code32flat_start ) ;
+. = ( 0xeeaca - code32flat_start ) ;
 *32flat.*(.text.nvme_wait)
-. = ( 0xef073 - code32flat_start ) ;
+. = ( 0xeebe5 - code32flat_start ) ;
 *32flat.*(.text.sdcard_pio)
-. = ( 0xef0ff - code32flat_start ) ;
+. = ( 0xeecab - code32flat_start ) ;
 *32flat.*(.text.sdcard_pio_transfer)
-. = ( 0xef20f - code32flat_start ) ;
+. = ( 0xeedbb - code32flat_start ) ;
 *32flat.*(.text.make_bios_writable)
-. = ( 0xef291 - code32flat_start ) ;
+. = ( 0xeee3d - code32flat_start ) ;
 *32flat.*(.text.smp_scan)
-. = ( 0xef3aa - code32flat_start ) ;
+. = ( 0xeef56 - code32flat_start ) ;
 *32flat.*(.text.mch_mmconfig_setup)
-. = ( 0xef400 - code32flat_start ) ;
+. = ( 0xeefac - code32flat_start ) ;
 *32flat.*(.text.nvme_get_next_sqe.constprop.0)
-. = ( 0xef48e - code32flat_start ) ;
+. = ( 0xef03a - code32flat_start ) ;
 *32flat.*(.text.nvme_io_xfer)
-. = ( 0xef566 - code32flat_start ) ;
+. = ( 0xef112 - code32flat_start ) ;
 *32flat.*(.text.ata_pio_transfer.constprop.0)
-. = ( 0xef612 - code32flat_start ) ;
+. = ( 0xef1be - code32flat_start ) ;
 *32flat.*(.text.__callrom)
-. = ( 0xef69e - code32flat_start ) ;
+. = ( 0xef24a - code32flat_start ) ;
 *32flat.*(.text.call_boot_entry)
-. = ( 0xef700 - code32flat_start ) ;
+. = ( 0xef2ac - code32flat_start ) ;
 *32flat.*(.text.boot_disk)
-. = ( 0xef7f8 - code32flat_start ) ;
+. = ( 0xef3a4 - code32flat_start ) ;
 *32flat.*(.text.runtime../src/block.c.571)
-. = ( 0xefcc0 - code32flat_start ) ;
+. = ( 0xef86c - code32flat_start ) ;
 *32flat.*(.text.process_op)
-. = ( 0xefd02 - code32flat_start ) ;
+. = ( 0xef8cd - code32flat_start ) ;
 *32flat.*(.text.scsi_is_ready)
-. = ( 0xefe27 - code32flat_start ) ;
+. = ( 0xef9f2 - code32flat_start ) ;
 *32flat.*(.text.cdrom_boot)
-. = ( 0xf013c - code32flat_start ) ;
+. = ( 0xefd07 - code32flat_start ) ;
 *32flat.*(.text.do_boot)
-. = ( 0xf02b5 - code32flat_start ) ;
+. = ( 0xefe80 - code32flat_start ) ;
 *32flat.*(.text.runtime../src/resume.c.146)
-. = ( 0xf0575 - code32flat_start ) ;
+. = ( 0xf0140 - code32flat_start ) ;
 *32flat.*(.text.runtime../src/post.c.182)
-. = ( 0xf05bb - code32flat_start ) ;
+. = ( 0xf0186 - code32flat_start ) ;
 *32flat.*(.text.runtime../src/post.c.320)
-. = ( 0xf05e3 - code32flat_start ) ;
+. = ( 0xf01ae - code32flat_start ) ;
 *32flat.*(.text.runtime../src/boot.c.1027)
-. = ( 0xf060f - code32flat_start ) ;
+. = ( 0xf01da - code32flat_start ) ;
 *32flat.*(.text.runtime../src/boot.c.1037)
-. = ( 0xf063c - code32flat_start ) ;
+. = ( 0xf0207 - code32flat_start ) ;
 *32flat.*(.text.runtime../src/tcgbios.c.1653)
-. = ( 0xf0952 - code32flat_start ) ;
+. = ( 0xf051d - code32flat_start ) ;
 *32flat.*(.text.runtime../src/fw/smp.c.83)
-. = ( 0xf0980 - code32flat_start ) ;
+. = ( 0xf0540 - code32flat_start ) ;
 _rodata32flat = . ;
 *32flat.*(.rodata)
-. = ( 0xf5498 - code32flat_start ) ;
+. = ( 0xf520c - code32flat_start ) ;
 *32flat.*(.rodata.puthex)
-. = ( 0xf54b4 - code32flat_start ) ;
+. = ( 0xf5228 - code32flat_start ) ;
 *32flat.*(.rodata.runtime../src/tcgbios.c.1653)
-. = ( 0xf54e0 - code32flat_start ) ;
+. = ( 0xf5260 - code32flat_start ) ;
 *32flat.*(.rodata.sha_ko.0)
-. = ( 0xf5760 - code32flat_start ) ;
+. = ( 0xf54e0 - code32flat_start ) ;
 *32flat.*(.rodata.sha_ko.1)
-. = ( 0xf5860 - code32flat_start ) ;
+. = ( 0xf55e0 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.8)
-. = ( 0xf586c - code32flat_start ) ;
+. = ( 0xf55ec - code32flat_start ) ;
 *32flat.*(.rodata.__func__.9)
-. = ( 0xf587c - code32flat_start ) ;
+. = ( 0xf55fc - code32flat_start ) ;
 *32flat.*(.rodata.__func__.10)
-. = ( 0xf588c - code32flat_start ) ;
+. = ( 0xf560c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.11)
-. = ( 0xf5898 - code32flat_start ) ;
+. = ( 0xf5618 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.52)
-. = ( 0xf58a8 - code32flat_start ) ;
+. = ( 0xf5628 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.53)
-. = ( 0xf58c0 - code32flat_start ) ;
+. = ( 0xf5640 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.62)
-. = ( 0xf58d0 - code32flat_start ) ;
+. = ( 0xf5650 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.63)
-. = ( 0xf58e0 - code32flat_start ) ;
+. = ( 0xf5660 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.69)
-. = ( 0xf58f0 - code32flat_start ) ;
+. = ( 0xf5670 - code32flat_start ) ;
 *32flat.*(.rodata.sha_ko.73)
-. = ( 0xf5900 - code32flat_start ) ;
+. = ( 0xf5680 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.77)
-. = ( 0xf590c - code32flat_start ) ;
+. = ( 0xf568c - code32flat_start ) ;
 *32flat.*(.rodata.__func__.78)
-. = ( 0xf5918 - code32flat_start ) ;
+. = ( 0xf5698 - code32flat_start ) ;
 *32flat.*(.rodata.__func__.100)
-. = ( 0xf5924 - code32flat_start ) ;
-*32flat.*(.rodata.__func__.111)
-. = ( 0xf5938 - code32flat_start ) ;
+. = ( 0xf56a4 - code32flat_start ) ;
+*32flat.*(.rodata.__func__.114)
+. = ( 0xf56b8 - code32flat_start ) ;
 *32flat.*(.rodata.tpm_default_durations)
-. = ( 0xf5944 - code32flat_start ) ;
+. = ( 0xf56c4 - code32flat_start ) ;
 *32flat.*(.rodata.tis_default_timeouts)
-. = ( 0xf5960 - code32flat_start ) ;
+. = ( 0xf56e0 - code32flat_start ) ;
 *32flat.*(.rodata.hash_parameters)
-. = ( 0xf59c0 - code32flat_start ) ;
+. = ( 0xf5740 - code32flat_start ) ;
 *32flat.*(.data.TPMHW_driver_to_use)
-. = ( 0xf59e0 - code32flat_start ) ;
+. = ( 0xf5760 - code32flat_start ) ;
 *32flat.*(.data.tpm_drivers)
-. = ( 0xf5a40 - code32flat_start ) ;
+. = ( 0xf57c0 - code32flat_start ) ;
 *32flat.*(.data.MCHMmcfgBDF)
-. = ( 0xf5a44 - code32flat_start ) ;
+. = ( 0xf57c4 - code32flat_start ) ;
 *32flat.*(.data.ICH9SmbusBDF)
-. = ( 0xf5a48 - code32flat_start ) ;
+. = ( 0xf57c8 - code32flat_start ) ;
 *32flat.*(.data.PiixPmBDF)
-. = ( 0xf5a4c - code32flat_start ) ;
+. = ( 0xf57cc - code32flat_start ) ;
 *32flat.*(.data.ICH9LpcBDF)
-. = ( 0xf5a50 - code32flat_start ) ;
+. = ( 0xf57d0 - code32flat_start ) ;
 *32flat.*(.data.ShadowBDF)
-. = ( 0xf5a54 - code32flat_start ) ;
+. = ( 0xf57d4 - code32flat_start ) ;
 *32flat.*(.data.acpi_pm_base)
-. = ( 0xf5a58 - code32flat_start ) ;
+. = ( 0xf57d8 - code32flat_start ) ;
 *32flat.*(.data.CheckFloppySig)
-. = ( 0xf5a5c - code32flat_start ) ;
+. = ( 0xf57dc - code32flat_start ) ;
 *32flat.*(.data.screeninfo)
-. = ( 0xf5a60 - code32flat_start ) ;
+. = ( 0xf57e0 - code32flat_start ) ;
 *32flat.*(.data.debuginfo)
-. = ( 0xf5a80 - code32flat_start ) ;
+. = ( 0xf5800 - code32flat_start ) ;
 *32flat.*(.data.BUILDINFO)
-. = ( 0xf5ad4 - code32flat_start ) ;
+. = ( 0xf5860 - code32flat_start ) ;
 *32flat.*(.data.VERSION)
-. = ( 0xf5af4 - code32flat_start ) ;
+. = ( 0xf5884 - code32flat_start ) ;
 *32flat.*(.bss.nvme_dma_buffer)
-. = ( 0xf5af8 - code32flat_start ) ;
+. = ( 0xf5888 - code32flat_start ) ;
 *32flat.*(.bss.crb_resp)
-. = ( 0xf5afc - code32flat_start ) ;
+. = ( 0xf588c - code32flat_start ) ;
 *32flat.*(.bss.crb_cmd)
-. = ( 0xf5b00 - code32flat_start ) ;
+. = ( 0xf5890 - code32flat_start ) ;
 *32flat.*(.bss.crb_cmd_size)
-. = ( 0xf5b04 - code32flat_start ) ;
+. = ( 0xf5894 - code32flat_start ) ;
 *32flat.*(.bss.tpm_default_to)
-. = ( 0xf5b14 - code32flat_start ) ;
+. = ( 0xf58a4 - code32flat_start ) ;
 *32flat.*(.bss.tpm_default_dur)
-. = ( 0xf5b20 - code32flat_start ) ;
+. = ( 0xf58b0 - code32flat_start ) ;
 *32flat.*(.bss.romfile_pointer_list)
-. = ( 0xf5b24 - code32flat_start ) ;
+. = ( 0xf58b4 - code32flat_start ) ;
 *32flat.*(.bss.SMPStack)
-. = ( 0xf5b28 - code32flat_start ) ;
+. = ( 0xf58b8 - code32flat_start ) ;
 *32flat.*(.bss.SMPLock)
-. = ( 0xf5b40 - code32flat_start ) ;
+. = ( 0xf58c0 - code32flat_start ) ;
 *32flat.*(.bss.FoundAPICIDs)
-. = ( 0xf5b60 - code32flat_start ) ;
+. = ( 0xf58e0 - code32flat_start ) ;
 *32flat.*(.bss.CountCPUs)
-. = ( 0xf5b64 - code32flat_start ) ;
+. = ( 0xf58e4 - code32flat_start ) ;
 *32flat.*(.bss.MaxCountCPUs)
-. = ( 0xf5b68 - code32flat_start ) ;
+. = ( 0xf58e8 - code32flat_start ) ;
 *32flat.*(.bss.smp_msr_count)
-. = ( 0xf5b80 - code32flat_start ) ;
+. = ( 0xf5900 - code32flat_start ) ;
 *32flat.*(.bss.smp_msr)
-. = ( 0xf5d00 - code32flat_start ) ;
+. = ( 0xf5a80 - code32flat_start ) ;
 *32flat.*(.bss.cfg_dma_enabled)
-. = ( 0xf5d04 - code32flat_start ) ;
+. = ( 0xf5a84 - code32flat_start ) ;
 *32flat.*(.bss.cfg_enabled)
-. = ( 0xf5d08 - code32flat_start ) ;
+. = ( 0xf5a88 - code32flat_start ) ;
 *32flat.*(.bss.RsdpAddr)
-. = ( 0xf5d0c - code32flat_start ) ;
+. = ( 0xf5a8c - code32flat_start ) ;
 *32flat.*(.bss.tpm20_pcr_selection)
-. = ( 0xf5d10 - code32flat_start ) ;
+. = ( 0xf5a90 - code32flat_start ) ;
 *32flat.*(.bss.tpm20_pcr_selection_size)
-. = ( 0xf5d14 - code32flat_start ) ;
+. = ( 0xf5a94 - code32flat_start ) ;
 *32flat.*(.bss.TPM_version)
-. = ( 0xf5d18 - code32flat_start ) ;
+. = ( 0xf5a98 - code32flat_start ) ;
 *32flat.*(.bss.BEVCount)
-. = ( 0xf5d20 - code32flat_start ) ;
+. = ( 0xf5aa0 - code32flat_start ) ;
 *32flat.*(.bss.BEV)
-. = ( 0xf5dc0 - code32flat_start ) ;
+. = ( 0xf5b40 - code32flat_start ) ;
 *32flat.*(.bss.BootRetryTime)
-. = ( 0xf5dc4 - code32flat_start ) ;
+. = ( 0xf5b44 - code32flat_start ) ;
 *32flat.*(.bss.VgaROM)
-. = ( 0xf5dc8 - code32flat_start ) ;
+. = ( 0xf5b48 - code32flat_start ) ;
 *32flat.*(.bss.ScreenAndDebug)
-. = ( 0xf5dcc - code32flat_start ) ;
+. = ( 0xf5b4c - code32flat_start ) ;
 *32flat.*(.bss.S3ResumeVga)
-. = ( 0xf5dd0 - code32flat_start ) ;
+. = ( 0xf5b50 - code32flat_start ) ;
 *32flat.*(.bss.EnforceChecksum)
-. = ( 0xf5dd4 - code32flat_start ) ;
+. = ( 0xf5b54 - code32flat_start ) ;
 *32flat.*(.bss.RomBase)
-. = ( 0xf5dd8 - code32flat_start ) ;
+. = ( 0xf5b58 - code32flat_start ) ;
 *32flat.*(.bss.mmconfig)
-. = ( 0xf5ddc - code32flat_start ) ;
+. = ( 0xf5b5c - code32flat_start ) ;
 *32flat.*(.bss.CanInterrupt)
-. = ( 0xf65e0 - code32flat_start ) ;
+. = ( 0xf6360 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/fw/paravirt.c.40)
-. = ( 0xf65e4 - code32flat_start ) ;
+. = ( 0xf6364 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/fw/biostables.c.196)
-. = ( 0xf65e8 - code32flat_start ) ;
+. = ( 0xf6368 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/fw/biostables.c.22)
-. = ( 0xf65ec - code32flat_start ) ;
+. = ( 0xf636c - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/hw/pcidevice.c.17)
-. = ( 0xf65f0 - code32flat_start ) ;
+. = ( 0xf6370 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/pmm.c.20)
-. = ( 0xf6600 - code32flat_start ) ;
+. = ( 0xf6380 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/malloc.c.473)
-. = ( 0xf6604 - code32flat_start ) ;
+. = ( 0xf6384 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/e820map.c.19)
-. = ( 0xf6620 - code32flat_start ) ;
+. = ( 0xf63a0 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/e820map.c.18)
-. = ( 0xf7020 - code32flat_start ) ;
+. = ( 0xf6da0 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/hw/floppy.c.88)
-. = ( 0xf707c - code32flat_start ) ;
+. = ( 0xf6dfc - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/hw/floppy.c.55)
-. = ( 0xf708a - code32flat_start ) ;
+. = ( 0xf6e0a - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/hw/serialio.c.104)
-. = ( 0xf708c - code32flat_start ) ;
+. = ( 0xf6e0c - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/hw/timer.c.53)
-. = ( 0xf7090 - code32flat_start ) ;
+. = ( 0xf6e10 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/hw/timer.c.52)
-. = ( 0xf70a0 - code32flat_start ) ;
+. = ( 0xf6e20 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/pcibios.c.229)
-. = ( 0xf70b0 - code32flat_start ) ;
+. = ( 0xf6e30 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/vgahooks.c.262)
-. = ( 0xf70b1 - code32flat_start ) ;
+. = ( 0xf6e31 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/vgahooks.c.179)
-. = ( 0xf70b4 - code32flat_start ) ;
+. = ( 0xf6e34 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/vgahooks.c.40)
-. = ( 0xf70bc - code32flat_start ) ;
+. = ( 0xf6e3c - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/vgahooks.c.22)
-. = ( 0xf70c0 - code32flat_start ) ;
+. = ( 0xf6e40 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/pnpbios.c.18)
-. = ( 0xf70e4 - code32flat_start ) ;
+. = ( 0xf6e64 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/sercon.c.52)
-. = ( 0xf70e8 - code32flat_start ) ;
+. = ( 0xf6e68 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/cdrom.c.27)
-. = ( 0xf70ec - code32flat_start ) ;
+. = ( 0xf6e6c - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/block.c.34)
-. = ( 0xf7100 - code32flat_start ) ;
+. = ( 0xf6e80 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/block.c.33)
-. = ( 0xf71c0 - code32flat_start ) ;
+. = ( 0xf6f40 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/block.c.31)
-. = ( 0xf71c4 - code32flat_start ) ;
+. = ( 0xf6f44 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/stacks.c.696)
-. = ( 0xf71c8 - code32flat_start ) ;
+. = ( 0xf6f48 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/stacks.c.476)
-. = ( 0xf71d4 - code32flat_start ) ;
+. = ( 0xf6f54 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/misc.c.166)
-. = ( 0xf71e0 - code32flat_start ) ;
+. = ( 0xf6f60 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/misc.c.148)
-. = ( 0xf7218 - code32flat_start ) ;
+. = ( 0xf6f98 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/misc.c.142)
-. = ( 0xf721e - code32flat_start ) ;
+. = ( 0xf6f9e - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/misc.c.139)
-. = ( 0xf7220 - code32flat_start ) ;
+. = ( 0xf6fa0 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/misc.c.132)
-. = ( 0xf7228 - code32flat_start ) ;
+. = ( 0xf6fa8 - code32flat_start ) ;
 *32flat.*(.data.varfseg../src/misc.c.18)
-. = ( 0xf7240 - code32flat_start ) ;
+. = ( 0xf6fb0 - code32flat_start ) ;
 *32flat.*(.text.32fseg../src/stacks.c.300)
-. = ( 0xf726c - code32flat_start ) ;
+. = ( 0xf6fd4 - code32flat_start ) ;
 *32seg.*(.text.set_code_success)
-. = ( 0xf7276 - code32flat_start ) ;
+. = ( 0xf6fde - code32flat_start ) ;
 *32seg.*(.text.get_global_offset)
-. = ( 0xf7282 - code32flat_start ) ;
+. = ( 0xf6fea - code32flat_start ) ;
 *32seg.*(.text.qemu_debug_putc)
-. = ( 0xf729a - code32flat_start ) ;
+. = ( 0xf7002 - code32flat_start ) ;
 *32seg.*(.text.putsinglehex.constprop.0)
-. = ( 0xf72b4 - code32flat_start ) ;
+. = ( 0xf701c - code32flat_start ) ;
 *32seg.*(.text.puthex.constprop.0)
-. = ( 0xf7353 - code32flat_start ) ;
+. = ( 0xf70bb - code32flat_start ) ;
 *32seg.*(.text.pci_next)
-. = ( 0xf73c7 - code32flat_start ) ;
+. = ( 0xf712f - code32flat_start ) ;
 *32seg.*(.text.putuint.constprop.0)
-. = ( 0xf7406 - code32flat_start ) ;
+. = ( 0xf716e - code32flat_start ) ;
 *32seg.*(.text.__dprintf)
-. = ( 0xf769a - code32flat_start ) ;
+. = ( 0xf7402 - code32flat_start ) ;
 *32seg.*(.text.dump_regs)
-. = ( 0xf7702 - code32flat_start ) ;
+. = ( 0xf746a - code32flat_start ) ;
 *32seg.*(.text.__set_code_invalid)
-. = ( 0xf7730 - code32flat_start ) ;
+. = ( 0xf7498 - code32flat_start ) ;
 *32seg.*(.text.handle_pcibios)
-. = ( 0xf7ab4 - code32flat_start ) ;
+. = ( 0xf7834 - code32flat_start ) ;
 *32seg.*(.text.handle_apm)
-. = ( 0xf7c40 - code32flat_start ) ;
+. = ( 0xf79d8 - code32flat_start ) ;
 _rodata32seg = . ;
 *32seg.*(.rodata)
-. = ( 0xf7d10 - code32flat_start ) ;
+. = ( 0xf7ab4 - code32flat_start ) ;
 *32seg.*(.rodata.__func__.0)
-. = ( 0xf7d20 - code32flat_start ) ;
+. = ( 0xf7ac0 - code32flat_start ) ;
 *32seg.*(.rodata.__func__.1)
-. = ( 0xf7d30 - code32flat_start ) ;
+. = ( 0xf7ad0 - code32flat_start ) ;
 *32seg.*(.rodata.__func__.2)
-. = ( 0xf7d40 - code32flat_start ) ;
+. = ( 0xf7ae0 - code32flat_start ) ;
 *32seg.*(.rodata.__func__.3)
-. = ( 0xf7d50 - code32flat_start ) ;
+. = ( 0xf7af0 - code32flat_start ) ;
 *32seg.*(.rodata.__func__.4)
-. = ( 0xf7d60 - code32flat_start ) ;
+. = ( 0xf7b00 - code32flat_start ) ;
+*32seg.*(.rodata.__func__.5)
+. = ( 0xf7b10 - code32flat_start ) ;
+*32seg.*(.rodata.__func__.6)
+. = ( 0xf7b20 - code32flat_start ) ;
 *16.*(.text.set_a20)
-. = ( 0xf7d80 - code32flat_start ) ;
+. = ( 0xf7b40 - code32flat_start ) ;
 *16.*(.text.enqueue_key)
-. = ( 0xf7dda - code32flat_start ) ;
+. = ( 0xf7b9a - code32flat_start ) ;
 *16.*(.text.kbd_set_flag)
-. = ( 0xf7e37 - code32flat_start ) ;
+. = ( 0xf7bf7 - code32flat_start ) ;
 *16.*(.text.cursor_pos_row)
-. = ( 0xf7e49 - code32flat_start ) ;
+. = ( 0xf7c09 - code32flat_start ) ;
 *16.*(.text.shiftbuf)
-. = ( 0xf7e8f - code32flat_start ) ;
+. = ( 0xf7c4f - code32flat_start ) ;
 *16.*(.text.lba2chs)
-. = ( 0xf7ed3 - code32flat_start ) ;
+. = ( 0xf7c93 - code32flat_start ) ;
 *16.*(.text.need_hop_back)
-. = ( 0xf7ef7 - code32flat_start ) ;
+. = ( 0xf7cb7 - code32flat_start ) ;
 *16.*(.text.getLCHS)
-. = ( 0xf7fa1 - code32flat_start ) ;
+. = ( 0xf7d61 - code32flat_start ) ;
 *16.*(.text.putsinglehex.constprop.0)
-. = ( 0xf7fc2 - code32flat_start ) ;
+. = ( 0xf7d82 - code32flat_start ) ;
 *16.*(.text.puthex.constprop.0)
-. = ( 0xf8095 - code32flat_start ) ;
+. = ( 0xf7e55 - code32flat_start ) ;
 *16.*(.text.call32_post)
-. = ( 0xf812d - code32flat_start ) ;
+. = ( 0xf7eed - code32flat_start ) ;
 *16.*(.text.default_process_op.isra.0)
-. = ( 0xf814d - code32flat_start ) ;
+. = ( 0xf7f0d - code32flat_start ) ;
 *16.*(.text.floppy_dor_mask)
-. = ( 0xf8170 - code32flat_start ) ;
+. = ( 0xf7f30 - code32flat_start ) ;
+*16.*(.text.__debug_isr)
+. = ( 0xf7f52 - code32flat_start ) ;
 *16.*(.text.putuint.constprop.0)
-. = ( 0xf81c7 - code32flat_start ) ;
-*16.*(.text.panic.constprop.0)
-. = ( 0xf81dd - code32flat_start ) ;
+. = ( 0xf7fa9 - code32flat_start ) ;
 *16.*(.text.__dprintf)
-. = ( 0xf81f1 - code32flat_start ) ;
+. = ( 0xf7fbd - code32flat_start ) ;
 *16.*(.text.dump_regs)
-. = ( 0xf8288 - code32flat_start ) ;
+. = ( 0xf8054 - code32flat_start ) ;
 *16.*(.text.__debug_enter)
-. = ( 0xf82aa - code32flat_start ) ;
+. = ( 0xf8076 - code32flat_start ) ;
 *16.*(.text.__warn_invalid)
-. = ( 0xf82d0 - code32flat_start ) ;
+. = ( 0xf809c - code32flat_start ) ;
+*16.*(.text.__set_invalid)
+. = ( 0xf80b0 - code32flat_start ) ;
 *16.*(.text.getComAddr)
-. = ( 0xf8320 - code32flat_start ) ;
+. = ( 0xf8100 - code32flat_start ) ;
 *16.*(.text.__set_code_invalid)
-. = ( 0xf8346 - code32flat_start ) ;
+. = ( 0xf8126 - code32flat_start ) ;
 *16.*(.text.__disk_ret)
-. = ( 0xf8373 - code32flat_start ) ;
+. = ( 0xf8153 - code32flat_start ) ;
 *16.*(.text.disk_1308)
-. = ( 0xf84ab - code32flat_start ) ;
+. = ( 0xf828b - code32flat_start ) ;
+*16.*(.text.__warn_unimplemented)
+. = ( 0xf82b1 - code32flat_start ) ;
 *16.*(.text.__set_code_unimplemented)
-. = ( 0xf84d1 - code32flat_start ) ;
+. = ( 0xf82d7 - code32flat_start ) ;
 *16.*(.text.__disk_ret_unimplemented)
-. = ( 0xf84f9 - code32flat_start ) ;
+. = ( 0xf82ff - code32flat_start ) ;
 *16.*(.text.__disk_stub)
-. = ( 0xf852e - code32flat_start ) ;
+. = ( 0xf8334 - code32flat_start ) ;
 *16.*(.text.__warn_timeout)
-. = ( 0xf8544 - code32flat_start ) ;
+. = ( 0xf834a - code32flat_start ) ;
 *16.*(.text.floppy_disable_controller)
-. = ( 0xf855e - code32flat_start ) ;
+. = ( 0xf8364 - code32flat_start ) ;
 *16.*(.text.timer_read)
-. = ( 0xf85dc - code32flat_start ) ;
+. = ( 0xf83e2 - code32flat_start ) ;
 *16.*(.text.timer_calc)
-. = ( 0xf85f8 - code32flat_start ) ;
+. = ( 0xf83fe - code32flat_start ) ;
 *16.*(.text.timer_check)
-. = ( 0xf8614 - code32flat_start ) ;
+. = ( 0xf841a - code32flat_start ) ;
 *16.*(.text.udelay)
-. = ( 0xf865a - code32flat_start ) ;
+. = ( 0xf8460 - code32flat_start ) ;
 *16.*(.text.i8042_wait_write)
-. = ( 0xf86a5 - code32flat_start ) ;
+. = ( 0xf84ab - code32flat_start ) ;
 *16.*(.text.i8042_command)
-. = ( 0xf872c - code32flat_start ) ;
+. = ( 0xf8532 - code32flat_start ) ;
 *16.*(.text.fill_generic_edd)
-. = ( 0xf8a85 - code32flat_start ) ;
+. = ( 0xf88f0 - code32flat_start ) ;
 *16.*(.text.fill_edd)
-. = ( 0xf8cbb - code32flat_start ) ;
+. = ( 0xf8b26 - code32flat_start ) ;
 *16.*(.text.__stack_hop_back.isra.0)
-. = ( 0xf8d17 - code32flat_start ) ;
+. = ( 0xf8b82 - code32flat_start ) ;
 *16.*(.text.handle_12)
-. = ( 0xf8d3c - code32flat_start ) ;
+. = ( 0xf8ba7 - code32flat_start ) ;
 *16.*(.text.handle_11)
-. = ( 0xf8d61 - code32flat_start ) ;
+. = ( 0xf8bcc - code32flat_start ) ;
 *16.*(.text.handle_02)
-. = ( 0xf8d86 - code32flat_start ) ;
+. = ( 0xf8bd5 - code32flat_start ) ;
 *16.*(.text.call16_helper)
-. = ( 0xf8dc6 - code32flat_start ) ;
+. = ( 0xf8c15 - code32flat_start ) ;
 *16.*(.text.__call32)
-. = ( 0xf8e31 - code32flat_start ) ;
+. = ( 0xf8c80 - code32flat_start ) ;
 *16.*(.text._farcall16)
-. = ( 0xf8e7c - code32flat_start ) ;
+. = ( 0xf8ccb - code32flat_start ) ;
 *16.*(.text.__call16_int)
-. = ( 0xf8e8f - code32flat_start ) ;
+. = ( 0xf8cde - code32flat_start ) ;
 *16.*(.text.handle_75)
-. = ( 0xf8ef8 - code32flat_start ) ;
+. = ( 0xf8d28 - code32flat_start ) ;
 *16.*(.text.process_key)
-. = ( 0xf92d4 - code32flat_start ) ;
+. = ( 0xf9104 - code32flat_start ) ;
 *16.*(.text.ramdisk_copy)
-. = ( 0xf943d - code32flat_start ) ;
+. = ( 0xf926d - code32flat_start ) ;
 *16.*(.text.disk_1346.constprop.0)
-. = ( 0xf94f4 - code32flat_start ) ;
+. = ( 0xf9324 - code32flat_start ) ;
 *16.*(.text.check_irqs)
-. = ( 0xf9516 - code32flat_start ) ;
+. = ( 0xf9346 - code32flat_start ) ;
 *16.*(.text.sercon_putchar)
-. = ( 0xf95a1 - code32flat_start ) ;
+. = ( 0xf93d1 - code32flat_start ) ;
 *16.*(.text.sercon_term_clear_screen)
-. = ( 0xf95ce - code32flat_start ) ;
+. = ( 0xf93fe - code32flat_start ) ;
 *16.*(.text.sercon_term_cursor_goto)
-. = ( 0xf966d - code32flat_start ) ;
+. = ( 0xf949d - code32flat_start ) ;
 *16.*(.text.sercon_set_attr)
-. = ( 0xf9762 - code32flat_start ) ;
+. = ( 0xf9592 - code32flat_start ) ;
 *16.*(.text.sercon_lazy_putchar)
-. = ( 0xf9816 - code32flat_start ) ;
+. = ( 0xf9646 - code32flat_start ) ;
 *16.*(.text.rtc_updating)
-. = ( 0xf9863 - code32flat_start ) ;
+. = ( 0xf9693 - code32flat_start ) ;
 *16.*(.text.ps2_sendbyte)
-. = ( 0xf9914 - code32flat_start ) ;
+. = ( 0xf9744 - code32flat_start ) ;
 *16.*(.text.set_leds)
-. = ( 0xf9973 - code32flat_start ) ;
+. = ( 0xf97a3 - code32flat_start ) ;
 *16.*(.text.ps2_mouse_command)
-. = ( 0xf99c2 - code32flat_start ) ;
+. = ( 0xf97f2 - code32flat_start ) ;
 *16.*(.text.mouse_15c201)
-. = ( 0xf9a0e - code32flat_start ) ;
+. = ( 0xf983e - code32flat_start ) ;
 *16.*(.text.handle_160a)
-. = ( 0xf9a44 - code32flat_start ) ;
+. = ( 0xf9874 - code32flat_start ) ;
 *16.*(.text.floppy_wait_irq)
-. = ( 0xf9ac1 - code32flat_start ) ;
+. = ( 0xf98f1 - code32flat_start ) ;
+*16.*(.text.floppy_pio)
+. = ( 0xf9a4f - code32flat_start ) ;
 *16.*(.text.floppy_enable_controller)
-. = ( 0xf9b62 - code32flat_start ) ;
+. = ( 0xf9af0 - code32flat_start ) ;
 *16.*(.text.floppy_drive_pio)
-. = ( 0xf9c0d - code32flat_start ) ;
-*16.*(.text.floppy_dma_cmd)
-. = ( 0xf9d47 - code32flat_start ) ;
+. = ( 0xf9b9b - code32flat_start ) ;
 *16.*(.text.floppy_drive_readid.constprop.0)
-. = ( 0xf9d8d - code32flat_start ) ;
+. = ( 0xf9be1 - code32flat_start ) ;
 *16.*(.text.floppy_read)
-. = ( 0xf9e46 - code32flat_start ) ;
+. = ( 0xf9c9a - code32flat_start ) ;
 *16.*(.text.floppy_write)
-. = ( 0xf9eff - code32flat_start ) ;
+. = ( 0xf9d53 - code32flat_start ) ;
 *16.*(.text.floppy_format)
-. = ( 0xf9f87 - code32flat_start ) ;
+. = ( 0xf9ddb - code32flat_start ) ;
 *16.*(.text.await_ide.constprop.0)
-. = ( 0xf9ff8 - code32flat_start ) ;
+. = ( 0xf9e4c - code32flat_start ) ;
 *16.*(.text.await_not_bsy)
-. = ( 0xfa008 - code32flat_start ) ;
+. = ( 0xf9e5c - code32flat_start ) ;
 *16.*(.text.ndelay_await_not_bsy)
-. = ( 0xfa058 - code32flat_start ) ;
+. = ( 0xf9eac - code32flat_start ) ;
 *16.*(.text.ata_wait_data)
-. = ( 0xfa0c1 - code32flat_start ) ;
+. = ( 0xf9f15 - code32flat_start ) ;
 *16.*(.text.send_cmd)
-. = ( 0xfa1ed - code32flat_start ) ;
+. = ( 0xfa041 - code32flat_start ) ;
 *16.*(.text.ata_pio_transfer)
-. = ( 0xfa348 - code32flat_start ) ;
+. = ( 0xfa19c - code32flat_start ) ;
 *16.*(.text.ata_atapi_process_op)
-. = ( 0xfa579 - code32flat_start ) ;
+. = ( 0xfa3cd - code32flat_start ) ;
 *16.*(.text.ata_readwrite)
-. = ( 0xfa94b - code32flat_start ) ;
+. = ( 0xfa79f - code32flat_start ) ;
 *16.*(.text.process_op)
-. = ( 0xfacfa - code32flat_start ) ;
+. = ( 0xfab7c - code32flat_start ) ;
 *16.*(.text.disk_1300)
-. = ( 0xfad3c - code32flat_start ) ;
+. = ( 0xfabbe - code32flat_start ) ;
 *16.*(.text.disk_1305)
-. = ( 0xfae6a - code32flat_start ) ;
+. = ( 0xfacec - code32flat_start ) ;
 *16.*(.text.extended_access)
-. = ( 0xfaf64 - code32flat_start ) ;
+. = ( 0xfade6 - code32flat_start ) ;
 *16.*(.text.disk_13)
-. = ( 0xfb324 - code32flat_start ) ;
+. = ( 0xfb1a6 - code32flat_start ) ;
 *16.*(.text.handle_legacy_disk)
-. = ( 0xfb3cb - code32flat_start ) ;
+. = ( 0xfb24d - code32flat_start ) ;
 *16.*(.text.wait_irq)
-. = ( 0xfb3eb - code32flat_start ) ;
+. = ( 0xfb26d - code32flat_start ) ;
 *16.*(.text.dequeue_key)
-. = ( 0xfb4c7 - code32flat_start ) ;
+. = ( 0xfb349 - code32flat_start ) ;
 *16.*(.text.handle_1553)
-. = ( 0xfb639 - code32flat_start ) ;
+. = ( 0xfb4bb - code32flat_start ) ;
 *16.*(.text.handle_40)
-. = ( 0xfb65c - code32flat_start ) ;
+. = ( 0xfb4de - code32flat_start ) ;
 *16.*(.text.handle_13)
-. = ( 0xfb710 - code32flat_start ) ;
+. = ( 0xfb5b2 - code32flat_start ) ;
 *16.*(.text.handle_76)
-. = ( 0xfb726 - code32flat_start ) ;
+. = ( 0xfb5d4 - code32flat_start ) ;
 *16.*(.text.invoke_mouse_handler)
-. = ( 0xfb798 - code32flat_start ) ;
+. = ( 0xfb646 - code32flat_start ) ;
 *16.*(.text.handle_16)
-. = ( 0xfb8af - code32flat_start ) ;
+. = ( 0xfb769 - code32flat_start ) ;
 *16.*(.text.handle_1589)
-. = ( 0xfb949 - code32flat_start ) ;
+. = ( 0xfb80f - code32flat_start ) ;
 *16.*(.text.handle_15)
-. = ( 0xfc16b - code32flat_start ) ;
+. = ( 0xfc03d - code32flat_start ) ;
 *16.*(.text.handle_14)
-. = ( 0xfc39b - code32flat_start ) ;
+. = ( 0xfc26d - code32flat_start ) ;
 *16.*(.text.handle_17)
-. = ( 0xfc3ca - code32flat_start ) ;
+. = ( 0xfc29c - code32flat_start ) ;
 *16.*(.text.handle_08)
-. = ( 0xfc5f1 - code32flat_start ) ;
+. = ( 0xfc4c3 - code32flat_start ) ;
 *16.*(.text.handle_resume)
-. = ( 0xfc6bb - code32flat_start ) ;
+. = ( 0xfc58d - code32flat_start ) ;
 *16.*(.text.handle_pnp)
-. = ( 0xfc704 - code32flat_start ) ;
+. = ( 0xfc5d6 - code32flat_start ) ;
 *16.*(.text.handle_pcibios)
-. = ( 0xfcaad - code32flat_start ) ;
+. = ( 0xfc98b - code32flat_start ) ;
+*16.*(.text.handle_apm)
+. = ( 0xfc9a8 - code32flat_start ) ;
 *16.*(.text.handle_hwpic1)
-. = ( 0xfcacf - code32flat_start ) ;
+. = ( 0xfc9ca - code32flat_start ) ;
 *16.*(.text.handle_hwpic2)
-. = ( 0xfcaf3 - code32flat_start ) ;
+. = ( 0xfc9ee - code32flat_start ) ;
 *16.*(.text.handle_74)
-. = ( 0xfcb7d - code32flat_start ) ;
+. = ( 0xfca84 - code32flat_start ) ;
 *16.*(.text.handle_09)
-. = ( 0xfcbc6 - code32flat_start ) ;
-*16.*(.text.handle_0e)
-. = ( 0xfcbe0 - code32flat_start ) ;
+. = ( 0xfcad9 - code32flat_start ) ;
 *16.*(.text.asm.transition32)
-. = ( 0xfcc2e - code32flat_start ) ;
+. = ( 0xfcb27 - code32flat_start ) ;
 *16.*(.text.asm.transition16)
-. = ( 0xfcc7c - code32flat_start ) ;
+. = ( 0xfcb75 - code32flat_start ) ;
 *16.*(.text.asm.__farcall16)
-. = ( 0xfcd09 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x02)
-. = ( 0xfcd0c - code32flat_start ) ;
+. = ( 0xfcc02 - code32flat_start ) ;
 *16.*(.text.asm.entry_smp)
-. = ( 0xfcd3c - code32flat_start ) ;
+. = ( 0xfcc32 - code32flat_start ) ;
 *16.*(.text.asm.entry_resume)
-. = ( 0xfcd51 - code32flat_start ) ;
+. = ( 0xfcc47 - code32flat_start ) ;
 *16.*(.text.asm.entry_pmm)
-. = ( 0xfcdaf - code32flat_start ) ;
+. = ( 0xfcca5 - code32flat_start ) ;
 *16.*(.text.asm.entry_pnp_real)
-. = ( 0xfcdf7 - code32flat_start ) ;
+. = ( 0xfcced - code32flat_start ) ;
 *16.*(.text.asm.entry_apm16)
-. = ( 0xfce38 - code32flat_start ) ;
+. = ( 0xfcd2e - code32flat_start ) ;
 *16.*(.text.asm.entry_apm32)
-. = ( 0xfce6a - code32flat_start ) ;
+. = ( 0xfcd60 - code32flat_start ) ;
 *16.*(.text.asm.entry_pcibios32)
-. = ( 0xfce98 - code32flat_start ) ;
+. = ( 0xfcd8e - code32flat_start ) ;
 *16.*(.text.asm.entry_1589)
-. = ( 0xfced2 - code32flat_start ) ;
+. = ( 0xfcdc8 - code32flat_start ) ;
 *16.*(.text.asm.entry_sercon)
-. = ( 0xfcf19 - code32flat_start ) ;
+. = ( 0xfce0f - code32flat_start ) ;
 *16.*(.text.asm.irqentry_extrastack)
-. = ( 0xfcfa6 - code32flat_start ) ;
+. = ( 0xfce9c - code32flat_start ) ;
 *16.*(.text.asm.irqentry_arg_extrastack)
-. = ( 0xfd048 - code32flat_start ) ;
+. = ( 0xfcf3e - code32flat_start ) ;
 *16.*(.text.asm.entry_13)
-. = ( 0xfd051 - code32flat_start ) ;
+. = ( 0xfcf47 - code32flat_start ) ;
 *16.*(.text.asm.entry_76)
-. = ( 0xfd05a - code32flat_start ) ;
+. = ( 0xfcf50 - code32flat_start ) ;
 *16.*(.text.asm.entry_74)
-. = ( 0xfd063 - code32flat_start ) ;
+. = ( 0xfcf59 - code32flat_start ) ;
 *16.*(.text.asm.entry_75)
-. = ( 0xfd06c - code32flat_start ) ;
+. = ( 0xfcf62 - code32flat_start ) ;
 *16.*(.text.asm.entry_hwpic1)
-. = ( 0xfd075 - code32flat_start ) ;
+. = ( 0xfcf6b - code32flat_start ) ;
 *16.*(.text.asm.entry_hwpic2)
-. = ( 0xfd07e - code32flat_start ) ;
+. = ( 0xfcf74 - code32flat_start ) ;
 *16.*(.text.asm.entry_19)
-. = ( 0xfd091 - code32flat_start ) ;
+. = ( 0xfcf87 - code32flat_start ) ;
 *16.*(.text.asm.entry_18)
-. = ( 0xfd0a4 - code32flat_start ) ;
+. = ( 0xfcf9a - code32flat_start ) ;
 _rodata16 = . ;
 *16.*(.rodata)
-. = ( 0xfd638 - code32flat_start ) ;
+. = ( 0xfd5a4 - code32flat_start ) ;
 *16.*(.rodata.__func__.1)
-. = ( 0xfd644 - code32flat_start ) ;
+. = ( 0xfd5b0 - code32flat_start ) ;
 *16.*(.rodata.__func__.2)
-. = ( 0xfd658 - code32flat_start ) ;
+. = ( 0xfd5c4 - code32flat_start ) ;
 *16.*(.rodata.__func__.3)
-. = ( 0xfd664 - code32flat_start ) ;
+. = ( 0xfd5d0 - code32flat_start ) ;
 *16.*(.rodata.__func__.4)
-. = ( 0xfd670 - code32flat_start ) ;
+. = ( 0xfd5dc - code32flat_start ) ;
 *16.*(.rodata.__func__.5)
-. = ( 0xfd680 - code32flat_start ) ;
+. = ( 0xfd5e8 - code32flat_start ) ;
+*16.*(.rodata.__func__.6)
+. = ( 0xfd5f8 - code32flat_start ) ;
 *16.*(.rodata.__func__.9)
-. = ( 0xfd690 - code32flat_start ) ;
+. = ( 0xfd604 - code32flat_start ) ;
 *16.*(.rodata.__func__.10)
-. = ( 0xfd6a4 - code32flat_start ) ;
-*16.*(.rodata.__func__.11)
-. = ( 0xfd6b4 - code32flat_start ) ;
+. = ( 0xfd610 - code32flat_start ) ;
 *16.*(.rodata.__func__.12)
-. = ( 0xfd6c4 - code32flat_start ) ;
+. = ( 0xfd620 - code32flat_start ) ;
 *16.*(.rodata.__func__.13)
-. = ( 0xfd6d4 - code32flat_start ) ;
+. = ( 0xfd634 - code32flat_start ) ;
 *16.*(.rodata.__func__.14)
-. = ( 0xfd6e4 - code32flat_start ) ;
+. = ( 0xfd640 - code32flat_start ) ;
 *16.*(.rodata.__func__.15)
-. = ( 0xfd6f4 - code32flat_start ) ;
+. = ( 0xfd650 - code32flat_start ) ;
+*16.*(.rodata.__func__.16)
+. = ( 0xfd660 - code32flat_start ) ;
 *16.*(.rodata.__func__.17)
-. = ( 0xfd704 - code32flat_start ) ;
+. = ( 0xfd670 - code32flat_start ) ;
 *16.*(.rodata.__func__.18)
-. = ( 0xfd714 - code32flat_start ) ;
+. = ( 0xfd680 - code32flat_start ) ;
 *16.*(.rodata.__func__.19)
-. = ( 0xfd720 - code32flat_start ) ;
+. = ( 0xfd690 - code32flat_start ) ;
 *16.*(.rodata.__func__.20)
-. = ( 0xfd730 - code32flat_start ) ;
-*16.*(.rodata.__func__.21)
-. = ( 0xfd73c - code32flat_start ) ;
+. = ( 0xfd6a0 - code32flat_start ) ;
 *16.*(.rodata.__func__.22)
-. = ( 0xfd748 - code32flat_start ) ;
+. = ( 0xfd6b0 - code32flat_start ) ;
 *16.*(.rodata.__func__.23)
-. = ( 0xfd754 - code32flat_start ) ;
+. = ( 0xfd6c0 - code32flat_start ) ;
 *16.*(.rodata.__func__.24)
-. = ( 0xfd760 - code32flat_start ) ;
+. = ( 0xfd6cc - code32flat_start ) ;
 *16.*(.rodata.__func__.25)
-. = ( 0xfd76c - code32flat_start ) ;
+. = ( 0xfd6dc - code32flat_start ) ;
 *16.*(.rodata.__func__.26)
-. = ( 0xfd778 - code32flat_start ) ;
+. = ( 0xfd6e8 - code32flat_start ) ;
 *16.*(.rodata.__func__.27)
-. = ( 0xfd784 - code32flat_start ) ;
+. = ( 0xfd6f4 - code32flat_start ) ;
 *16.*(.rodata.__func__.28)
-. = ( 0xfd790 - code32flat_start ) ;
+. = ( 0xfd700 - code32flat_start ) ;
 *16.*(.rodata.__func__.29)
-. = ( 0xfd79c - code32flat_start ) ;
+. = ( 0xfd70c - code32flat_start ) ;
 *16.*(.rodata.__func__.30)
-. = ( 0xfd7a8 - code32flat_start ) ;
+. = ( 0xfd718 - code32flat_start ) ;
 *16.*(.rodata.__func__.31)
-. = ( 0xfd7b4 - code32flat_start ) ;
+. = ( 0xfd724 - code32flat_start ) ;
 *16.*(.rodata.__func__.32)
-. = ( 0xfd7c0 - code32flat_start ) ;
+. = ( 0xfd730 - code32flat_start ) ;
 *16.*(.rodata.__func__.33)
-. = ( 0xfd7cc - code32flat_start ) ;
+. = ( 0xfd73c - code32flat_start ) ;
 *16.*(.rodata.__func__.34)
-. = ( 0xfd7dc - code32flat_start ) ;
+. = ( 0xfd748 - code32flat_start ) ;
 *16.*(.rodata.__func__.35)
-. = ( 0xfd7ec - code32flat_start ) ;
+. = ( 0xfd754 - code32flat_start ) ;
 *16.*(.rodata.__func__.36)
-. = ( 0xfd7fc - code32flat_start ) ;
+. = ( 0xfd760 - code32flat_start ) ;
 *16.*(.rodata.__func__.37)
-. = ( 0xfd808 - code32flat_start ) ;
+. = ( 0xfd76c - code32flat_start ) ;
 *16.*(.rodata.__func__.38)
-. = ( 0xfd818 - code32flat_start ) ;
+. = ( 0xfd778 - code32flat_start ) ;
 *16.*(.rodata.__func__.39)
-. = ( 0xfd828 - code32flat_start ) ;
+. = ( 0xfd784 - code32flat_start ) ;
 *16.*(.rodata.__func__.40)
-. = ( 0xfd838 - code32flat_start ) ;
+. = ( 0xfd794 - code32flat_start ) ;
 *16.*(.rodata.__func__.41)
-. = ( 0xfd848 - code32flat_start ) ;
+. = ( 0xfd7a4 - code32flat_start ) ;
 *16.*(.rodata.__func__.42)
-. = ( 0xfd858 - code32flat_start ) ;
+. = ( 0xfd7b4 - code32flat_start ) ;
 *16.*(.rodata.__func__.43)
-. = ( 0xfd868 - code32flat_start ) ;
+. = ( 0xfd7c0 - code32flat_start ) ;
 *16.*(.rodata.__func__.44)
-. = ( 0xfd878 - code32flat_start ) ;
+. = ( 0xfd7cc - code32flat_start ) ;
 *16.*(.rodata.__func__.45)
-. = ( 0xfd888 - code32flat_start ) ;
+. = ( 0xfd7d8 - code32flat_start ) ;
 *16.*(.rodata.__func__.46)
-. = ( 0xfd898 - code32flat_start ) ;
+. = ( 0xfd7e4 - code32flat_start ) ;
 *16.*(.rodata.__func__.47)
-. = ( 0xfd8a8 - code32flat_start ) ;
+. = ( 0xfd7f4 - code32flat_start ) ;
 *16.*(.rodata.__func__.48)
-. = ( 0xfd8b8 - code32flat_start ) ;
+. = ( 0xfd804 - code32flat_start ) ;
 *16.*(.rodata.__func__.49)
-. = ( 0xfd8c8 - code32flat_start ) ;
+. = ( 0xfd814 - code32flat_start ) ;
 *16.*(.rodata.__func__.50)
-. = ( 0xfd8d8 - code32flat_start ) ;
+. = ( 0xfd824 - code32flat_start ) ;
 *16.*(.rodata.__func__.51)
-. = ( 0xfd8e4 - code32flat_start ) ;
+. = ( 0xfd834 - code32flat_start ) ;
 *16.*(.rodata.__func__.52)
-. = ( 0xfd8f0 - code32flat_start ) ;
+. = ( 0xfd844 - code32flat_start ) ;
 *16.*(.rodata.__func__.53)
-. = ( 0xfd8fc - code32flat_start ) ;
+. = ( 0xfd854 - code32flat_start ) ;
 *16.*(.rodata.__func__.54)
-. = ( 0xfd908 - code32flat_start ) ;
+. = ( 0xfd864 - code32flat_start ) ;
 *16.*(.rodata.__func__.55)
-. = ( 0xfd914 - code32flat_start ) ;
+. = ( 0xfd874 - code32flat_start ) ;
 *16.*(.rodata.__func__.56)
-. = ( 0xfd920 - code32flat_start ) ;
+. = ( 0xfd884 - code32flat_start ) ;
 *16.*(.rodata.__func__.57)
-. = ( 0xfd92c - code32flat_start ) ;
+. = ( 0xfd894 - code32flat_start ) ;
 *16.*(.rodata.__func__.58)
-. = ( 0xfd938 - code32flat_start ) ;
+. = ( 0xfd8a4 - code32flat_start ) ;
 *16.*(.rodata.__func__.59)
-. = ( 0xfd944 - code32flat_start ) ;
+. = ( 0xfd8b4 - code32flat_start ) ;
 *16.*(.rodata.__func__.60)
-. = ( 0xfd950 - code32flat_start ) ;
+. = ( 0xfd8c0 - code32flat_start ) ;
 *16.*(.rodata.__func__.61)
-. = ( 0xfd95c - code32flat_start ) ;
+. = ( 0xfd8cc - code32flat_start ) ;
 *16.*(.rodata.__func__.62)
-. = ( 0xfd968 - code32flat_start ) ;
+. = ( 0xfd8d8 - code32flat_start ) ;
 *16.*(.rodata.__func__.63)
-. = ( 0xfd974 - code32flat_start ) ;
+. = ( 0xfd8e4 - code32flat_start ) ;
 *16.*(.rodata.__func__.64)
-. = ( 0xfd980 - code32flat_start ) ;
+. = ( 0xfd8f0 - code32flat_start ) ;
 *16.*(.rodata.__func__.65)
-. = ( 0xfd990 - code32flat_start ) ;
+. = ( 0xfd8fc - code32flat_start ) ;
 *16.*(.rodata.__func__.66)
-. = ( 0xfd99c - code32flat_start ) ;
+. = ( 0xfd908 - code32flat_start ) ;
 *16.*(.rodata.__func__.67)
-. = ( 0xfd9a8 - code32flat_start ) ;
+. = ( 0xfd914 - code32flat_start ) ;
 *16.*(.rodata.__func__.68)
-. = ( 0xfd9b4 - code32flat_start ) ;
+. = ( 0xfd920 - code32flat_start ) ;
 *16.*(.rodata.__func__.69)
-. = ( 0xfd9c0 - code32flat_start ) ;
+. = ( 0xfd92c - code32flat_start ) ;
 *16.*(.rodata.__func__.70)
-. = ( 0xfd9cc - code32flat_start ) ;
+. = ( 0xfd938 - code32flat_start ) ;
 *16.*(.rodata.__func__.71)
-. = ( 0xfd9d8 - code32flat_start ) ;
+. = ( 0xfd944 - code32flat_start ) ;
 *16.*(.rodata.__func__.72)
-. = ( 0xfd9e4 - code32flat_start ) ;
+. = ( 0xfd950 - code32flat_start ) ;
 *16.*(.rodata.__func__.73)
-. = ( 0xfd9f0 - code32flat_start ) ;
+. = ( 0xfd95c - code32flat_start ) ;
 *16.*(.rodata.__func__.74)
-. = ( 0xfd9fc - code32flat_start ) ;
+. = ( 0xfd968 - code32flat_start ) ;
 *16.*(.rodata.__func__.75)
-. = ( 0xfda08 - code32flat_start ) ;
+. = ( 0xfd974 - code32flat_start ) ;
 *16.*(.rodata.__func__.76)
-. = ( 0xfda14 - code32flat_start ) ;
+. = ( 0xfd984 - code32flat_start ) ;
 *16.*(.rodata.__func__.77)
-. = ( 0xfda24 - code32flat_start ) ;
+. = ( 0xfd990 - code32flat_start ) ;
 *16.*(.rodata.__func__.78)
-. = ( 0xfda30 - code32flat_start ) ;
+. = ( 0xfd99c - code32flat_start ) ;
 *16.*(.rodata.__func__.79)
-. = ( 0xfda3c - code32flat_start ) ;
+. = ( 0xfd9a8 - code32flat_start ) ;
 *16.*(.rodata.__func__.80)
-. = ( 0xfda50 - code32flat_start ) ;
+. = ( 0xfd9b4 - code32flat_start ) ;
 *16.*(.rodata.__func__.81)
-. = ( 0xfda5c - code32flat_start ) ;
+. = ( 0xfd9c0 - code32flat_start ) ;
+*16.*(.rodata.__func__.82)
+. = ( 0xfd9cc - code32flat_start ) ;
+*16.*(.rodata.__func__.83)
+. = ( 0xfd9d8 - code32flat_start ) ;
 *16.*(.rodata.__func__.84)
-. = ( 0xfda68 - code32flat_start ) ;
+. = ( 0xfd9e4 - code32flat_start ) ;
 *16.*(.rodata.__func__.85)
-. = ( 0xfda74 - code32flat_start ) ;
+. = ( 0xfd9f0 - code32flat_start ) ;
 *16.*(.rodata.__func__.86)
-. = ( 0xfda80 - code32flat_start ) ;
+. = ( 0xfd9fc - code32flat_start ) ;
 *16.*(.rodata.__func__.87)
-. = ( 0xfda8c - code32flat_start ) ;
+. = ( 0xfda08 - code32flat_start ) ;
 *16.*(.rodata.__func__.88)
+. = ( 0xfda18 - code32flat_start ) ;
+*16.*(.rodata.__func__.89)
+. = ( 0xfda24 - code32flat_start ) ;
+*16.*(.rodata.__func__.90)
+. = ( 0xfda30 - code32flat_start ) ;
+*16.*(.rodata.__func__.91)
+. = ( 0xfda44 - code32flat_start ) ;
+*16.*(.rodata.__func__.92)
+. = ( 0xfda50 - code32flat_start ) ;
+*16.*(.rodata.__func__.95)
+. = ( 0xfda5c - code32flat_start ) ;
+*16.*(.rodata.__func__.96)
+. = ( 0xfda68 - code32flat_start ) ;
+*16.*(.rodata.__func__.97)
+. = ( 0xfda74 - code32flat_start ) ;
+*16.*(.rodata.__func__.98)
+. = ( 0xfda80 - code32flat_start ) ;
+*16.*(.rodata.__func__.99)
 . = ( 0xfdaa0 - code32flat_start ) ;
 *16.*(.data16../src/cp437.c.11)
 . = ( 0xfdca0 - code32flat_start ) ;
@@ -3138,8 +3169,10 @@ _rodata16 = . ;
 *32flat.*(.fixedaddr.0xe401)
 . = ( 0xfe411 - code32flat_start ) ;
 *16.*(.text.handle_1a)
-. = ( 0xfe6de - code32flat_start ) ;
-*16.*(.text.__set_invalid)
+. = ( 0xfe6ea - code32flat_start ) ;
+*16.*(.text.asm.irq_trampoline_0x10)
+. = ( 0xfe6ed - code32flat_start ) ;
+*16.*(.text.asm.irq_trampoline_0x05)
 . = ( 0xfe6f2 - code32flat_start ) ;
 *16.*(.fixedaddr.0xe6f2)
 . = ( 0xfe6f5 - code32flat_start ) ;
@@ -3153,15 +3186,15 @@ _rodata16 = . ;
 . = ( 0xfe742 - code32flat_start ) ;
 *16.*(.text.ps2_recvbyte)
 . = ( 0xfe827 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x18)
-. = ( 0xfe82a - code32flat_start ) ;
 *16.*(.text.asm.irq_trampoline_0x16)
+. = ( 0xfe82a - code32flat_start ) ;
+*16.*(.text.asm.irq_trampoline_0x15)
 . = ( 0xfe82e - code32flat_start ) ;
 *16.*(.fixedaddr.0xe82e)
 . = ( 0xfe837 - code32flat_start ) ;
-*16.*(.text.floppy_pio)
-. = ( 0xfe983 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x15)
+*16.*(.text.floppy_dma_cmd)
+. = ( 0xfe971 - code32flat_start ) ;
+*16.*(.text.panic.constprop.0)
 . = ( 0xfe987 - code32flat_start ) ;
 *16.*(.fixedaddr.0xe987)
 . = ( 0xfe990 - code32flat_start ) ;
@@ -3173,9 +3206,7 @@ _rodata16 = . ;
 . = ( 0xfec62 - code32flat_start ) ;
 *16.*(.text.bvprintf.constprop.0)
 . = ( 0xfef50 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x10)
-. = ( 0xfef53 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x05)
+*16.*(.text.asm.irq_trampoline_0x02)
 . = ( 0xfef57 - code32flat_start ) ;
 *16.*(.fixedaddr.0xef57)
 . = ( 0xfef60 - code32flat_start ) ;
@@ -3195,7 +3226,7 @@ _rodata16 = . ;
 . = ( 0xff066 - code32flat_start ) ;
 *16.*(.text.asm.entry_pcibios16)
 . = ( 0xff0a0 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x1b)
+*16.*(.text.asm.irq_trampoline_0x19)
 . = ( 0xff0a4 - code32flat_start ) ;
 *32flat.*(.fixedaddr.0xf0a4)
 . = ( 0xff0fc - code32flat_start ) ;
@@ -3207,11 +3238,11 @@ _rodata16 = . ;
 . = ( 0xff841 - code32flat_start ) ;
 *16.*(.fixedaddr.0xf841)
 . = ( 0xff84a - code32flat_start ) ;
-*16.*(.text.handle_apm)
+*16.*(.text.asm.irq_trampoline_0x1c)
 . = ( 0xff84d - code32flat_start ) ;
 *16.*(.fixedaddr.0xf84d)
 . = ( 0xff856 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x1c)
+*16.*(.text.asm.irq_trampoline_0x1b)
 . = ( 0xff859 - code32flat_start ) ;
 *16.*(.fixedaddr.0xf859)
 . = ( 0xff869 - code32flat_start ) ;
@@ -3225,7 +3256,7 @@ _rodata16 = . ;
 . = ( 0xffe6e - code32flat_start ) ;
 *16.*(.fixedaddr.0xfe6e)
 . = ( 0xffe7e - code32flat_start ) ;
-*16.*(.text.__warn_unimplemented)
+*16.*(.text.handle_0e)
 . = ( 0xffea5 - code32flat_start ) ;
 *16.*(.fixedaddr.0xfea5)
 . = ( 0xffeae - code32flat_start ) ;
@@ -3235,7 +3266,7 @@ _rodata16 = . ;
 . = ( 0xfff00 - code32flat_start ) ;
 *16.*(.text.sercon_lazy_lf)
 . = ( 0xfff50 - code32flat_start ) ;
-*16.*(.text.asm.irq_trampoline_0x19)
+*16.*(.text.asm.irq_trampoline_0x18)
 . = ( 0xfff53 - code32flat_start ) ;
 *16.*(.fixedaddr.0xff53)
 . = ( 0xfff54 - code32flat_start ) ;

@@ -97,7 +97,7 @@ void pit_init()
 
 void pit_handle(exit_io_info_t *io, uint8_t *base)
 {
-    LOG_MSG("Handling pit port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%lx", io->port, io->direction, io->size, io->count, base[io->data_offset]);
+    //LOG_MSG("Handling pit port: 0x%x, direction: 0x%x, size: 0x%x, count: 0x%x, data: 0x%lx", io->port, io->direction, io->size, io->count, base[io->data_offset]);
     if (io->port >= PIT_CHANNEL_BASE && io->port < (PIT_CHANNEL_BASE + PIT_CHANNEL_NUM - 1))
     {
         pit_channel_t *channel = &pit_channels[io->port - PIT_CHANNEL_BASE];
@@ -143,13 +143,13 @@ void pit_handle(exit_io_info_t *io, uint8_t *base)
                 base[io->data_offset] = status;
                 channel->latch_status = false;
             }
-            LOG_MSG("data: %x, count: %x", base[io->data_offset], count_value);
+            //LOG_MSG("data: %x, count: %x", base[io->data_offset], count_value);
         }
         else
         {
             if (channel->expecting_low && channel->access_mode == PIT_BOTH || channel->access_mode == PIT_LOW)
             {
-                LOG_MSG("data: %x", base[io->data_offset]);
+                //LOG_MSG("data: %x", base[io->data_offset]);
                 channel->divisor = (channel->divisor & 0xFF00) | (base[io->data_offset] & 0xFF);
                 channel->null_count = true;
                 if (channel->access_mode == PIT_BOTH)
@@ -161,11 +161,11 @@ void pit_handle(exit_io_info_t *io, uint8_t *base)
                     channel->count = channel->divisor - 1;
                     channel->null_count = false;
                 }
-                LOG_MSG("divisor low: %x", channel->divisor);
+                //LOG_MSG("divisor low: %x", channel->divisor);
             }
             else if (channel->access_mode == PIT_BOTH || channel->access_mode == PIT_HIGH)
             {
-                LOG_MSG("data: %x", base[io->data_offset]);
+                //LOG_MSG("data: %x", base[io->data_offset]);
                 channel->divisor = (channel->divisor & 0x00FF) | ((base[io->data_offset] & 0xFF) << 8);
                 channel->null_count = true;
                 if (channel->access_mode == PIT_BOTH)
@@ -174,7 +174,7 @@ void pit_handle(exit_io_info_t *io, uint8_t *base)
                 }
                 channel->count = channel->divisor - 1;
                 channel->null_count = false;
-                LOG_MSG("divisor high: %x", channel->divisor);
+                //LOG_MSG("divisor high: %x", channel->divisor);
             }
             else
             {

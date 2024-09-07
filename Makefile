@@ -23,7 +23,7 @@ all: $(TARGET)
 
 run: $(DISK_IMAGE) $(TARGET)
 	(cd kernel && make all)
-	./$(TARGET) ./seabios/out/bios.bin
+	./$(TARGET) ./seabios/out/bios.bin ../karmiel-506-operatingsystem/os.iso harddisk.img
 
 clean:
 	rm -rf build $(TARGET)

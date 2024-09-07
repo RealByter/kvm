@@ -29,3 +29,8 @@ void seabios_log_handle(exit_io_info_t *io, uint8_t *base)
         base[io->data_offset] = 0xe9; // ack
     }
 }
+
+FILE* seabios_log_get_file()
+{
+    return seabios_log_file;
+}

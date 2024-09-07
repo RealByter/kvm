@@ -24,15 +24,16 @@ void handle_sigint(int sig)
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
+    if (argc != 4)
     {
-        errx(1, "Usage: %s <filename>", argv[0]);
+        errx(1, "Usage: %s <bios> <kernel> <harddisk>", argv[0]);
     }
 
     signal(SIGINT, handle_sigint);
 
     // gui_init();
     log_init();
+    ata_init_disks(argv[2], argv[3]);
 
     io_manager_register(cmos_init, cmos_handle, 0x70, 0x71);
     io_manager_register(NULL, a20_handle, 0x92, 0x92);
@@ -47,11 +48,12 @@ int main(int argc, char *argv[])
     io_manager_register(pit_init, pit_handle, 0x40, 0x43);
     io_manager_register(ps2_init, ps2_handle, 0x60, 0x60);
     io_manager_register(NULL, ps2_handle, 0x64, 0x64);
-    io_manager_register(NULL, ata_handle_io_master, 0x1f0, 0x1f7);
-    io_manager_register(NULL, ata_handle_io_slave, 0x170, 0x177);
-    io_manager_register(NULL, ata_handle_control_master, 0x3f6, 0x3f7);
-    io_manager_register(NULL, ata_handle_control_slave, 0x376, 0x377);
+    io_manager_register(ata_init_primary, ata_handle_io_primary, 0x1f0, 0x1f7);
+    io_manager_register(ata_init_secondary, ata_handle_io_secondary, 0x170, 0x177);
+    io_manager_register(NULL, ata_handle_control_primary, 0x3f6, 0x3f7);
+    io_manager_register(NULL, ata_handle_control_secondary, 0x376, 0x377);
 
+    ata_deinit_disks();
     kvm_init(argv[1]);
     kvm_run();
     kvm_deinit();

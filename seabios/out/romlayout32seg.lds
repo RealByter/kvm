@@ -4,31 +4,33 @@ OUTPUT_FORMAT("elf32-i386")
 OUTPUT_ARCH("i386")
 SECTIONS
 {
-DebugOutputPort = 0x708a ;
-MaxPCIBus = 0x65ec ;
-entry_pcibios32 = 0xce6a ;
-PirAddr = 0x65e8 ;
-entry_apm16 = 0xcdf7 ;
-entry_apm32 = 0xce38 ;
-acpi_pm1a_cnt = 0x65e4 ;
-.text.set_code_success 0x726c : { *(.text.set_code_success) }
-.text.get_global_offset 0x7276 : { *(.text.get_global_offset) }
-.text.qemu_debug_putc 0x7282 : { *(.text.qemu_debug_putc) }
-.text.putsinglehex.constprop.0 0x729a : { *(.text.putsinglehex.constprop.0) }
-.text.puthex.constprop.0 0x72b4 : { *(.text.puthex.constprop.0) }
-.text.pci_next 0x7353 : { *(.text.pci_next) }
-.text.putuint.constprop.0 0x73c7 : { *(.text.putuint.constprop.0) }
-.text.__dprintf 0x7406 : { *(.text.__dprintf) }
-.rodata 0x7c40 : { *(.rodata) }
-.text.dump_regs 0x769a : { *(.text.dump_regs) }
-.text.__set_code_invalid 0x7702 : { *(.text.__set_code_invalid) }
-.text.handle_pcibios 0x7730 : { *(.text.handle_pcibios) }
-.text.handle_apm 0x7ab4 : { *(.text.handle_apm) }
-.rodata.__func__.0 0x7d10 : { *(.rodata.__func__.0) }
-.rodata.__func__.1 0x7d20 : { *(.rodata.__func__.1) }
-.rodata.__func__.2 0x7d30 : { *(.rodata.__func__.2) }
-.rodata.__func__.3 0x7d40 : { *(.rodata.__func__.3) }
-.rodata.__func__.4 0x7d50 : { *(.rodata.__func__.4) }
+DebugOutputPort = 0x6e0a ;
+MaxPCIBus = 0x636c ;
+entry_pcibios32 = 0xcd60 ;
+PirAddr = 0x6368 ;
+entry_apm16 = 0xcced ;
+entry_apm32 = 0xcd2e ;
+acpi_pm1a_cnt = 0x6364 ;
+.text.set_code_success 0x6fd4 : { *(.text.set_code_success) }
+.text.get_global_offset 0x6fde : { *(.text.get_global_offset) }
+.text.qemu_debug_putc 0x6fea : { *(.text.qemu_debug_putc) }
+.text.putsinglehex.constprop.0 0x7002 : { *(.text.putsinglehex.constprop.0) }
+.text.puthex.constprop.0 0x701c : { *(.text.puthex.constprop.0) }
+.text.pci_next 0x70bb : { *(.text.pci_next) }
+.text.putuint.constprop.0 0x712f : { *(.text.putuint.constprop.0) }
+.text.__dprintf 0x716e : { *(.text.__dprintf) }
+.rodata 0x79d8 : { *(.rodata) }
+.text.dump_regs 0x7402 : { *(.text.dump_regs) }
+.text.__set_code_invalid 0x746a : { *(.text.__set_code_invalid) }
+.text.handle_pcibios 0x7498 : { *(.text.handle_pcibios) }
+.text.handle_apm 0x7834 : { *(.text.handle_apm) }
+.rodata.__func__.0 0x7ab4 : { *(.rodata.__func__.0) }
+.rodata.__func__.1 0x7ac0 : { *(.rodata.__func__.1) }
+.rodata.__func__.2 0x7ad0 : { *(.rodata.__func__.2) }
+.rodata.__func__.3 0x7ae0 : { *(.rodata.__func__.3) }
+.rodata.__func__.4 0x7af0 : { *(.rodata.__func__.4) }
+.rodata.__func__.5 0x7b00 : { *(.rodata.__func__.5) }
+.rodata.__func__.6 0x7b10 : { *(.rodata.__func__.6) }
 
 
         /* Discard regular data sections to force a link error if

@@ -22,9 +22,10 @@ Handle additional cmos registers
 Handle APIC
 Generalize clocks
 Understand better the BAR's and investigate the mmio exit
-Add ps2port support - DONE
+Add ps2port support - DONE (now need to actually send interrupts and scancodes)
 Create interrupts upon keyboard keystrokes
-Implement ATA - help: ata 955
+Implement ATA - help: ata 955 - DONE (now need to implement the actual reading and writing)
+Handle commands in general in a seperate thread while returning to the guest kernel that polls for the status
 
 
 I'll understand how to implement multicore once I search globally: "No apic - only the main cpu is present."

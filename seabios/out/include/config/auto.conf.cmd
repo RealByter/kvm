@@ -1,6 +1,6 @@
 deps_config := \
 	vgasrc/Kconfig \
-	/home/byter/documents/kvm-new/seabios/src/Kconfig
+	/home/byter/documents/repositories/kvm-new/seabios/src/Kconfig
 
 include/config/auto.conf: \
 	$(deps_config)
