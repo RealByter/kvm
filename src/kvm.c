@@ -182,19 +182,18 @@ void kvm_run()
             // return 0;
             break;
         case KVM_EXIT_IO:
-            if (run->io.port != 0x402)
+            if (run->io.direction == KVM_EXIT_IO_OUT)
             {
                 kvm_get_regs(&regs);
                 printf("0x%llx: ", regs.rip);
                 printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t *)run)[run->io.data_offset]);
             }
-            if (0)
+            io_manager_handle(&run->io, (uint8_t *)run);
+            if (run->io.direction == KVM_EXIT_IO_IN)
             {
-                printf("------------------0x%02x:%x------------------\n", run->io.port, ((uint8_t *)run)[run->io.data_offset]);
-            }
-            else
-            {
-                io_manager_handle(&run->io, (uint8_t *)run);
+                kvm_get_regs(&regs);
+                printf("0x%llx: ", regs.rip);
+                printf("KVM_EXIT_IO: direction = 0x%x, size = 0x%x, port = 0x%x, count = 0x%x, data = 0x%x\n", run->io.direction, run->io.size, run->io.port, run->io.count, ((uint8_t *)run)[run->io.data_offset]);
             }
             break;
         case KVM_EXIT_MMIO:
