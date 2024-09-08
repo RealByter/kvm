@@ -4,35 +4,35 @@ OUTPUT_FORMAT("elf32-i386")
 OUTPUT_ARCH("i386")
 SECTIONS
 {
-Call16Data = 0xf9a4 ;
-sercon_split = 0xf15e ;
-rx_bytes = 0xf145 ;
-rx_buf = 0xf148 ;
+Call16Data = 0xfa24 ;
+sercon_split = 0xf1de ;
+rx_bytes = 0xf1c5 ;
+rx_buf = 0xf1c8 ;
 DebugOutputPort = 0x6e0a ;
-ExtraStack = 0xf1a0 ;
+ExtraStack = 0xf220 ;
 cdemu_drive_gf = 0x6e68 ;
-CDEmu = 0xf178 ;
-FloppyDOR = 0xf13c ;
+CDEmu = 0xf1f8 ;
+FloppyDOR = 0xf1bc ;
 FloppyCount = 0x6f40 ;
 diskette_param_table2 = 0x6dfc ;
 TimerPort = 0x6e0c ;
-TimerLast = 0xf140 ;
+TimerLast = 0xf1c0 ;
 TimerKHz = 0x6e10 ;
-sercon_row_last = 0xf15a ;
-DefaultDPTE = 0xf18c ;
-StackPos = 0xf19c ;
+sercon_row_last = 0xf1da ;
+DefaultDPTE = 0xf20c ;
+StackPos = 0xf21c ;
 _cfunc16__farcall16 = 0x8c80 ;
-CDRom_locks = 0xf164 ;
+CDRom_locks = 0xf1e4 ;
 _cfunc16_check_irqs = 0x9324 ;
-sercon_port = 0xf160 ;
-sercon_attr_last = 0xf15c ;
-sercon_char = 0xf159 ;
-sercon_attr = 0xf158 ;
-sercon_col_last = 0xf15b ;
-Ps2ctr = 0xf13d ;
+sercon_port = 0xf1e0 ;
+sercon_attr_last = 0xf1dc ;
+sercon_char = 0xf1d9 ;
+sercon_attr = 0xf1d8 ;
+sercon_col_last = 0xf1db ;
+Ps2ctr = 0xf1bd ;
 FloppyInfo = 0x6da0 ;
-_cfunc32flat_process_op_32 = 0xef3a4 ;
-emulated_drive_gf = 0xf174 ;
+_cfunc32flat_process_op_32 = 0xefc0d ;
+emulated_drive_gf = 0xf1f4 ;
 bounce_buf_fl = 0x6e6c ;
 IDMap = 0x6e80 ;
 _cfunc16_wait_irq = 0xb24d ;
@@ -51,26 +51,26 @@ LegacyRamSize = 0x6380 ;
 BIOS_CONFIG_TABLE = 0xe6f5 ;
 e820_count = 0x6384 ;
 e820_list = 0x63a0 ;
-sercon_enable = 0xf15d ;
-_cfunc32flat_tpm_interrupt_handler32 = 0xf0207 ;
-Century = 0xf144 ;
-_cfunc32flat_handle_resume32 = 0xefe80 ;
+sercon_enable = 0xf1dd ;
+_cfunc32flat_tpm_interrupt_handler32 = 0xf0a70 ;
+Century = 0xf1c4 ;
+_cfunc32flat_handle_resume32 = 0xf06e9 ;
 MaxPCIBus = 0x636c ;
 PirAddr = 0x6368 ;
 rombios32_gdt_48 = 0x6f54 ;
 SMPLock = 0xf58b8 ;
 SMPStack = 0xf58b4 ;
-_cfunc32flat_handle_smp = 0xf051d ;
-_cfunc32flat_handle_pmm = 0xeaa07 ;
+_cfunc32flat_handle_smp = 0xf0d86 ;
+_cfunc32flat_handle_pmm = 0xeb415 ;
 _cfunc32seg_handle_apm = 0x7834 ;
 _cfunc32seg_handle_pcibios = 0x7498 ;
 sercon_real_vga_handler = 0x6e64 ;
-_cfunc32flat_handle_19 = 0xf01da ;
-_cfunc32flat_handle_18 = 0xf01ae ;
-_cfunc32flat_handle_post = 0xf0186 ;
+_cfunc32flat_handle_19 = 0xf0a43 ;
+_cfunc32flat_handle_18 = 0xf0a17 ;
+_cfunc32flat_handle_post = 0xf09ef ;
 
-    zonelow_base = 0xdc000 ;
-    _zonelow_seg = 0xdc00 ;
+    zonelow_base = 0xdc800 ;
+    _zonelow_seg = 0xdc80 ;
 
 .text.set_a20 0x7b20 : { *(.text.set_a20) }
 .text.set_code_success 0xe3f2 : { *(.text.set_code_success) }
@@ -203,12 +203,11 @@ _cfunc32flat_handle_post = 0xf0186 ;
 .text.asm.transition32 0xcad9 : { *(.text.asm.transition32) }
 .text.asm.transition16 0xcb27 : { *(.text.asm.transition16) }
 .text.asm.__farcall16 0xcb75 : { *(.text.asm.__farcall16) }
-.text.asm.irq_trampoline_0x02 0xef50 : { *(.text.asm.irq_trampoline_0x02) }
-.text.asm.irq_trampoline_0x05 0xe6ed : { *(.text.asm.irq_trampoline_0x05) }
-.text.asm.irq_trampoline_0x10 0xe6ea : { *(.text.asm.irq_trampoline_0x10) }
-.text.asm.irq_trampoline_0x13 0xfa69 : { *(.text.asm.irq_trampoline_0x13) }
-.text.asm.irq_trampoline_0x15 0xe82a : { *(.text.asm.irq_trampoline_0x15) }
-.text.asm.irq_trampoline_0x16 0xe827 : { *(.text.asm.irq_trampoline_0x16) }
+.text.asm.irq_trampoline_0x02 0xe6ed : { *(.text.asm.irq_trampoline_0x02) }
+.text.asm.irq_trampoline_0x05 0xe6ea : { *(.text.asm.irq_trampoline_0x05) }
+.text.asm.irq_trampoline_0x10 0xfa69 : { *(.text.asm.irq_trampoline_0x10) }
+.text.asm.irq_trampoline_0x13 0xe82a : { *(.text.asm.irq_trampoline_0x13) }
+.text.asm.irq_trampoline_0x15 0xe827 : { *(.text.asm.irq_trampoline_0x15) }
 .text.asm.irq_trampoline_0x18 0xff50 : { *(.text.asm.irq_trampoline_0x18) }
 .text.asm.irq_trampoline_0x19 0xf0a0 : { *(.text.asm.irq_trampoline_0x19) }
 .text.asm.irq_trampoline_0x1b 0xf856 : { *(.text.asm.irq_trampoline_0x1b) }

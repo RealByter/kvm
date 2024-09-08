@@ -21,15 +21,15 @@ void log_print(const char *fmt, ...)
     struct kvm_regs regs;
     kvm_get_regs(&regs);
     
-    // FILE* seabios_log = seabios_log_get_file();
+    FILE* seabios_log = seabios_log_get_file();
     fprintf(log_file, "[0x%llx ", regs.rip);
-    // fprintf(seabios_log, "[0x%llx ", regs.rip);
-    // va_list args_copy;
-    // va_copy(args_copy, args);
+    fprintf(seabios_log, "[0x%llx ", regs.rip);
+    va_list args_copy;
+    va_copy(args_copy, args);
     vfprintf(log_file, fmt, args);
-    // vfprintf(seabios_log, fmt, args_copy);
+    vfprintf(seabios_log, fmt, args_copy);
     fprintf(log_file, "\n");
-    // fprintf(seabios_log, "\n");
+    fprintf(seabios_log, "\n");
     va_end(args);
     fflush(log_file);
 }
