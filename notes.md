@@ -31,3 +31,5 @@ Handle commands in general in a seperate thread while returning to the guest ker
 I'll understand how to implement multicore once I search globally: "No apic - only the main cpu is present."
 
 REMEMBER - THE PAM OF I440FX SOMEHOW CONTROLS READONLY AND AT BOOT THE BIOS IS TRYING TO MAKE THE BIOS READONLY
+
+DONT FORGET - I updated the code at cdrom to update the buffer and ignore the first check

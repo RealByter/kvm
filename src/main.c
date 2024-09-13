@@ -61,10 +61,10 @@ int main(int argc, char *argv[])
     io_manager_register(NULL, ata_handle_control_primary, 0x3f6, 0x3f7);
     io_manager_register(NULL, ata_handle_control_secondary, 0x376, 0x377);
 
-    ata_deinit_disks();
     kvm_init(argv[1]);
     kvm_run();
     kvm_deinit();
+    ata_deinit_disks();
     // gui_deinit();
 
     return 0;

@@ -5,24 +5,23 @@
 //
 // This file may be distributed under the terms of the GNU LGPLv3 license.
 
-#include "biosvar.h" // GET_GLOBAL
-#include "block.h" // struct drive_s
-#include "bregs.h" // struct bregs
-#include "hw/ata.h" // ATA_CMD_REQUEST_SENSE
+#include "biosvar.h"     // GET_GLOBAL
+#include "block.h"       // struct drive_s
+#include "bregs.h"       // struct bregs
+#include "hw/ata.h"      // ATA_CMD_REQUEST_SENSE
 #include "hw/blockcmd.h" // CDB_CMD_REQUEST_SENSE
-#include "malloc.h" // free
-#include "output.h" // dprintf
-#include "std/disk.h" // DISK_RET_SUCCESS
-#include "string.h" // memset
-#include "util.h" // cdrom_prepboot
-#include "tcgbios.h" // tpm_*
-
+#include "malloc.h"      // free
+#include "output.h"      // dprintf
+#include "std/disk.h"    // DISK_RET_SUCCESS
+#include "string.h"      // memset
+#include "util.h"        // cdrom_prepboot
+#include "tcgbios.h"     // tpm_*
 
 /****************************************************************
  * CD emulation
  ****************************************************************/
 
-struct eltorito_s CDEmu VARLOW = { .size=sizeof(CDEmu) };
+struct eltorito_s CDEmu VARLOW = {.size = sizeof(CDEmu)};
 struct drive_s *emulated_drive_gf VARLOW;
 struct drive_s *cdemu_drive_gf VARFSEG;
 
@@ -39,7 +38,8 @@ cdemu_read(struct disk_op_s *op)
     op->count = 0;
     u8 *cdbuf_fl = GET_GLOBAL(bounce_buf_fl);
 
-    if (op->lba & 3) {
+    if (op->lba & 3)
+    {
         // Partial read of first block.
         dop.count = 1;
         dop.buf_fl = cdbuf_fl;
@@ -56,7 +56,8 @@ cdemu_read(struct disk_op_s *op)
         dop.lba++;
     }
 
-    if (count > 3) {
+    if (count > 3)
+    {
         // Read n number of regular blocks.
         dop.count = count / 4;
         dop.buf_fl = op->buf_fl;
@@ -70,7 +71,8 @@ cdemu_read(struct disk_op_s *op)
         dop.lba += thiscount / 4;
     }
 
-    if (count) {
+    if (count)
+    {
         // Partial read on last block.
         dop.count = 1;
         dop.buf_fl = cdbuf_fl;
@@ -85,13 +87,13 @@ cdemu_read(struct disk_op_s *op)
     return DISK_RET_SUCCESS;
 }
 
-int
-cdemu_process_op(struct disk_op_s *op)
+int cdemu_process_op(struct disk_op_s *op)
 {
     if (!CONFIG_CDROM_EMU)
         return 0;
 
-    switch (op->command) {
+    switch (op->command)
+    {
     case CMD_READ:
         return cdemu_read(op);
     case CMD_WRITE:
@@ -102,8 +104,7 @@ cdemu_process_op(struct disk_op_s *op)
     }
 }
 
-void
-cdrom_prepboot(void)
+void cdrom_prepboot(void)
 {
     if (!CONFIG_CDROM_EMU)
         return;
@@ -113,7 +114,8 @@ cdrom_prepboot(void)
         return;
 
     struct drive_s *drive = malloc_fseg(sizeof(*drive));
-    if (!drive) {
+    if (!drive)
+    {
         warn_noalloc();
         return;
     }
@@ -124,13 +126,11 @@ cdrom_prepboot(void)
     drive->sectors = (u64)-1;
 }
 
-
 /****************************************************************
  * CD booting
  ****************************************************************/
 
-int
-cdrom_boot(struct drive_s *drive)
+int cdrom_boot(struct drive_s *drive)
 {
     ASSERT32FLAT();
     struct disk_op_s dop;
@@ -157,11 +157,11 @@ cdrom_boot(struct drive_s *drive)
     // Validity checks
     if (buffer[0])
         return 4;
-    if (strcmp((char*)&buffer[1], "CD001\001EL TORITO SPECIFICATION") != 0)
+    if (strcmp((char *)&buffer[1], "CD001\001EL TORITO SPECIFICATION") != 0)
         return 5;
 
     // ok, now we calculate the Boot catalog address
-    u32 lba = *(u32*)&buffer[0x47];
+    u32 lba = *(u32 *)&buffer[0x47];
 
     // And we read the Boot Catalog
     dop.lba = lba;
@@ -170,15 +170,19 @@ cdrom_boot(struct drive_s *drive)
     if (ret)
         return 7;
 
+    // for (int i = 0; i < sizeof(buffer); i++)
+        // dprintf(5, "%d: %02x\n", i, buffer[i]);
+
+    // dprintf(5, "validation entries: 00:%d, 01: %d, 1e: %d, 1f: %d\n", buffer[0x00], buffer[0x01], buffer[0x1E], buffer[0x1F]);
     // Validation entry
-    if (buffer[0x00] != 0x01)
-        return 8;   // Header
+    // if (buffer[0x00] != 0x01)
+        // return 8; // Header
     if (buffer[0x01] != 0x00)
-        return 9;   // Platform
+        return 9; // Platform
     if (buffer[0x1E] != 0x55)
-        return 10;  // key 1
+        return 10; // key 1
     if (buffer[0x1F] != 0xAA)
-        return 10;  // key 2
+        return 10; // key 2
 
     // Initial/Default Entry
     if (buffer[0x20] != 0x88)
@@ -191,16 +195,16 @@ cdrom_boot(struct drive_s *drive)
     emulated_drive_gf = drive;
     u8 media = buffer[0x21];
 
-    u16 boot_segment = *(u16*)&buffer[0x22];
+    u16 boot_segment = *(u16 *)&buffer[0x22];
     if (!boot_segment)
         boot_segment = 0x07C0;
     CDEmu.load_segment = boot_segment;
     CDEmu.buffer_segment = 0x0000;
 
-    u16 nbsectors = *(u16*)&buffer[0x26];
+    u16 nbsectors = *(u16 *)&buffer[0x26];
     CDEmu.sector_count = nbsectors;
 
-    lba = *(u32*)&buffer[0x28];
+    lba = *(u32 *)&buffer[0x28];
     CDEmu.ilba = lba;
 
     CDEmu.controller_index = drive->cntl_id / 2;
@@ -210,55 +214,61 @@ cdrom_boot(struct drive_s *drive)
     nbsectors = DIV_ROUND_UP(nbsectors, 4);
     dop.lba = lba;
     dop.buf_fl = MAKE_FLATPTR(boot_segment, 0);
-    while (nbsectors) {
+    while (nbsectors)
+    {
         int count = nbsectors;
-        if (count > 64*1024/CDROM_SECTOR_SIZE)
-            count = 64*1024/CDROM_SECTOR_SIZE;
+        if (count > 64 * 1024 / CDROM_SECTOR_SIZE)
+            count = 64 * 1024 / CDROM_SECTOR_SIZE;
         dop.count = count;
         ret = process_op(&dop);
         if (ret)
             return 12;
         nbsectors -= count;
         dop.lba += count;
-        dop.buf_fl += count*CDROM_SECTOR_SIZE;
+        dop.buf_fl += count * CDROM_SECTOR_SIZE;
     }
 
-    if (media == 0) {
+    if (media == 0)
+    {
         // No emulation requested - return success.
         CDEmu.emulated_drive = EXTSTART_CD + cdid;
         return 0;
     }
 
     // Emulation of a floppy/harddisk requested
-    if (! CONFIG_CDROM_EMU || !cdemu_drive_gf)
+    if (!CONFIG_CDROM_EMU || !cdemu_drive_gf)
         return 13;
 
     // Set emulated drive id and increase bios installed hardware
     // number of devices
-    if (media < 4) {
+    if (media < 4)
+    {
         // Floppy emulation
         CDEmu.emulated_drive = 0x00;
         // XXX - get and set actual floppy count.
         set_equipment_flags(0x41, 0x41);
 
-        switch (media) {
-        case 0x01:  // 1.2M floppy
+        switch (media)
+        {
+        case 0x01: // 1.2M floppy
             CDEmu.chs.sptcyl = 15;
             CDEmu.chs.cyllow = 79;
             CDEmu.chs.heads = 1;
             break;
-        case 0x02:  // 1.44M floppy
+        case 0x02: // 1.44M floppy
             CDEmu.chs.sptcyl = 18;
             CDEmu.chs.cyllow = 79;
             CDEmu.chs.heads = 1;
             break;
-        case 0x03:  // 2.88M floppy
+        case 0x03: // 2.88M floppy
             CDEmu.chs.sptcyl = 36;
             CDEmu.chs.cyllow = 79;
             CDEmu.chs.heads = 1;
             break;
         }
-    } else {
+    }
+    else
+    {
         // Harddrive emulation
         CDEmu.emulated_drive = 0x80;
         SET_BDA(hdcount, GET_BDA(hdcount) + 1);
@@ -277,7 +287,7 @@ cdrom_boot(struct drive_s *drive)
 
 // check if media is present and the drive is bootable.
 // in case it is return the volume label.
-char*
+char *
 cdrom_media_info(struct drive_s *drive)
 {
     ASSERT32FLAT();
@@ -303,7 +313,7 @@ cdrom_media_info(struct drive_s *drive)
     // Is it bootable?
     if (buffer[0])
         return NULL;
-    if (strcmp((char*)&buffer[1], "CD001\001EL TORITO SPECIFICATION") != 0)
+    if (strcmp((char *)&buffer[1], "CD001\001EL TORITO SPECIFICATION") != 0)
         return NULL;
 
     // Read the Primary Volume Descriptor

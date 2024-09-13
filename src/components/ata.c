@@ -15,7 +15,8 @@ I still keep those ports mapped to
 
 LOG_DEFINE("ata");
 
-#define ATA_SECTOR_SIZE 512
+#define ATA_HARDDRIVE_SECTOR_SIZE 512
+#define ATA_CDROM_SECTOR_SIZE 2048
 
 #define ATA_MASTER_BASE 0x1f0
 #define ATA_MASTER_CONTROL 0x3f6
@@ -132,19 +133,19 @@ typedef struct
 } ata_channel_t;
 
 static ata_channel_t ata_channels[2] = {0};
-static uint32_t kernel_file_size = 0;
-static FILE *kernel_file = NULL;
+static uint32_t cdrom_file_size = 0;
+static FILE *cdrom_file = NULL;
 static uint32_t harddisk_file_size = 0;
 static FILE *harddisk_file = NULL;
 
-void ata_init_disks(char *kernel_path, char *harddisk_path)
+void ata_init_disks(char *cdrom_path, char *harddisk_path)
 {
-    kernel_file = fopen(kernel_path, "rb");
-    if (kernel_file == NULL)
+    cdrom_file = fopen(cdrom_path, "rb");
+    if (cdrom_file == NULL)
     {
         errx(1, "Failed to open kernel file");
     }
-    kernel_file_size = get_file_size(kernel_file);
+    cdrom_file_size = get_file_size(cdrom_file);
 
     harddisk_file = fopen(harddisk_path, "rb+");
     if (harddisk_file == NULL)
@@ -156,10 +157,10 @@ void ata_init_disks(char *kernel_path, char *harddisk_path)
 
 void ata_deinit_disks()
 {
-    if (kernel_file != NULL)
+    if (cdrom_file != NULL)
     {
-        fclose(kernel_file);
-        kernel_file = NULL;
+        fclose(cdrom_file);
+        cdrom_file = NULL;
     }
 
     if (harddisk_file != NULL)
@@ -196,8 +197,8 @@ void ata_identify_packet_device(void *args) // for cdrom
 
     identify_data[47] = 0x8000; // Fixed + Reserved
 
-    identify_data[60] = (kernel_file_size / ATA_SECTOR_SIZE) & 0xFFFF;
-    identify_data[61] = ((kernel_file_size / ATA_SECTOR_SIZE) >> 16) & 0xFFFF;
+    identify_data[60] = (cdrom_file_size / ATA_CDROM_SECTOR_SIZE) & 0xFFFF;
+    identify_data[61] = ((cdrom_file_size / ATA_CDROM_SECTOR_SIZE) >> 16) & 0xFFFF;
 
     identify_data[82] = (1 << 14) | (1 << 13) | (1 << 12); // NOP command, read and write buffer are supported
     identify_data[85] = (1 << 14) | (1 << 13) | (1 << 12); // NOP command, read and write buffer are supported
@@ -245,8 +246,8 @@ void ata_identify_device(void *args) // for hard disk
 
     identify_data[47] = 0x8000; // Fixed + Reserved
 
-    identify_data[60] = (harddisk_file_size / ATA_SECTOR_SIZE) & 0xFFFF;
-    identify_data[61] = ((harddisk_file_size / ATA_SECTOR_SIZE) >> 16) & 0xFFFF;
+    identify_data[60] = (harddisk_file_size / ATA_HARDDRIVE_SECTOR_SIZE) & 0xFFFF;
+    identify_data[61] = ((harddisk_file_size / ATA_HARDDRIVE_SECTOR_SIZE) >> 16) & 0xFFFF;
 
     identify_data[82] = (1 << 14) | (1 << 13) | (1 << 12);
     identify_data[85] = (1 << 14) | (1 << 13) | (1 << 12);
@@ -265,15 +266,18 @@ void ata_identify_device(void *args) // for hard disk
 void ata_handle_scsi_cdb(void *args)
 {
     ata_channel_t *channel = (ata_channel_t *)args;
-    uint16_t *cdb = channel->scsi_cdb_buffer;
+    uint8_t *cdb = channel->scsi_cdb_buffer;
+    uint32_t sector_size = (channel->drive_head & ATA_DRIVE_HEAD_DRIVE) ? ATA_HARDDRIVE_SECTOR_SIZE : ATA_CDROM_SECTOR_SIZE;
 
-    if (channel->scsi_cdb_buffer[0] == 0x28)
+    if (cdb[0] == 0x28)
     {
         uint32_t lba = (cdb[2] << 24) | (cdb[3] << 16) | (cdb[4] << 8) | cdb[5];
         uint32_t count = (cdb[7] << 8) | cdb[8];
 
-        if (lba + count > harddisk_file_size / ATA_SECTOR_SIZE)
+        if (lba + count > cdrom_file_size / sector_size)
         {
+            LOG_MSG("Error");
+            printf("error\n");
             pthread_mutex_lock(&channel->status_mutex);
             channel->error = ATA_ERROR_ABORTED_COMMAND;
             channel->status |= ATA_STATUS_ERROR;
@@ -281,28 +285,47 @@ void ata_handle_scsi_cdb(void *args)
         }
         else
         {
-            fseek(harddisk_file, lba * ATA_SECTOR_SIZE, SEEK_SET);
+            printf("lba: %d %d\n", lba, lba * sector_size);
+            printf("size: %d\n", cdrom_file_size);
+            printf("cdrom_file: %d\n", cdrom_file);
+            fseek(cdrom_file, lba * sector_size, SEEK_SET);
 
             pthread_mutex_lock(&channel->data_buffer_mutex);
-            fread(channel->data_buffer, ATA_SECTOR_SIZE, count, harddisk_file);
-            channel->data_buffer_size = ATA_SECTOR_SIZE * count;
+            channel->data_buffer_size = sector_size * count;
+            printf("count: %d %d\n", count, channel->data_buffer_size);
+            fread(channel->data_buffer, 1, channel->data_buffer_size, cdrom_file);
             pthread_mutex_unlock(&channel->data_buffer_mutex);
+
+            pthread_mutex_lock(&channel->scsi_cdb_buffer_mutex);
+            channel->scsi_cdb_buffer_size = 0;
+            memset(channel->scsi_cdb_buffer, 0, sizeof(channel->scsi_cdb_buffer));
+            pthread_mutex_unlock(&channel->scsi_cdb_buffer_mutex);
 
             pthread_mutex_lock(&channel->status_mutex);
             channel->status |= ATA_STATUS_DATA_REQUEST;
+            channel->status &= ~ATA_STATUS_BUSY;
             pthread_mutex_unlock(&channel->status_mutex);
+            LOG_MSG("Read. Status: %b", channel->status);
         }
     }
     else if (channel->scsi_cdb_buffer[0] == 0x00)
     {
-        pthread_mutex_lock(&channel->data_buffer_mutex);
-        channel->data_buffer[0] = 0;
-        channel->data_buffer_size = 1;
-        pthread_mutex_unlock(&channel->data_buffer_mutex);
+        // pthread_mutex_lock(&channel->data_buffer_mutex);
+        // channel->data_buffer[0] = 0;
+        // channel->data_buffer_size = 1;
+        // pthread_mutex_unlock(&channel->data_buffer_mutex);
+        printf("test\n");
+
+        // pthread_mutex_lock(&channel->scsi_cdb_buffer_mutex);
+        // channel->scsi_cdb_buffer_size = 0;
+        // memset(channel->scsi_cdb_buffer, 0, sizeof(channel->scsi_cdb_buffer));
+        // pthread_mutex_unlock(&channel->scsi_cdb_buffer_mutex);
 
         pthread_mutex_lock(&channel->status_mutex);
-        channel->status |= ATA_STATUS_DATA_REQUEST;
+        // channel->status |= ATA_STATUS_DATA_REQUEST;
+        channel->status &= ~ATA_STATUS_BUSY;
         pthread_mutex_unlock(&channel->status_mutex);
+        LOG_MSG("Set: %b", channel->status);
     }
 }
 
@@ -433,14 +456,24 @@ void ata_handle_io(exit_io_info_t *io, uint8_t *base, bool is_secondary)
                 }
                 // pthread_mutex_lock(&channel->buffer_mutex);
                 memcpy(channel->scsi_cdb_buffer + channel->scsi_cdb_buffer_size / 2, base + io->data_offset, io->count * io->size);
+                LOG_MSG("Read %d bytes from data_buffer at offset %d", io->count * io->size, channel->scsi_cdb_buffer_size);
+                pthread_mutex_lock(&channel->scsi_cdb_buffer_mutex);
                 channel->scsi_cdb_buffer_size += io->count * io->size;
+                pthread_mutex_unlock(&channel->scsi_cdb_buffer_mutex);
                 LOG_MSG("scsi_cdb_buffer_size: %d\n", channel->scsi_cdb_buffer_size);
+                uint8_t *cdb = (uint8_t *)channel->scsi_cdb_buffer;
+
                 if (channel->scsi_cdb_buffer_size / 2 == ATA_SCSI_CDB_BUFFER_SIZE)
                 {
                     pthread_mutex_lock(&channel->status_mutex);
                     channel->status &= ~ATA_STATUS_DATA_REQUEST;
                     channel->status |= ATA_STATUS_BUSY;
                     pthread_mutex_unlock(&channel->status_mutex);
+
+                    pthread_mutex_lock(&channel->scsi_cdb_buffer_mutex);
+                    channel->scsi_cdb_buffer_size = 0;
+                    pthread_mutex_unlock(&channel->scsi_cdb_buffer_mutex);
+
                     pthread_t thread;
                     pthread_create(&thread, NULL, ata_handle_scsi_cdb, channel);
                     pthread_detach(thread);
@@ -488,7 +521,7 @@ void ata_handle_io(exit_io_info_t *io, uint8_t *base, bool is_secondary)
             unhandled(io, base);
         }
     }
-    else
+    else // EXIT_IO_IN
     {
         switch (offset)
         {
@@ -504,13 +537,23 @@ void ata_handle_io(exit_io_info_t *io, uint8_t *base, bool is_secondary)
                 pthread_mutex_lock(&channel->data_buffer_mutex);
 
                 memcpy(base + io->data_offset, channel->data_buffer + channel->data_buffer_read, to_read);
+                LOG_MSG("Wrote %d bytes to data_buffer at offset %d", to_read, channel->data_buffer_read);
                 channel->data_buffer_read += to_read;
+
+                for (int i = 0; i < to_read; i++)
+                {
+                    LOG_MSG("%d: %02x ", i, base[io->data_offset + i]);
+                }
 
                 if (channel->data_buffer_read == channel->data_buffer_size)
                 {
                     channel->data_buffer_read = 0;
                     channel->data_buffer_size = 0;
+
+                    pthread_mutex_lock(&channel->scsi_cdb_buffer_mutex);
                     channel->scsi_cdb_buffer_size = 0;
+                    pthread_mutex_unlock(&channel->scsi_cdb_buffer_mutex);
+
                     pthread_mutex_lock(&channel->status_mutex);
                     channel->status &= ~ATA_STATUS_DATA_REQUEST;
                     pthread_mutex_unlock(&channel->status_mutex);
@@ -520,8 +563,8 @@ void ata_handle_io(exit_io_info_t *io, uint8_t *base, bool is_secondary)
             }
             else
             {
-                printf("sizeof(data_buffer): %d, read: %d\n", channel->data_buffer_size, channel->data_buffer_read);
-                printf("Data requested without data available\n");
+                LOG_MSG("sizeof(data_buffer): %d, read: %d\n", channel->data_buffer_size, channel->data_buffer_read);
+                LOG_MSG("Data requested without data available\n");
                 exit(1);
             }
         case ATA_IO_OFFSET_ERROR:
@@ -544,7 +587,7 @@ void ata_handle_io(exit_io_info_t *io, uint8_t *base, bool is_secondary)
             pthread_mutex_lock(&channel->status_mutex);
             // should affect interrupts
             base[io->data_offset] = channel->status;
-            printf("Status: %b\n", channel->status);
+            LOG_MSG("Status: %b", channel->status);
             pthread_mutex_unlock(&channel->status_mutex);
             break;
         default:
