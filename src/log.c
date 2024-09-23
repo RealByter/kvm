@@ -32,6 +32,7 @@ void log_print(const char *fmt, ...)
     fprintf(seabios_log, "\n");
     va_end(args);
     fflush(log_file);
+    fflush(seabios_log);
 }
 
 void log_deinit()

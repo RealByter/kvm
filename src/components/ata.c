@@ -476,7 +476,8 @@ void ata_handle_io(exit_io_info_t *io, uint8_t *base, bool is_secondary)
 
                     pthread_t thread;
                     pthread_create(&thread, NULL, ata_handle_scsi_cdb, channel);
-                    pthread_detach(thread);
+                    int ret;
+                    pthread_join(thread, &ret);
                     LOG_MSG("created thread\n");
                 }
             }
