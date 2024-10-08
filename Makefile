@@ -22,9 +22,7 @@ build/%.o: src/%.c
 all: $(TARGET)	
 
 run: $(DISK_IMAGE) $(TARGET)
-	(cd kernel && make all)
-	# ./$(TARGET) ./seabios/out/bios.bin ../karmiel-506-operatingsystem/os.iso harddisk.img
-	./$(TARGET) ./seabios/out/bios.bin ./xv6-public/xv6.img harddisk.img
+	./$(TARGET) bios.bin os.iso harddisk.img
 
 clean:
 	rm -rf build $(TARGET)
