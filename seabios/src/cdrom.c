@@ -170,13 +170,9 @@ int cdrom_boot(struct drive_s *drive)
     if (ret)
         return 7;
 
-    // for (int i = 0; i < sizeof(buffer); i++)
-        // dprintf(5, "%d: %02x\n", i, buffer[i]);
-
-    // dprintf(5, "validation entries: 00:%d, 01: %d, 1e: %d, 1f: %d\n", buffer[0x00], buffer[0x01], buffer[0x1E], buffer[0x1F]);
     // Validation entry
-    // if (buffer[0x00] != 0x01)
-        // return 8; // Header
+    if (buffer[0x00] != 0x01)
+        return 8; // Header
     if (buffer[0x01] != 0x00)
         return 9; // Platform
     if (buffer[0x1E] != 0x55)

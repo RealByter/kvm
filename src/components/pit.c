@@ -58,16 +58,16 @@ void pit_clock_thread(void *arg)
             {
                 continue;
             }
-            if (pit->count == 0)
+            if (pit->count == 0 && pit->null_count)
             {
                 continue;
             }
             pit->output_pin_state ^= 1; // flip the state each cycle
-            if (pit->count <= 1)
+            if (pit->count == 1)
             {
                 pic_raise_interrupt(PIC_IRQ0);
             }
-            if (pit->count <= 0)
+            if (pit->count == 0)
             {
                 pit->count = pit->divisor - 1;
                 pit->null_count = false;

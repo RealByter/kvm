@@ -266,6 +266,11 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
                 return;
             }
         }
+        else // EXIT_IO_IN
+        {
+            base[io->data_offset] = pic->isr;
+            return;
+        }
     }
     else if (io->port == PIC_MASTER_DATA || io->port == PIC_SLAVE_DATA)
     {
@@ -339,6 +344,7 @@ void pic_handle(exit_io_info_t *io, uint8_t *base, bool slave)
     }
 
     printf("PIC Port 0x%02x is unhandled for direction: %d\n", io->port, io->direction);
+    kvm_print_regs();
     exit(1);
 }
 

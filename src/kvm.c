@@ -118,7 +118,7 @@ void kvm_set_sregs(struct kvm_sregs *sregs)
     }
 }
 
-void print_regs()
+void kvm_print_regs()
 {
     struct kvm_regs regs;
     kvm_get_regs(&regs);
@@ -227,12 +227,12 @@ void kvm_run()
             }
             break;
         case KVM_EXIT_FAIL_ENTRY:
-            print_regs();
+            kvm_print_regs();
             print_sregs();
             errx(1, "KVM_EXIT_FAIL_ENTRY: hardware_entry_failure_reason = 0x%llx",
                  (unsigned long long)run->fail_entry.hardware_entry_failure_reason);
         case KVM_EXIT_INTERNAL_ERROR:
-            // print_regs(vcpu);
+            // kvm_print_regs(vcpu);
             // errx(1, "KVM_EXIT_INTERNAL_ERROR: suberror = 0x%x", run->internal.suberror);
             printf("KVM_EXIT_INTERNAL_ERROR: suberror = 0x%x, ndata = 0x%x\n", run->internal.suberror, run->internal.ndata);
             for (int i = 0; i < run->internal.ndata; i++)

@@ -11,6 +11,7 @@
 void kvm_set_userspace_memory_region(struct kvm_userspace_memory_region *memory_region);
 // int kvm_create_vcpu();
 struct kvm_run* kvm_map_run();
+void kvm_print_regs();
 void kvm_get_regs(struct kvm_regs *regs);
 void kvm_set_regs(struct kvm_regs *regs);
 void kvm_get_sregs(struct kvm_sregs *sregs);
