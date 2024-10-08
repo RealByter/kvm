@@ -293,7 +293,8 @@ void ata_handle_scsi_cdb(void *args)
             pthread_mutex_lock(&channel->data_buffer_mutex);
             channel->data_buffer_size = sector_size * count;
             printf("count: %d %d\n", count, channel->data_buffer_size);
-            fread(channel->data_buffer, 1, channel->data_buffer_size, cdrom_file);
+            int read = fread(channel->data_buffer, 1, channel->data_buffer_size, cdrom_file);
+            LOG_MSG("bytes read: %d\n", read);
             pthread_mutex_unlock(&channel->data_buffer_mutex);
 
             pthread_mutex_lock(&channel->scsi_cdb_buffer_mutex);
@@ -476,8 +477,7 @@ void ata_handle_io(exit_io_info_t *io, uint8_t *base, bool is_secondary)
 
                     pthread_t thread;
                     pthread_create(&thread, NULL, ata_handle_scsi_cdb, channel);
-                    int ret;
-                    pthread_join(thread, &ret);
+                    pthread_detach(thread);
                     LOG_MSG("created thread\n");
                 }
             }
