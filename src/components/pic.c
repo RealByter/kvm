@@ -367,7 +367,7 @@ void pic_raise_interrupt(uint8_t irq)
 
     pic_t *pic = irq < 8 ? &pic_master : &pic_master;
     irq = irq % 8;
-
+    LOG_MSG("Raising interrupt %d", irq);
     pthread_mutex_lock(&pic_mutex);
     if (!(pic->irr & (1 << irq)) && !(pic->isr & (1 << irq)) && !(pic->imr & (1 << irq))) // not pending, not in service, and not masked
     {

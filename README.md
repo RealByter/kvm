@@ -1,0 +1,1 @@
+Simplified hypervisor type 2 made with KVM that can initialize seabios

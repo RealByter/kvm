@@ -171,8 +171,8 @@ int cdrom_boot(struct drive_s *drive)
         return 7;
 
     // Validation entry
-    if (buffer[0x00] != 0x01)
-        return 8; // Header
+    // if (buffer[0x00] != 0x01)
+        // return 8; // Header
     if (buffer[0x01] != 0x00)
         return 9; // Platform
     if (buffer[0x1E] != 0x55)
